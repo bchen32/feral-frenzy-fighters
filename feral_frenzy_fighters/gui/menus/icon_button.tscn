@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdoygoqidt2gt"]
+
+[ext_resource type="Script" path="res://gui/menus/icon_button.gd" id="1_alq0i"]
+[ext_resource type="Texture2D" uid="uid://diipaw50krrur" path="res://gui/menus/sprites/buttons/button_icon.png" id="1_ycffw"]
+[ext_resource type="Texture2D" uid="uid://chdwycww66d" path="res://gui/menus/sprites/buttons/button_icon_pressed.png" id="2_o6sv7"]
+[ext_resource type="Texture2D" uid="uid://qadgeqbcf0jq" path="res://gui/menus/sprites/buttons/button_icon_highlight.png" id="3_p0w2v"]
+[ext_resource type="Texture2D" uid="uid://b0ciegbjevlvd" path="res://gui/menus/sprites/buttons/icons/settings_icon.png" id="4_knj0i"]
+[ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="6_hnlto"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p67dp"]
+font = ExtResource("6_hnlto")
+font_size = 100
+
+[node name="IconButton" type="Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -952.0
+offset_bottom = -448.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_alq0i")
+
+[node name="IconButtonClick" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+texture_normal = ExtResource("1_ycffw")
+texture_pressed = ExtResource("2_o6sv7")
+texture_hover = ExtResource("3_p0w2v")
+
+[node name="Icon" type="TextureRect" parent="IconButtonClick"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_knj0i")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="IconButtonClick"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -40.0
+offset_right = 28.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "?"
+label_settings = SubResource("LabelSettings_p67dp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="IconButtonClick" to="." method="_on_icon_button_click_pressed"]

@@ -1,0 +1,294 @@
+[gd_scene load_steps=17 format=3 uid="uid://cqwih0alupqsb"]
+
+[ext_resource type="Script" path="res://gui/hud/damage_ui.gd" id="1_kd0hw"]
+[ext_resource type="Texture2D" uid="uid://djyfonhy27vtl" path="res://gui/hud/sprites/stats_paw_prints/player_stats_purple.png" id="2_jus1w"]
+[ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="3_ekkdo"]
+[ext_resource type="Theme" uid="uid://ciapr50n3vxqt" path="res://default_ui_theme.tres" id="5_cn1rk"]
+[ext_resource type="Texture2D" uid="uid://dtjxj17aqw5vn" path="res://gui/hud/sprites/stats_paw_prints/icons/heart_icon.png" id="6_6l4le"]
+[ext_resource type="Texture2D" uid="uid://dtmxypm8hko4g" path="res://gui/hud/sprites/stats_paw_prints/player_stats_blue.png" id="6_xgw5i"]
+[ext_resource type="Texture2D" uid="uid://elwjbvsp7q46" path="res://gui/hud/sprites/stats_paw_prints/icons/knife.png" id="7_6quto"]
+[ext_resource type="Texture2D" uid="uid://b0jyk2ikrx2l7" path="res://gui/hud/sprites/head_icons/cat_head_icon_purple.png" id="7_d4swm"]
+[ext_resource type="PackedScene" uid="uid://c76e6fhbc8jb2" path="res://gui/chat_popup.tscn" id="8_7swuq"]
+[ext_resource type="PackedScene" uid="uid://dj261m0egiehk" path="res://gui/chat_particles.tscn" id="9_hfx12"]
+[ext_resource type="Texture2D" uid="uid://82eu6fdyfbt7" path="res://gui/hud/sprites/head_icons/cat_head_icon_blue.png" id="11_0a8ss"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xhf4j"]
+font = ExtResource("3_ekkdo")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_aypps"]
+font = ExtResource("3_ekkdo")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_58gvk"]
+font = ExtResource("3_ekkdo")
+font_size = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8x73"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fif64"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="DamageUI" type="Control"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("1_kd0hw")
+
+[node name="P1" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -68.5
+offset_right = 31.0
+offset_bottom = 68.5
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Card" type="TextureRect" parent="P1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -13.0
+offset_right = 269.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_jus1w")
+stretch_mode = 2
+
+[node name="DamageLabel" type="Label" parent="P1"]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 30.0
+offset_right = 283.0
+offset_bottom = 67.0
+text = "1000%"
+label_settings = SubResource("LabelSettings_xhf4j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerNumberLabel" type="Label" parent="P1"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 92.0
+offset_right = 85.0
+offset_bottom = 126.0
+text = "P1"
+label_settings = SubResource("LabelSettings_aypps")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KOIcon" type="TextureRect" parent="P1"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 88.0
+offset_right = 184.0
+offset_bottom = 152.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_6l4le")
+
+[node name="KOLabel" type="Label" parent="P1"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 84.0
+offset_right = 283.0
+offset_bottom = 126.0
+text = "1000"
+label_settings = SubResource("LabelSettings_58gvk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="P1"]
+visible = false
+layout_mode = 0
+offset_left = 123.0
+offset_top = 47.0
+offset_right = 238.0
+offset_bottom = 68.0
+theme = ExtResource("5_cn1rk")
+theme_override_styles/background = SubResource("StyleBoxFlat_e8x73")
+max_value = 1000.0
+show_percentage = false
+
+[node name="ProgressBar2" type="ProgressBar" parent="P1"]
+visible = false
+layout_mode = 0
+offset_left = 127.0
+offset_top = 51.0
+offset_right = 234.0
+offset_bottom = 64.0
+theme = ExtResource("5_cn1rk")
+theme_override_styles/background = SubResource("StyleBoxFlat_fif64")
+max_value = 1000.0
+show_percentage = false
+
+[node name="SwordTexture" type="TextureRect" parent="P1"]
+visible = false
+layout_mode = 0
+offset_left = 241.0
+offset_top = 38.0
+offset_right = 418.0
+offset_bottom = 233.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_6quto")
+
+[node name="TextureRect" type="TextureRect" parent="P1"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -12.0
+offset_right = 182.0
+offset_bottom = 166.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_d4swm")
+
+[node name="ChatPopup" parent="P1" instance=ExtResource("8_7swuq")]
+layout_mode = 1
+offset_left = -71.0
+offset_top = -11.5
+offset_right = -402.0
+offset_bottom = -148.5
+scale = Vector2(0.33, 0.33)
+
+[node name="ChatParticles" parent="P1" instance=ExtResource("9_hfx12")]
+position = Vector2(143, -105)
+
+[node name="P2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -68.5
+offset_right = 300.0
+offset_bottom = 68.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Card" type="TextureRect" parent="P2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -13.0
+offset_right = 269.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_xgw5i")
+stretch_mode = 2
+
+[node name="DamageLabel" type="Label" parent="P2"]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 30.0
+offset_right = 283.0
+offset_bottom = 74.0
+text = "1000%"
+label_settings = SubResource("LabelSettings_xhf4j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerNumberLabel" type="Label" parent="P2"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 92.0
+offset_right = 85.0
+offset_bottom = 126.0
+text = "P2
+"
+label_settings = SubResource("LabelSettings_aypps")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KOIcon" type="TextureRect" parent="P2"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 88.0
+offset_right = 184.0
+offset_bottom = 152.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_6l4le")
+
+[node name="KOLabel" type="Label" parent="P2"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 84.0
+offset_right = 283.0
+offset_bottom = 126.0
+text = "1000"
+label_settings = SubResource("LabelSettings_58gvk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SwordTexture" type="TextureRect" parent="P2"]
+visible = false
+layout_mode = 0
+offset_left = 241.0
+offset_top = 38.0
+offset_right = 418.0
+offset_bottom = 233.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_6quto")
+
+[node name="TextureRect" type="TextureRect" parent="P2"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -12.0
+offset_right = 182.0
+offset_bottom = 166.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_0a8ss")
+
+[node name="ProgressBar3" type="ProgressBar" parent="P2"]
+visible = false
+layout_mode = 0
+offset_left = 123.0
+offset_top = 47.0
+offset_right = 238.0
+offset_bottom = 68.0
+theme = ExtResource("5_cn1rk")
+theme_override_styles/background = SubResource("StyleBoxFlat_e8x73")
+max_value = 1000.0
+show_percentage = false
+
+[node name="ProgressBar4" type="ProgressBar" parent="P2"]
+visible = false
+layout_mode = 0
+offset_left = -695.0
+offset_top = 48.0
+offset_right = -588.0
+offset_bottom = 61.0
+theme = ExtResource("5_cn1rk")
+theme_override_styles/background = SubResource("StyleBoxFlat_fif64")
+max_value = 1000.0
+show_percentage = false
+
+[node name="ChatPopup" parent="P2" instance=ExtResource("8_7swuq")]
+layout_mode = 1
+offset_left = -70.0
+offset_top = -11.5
+offset_right = -401.0
+offset_bottom = -148.5
+scale = Vector2(0.33, 0.33)
+_is_blue_popup = true
+
+[node name="ChatParticles" parent="P2" instance=ExtResource("9_hfx12")]
+position = Vector2(143, -105)
+
+[connection signal="chat_sent" from="P1/ChatPopup" to="." method="_on_p1_chat_sent"]
+[connection signal="chat_sent" from="P2/ChatPopup" to="." method="_on_p2_chat_sent"]

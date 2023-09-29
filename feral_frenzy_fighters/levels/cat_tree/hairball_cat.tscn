@@ -1,0 +1,137 @@
+[gd_scene load_steps=13 format=3 uid="uid://chqh43xknejst"]
+
+[ext_resource type="Script" path="res://levels/cat_tree/hairball_cat.gd" id="1_bokw4"]
+[ext_resource type="Texture2D" uid="uid://hcfauvs32iv0" path="res://levels/cat_tree/sprites/events/cat_normal.png" id="2_m7ur7"]
+[ext_resource type="Texture2D" uid="uid://6ggh7iab1pmp" path="res://levels/cat_tree/sprites/events/hairball.png" id="3_8v7hq"]
+[ext_resource type="Texture2D" uid="uid://dajdw7ws8fba0" path="res://levels/cat_tree/sprites/events/cat_normal_about_to_spit.png" id="4_2urxp"]
+[ext_resource type="AudioStream" uid="uid://dy4cjtirjvmrl" path="res://levels/cat_tree/sfx/events/hairball.wav" id="4_6uyxb"]
+[ext_resource type="Texture2D" uid="uid://binx44qqve4yf" path="res://levels/cat_tree/sprites/events/cat_normal_spit.png" id="5_knq8f"]
+[ext_resource type="AudioStream" uid="uid://b4u6bv36xwt6l" path="res://levels/cat_tree/sfx/events/cat_spit.wav" id="6_ggb7x"]
+
+[sub_resource type="Animation" id="Animation_mf43p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_m7ur7")]
+}
+
+[sub_resource type="Animation" id="Animation_5rdo2"]
+resource_name = "about_to_shoot"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_2urxp")]
+}
+
+[sub_resource type="Animation" id="Animation_84k8h"]
+resource_name = "coming_in"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1500), Vector2(0, 1000)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_m7ur7")]
+}
+
+[sub_resource type="Animation" id="Animation_xdj16"]
+resource_name = "shooting_hairball"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_knq8f")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4jwhg"]
+_data = {
+"RESET": SubResource("Animation_mf43p"),
+"about_to_shoot": SubResource("Animation_5rdo2"),
+"coming_in": SubResource("Animation_84k8h"),
+"shooting_hairball": SubResource("Animation_xdj16")
+}
+
+[node name="HairballCat" type="Node2D"]
+position = Vector2(0, 1500)
+script = ExtResource("1_bokw4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_m7ur7")
+metadata/_edit_lock_ = true
+
+[node name="Mouth" type="Node2D" parent="Sprite2D"]
+position = Vector2(105, -90)
+
+[node name="Aim" type="Node2D" parent="Sprite2D/Mouth"]
+position = Vector2(3000, 0)
+
+[node name="Hairball" type="Sprite2D" parent="Sprite2D/Mouth"]
+texture = ExtResource("3_8v7hq")
+
+[node name="HairballSFX" type="AudioStreamPlayer2D" parent="Sprite2D/Mouth/Hairball"]
+stream = ExtResource("4_6uyxb")
+volume_db = 1.0
+pitch_scale = 0.5
+
+[node name="HairballCatSFX" type="AudioStreamPlayer2D" parent="Sprite2D"]
+stream = ExtResource("6_ggb7x")
+volume_db = 10.0
+attenuation = 0.0
+panning_strength = 3.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4jwhg")
+}

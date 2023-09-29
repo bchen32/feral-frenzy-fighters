@@ -1,0 +1,262 @@
+[gd_scene load_steps=24 format=3 uid="uid://ju3ra5auyqg8"]
+
+[ext_resource type="Texture2D" uid="uid://uk8l6kbu2oih" path="res://levels/cat_tree/tilesets/wallpaper_complete.png" id="1_a55mx"]
+[ext_resource type="Texture2D" uid="uid://t8uj7yrrto1f" path="res://levels/cat_tree/sprites/decor/science_board.png" id="2_xvjod"]
+[ext_resource type="Texture2D" uid="uid://da5424ghhrd6d" path="res://levels/cat_tree/tilesets/cat_level_tilemap_75x75.png" id="3_30urg"]
+[ext_resource type="Texture2D" uid="uid://bx1h66g51a2d2" path="res://levels/cat_tree/sprites/decor/cat_bed.png" id="4_2qkl3"]
+[ext_resource type="PackedScene" uid="uid://bm5pvsos0iw02" path="res://levels/cat_tree/cat_tree_left.tscn" id="4_msrjp"]
+[ext_resource type="PackedScene" uid="uid://b8ehp8vm4nmai" path="res://levels/cat_tree/cat_tree_right.tscn" id="5_2sw3a"]
+[ext_resource type="Texture2D" uid="uid://386h2w2jqnmm" path="res://levels/cat_tree/sprites/decor/book_thick.png" id="5_lys1b"]
+[ext_resource type="PackedScene" uid="uid://bxwjcbvvl31df" path="res://levels/cat_tree/cat_tree_middle.tscn" id="5_pbu6b"]
+[ext_resource type="PackedScene" uid="uid://b5gf3jsh1kt8x" path="res://levels/cat_tree/cat_tree_zig_zag.tscn" id="6_gw84o"]
+[ext_resource type="Texture2D" uid="uid://bgb30yv7vyx3l" path="res://levels/cat_tree/sprites/interactables/75x600 rope.png" id="6_l1v7g"]
+[ext_resource type="Texture2D" uid="uid://bkvumebdleqtd" path="res://levels/cat_tree/sprites/decor/book_thin.png" id="6_txay8"]
+[ext_resource type="Texture2D" uid="uid://dqb25pfnhgat2" path="res://levels/cat_tree/sprites/decor/book_thin_purple.png" id="7_k13hj"]
+[ext_resource type="Texture2D" uid="uid://idy1r7ni8p0u" path="res://levels/cat_tree/sprites/interactables/75x150 rope.png" id="8_4mpij"]
+[ext_resource type="Texture2D" uid="uid://bof6kql7fhsxv" path="res://levels/cat_tree/sprites/decor/glass_beaker_blue.png" id="8_pkp1u"]
+[ext_resource type="Texture2D" uid="uid://c2dcmfx3rtglk" path="res://levels/cat_tree/sprites/decor/glass_beaker_regular_empty.png" id="9_833ct"]
+[ext_resource type="Texture2D" uid="uid://lxvk6jmhiygw" path="res://levels/cat_tree/sprites/decor/test_tube_purple.png" id="10_x6n18"]
+[ext_resource type="Texture2D" uid="uid://bnk3tp7ei2ovb" path="res://levels/cat_tree/sprites/decor/stand_for_plasma.png" id="11_thvk6"]
+[ext_resource type="PackedScene" uid="uid://b1f2oo7wb5qj1" path="res://levels/cat_tree/plasma_ball.tscn" id="14_7tkul"]
+[ext_resource type="Script" path="res://levels/event_spawner.gd" id="14_vvqsy"]
+[ext_resource type="PackedScene" uid="uid://btpsrhej4yvr3" path="res://levels/cat_tree/broom.tscn" id="15_cnum7"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wslx1"]
+texture = ExtResource("3_30urg")
+texture_region_size = Vector2i(75, 75)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-37.5, -37.5, 37.5, -37.5, 37.5, 37.5, -37.5, 37.5)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-37.5, -37.5, 37.5, -37.5, 37.5, 37.5, -37.5, 37.5)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-37.5, -37.5, 37.5, -37.5, 37.5, 37.5, -37.5, 37.5)
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-37.5, -37.5, 37.5, -37.5, 37.5, 37.5, -37.5, 37.5)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+5:1/0 = 0
+5:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:1/0/physics_layer_0/angular_velocity = 0.0
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+4:2/0 = 0
+4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_0/angular_velocity = 0.0
+5:2/0 = 0
+5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:2/0/physics_layer_0/angular_velocity = 0.0
+1:3/0 = 0
+1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_0/angular_velocity = 0.0
+2:3/0 = 0
+2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_0/angular_velocity = 0.0
+4:3/0 = 0
+4:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:3/0/physics_layer_0/angular_velocity = 0.0
+5:3/0 = 0
+5:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:3/0/physics_layer_0/angular_velocity = 0.0
+5:4/0 = 0
+5:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:4/0/physics_layer_0/angular_velocity = 0.0
+3:5/0 = 0
+3:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:5/0/physics_layer_0/angular_velocity = 0.0
+4:5/0 = 0
+4:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:5/0/physics_layer_0/angular_velocity = 0.0
+5:5/0 = 0
+5:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:5/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_12wfi"]
+tile_size = Vector2i(75, 75)
+physics_layer_0/collision_layer = 4
+sources/0 = SubResource("TileSetAtlasSource_wslx1")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugm6a"]
+size = Vector2(246.25, 245)
+
+[node name="CatTreeLevel" type="Node2D"]
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Background" type="Node2D" parent="Environment"]
+metadata/_edit_lock_ = true
+
+[node name="WallpaperComplete" type="Sprite2D" parent="Environment/Background"]
+z_index = -2
+position = Vector2(941, 533)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_a55mx")
+metadata/_edit_lock_ = true
+
+[node name="ScienceBoard" type="Sprite2D" parent="Environment/Background"]
+position = Vector2(1537, 191)
+texture = ExtResource("2_xvjod")
+metadata/_edit_lock_ = true
+
+[node name="TileMap" type="TileMap" parent="Environment"]
+tile_set = SubResource("TileSet_12wfi")
+cell_quadrant_size = 75
+format = 2
+layer_0/name = "Background"
+layer_1/name = "Decor 1"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array(917512, 327680, 0, 917520, 327680, 0, 851976, 327680, 1, 851984, 327680, 1, 983048, 327680, 1, 1048584, 327680, 1, 1114120, 327680, 1, 1179656, 327680, 1, 983056, 327680, 1, 1048592, 327680, 1, 1114128, 327680, 1, 1179664, 327680, 1)
+layer_2/name = "Decor 2"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Fall-Through Physical"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 0
+layer_3/tile_data = PackedInt32Array()
+layer_4/name = "Solid Physical"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = 0
+layer_4/tile_data = PackedInt32Array(851975, 0, 0, 851976, 65536, 0, 851977, 65536, 0, 851978, 65536, 0, 851979, 65536, 0, 851980, 65536, 0, 851981, 65536, 0, 851982, 65536, 0, 851983, 65536, 0, 851984, 65536, 0, 851985, 131072, 0, 589824, 0, 1, 589825, 0, 1, 589826, 0, 1, 262144, 0, 1, 262145, 0, 1, 262146, 0, 1, 262147, 0, 1, 262148, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="DestructibleCatTrees" type="Node2D" parent="Environment"]
+
+[node name="CatTreeLeft" parent="Environment/DestructibleCatTrees" instance=ExtResource("4_msrjp")]
+position = Vector2(561, 749)
+
+[node name="cat_tree_right" parent="Environment/DestructibleCatTrees" instance=ExtResource("5_2sw3a")]
+position = Vector2(1539, 824)
+
+[node name="cat_tree_middle" parent="Environment/DestructibleCatTrees" instance=ExtResource("5_pbu6b")]
+position = Vector2(937, 603)
+
+[node name="cat_tree_zig_zag" parent="Environment/DestructibleCatTrees" instance=ExtResource("6_gw84o")]
+position = Vector2(1390, 827)
+
+[node name="75x600Rope" type="Sprite2D" parent="Environment/DestructibleCatTrees"]
+visible = false
+position = Vector2(1087, 600)
+texture = ExtResource("6_l1v7g")
+
+[node name="75x150Rope" type="Sprite2D" parent="Environment/DestructibleCatTrees"]
+visible = false
+position = Vector2(1386, 524)
+texture = ExtResource("8_4mpij")
+
+[node name="Decor" type="Node2D" parent="Environment"]
+metadata/_edit_lock_ = true
+
+[node name="CatBed" type="Sprite2D" parent="Environment/Decor"]
+position = Vector2(675, 876)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_2qkl3")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Environment/Decor/CatBed"]
+collision_layer = 8
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Decor/CatBed/StaticBody2D"]
+position = Vector2(-1.875, 1.25)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_ugm6a")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="BookThick" type="Sprite2D" parent="Environment/Decor"]
+position = Vector2(76, 165)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("5_lys1b")
+metadata/_edit_lock_ = true
+
+[node name="BookThin" type="Sprite2D" parent="Environment/Decor"]
+position = Vector2(314, 150)
+texture = ExtResource("6_txay8")
+metadata/_edit_lock_ = true
+
+[node name="BookThinPurple" type="Sprite2D" parent="Environment/Decor"]
+position = Vector2(352, 165)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("7_k13hj")
+metadata/_edit_lock_ = true
+
+[node name="GlassBeakerBlue" type="Sprite2D" parent="Environment/Decor"]
+position = Vector2(192, 606)
+texture = ExtResource("8_pkp1u")
+metadata/_edit_lock_ = true
+
+[node name="GlassBeakerRegularEmpty" type="Sprite2D" parent="Environment/Decor"]
+position = Vector2(114, 606)
+texture = ExtResource("9_833ct")
+metadata/_edit_lock_ = true
+
+[node name="TestTubePurple" type="Sprite2D" parent="Environment/Decor"]
+position = Vector2(40, 606)
+texture = ExtResource("10_x6n18")
+metadata/_edit_lock_ = true
+
+[node name="ScienceBoard" type="Sprite2D" parent="Environment/Decor"]
+position = Vector2(1540, 188)
+texture = ExtResource("2_xvjod")
+metadata/_edit_lock_ = true
+
+[node name="StandForPlasma" type="Sprite2D" parent="Environment/Decor"]
+position = Vector2(175, 274)
+texture = ExtResource("11_thvk6")
+metadata/_edit_lock_ = true
+
+[node name="Events" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="EventSpawner" type="Node2D" parent="Events"]
+script = ExtResource("14_vvqsy")
+metadata/_edit_lock_ = true
+
+[node name="Broom" parent="Events" instance=ExtResource("15_cnum7")]
+position = Vector2(173, 145)
+
+[node name="Interactables" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="PlasmaBall" parent="Interactables" instance=ExtResource("14_7tkul")]
+position = Vector2(180, 208)
+
+[connection signal="child_exiting_tree" from="Events/EventSpawner" to="Events/EventSpawner" method="_on_child_exiting_tree"]

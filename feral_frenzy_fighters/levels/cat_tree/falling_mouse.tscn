@@ -1,0 +1,126 @@
+[gd_scene load_steps=11 format=3 uid="uid://bqcbmaknrbcpc"]
+
+[ext_resource type="Script" path="res://levels/cat_tree/falling_mouse.gd" id="1_vae8e"]
+[ext_resource type="Texture2D" uid="uid://bt75go4w73poq" path="res://levels/cat_tree/sprites/events/vent.png" id="2_wpyag"]
+[ext_resource type="AudioStream" uid="uid://btt3x6b14a2wp" path="res://levels/cat_tree/sfx/events/vent.wav" id="3_6onvi"]
+[ext_resource type="Texture2D" uid="uid://j0ljxs7f7wpi" path="res://levels/cat_tree/sprites/events/mouse.png" id="3_khrie"]
+[ext_resource type="Texture2D" uid="uid://d6fonpccxlbf" path="res://levels/cat_tree/sprites/events/vent_side.png" id="4_k5iiu"]
+[ext_resource type="AudioStream" uid="uid://ruui6egcdo2u" path="res://levels/cat_tree/sfx/events/rat_fall.wav" id="5_48n66"]
+
+[sub_resource type="Animation" id="Animation_63igq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VentParent:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -150)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VentParent/Vent:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_wpyag")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MouseParent:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ilnih"]
+resource_name = "mouse_falling"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MouseParent:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -150), Vector2(0, 1672)]
+}
+
+[sub_resource type="Animation" id="Animation_8lg1r"]
+resource_name = "vent_falling"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VentParent:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -150), Vector2(0, 1715)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VentParent/Vent:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_wpyag"), ExtResource("4_k5iiu"), ExtResource("2_wpyag"), ExtResource("4_k5iiu"), ExtResource("2_wpyag"), ExtResource("4_k5iiu"), ExtResource("2_wpyag"), ExtResource("4_k5iiu"), ExtResource("2_wpyag"), ExtResource("4_k5iiu"), ExtResource("2_wpyag")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bwnyf"]
+_data = {
+"RESET": SubResource("Animation_63igq"),
+"mouse_falling": SubResource("Animation_ilnih"),
+"vent_falling": SubResource("Animation_8lg1r")
+}
+
+[node name="FallingMouse" type="Node2D"]
+script = ExtResource("1_vae8e")
+
+[node name="VentParent" type="Node2D" parent="."]
+position = Vector2(0, -150)
+
+[node name="Vent" type="Sprite2D" parent="VentParent"]
+self_modulate = Color(0.666667, 0.666667, 0.666667, 0.784314)
+z_index = -1
+texture = ExtResource("2_wpyag")
+
+[node name="VentSFX" type="AudioStreamPlayer2D" parent="VentParent"]
+position = Vector2(0, 150)
+stream = ExtResource("3_6onvi")
+
+[node name="MouseParent" type="Node2D" parent="."]
+
+[node name="Mouse" type="Sprite2D" parent="MouseParent"]
+texture = ExtResource("3_khrie")
+
+[node name="MouseSFX" type="AudioStreamPlayer2D" parent="MouseParent"]
+stream = ExtResource("5_48n66")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bwnyf")
+}

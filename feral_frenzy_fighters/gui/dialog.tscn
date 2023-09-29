@@ -1,0 +1,117 @@
+[gd_scene load_steps=8 format=3 uid="uid://4fy3j4oxf7c2"]
+
+[ext_resource type="Texture2D" uid="uid://cnadtlxa56n4j" path="res://gui/menus/sprites/screens/pop_up_blue.png" id="1_2g6lo"]
+[ext_resource type="Script" path="res://gui/dialog.gd" id="1_p06q3"]
+[ext_resource type="Texture2D" uid="uid://b5jm0t8cpmgq6" path="res://gui/menus/sprites/screens/faded_black.png" id="1_rb8gj"]
+[ext_resource type="Texture2D" uid="uid://crx7dfnmm8rsn" path="res://gui/menus/sprites/screens/titles/multiplayer_ui.png" id="2_l17ys"]
+[ext_resource type="Texture2D" uid="uid://rb31ehfgk53n" path="res://gui/menus/sprites/screens/examples/options_example.png" id="2_x0dv1"]
+[ext_resource type="Theme" uid="uid://ciapr50n3vxqt" path="res://default_ui_theme.tres" id="3_qwmkn"]
+[ext_resource type="PackedScene" uid="uid://cdoygoqidt2gt" path="res://gui/menus/icon_button.tscn" id="4_6duih"]
+
+[node name="Dialog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p06q3")
+
+[node name="OptionsExample" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.772549)
+position = Vector2(964, 542)
+texture = ExtResource("2_x0dv1")
+
+[node name="DialogShade" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_rb8gj")
+
+[node name="DialogBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -473.0
+offset_top = -509.0
+offset_right = 533.0
+offset_bottom = 497.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2g6lo")
+metadata/_edit_group_ = true
+
+[node name="PlayUIArea" type="Control" parent="DialogBackground"]
+anchors_preset = 0
+offset_left = 65.0
+offset_top = 51.0
+offset_right = 961.0
+offset_bottom = 958.0
+
+[node name="DialogTitle" type="TextureRect" parent="DialogBackground/PlayUIArea"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -331.0
+offset_top = 93.0
+offset_right = 376.0
+offset_bottom = 246.0
+grow_horizontal = 2
+texture = ExtResource("2_l17ys")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogBackground/PlayUIArea"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -110.5
+offset_right = 117.0
+offset_bottom = 217.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+
+[node name="PlayOnlineButton" type="Button" parent="DialogBackground/PlayUIArea/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme = ExtResource("3_qwmkn")
+theme_override_font_sizes/font_size = 60
+text = "Online"
+
+[node name="Spacer" type="Control" parent="DialogBackground/PlayUIArea/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="PlayLocalButton" type="Button" parent="DialogBackground/PlayUIArea/VBoxContainer"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+theme = ExtResource("3_qwmkn")
+theme_override_font_sizes/font_size = 60
+text = "Local"
+
+[node name="CloseButton" parent="DialogBackground" instance=ExtResource("4_6duih")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -181.0
+offset_right = 33.0
+offset_bottom = 209.0
+grow_horizontal = 0
+grow_vertical = 1
+character = "X"
+
+[connection signal="pressed" from="DialogBackground/PlayUIArea/VBoxContainer/PlayOnlineButton" to="." method="_on_first_button_pressed"]
+[connection signal="pressed" from="DialogBackground/PlayUIArea/VBoxContainer/PlayLocalButton" to="." method="_on_second_button_pressed"]
+[connection signal="button_pressed" from="DialogBackground/CloseButton" to="." method="_on_close_button_button_pressed"]

@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://c76e6fhbc8jb2"]
+
+[ext_resource type="Script" path="res://gui/chat_popup.gd" id="1_haknm"]
+[ext_resource type="Texture2D" uid="uid://mn0h7wb5ting" path="res://gui/menus/sprites/screens/reactions_pop_up.png" id="1_uv7cc"]
+[ext_resource type="PackedScene" uid="uid://cdoygoqidt2gt" path="res://gui/menus/icon_button.tscn" id="2_vulmj"]
+[ext_resource type="Texture2D" uid="uid://d0h4gfjucihfx" path="res://gui/menus/sprites/buttons/icons/reaction_thumb_down_icon.png" id="3_bgnqh"]
+[ext_resource type="Texture2D" uid="uid://cukdhdxg7vsii" path="res://gui/menus/sprites/buttons/icons/chat_icon.png" id="3_bxp0a"]
+[ext_resource type="Texture2D" uid="uid://caq7e6yit4hkr" path="res://gui/menus/sprites/buttons/icons/reaction_thumb_up_icon.png" id="4_t25yf"]
+[ext_resource type="Texture2D" uid="uid://daaxv81eiw4u3" path="res://gui/menus/sprites/buttons/icons/reaction_skull_icon.png" id="5_f1inr"]
+
+[node name="ChatPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -883.0
+offset_right = -1716.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_haknm")
+
+[node name="ChatPopupBackground" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+offset_right = 200.0
+offset_bottom = 600.0
+texture = ExtResource("1_uv7cc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChatPopupBackground"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 23.0
+offset_right = 215.0
+offset_bottom = 691.0
+scale = Vector2(0.85, 0.85)
+
+[node name="ThumbsDownButton" parent="ChatPopupBackground/VBoxContainer" instance=ExtResource("2_vulmj")]
+custom_minimum_size = Vector2(200, 220)
+layout_mode = 2
+icon_texture = ExtResource("3_bgnqh")
+
+[node name="ThumbsUpButton" parent="ChatPopupBackground/VBoxContainer" instance=ExtResource("2_vulmj")]
+custom_minimum_size = Vector2(200, 220)
+layout_mode = 2
+icon_texture = ExtResource("4_t25yf")
+
+[node name="SkullButton" parent="ChatPopupBackground/VBoxContainer" instance=ExtResource("2_vulmj")]
+custom_minimum_size = Vector2(200, 220)
+layout_mode = 2
+icon_texture = ExtResource("5_f1inr")
+
+[node name="ChatPopupShowButton" parent="." instance=ExtResource("2_vulmj")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 200.0
+offset_bottom = 200.0
+icon_texture = ExtResource("3_bxp0a")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="button_pressed" from="ChatPopupBackground/VBoxContainer/ThumbsDownButton" to="." method="_on_thumbs_down_button_button_pressed"]
+[connection signal="button_pressed" from="ChatPopupBackground/VBoxContainer/ThumbsUpButton" to="." method="_on_thumbs_up_button_button_pressed"]
+[connection signal="button_pressed" from="ChatPopupBackground/VBoxContainer/SkullButton" to="." method="_on_skull_button_button_pressed"]
+[connection signal="button_pressed" from="ChatPopupShowButton" to="." method="_on_chat_popup_show_button_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
