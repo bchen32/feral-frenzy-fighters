@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ju3ra5auyqg8"]
+[gd_scene load_steps=25 format=3 uid="uid://ju3ra5auyqg8"]
 
 [ext_resource type="Texture2D" uid="uid://uk8l6kbu2oih" path="res://levels/cat_tree/tilesets/wallpaper_complete.png" id="1_a55mx"]
 [ext_resource type="Texture2D" uid="uid://t8uj7yrrto1f" path="res://levels/cat_tree/sprites/decor/science_board.png" id="2_xvjod"]
@@ -16,7 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://xynoghomssec" path="res://levels/cat_tree/sprites/decor/glass_beaker_regular_purple.png" id="13_jamv2"]
 [ext_resource type="PackedScene" uid="uid://b1f2oo7wb5qj1" path="res://levels/cat_tree/plasma_ball.tscn" id="14_7tkul"]
 [ext_resource type="Script" path="res://levels/event_spawner.gd" id="14_vvqsy"]
-[ext_resource type="PackedScene" uid="uid://btpsrhej4yvr3" path="res://levels/cat_tree/broom.tscn" id="15_cnum7"]
+[ext_resource type="PackedScene" uid="uid://bqcbmaknrbcpc" path="res://levels/cat_tree/falling_mouse.tscn" id="16_c30hf"]
+[ext_resource type="PackedScene" uid="uid://chqh43xknejst" path="res://levels/cat_tree/hairball_cat.tscn" id="17_p8xfc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wslx1"]
 texture = ExtResource("3_30urg")
@@ -303,10 +304,8 @@ metadata/_edit_lock_ = true
 
 [node name="EventSpawner" type="Node2D" parent="Events"]
 script = ExtResource("14_vvqsy")
+event_array = Array[PackedScene]([ExtResource("16_c30hf"), ExtResource("17_p8xfc")])
 metadata/_edit_lock_ = true
-
-[node name="Broom" parent="Events" instance=ExtResource("15_cnum7")]
-position = Vector2(951, 935)
 
 [node name="Interactables" type="Node2D" parent="."]
 metadata/_edit_lock_ = true

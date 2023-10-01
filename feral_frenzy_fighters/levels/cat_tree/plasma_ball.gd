@@ -1,6 +1,6 @@
 extends Interactable
 
-@export var unstable = false
+var unstable = false
 var original_position
 var current_position
 var destination
@@ -34,6 +34,9 @@ func _process(delta):
 	if self.health <= 0 && unstable == false:
 		_stability_change(true)
 		unstable = true
+	
+	if unstable == true:
+		event_spawner.change_set_overview(true)
 
 func _change_health(health_change: float):
 	self.health += health_change
@@ -56,6 +59,9 @@ func _stability_change(turning_unstable: bool):
 		
 		anim.play_backwards("StabilityChange")
 		await anim.animation_finished
+		
+		if event_spawner.current_event_happening == false:
+			event_spawner.change_set_overview(false)
 		
 		self.health = self.maxHealth
 		speed = reset_speed
