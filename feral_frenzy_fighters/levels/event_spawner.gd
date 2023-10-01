@@ -7,7 +7,7 @@ var start_new_random_event = false
 @onready var plasma_ball = $"../../Interactables/PlasmaBall"
 
 func _ready():
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(3).timeout
 	start_new_random_event = true
 
 func _process(_delta):
