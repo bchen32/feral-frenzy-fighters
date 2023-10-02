@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bm5pvsos0iw02"]
+[gd_scene load_steps=9 format=3 uid="uid://2g6vl7paf0fg"]
 
 [ext_resource type="Script" path="res://levels/cat_tree/destructible_cat_tree.gd" id="1_hge1l"]
-[ext_resource type="Texture2D" uid="uid://c7e0y4kbrjh3f" path="res://levels/cat_tree/sprites/interactables/225x300 cat tree.png" id="2_fuq2u"]
+[ext_resource type="Texture2D" uid="uid://2y0k0twi0f0h" path="res://levels/cat_tree/sprites/interactables/375x525 cat tree.png" id="1_ul11m"]
 
-[sub_resource type="Animation" id="Animation_y4lmg"]
+[sub_resource type="Animation" id="Animation_8luf3"]
 resource_name = "Damage"
 length = 0.2
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -19,104 +20,105 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 0.588235, 0.588235, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_o0ged"]
-resource_name = "Falling"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.6, 0.7, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 86), Vector2(0, 80), Vector2(0, 86), Vector2(-40, 86), Vector2(-60, 1400)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, -0.0872665, -1.5708]
-}
-
-[sub_resource type="Animation" id="Animation_balqb"]
+[sub_resource type="Animation" id="Animation_vpf2c"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/path = NodePath("Sprite2D:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:self_modulate")
+tracks/2/path = NodePath("Sprite2D:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [0.0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_er35c"]
+[sub_resource type="Animation" id="Animation_d77ql"]
+resource_name = "Falling"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(-121, 1291)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0872665, -0.610865, -0.872665]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qmcix"]
 _data = {
-"Damage": SubResource("Animation_y4lmg"),
-"Falling": SubResource("Animation_o0ged"),
-"RESET": SubResource("Animation_balqb")
+"Damage": SubResource("Animation_8luf3"),
+"Falling": SubResource("Animation_d77ql"),
+"RESET": SubResource("Animation_vpf2c")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3up44"]
-size = Vector2(225, 74)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ka4f"]
+size = Vector2(375, 74)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cv0g"]
-size = Vector2(53, 216)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk0gf"]
+size = Vector2(52, 451)
 
 [node name="CatTreeLeft" type="Node2D"]
 script = ExtResource("1_hge1l")
-starting_health = 40
+starting_health = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_fuq2u")
+texture = ExtResource("1_ul11m")
+offset = Vector2(-1, -263)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_er35c")
+"": SubResource("AnimationLibrary_qmcix")
 }
 
 [node name="Physical" type="StaticBody2D" parent="."]
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Physical"]
-position = Vector2(-0.5, -113)
-shape = SubResource("RectangleShape2D_3up44")
+position = Vector2(0.5, -488)
+shape = SubResource("RectangleShape2D_4ka4f")
 one_way_collision = true
 metadata/_edit_lock_ = true
 
@@ -126,6 +128,6 @@ collision_mask = 0
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0.5, 32)
-shape = SubResource("RectangleShape2D_5cv0g")
+position = Vector2(1, -225)
+shape = SubResource("RectangleShape2D_yk0gf")
 metadata/_edit_lock_ = true

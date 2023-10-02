@@ -1,9 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://ju3ra5auyqg8"]
+[gd_scene load_steps=27 format=3 uid="uid://ju3ra5auyqg8"]
 
 [ext_resource type="Texture2D" uid="uid://uk8l6kbu2oih" path="res://levels/cat_tree/tilesets/wallpaper_complete.png" id="1_a55mx"]
 [ext_resource type="Texture2D" uid="uid://t8uj7yrrto1f" path="res://levels/cat_tree/sprites/decor/science_board.png" id="2_xvjod"]
 [ext_resource type="Texture2D" uid="uid://da5424ghhrd6d" path="res://levels/cat_tree/tilesets/cat_level_tilemap_75x75.png" id="3_30urg"]
 [ext_resource type="Texture2D" uid="uid://bx1h66g51a2d2" path="res://levels/cat_tree/sprites/decor/cat_bed.png" id="4_2qkl3"]
+[ext_resource type="PackedScene" uid="uid://2g6vl7paf0fg" path="res://levels/cat_tree/cat_tree_left.tscn" id="4_h4nvx"]
+[ext_resource type="PackedScene" uid="uid://xwiop7ddea54" path="res://levels/cat_tree/cat_tree_middle.tscn" id="5_jeqww"]
 [ext_resource type="Texture2D" uid="uid://386h2w2jqnmm" path="res://levels/cat_tree/sprites/decor/book_thick.png" id="5_lys1b"]
 [ext_resource type="PackedScene" uid="uid://b5gf3jsh1kt8x" path="res://levels/cat_tree/cat_tree_zig_zag.tscn" id="6_gw84o"]
 [ext_resource type="Texture2D" uid="uid://bkvumebdleqtd" path="res://levels/cat_tree/sprites/decor/book_thin.png" id="6_txay8"]
@@ -156,7 +158,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(786446, 327680, 1, 720910, 327680, 1, 655374, 327680, 1, 589838, 327680, 1, 524302, 327680, 1, 458766, 327680, 1, 393230, 327680, 1, 327694, 327680, 1, 262158, 327680, 0, 589827, 327680, 1, 524291, 327680, 1, 458755, 327680, 1, 393219, 327680, 1, 327683, 327680, 1, 262147, 327680, 0, 917515, 327680, 0, 917517, 327680, 0, 983051, 327680, 1, 983053, 327680, 1, 786436, 327680, 1, 851972, 327680, 1, 917508, 327680, 1, 983044, 327680, 1, 786438, 327680, 1, 851974, 327680, 1, 917510, 327680, 1, 983046, 327680, 1, 720900, 327680, 0, 720902, 327680, 0)
+layer_1/tile_data = PackedInt32Array(917515, 327680, 0, 917517, 327680, 0, 983051, 327680, 1, 983053, 327680, 1, 786436, 327680, 1, 851972, 327680, 1, 917508, 327680, 1, 983044, 327680, 1, 786438, 327680, 1, 851974, 327680, 1, 917510, 327680, 1, 983046, 327680, 1, 720900, 327680, 0, 720902, 327680, 0)
 layer_2/name = "Decor 2"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
@@ -183,7 +185,7 @@ layer_4/tile_data = PackedInt32Array(851978, 0, 0, 851979, 65536, 0, 851980, 655
 tile_set = SubResource("TileSet_lyak7")
 cell_quadrant_size = 75
 format = 2
-layer_0/tile_data = PackedInt32Array(393234, 0, 1, 393235, 0, 1, 393236, 0, 1, 393237, 0, 1, 393238, 0, 1, 196610, 65536, 0, 196611, 65536, 0, 196612, 65536, 0, 196621, 65536, 0, 196622, 65536, 0, 196623, 65536, 0, 196624, 131072, 0, 196613, 131072, 0, 196609, 0, 0, 196620, 0, 0)
+layer_0/tile_data = PackedInt32Array(393234, 0, 1, 393235, 0, 1, 393236, 0, 1, 393237, 0, 1, 393238, 0, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Environment/TileMapFallThroughOnly"]
 position = Vector2(1531, 486)
@@ -195,30 +197,19 @@ shape = SubResource("RectangleShape2D_h36ni")
 one_way_collision = true
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Environment/TileMapFallThroughOnly"]
-position = Vector2(1081, 262)
-collision_layer = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TileMapFallThroughOnly/StaticBody2D2"]
-position = Vector2(6.5, 1)
-shape = SubResource("RectangleShape2D_h36ni")
-one_way_collision = true
-metadata/_edit_lock_ = true
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="Environment/TileMapFallThroughOnly"]
-position = Vector2(257, 264)
-collision_layer = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TileMapFallThroughOnly/StaticBody2D3"]
-position = Vector2(6.5, 1)
-shape = SubResource("RectangleShape2D_h36ni")
-one_way_collision = true
-metadata/_edit_lock_ = true
-
 [node name="DestructibleCatTrees" type="Node2D" parent="Environment"]
 
-[node name="cat_tree_zig_zag" parent="Environment/DestructibleCatTrees" instance=ExtResource("6_gw84o")]
-position = Vector2(713, 603)
+[node name="CatTreeZigZag" parent="Environment/DestructibleCatTrees" instance=ExtResource("6_gw84o")]
+z_index = -1
+position = Vector2(711, 601)
+
+[node name="CatTreeLeft" parent="Environment/DestructibleCatTrees" instance=ExtResource("4_h4nvx")]
+z_index = -1
+position = Vector2(262, 751)
+
+[node name="CatTreeMiddle" parent="Environment/DestructibleCatTrees" instance=ExtResource("5_jeqww")]
+z_index = -1
+position = Vector2(1090, 976)
 
 [node name="Decorations" type="Node2D" parent="Environment"]
 
@@ -239,6 +230,7 @@ metadata/_edit_lock_ = true
 
 [node name="ScienceBoard" type="Sprite2D" parent="Environment/Decorations"]
 self_modulate = Color(0.745098, 0.745098, 0.745098, 1)
+z_index = -4
 position = Vector2(1544, 231)
 texture = ExtResource("2_xvjod")
 metadata/_edit_lock_ = true

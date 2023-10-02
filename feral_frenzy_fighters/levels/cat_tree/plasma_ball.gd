@@ -8,6 +8,7 @@ var amount_of_times_moved = 0
 var max_times_to_move = 5
 var speed
 var reset_speed
+var min_destination_distance = 1000
 
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @onready var sprite = self.get_node("PlasmaBallSprite")
@@ -39,8 +40,9 @@ func _process(delta):
 		event_spawner.change_set_overview(true)
 
 func _change_health(health_change: float):
-	self.health += health_change
-	anim.play("Damage")
+	if unstable == false:
+		self.health += health_change
+		anim.play("Damage")
 
 func _stability_change(turning_unstable: bool):
 	if turning_unstable == true:
@@ -55,7 +57,7 @@ func _stability_change(turning_unstable: bool):
 		# (width, height, x_offset, y_offset, damage, knockback_scale, knockback_y_offset)
 		plasma_hitbox.setup(50, 50, 0, 0, 15, 2, 0)
 	elif turning_unstable == false:
-		sprite.get_child(0).queue_free() # remove hitbox
+		sprite.get_child(0).queue_free()
 		
 		anim.play_backwards("StabilityChange")
 		await anim.animation_finished
@@ -73,7 +75,7 @@ func _choose_random_point():
 	var rand_y = randi_range(0, 1080)
 	destination = Vector2(rand_x, rand_y)
 	
-	if self.position.distance_to(destination) < 800: # if the new point is close enough to the current position or original position
+	if self.position.distance_to(destination) < min_destination_distance:
 		_choose_random_point()
 	else:
 		amount_of_times_moved += 1
