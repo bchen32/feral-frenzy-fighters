@@ -2,6 +2,12 @@ class_name JumpState
 extends State
 
 
+func enter():
+	character.play_anim("jump")
+	character.play_audio(character.AudioType.JUMP)
+	character.jumps_left -= 1
+
+
 func update(_delta):
 	if character.frame > 0:
 		return Globals.States.AIR
