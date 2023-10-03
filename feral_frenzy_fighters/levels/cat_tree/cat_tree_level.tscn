@@ -158,7 +158,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(917515, 327680, 0, 917517, 327680, 0, 983051, 327680, 1, 983053, 327680, 1, 786436, 327680, 1, 851972, 327680, 1, 917508, 327680, 1, 983044, 327680, 1, 786438, 327680, 1, 851974, 327680, 1, 917510, 327680, 1, 983046, 327680, 1, 720900, 327680, 0, 720902, 327680, 0)
+layer_1/tile_data = PackedInt32Array(983051, 327680, 1, 983053, 327680, 1, 917515, 327680, 1, 917517, 327680, 1, 786443, 327680, 0, 786445, 327680, 0, 851979, 327680, 1, 851981, 327680, 1, 720899, 327680, 0, 786435, 327680, 1, 851971, 327680, 1, 917507, 327680, 1, 983043, 327680, 1, 720901, 327680, 0, 786437, 327680, 1, 851973, 327680, 1, 917509, 327680, 1, 983045, 327680, 1)
 layer_2/name = "Decor 2"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
@@ -179,7 +179,7 @@ layer_4/modulate = Color(1, 1, 1, 1)
 layer_4/y_sort_enabled = false
 layer_4/y_sort_origin = 0
 layer_4/z_index = 0
-layer_4/tile_data = PackedInt32Array(851978, 0, 0, 851979, 65536, 0, 851980, 65536, 0, 851981, 65536, 0, 851982, 131072, 0, 655364, 65536, 0, 655365, 65536, 0, 655366, 65536, 0, 655367, 131072, 0, 655378, 0, 1, 655379, 0, 1, 655380, 0, 1, 655381, 0, 1, 655382, 0, 1, 655363, 0, 0)
+layer_4/tile_data = PackedInt32Array(655378, 0, 1, 655379, 0, 1, 655380, 0, 1, 655381, 0, 1, 655382, 0, 1, 720906, 0, 0, 720907, 65536, 0, 720908, 65536, 0, 720909, 65536, 0, 720910, 131072, 0, 655363, 65536, 0, 655364, 65536, 0, 655365, 65536, 0, 655366, 131072, 0, 655362, 0, 0)
 
 [node name="TileMapFallThroughOnly" type="TileMap" parent="Environment"]
 tile_set = SubResource("TileSet_lyak7")
@@ -201,7 +201,7 @@ metadata/_edit_lock_ = true
 
 [node name="CatTreeZigZag" parent="Environment/DestructibleCatTrees" instance=ExtResource("6_gw84o")]
 z_index = -1
-position = Vector2(711, 601)
+position = Vector2(640, 604)
 
 [node name="CatTreeLeft" parent="Environment/DestructibleCatTrees" instance=ExtResource("4_h4nvx")]
 z_index = -1
@@ -209,14 +209,14 @@ position = Vector2(262, 751)
 
 [node name="CatTreeMiddle" parent="Environment/DestructibleCatTrees" instance=ExtResource("5_jeqww")]
 z_index = -1
-position = Vector2(1090, 976)
+position = Vector2(1090, 888)
 
 [node name="Decorations" type="Node2D" parent="Environment"]
 
 [node name="CatBed" type="Sprite2D" parent="Environment/Decorations"]
-position = Vector2(935, 855)
+position = Vector2(924, 725.75)
+scale = Vector2(0.879032, 0.804435)
 texture = ExtResource("4_2qkl3")
-metadata/_edit_lock_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Environment/Decorations/CatBed"]
 collision_layer = 8
