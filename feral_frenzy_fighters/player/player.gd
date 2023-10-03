@@ -7,10 +7,10 @@ extends CharacterBody2D
 @export var dash_accel: float = 6000.0
 @export var dash_attack_accel: float = 1500.0
 @export var air_accel: float = 5400.0
-@export var walk_jump_accel: float = 600.0 # jump accels not scaled by delta
+@export var walk_jump_accel: float = 800.0 # jump accels not scaled by delta
 @export var dash_jump_accel: float = 1200.0
-@export var air_jump_accel: float = 900.0
-@export var walk_speed: float = 300.0
+@export var air_jump_accel: float = 1000.0
+@export var walk_speed: float = 400.0
 @export var dash_speed: float = 600.0
 @export var dash_attack_speed: float = 900.0
 @export var air_jump_speed: float = 300.0
@@ -40,7 +40,7 @@ extends CharacterBody2D
 	},
 	"dash_attack":
 	{
-		"frames": 60,
+		"frames": 45,
 		"damage": 15,
 		"knockback_scale": 1.0,
 		"knockback_y_offset": -5.0,
