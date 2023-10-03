@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var walk_accel: float = 4800.0
 @export var dash_accel: float = 6000.0
 @export var dash_attack_accel: float = 1500.0
-@export var air_accel: float = 2400.0
+@export var air_accel: float = 5400.0
 @export var walk_jump_accel: float = 600.0 # jump accels not scaled by delta
 @export var dash_jump_accel: float = 1200.0
 @export var air_jump_accel: float = 900.0
@@ -14,9 +14,9 @@ extends CharacterBody2D
 @export var dash_speed: float = 600.0
 @export var dash_attack_speed: float = 900.0
 @export var air_jump_speed: float = 300.0
-@export var jump_speed: float = -1200.0
+@export var jump_speed: float = -900.0
 @export var terminal_vel: float = 1200.0
-@export var fall_grav_scale: float = 1.5
+@export var fall_grav_scale: float = 1.8
 @export var kb_base: float = 500.0
 @export var kb_hitstun_scale: float = 0.015
 @export var kb_decay: float = 1500.0
@@ -67,7 +67,7 @@ var frame: int = 0
 var percentage: float = 0.0
 var air_speed_upper_bound: float = walk_speed
 var air_speed_lower_bound: float = -walk_speed
-var jumps_left: int = 1
+var jumps_left: int = 2
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Be careful not to desync curr_hitboxes_ends from curr_hitboxes (sadly no tuples in GDScript)
 var curr_hitboxes: Array[Node]
@@ -232,6 +232,17 @@ func end_attack():
 			child.queue_free()
 	curr_hitboxes = []
 	curr_hitboxes_ends = []
+
+
+func air_movement(delta):
+	velocity.y += get_grav() * delta
+	velocity.y = minf(velocity.y, terminal_vel)
+	var direction = Input.get_axis(
+		get_input("left"), get_input("right")
+	)
+	if direction:
+		velocity.x += direction * air_accel * delta
+		velocity.x = clamp(velocity.x, air_speed_lower_bound, air_speed_upper_bound)
 
 
 func _on_dead_area_entered(body: Node2D):
