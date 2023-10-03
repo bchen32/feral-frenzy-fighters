@@ -13,7 +13,6 @@ func exit():
 
 func update(_delta):
 	if not character.is_on_floor():
-		print("air")
 		return Globals.States.AIR
 	if Input.is_action_pressed(character.get_input("jump")):
 		return Globals.States.WALK_JUMP

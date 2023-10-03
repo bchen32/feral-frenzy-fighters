@@ -4,6 +4,7 @@ extends AttackState
 
 func enter():
 	super()
+	direction = "neutral"
 	attack = character.attacks[direction]
 	character.play_anim("attack_%s" % direction)
 	character.velocity.x = 0.0
