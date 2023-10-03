@@ -18,7 +18,6 @@ func enter():
 
 
 func update(delta):
-	print(character.velocity.x)
 	if character.frame >= attack.frames:
 		return Globals.States.IDLE
 	if not character.is_on_floor():

@@ -10,6 +10,7 @@ func enter():
 
 func update(delta):
 	if character.frame >= attack.frames or character.is_on_floor():
+		print("return")
 		return Globals.States.IDLE
 	character.velocity.y += character.get_grav() * delta
 	character.velocity.y = minf(character.velocity.y, character.terminal_vel)
