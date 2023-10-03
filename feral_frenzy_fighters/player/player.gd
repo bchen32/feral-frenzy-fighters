@@ -3,8 +3,9 @@ extends CharacterBody2D
 
 @export var player_num: int = 0
 @export var stocks: int = 3
-@export var walk_accel: float = 4800.0
-@export var dash_accel: float = 6000.0
+@export var walk_accel: float = 6000.0
+@export var dash_accel: float = 9000.0
+@export var tilt_attack_accel: float = 1800.0
 @export var dash_attack_accel: float = 1500.0
 @export var air_accel: float = 3600.0
 @export var walk_jump_accel: float = 1200.0 # jump accels not scaled by delta
@@ -24,7 +25,7 @@ extends CharacterBody2D
 @export var attacks: Dictionary = {
 	"neutral":
 	{
-		"frames": 20,
+		"frames": 30,
 		"damage": 10,
 		"knockback_scale": 1.0,
 		"knockback_y_offset": -10.0,
