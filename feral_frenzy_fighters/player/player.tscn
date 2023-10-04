@@ -250,11 +250,6 @@ animations = [{
 "name": &"blue_attack_neutral",
 "speed": 15.0
 }, {
-"frames": [],
-"loop": false,
-"name": &"blue_attack_up",
-"speed": 15.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("8_8ib33")
@@ -402,11 +397,6 @@ animations = [{
 }],
 "loop": false,
 "name": &"blue_injured_attack_neutral",
-"speed": 15.0
-}, {
-"frames": [],
-"loop": false,
-"name": &"blue_injured_attack_up",
 "speed": 15.0
 }, {
 "frames": [{
@@ -650,11 +640,6 @@ animations = [{
 "name": &"purple_attack_neutral",
 "speed": 15.0
 }, {
-"frames": [],
-"loop": false,
-"name": &"purple_attack_up",
-"speed": 15.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("89_vapnq")
@@ -802,11 +787,6 @@ animations = [{
 }],
 "loop": false,
 "name": &"purple_injured_attack_neutral",
-"speed": 15.0
-}, {
-"frames": [],
-"loop": false,
-"name": &"purple_injured_attack_up",
 "speed": 15.0
 }, {
 "frames": [{
@@ -1017,7 +997,7 @@ _ending_video_audiostream = ExtResource("2_qwj5k")
 position = Vector2(12, -8)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_qk47r")
-animation = &"blue_jump"
+animation = &"blue_air_attack_neutral"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g467b")
