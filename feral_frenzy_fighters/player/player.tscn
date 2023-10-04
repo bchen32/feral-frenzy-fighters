@@ -1028,6 +1028,7 @@ character = NodePath("..")
 
 [node name="SoundEffectPlayer" type="AudioStreamPlayer2D" parent="."]
 attenuation = 0.0
+bus = &"SFX"
 
 [node name="Player1Icon" type="Sprite2D" parent="."]
 visible = false
