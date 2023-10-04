@@ -74,6 +74,7 @@ var curr_hitboxes: Array[Node]
 var curr_hitboxes_ends: Array[int]
 
 # networking stuff
+var chosen_attack: int
 var display_name: String
 var player_state_type: Globals.States
 var stock: int

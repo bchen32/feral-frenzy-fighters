@@ -48,8 +48,10 @@ func get_input_actions(character: PlayerCharacter) -> Dictionary:
 	var actions_to_check: Array[String] = ["dash", "jump", "attack", "down"]
 	
 	for action_to_check in actions_to_check:
-		if Input.is_action_pressed(character.get_input(action_to_check)):
-			if Input.is_action_just_pressed(action_to_check):
+		var player_input_name: String = character.get_input(action_to_check)
+		
+		if Input.is_action_pressed(player_input_name):
+			if Input.is_action_just_pressed(player_input_name):
 				if "just_press_actions" in actions:
 					actions["just_press_actions"].push_back(action_to_check)
 				else:
