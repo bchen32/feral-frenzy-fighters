@@ -28,14 +28,16 @@ extends CharacterBody2D
 		"frames": 30,
 		"damage": 10,
 		"knockback_scale": 1.0,
+		"knockback_x_offset": 10.0,
 		"knockback_y_offset": -10.0,
-		"hitboxes": [{"start_frame": 8, "end_frame": 16, "width": 20, "height": 10, "x_offset": 20, "y_offset": 0}]
+		"hitboxes": [{"start_frame": 8, "end_frame": 16, "width": 28, "height": 10, "x_offset": 12, "y_offset": 0}]
 	},
 	"air_neutral":
 	{
 		"frames": 30,
 		"damage": 10,
 		"knockback_scale": 1.0,
+		"knockback_x_offset": 0.0,
 		"knockback_y_offset": 0.0,
 		"hitboxes": [{"start_frame": 4, "end_frame": 24, "width": 40, "height": 40, "x_offset": 0, "y_offset": 0}]
 	},
@@ -44,6 +46,7 @@ extends CharacterBody2D
 		"frames": 45,
 		"damage": 15,
 		"knockback_scale": 1.0,
+		"knockback_x_offset": 20.0,
 		"knockback_y_offset": -5.0,
 		"hitboxes": [
 			#{"start_frame": 12, "end_frame": 16, "width": 10, "height": 10, "x_offset": 0, "y_offset": -40},
@@ -220,6 +223,7 @@ func update_attack(attack_name: String):
 				hitbox_stats.y_offset,
 				attack.damage,
 				attack.knockback_scale,
+				(1.0 if anim_player.flip_h else -1.0) * attack.knockback_x_offset,
 				attack.knockback_y_offset
 			)
 	for i in range(len(curr_hitboxes)):
