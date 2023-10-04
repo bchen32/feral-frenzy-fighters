@@ -184,7 +184,7 @@ func get_input(input_name: String):
 	if NetworkManager.is_host:
 		return input_name
 	elif NetworkManager.is_connected:
-		if player_num == NetworkManager.my_player_num:
+		if _is_lobby or player_num == NetworkManager.my_player_num:
 			return "p1_%s" % input_name
 		else:
 			# TODO(Bobby): Find a cleaner soln than just having a null_input
