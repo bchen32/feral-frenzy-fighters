@@ -4,13 +4,13 @@ extends State
 
 func update(delta):
 	play_audio()	
-	if Input.is_action_pressed(character.get_input("jump")):
+	if InputManager.is_action_pressed(character.get_input("jump")):
 		return get_jump_state()
 	if not character.is_on_floor():
 		return Globals.States.AIR
-	if Input.is_action_just_pressed(character.get_input("attack")):
+	if InputManager.is_action_just_pressed(character.get_input("attack")):
 		return get_attack_state()
-	var direction = Input.get_axis(
+	var direction = InputManager.get_axis(
 		character.get_input("left"), character.get_input("right")
 	)
 	if direction:

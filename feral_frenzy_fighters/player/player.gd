@@ -73,6 +73,12 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var curr_hitboxes: Array[Node]
 var curr_hitboxes_ends: Array[int]
 
+# networking stuff
+var display_name: String
+var player_state_type: Globals.States
+var stock: int
+var player_id: int
+
 # Knockback variables
 var hit: bool = false
 var kb: float = 0.0
@@ -175,7 +181,9 @@ func play_audio(audio_type: AudioType):
 
 
 func get_input(input_name: String):
-	if NetworkManager.is_connected:
+	if NetworkManager.is_host:
+		return input_name
+	elif NetworkManager.is_connected:
 		if player_num == NetworkManager.my_player_num:
 			return "p1_%s" % input_name
 		else:
@@ -299,7 +307,12 @@ func acknowledge_death():
 		play_audio(AudioType.DEATH)
 
 func _physics_process(delta: float):
-	set_collision_mask_value(4, not Input.is_action_pressed(get_input("down")))  # drop through platforms while down is held
+	# if we are the server setup, we need to tell InputManager which player to get inputs for
+	
+	if NetworkManager.is_host:
+		InputManager.switch_player_id(player_id)
+	
+	set_collision_mask_value(4, not InputManager.is_action_pressed(get_input("down")))  # drop through platforms while down is held
 	frame += 1
 	state_machine.update(delta)
 	move_and_slide()
@@ -317,6 +330,10 @@ func _process(_delta: float):
 	if _damage_label:
 		_damage_label.set_player_damage(player_num, percentage)
 	
-	if NetworkManager.is_connected and player_num == NetworkManager.my_player_num:
-		NetworkManager.update_game_information.rpc(position, state_machine.curr_state,
-												   anim_player.flip_h)
+	if NetworkManager.is_connected and (_is_lobby or player_num == NetworkManager.my_player_num):
+		var input_actions = InputManager.get_input_actions(self)
+		
+		if not input_actions.is_empty():
+			NetworkManager.send_network_input.rpc(input_actions)
+		#NetworkManager.update_game_information.rpc(position, state_machine.curr_state,
+		#										   anim_player.flip_h)

@@ -15,6 +15,9 @@ var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if NetworkManager.is_connected:
+		return
+	
 	hairball.visible = false
 	
 	# Choose random set x position for sprite, and flip horizontally to look towards middle
@@ -36,7 +39,7 @@ func _ready():
 	_shoot_hairball()
 
 func _physics_process(delta):
-	if shoot == true:
+	if shoot == true and not NetworkManager.is_connected:
 		hairball.visible = true
 		hairball.position = hairball.position.move_toward(aim.position, 400 * delta) # move hairball towards the aim point in the amount of seconds
 		hairball.rotate(6 * delta)

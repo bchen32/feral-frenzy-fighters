@@ -2,6 +2,9 @@ extends Control
 
 @export var beginning_cutscene_path: String
 
+func _ready():
+	if NetworkManager.SERVER_BUILD:
+		$HostButton.show()
 
 func _on_play_button_pressed():
 	$Background/PlayDialog.show()
@@ -69,5 +72,5 @@ func _on_play_button_mouse_exited():
 	$Background/BloodSplatOne.hide()
 	$Background/BloodSplatTwo.hide()
 
-
-
+func _on_host_button_pressed():
+	NetworkManager.become_host()

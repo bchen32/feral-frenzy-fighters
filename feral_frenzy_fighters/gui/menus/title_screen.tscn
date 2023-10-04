@@ -380,6 +380,15 @@ anchor_bottom = 0.5
 stream = ExtResource("4_n3vdy")
 autoplay = true
 
+[node name="HostButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 78.0
+offset_top = 171.0
+offset_right = 241.0
+offset_bottom = 304.0
+text = "host"
+
 [connection signal="mouse_entered" from="Background/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="mouse_exited" from="Background/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_mouse_exited"]
 [connection signal="pressed" from="Background/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_pressed"]
@@ -392,3 +401,4 @@ autoplay = true
 [connection signal="on_first_button_pressed" from="Background/PlayDialog" to="." method="_on_play_dialog_on_online_button_pressed"]
 [connection signal="on_second_button_pressed" from="Background/PlayDialog" to="." method="_on_play_dialog_on_local_button_pressed"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]

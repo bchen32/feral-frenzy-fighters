@@ -47,10 +47,10 @@ func _on_body_entered(body: Node2D):
 			body.kb_angle = angle
 
 func _on_area_2d_area_entered(area):
-	print("Self.parent is: ", self.get_parent())
+	#print("Self.parent is: ", self.get_parent())
 	if self.get_parent() is PlayerCharacter:
 		if area.get_parent() is Interactable:
-			print("test")
+			#print("test")
 			area.get_parent()._change_health(-dmg)
 
 func get_kb(body: PlayerCharacter):

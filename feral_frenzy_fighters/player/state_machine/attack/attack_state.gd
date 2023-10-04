@@ -6,10 +6,10 @@ var attack: Dictionary = {}
 
 
 func enter():
-	var left_right = Input.get_axis(
+	var left_right = InputManager.get_axis(
 		character.get_input("left"), character.get_input("right")
 	)
-	var up_down = Input.get_axis(
+	var up_down = InputManager.get_axis(
 		character.get_input("up"), character.get_input("down")
 	)
 	# Note: the ordering of these if statements implicitly defines the priority of attacks

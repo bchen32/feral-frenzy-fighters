@@ -6,7 +6,7 @@ func update(_delta):
 	if character.frame > 0:
 		return Globals.States.AIR
 	character.velocity.y = character.jump_speed
-	var direction = Input.get_axis(
+	var direction = InputManager.get_axis(
 		character.get_input("left"), character.get_input("right")
 	)
 	if direction: # jumping applies some amount of horizontal speed

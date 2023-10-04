@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://chqh43xknejst"]
+[gd_scene load_steps=14 format=3 uid="uid://chqh43xknejst"]
 
 [ext_resource type="Script" path="res://levels/cat_tree/hairball_cat.gd" id="1_bokw4"]
 [ext_resource type="Texture2D" uid="uid://hcfauvs32iv0" path="res://levels/cat_tree/sprites/events/cat_normal.png" id="2_m7ur7"]
@@ -103,6 +103,48 @@ _data = {
 "shooting_hairball": SubResource("Animation_xdj16")
 }
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_be0bp"]
+properties/0/path = NodePath("Sprite2D:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath("Sprite2D:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath("Sprite2D:flip_h")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+properties/3/path = NodePath("AnimationPlayer:current_animation")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
+properties/4/path = NodePath("Sprite2D/Mouth:position")
+properties/4/spawn = true
+properties/4/sync = true
+properties/4/watch = false
+properties/5/path = NodePath("Sprite2D/Mouth:rotation")
+properties/5/spawn = true
+properties/5/sync = true
+properties/5/watch = false
+properties/6/path = NodePath("Sprite2D/Mouth/Aim:position")
+properties/6/spawn = true
+properties/6/sync = true
+properties/6/watch = false
+properties/7/path = NodePath("Sprite2D/Mouth/Hairball:position")
+properties/7/spawn = true
+properties/7/sync = true
+properties/7/watch = false
+properties/8/path = NodePath("Sprite2D/Mouth/Hairball:rotation")
+properties/8/spawn = true
+properties/8/sync = true
+properties/8/watch = false
+properties/9/path = NodePath("Sprite2D/Mouth/Hairball:visible")
+properties/9/spawn = true
+properties/9/sync = true
+properties/9/watch = false
+
 [node name="HairballCat" type="Node2D"]
 position = Vector2(0, 1500)
 script = ExtResource("1_bokw4")
@@ -135,3 +177,6 @@ panning_strength = 3.0
 libraries = {
 "": SubResource("AnimationLibrary_4jwhg")
 }
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_be0bp")

@@ -243,20 +243,25 @@ position = Vector2(175, 274)
 texture = ExtResource("11_thvk6")
 metadata/_edit_lock_ = true
 
-[node name="Events" type="Node2D" parent="."]
+[node name="DynamicObjects" type="Node2D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="DynamicObjects"]
+spawn_path = NodePath("Events")
+
+[node name="Events" type="Node2D" parent="DynamicObjects/MultiplayerSpawner"]
 metadata/_edit_lock_ = true
 
-[node name="EventSpawner" type="Node2D" parent="Events"]
+[node name="EventSpawner" type="Node2D" parent="DynamicObjects/MultiplayerSpawner/Events"]
 script = ExtResource("14_vvqsy")
 metadata/_edit_lock_ = true
 
-[node name="Broom" parent="Events" instance=ExtResource("15_cnum7")]
+[node name="Broom" parent="DynamicObjects/MultiplayerSpawner/Events" instance=ExtResource("15_cnum7")]
 position = Vector2(173, 145)
 
-[node name="Interactables" type="Node2D" parent="."]
+[node name="Interactables" type="Node2D" parent="DynamicObjects/MultiplayerSpawner"]
 metadata/_edit_lock_ = true
 
-[node name="PlasmaBall" parent="Interactables" instance=ExtResource("14_7tkul")]
+[node name="PlasmaBall" parent="DynamicObjects/MultiplayerSpawner/Interactables" instance=ExtResource("14_7tkul")]
 position = Vector2(180, 208)
 
-[connection signal="child_exiting_tree" from="Events/EventSpawner" to="Events/EventSpawner" method="_on_child_exiting_tree"]
+[connection signal="child_exiting_tree" from="DynamicObjects/MultiplayerSpawner/Events/EventSpawner" to="DynamicObjects/MultiplayerSpawner/Events/EventSpawner" method="_on_child_exiting_tree"]

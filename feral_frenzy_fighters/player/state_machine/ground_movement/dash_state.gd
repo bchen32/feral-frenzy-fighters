@@ -12,7 +12,7 @@ func exit():
 
 
 func update(delta):
-	if not Input.is_action_pressed(character.get_input("dash")):
+	if not InputManager.is_action_pressed(character.get_input("dash")):
 		return Globals.States.WALK
 	return super(delta)
 
