@@ -2,11 +2,6 @@ class_name AirJumpState
 extends JumpState
 
 
-func enter():
-	character.play_anim("jump")
-	character.play_audio(character.AudioType.JUMP)
-
-
 func exit():
 	# Jump carries momentum
 	if character.velocity.x >= 0:
