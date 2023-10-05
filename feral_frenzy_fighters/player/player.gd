@@ -5,18 +5,18 @@ extends CharacterBody2D
 @export var stocks: int = 3
 @export var walk_accel: float = 6000.0
 @export var dash_accel: float = 9000.0
-@export var tilt_attack_accel: float = 1800.0
+@export var tilt_attack_accel: float = 1200.0
 @export var dash_attack_accel: float = 1500.0
 @export var air_accel: float = 3600.0
-@export var walk_jump_accel: float = 1200.0 # jump accels not scaled by delta
-@export var dash_jump_accel: float = 1800.0
-@export var air_jump_accel: float = 900.0
-@export var walk_speed: float = 600.0
-@export var dash_speed: float = 900.0
+@export var walk_jump_accel: float = 800.0 # jump accels not scaled by delta
+@export var dash_jump_accel: float = 1200.0
+@export var air_jump_accel: float = 600.0
+@export var walk_speed: float = 400.0
+@export var dash_speed: float = 600.0
 @export var dash_attack_speed: float = 900.0
-@export var air_jump_speed: float = 600.0
-@export var jump_speed: float = -900.0
-@export var terminal_vel: float = 1200.0
+@export var air_jump_speed: float = 400.0
+@export var jump_speed: float = -1000.0
+@export var terminal_vel: float = 1800.0
 @export var fall_grav_scale: float = 1.8
 @export var kb_base: float = 500.0
 @export var kb_hitstun_scale: float = 0.015
@@ -34,12 +34,12 @@ extends CharacterBody2D
 	},
 	"air_neutral":
 	{
-		"frames": 30,
+		"frames": 20,
 		"damage": 10,
 		"knockback_scale": 1.0,
 		"knockback_x_offset": 0.0,
 		"knockback_y_offset": 0.0,
-		"hitboxes": [{"start_frame": 4, "end_frame": 24, "width": 40, "height": 40, "x_offset": 0, "y_offset": 0}]
+		"hitboxes": [{"start_frame": 4, "end_frame": 20, "width": 40, "height": 40, "x_offset": 0, "y_offset": 0}]
 	},
 	"dash_attack":
 	{
@@ -146,7 +146,7 @@ func reset_frame():
 
 
 func play_anim(animation_name: String):
-	if percentage > 80:
+	if percentage > 40:
 		anim_player.play(("blue_" if player_num else "purple_") + "injured_" + animation_name)
 	else:
 		anim_player.play(("blue_" if player_num else "purple_") + animation_name)
