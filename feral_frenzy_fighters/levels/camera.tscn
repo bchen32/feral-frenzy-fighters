@@ -3,4 +3,8 @@
 [ext_resource type="Script" path="res://levels/camera.gd" id="1_fy26p"]
 
 [node name="Camera2D" type="Camera2D"]
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
 script = ExtResource("1_fy26p")

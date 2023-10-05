@@ -12,6 +12,8 @@ func enter():
 func update(delta):
 	if character.frame >= attack.frames:
 		return Globals.States.IDLE
+	if not character.is_on_floor():
+		return Globals.States.AIR
 	if character.velocity.x > 0:
 		character.velocity.x -= character.tilt_attack_accel * delta
 		character.velocity.x = maxf(character.velocity.x, 0.0)
