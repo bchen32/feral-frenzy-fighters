@@ -1,4 +1,4 @@
-[gd_scene load_steps=204 format=3 uid="uid://bty60wgry21nu"]
+[gd_scene load_steps=188 format=3 uid="uid://bty60wgry21nu"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ewoqh"]
 [ext_resource type="AudioStream" uid="uid://2pedg4faj0li" path="res://gui/menus/music/triumphant.wav" id="2_qwj5k"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://mgkis7uy7y0h" path="res://player/cat/sprites/jump/blue/cat_jump_blue_4.png" id="7_o13ca"]
 [ext_resource type="Texture2D" uid="uid://cm8v1nndrkbnt" path="res://player/cat/sprites/air_attack_neutral/blue/cat_aerial_attack_blue_6.png" id="8_0vbui"]
 [ext_resource type="Texture2D" uid="uid://buwsm6rfcfvte" path="res://player/cat/sprites/run/blue/cat_run_blue_1.png" id="8_8ib33"]
-[ext_resource type="Texture2D" uid="uid://cd43jpqcitfo2" path="res://player/cat/sprites/air_attack_neutral/blue/cat_aerial_attack_blue_7.png" id="9_4qjb5"]
 [ext_resource type="Texture2D" uid="uid://pijb8w5j4udp" path="res://player/cat/sprites/jump/blue/cat_jump_blue_1.png" id="9_4u4xr"]
 [ext_resource type="Texture2D" uid="uid://dr6hcorb8vmyg" path="res://player/cat/sprites/run/blue/cat_run_blue_2.png" id="9_eyi6i"]
 [ext_resource type="Texture2D" uid="uid://cx8bpfrplxspo" path="res://player/cat/sprites/jump/blue/cat_jump_blue_2.png" id="10_clcrb"]
@@ -46,9 +45,6 @@
 [ext_resource type="Texture2D" uid="uid://ni03p033v2w5" path="res://player/cat/sprites/walk/blue/cat_walk_blue_6.png" id="27_erdgw"]
 [ext_resource type="Texture2D" uid="uid://7e5iawrauyrv" path="res://player/cat/sprites/walk/blue/cat_walk_blue_7.png" id="28_5mv65"]
 [ext_resource type="Texture2D" uid="uid://c72ehkggoy14i" path="res://player/cat/sprites/walk/blue/cat_walk_blue_8.png" id="29_0vwsk"]
-[ext_resource type="Texture2D" uid="uid://cvfp43nfmqsle" path="res://player/cat/sprites/hit/blue/cat_damage_blue_1.png" id="30_owvel"]
-[ext_resource type="Texture2D" uid="uid://w4v7dxd60k20" path="res://player/cat/sprites/hit/blue/cat_damage_blue_2.png" id="31_7wtpn"]
-[ext_resource type="Texture2D" uid="uid://dqdx2hgt6xygl" path="res://player/cat/sprites/hit/blue/cat_damage_blue_3.png" id="33_smwt7"]
 [ext_resource type="Texture2D" uid="uid://gefl8x875fca" path="res://player/cat/sprites/hit/blue/cat_damage_blue_4.png" id="34_q61c0"]
 [ext_resource type="Texture2D" uid="uid://ct0hqbcgsi81n" path="res://player/cat/sprites/hit/blue/cat_damage_blue_5.png" id="35_gynw4"]
 [ext_resource type="Texture2D" uid="uid://0xxgbm3dbdgf" path="res://player/cat/sprites/hit/blue/cat_damage_blue_6.png" id="36_4jvxw"]
@@ -58,7 +54,6 @@
 [ext_resource type="Texture2D" uid="uid://c0i21741tdr4x" path="res://player/cat/sprites/air_attack_neutral/blue/injured/cat_injured_aerial_attack_4.png" id="44_ue1ps"]
 [ext_resource type="Texture2D" uid="uid://x5u44fgehv8c" path="res://player/cat/sprites/air_attack_neutral/blue/injured/cat_injured_aerial_attack_5.png" id="45_uwukm"]
 [ext_resource type="Texture2D" uid="uid://iplnvcyo2ksx" path="res://player/cat/sprites/air_attack_neutral/blue/injured/cat_injured_aerial_attack_6.png" id="46_xcoog"]
-[ext_resource type="Texture2D" uid="uid://dc044h25w5sh6" path="res://player/cat/sprites/air_attack_neutral/blue/injured/cat_injured_aerial_attack_7.png" id="47_oe37y"]
 [ext_resource type="Texture2D" uid="uid://rkkntep8hmll" path="res://player/cat/sprites/air_attack_neutral/purple/cat_aerial_attack_purple_1.png" id="48_fjymv"]
 [ext_resource type="Texture2D" uid="uid://benk6pu8m5cmb" path="res://player/cat/sprites/attack_neutral/blue/injured/cat_injured_attack_1.png" id="48_ngdg4"]
 [ext_resource type="Texture2D" uid="uid://c4cnrq37rsy2g" path="res://player/cat/sprites/attack_neutral/blue/injured/cat_injured_attack_2.png" id="49_2rhdq"]
@@ -72,7 +67,6 @@
 [ext_resource type="Texture2D" uid="uid://dutidrep8cevc" path="res://player/cat/sprites/air_attack_neutral/purple/cat_aerial_attack_purple_6.png" id="53_mm7ja"]
 [ext_resource type="Texture2D" uid="uid://dy4ums61h3vp7" path="res://player/cat/sprites/run/blue/injured/cat_injured_run_1.png" id="53_nh7mc"]
 [ext_resource type="Texture2D" uid="uid://db4cquk5cxs8e" path="res://player/cat/sprites/run/blue/injured/cat_injured_run_2.png" id="54_efqps"]
-[ext_resource type="Texture2D" uid="uid://dp085e6eo60yo" path="res://player/cat/sprites/air_attack_neutral/purple/cat_aerial_attack_purple_7.png" id="54_s1kkk"]
 [ext_resource type="Texture2D" uid="uid://c8cwsr42a6ta3" path="res://player/cat/sprites/run/blue/injured/cat_injured_run_3.png" id="55_dto86"]
 [ext_resource type="Texture2D" uid="uid://8jq27fkvugfd" path="res://player/cat/sprites/run/blue/injured/cat_injured_run_4.png" id="56_ghhkx"]
 [ext_resource type="Texture2D" uid="uid://cipwfytcvvme6" path="res://player/cat/sprites/run/blue/injured/cat_injured_run_5.png" id="57_2vjd4"]
@@ -87,9 +81,6 @@
 [ext_resource type="Texture2D" uid="uid://bp24v6s15yuu1" path="res://player/cat/sprites/dash_attack/blue/injured/cat_injured_dash_attack_6.png" id="66_4mts0"]
 [ext_resource type="Texture2D" uid="uid://mmjcygji2qb6" path="res://player/cat/sprites/dash_attack/blue/injured/cat_injured_dash_attack_7.png" id="67_cgpid"]
 [ext_resource type="Texture2D" uid="uid://di3envvgaykuk" path="res://player/cat/sprites/jump/blue/injured/cat_jump_blue_injured_1.png" id="68_qxpfc"]
-[ext_resource type="Texture2D" uid="uid://wq75j82nufc1" path="res://player/cat/sprites/hit/blue/injured/cat_damage_blue_injured_1.png" id="69_4xcbi"]
-[ext_resource type="Texture2D" uid="uid://btoquq6ongyp2" path="res://player/cat/sprites/hit/blue/injured/cat_damage_blue_injured_2.png" id="70_24sbm"]
-[ext_resource type="Texture2D" uid="uid://18tpyqi40poh" path="res://player/cat/sprites/hit/blue/injured/cat_damage_blue_injured_3.png" id="71_bw111"]
 [ext_resource type="Texture2D" uid="uid://2hcqgur3cgia" path="res://player/cat/sprites/hit/blue/injured/cat_damage_blue_injured_4.png" id="72_mh0ma"]
 [ext_resource type="Texture2D" uid="uid://c2yoh55u1inr3" path="res://player/cat/sprites/hit/blue/injured/cat_damage_blue_injured_5.png" id="73_x8rif"]
 [ext_resource type="Texture2D" uid="uid://bvdry7wm6bgdq" path="res://player/cat/sprites/idle/purple/cat_idle_purple_1.png" id="74_jlkre"]
@@ -106,13 +97,10 @@
 [ext_resource type="Texture2D" uid="uid://c27eu00pm0y1b" path="res://player/cat/sprites/attack_neutral/purple/cat_attack_purple_2.png" id="79_tbqui"]
 [ext_resource type="Texture2D" uid="uid://cx61aoo0oppgu" path="res://player/cat/sprites/attack_neutral/purple/cat_attack_purple_3.png" id="80_1pfhr"]
 [ext_resource type="Texture2D" uid="uid://qbgqjupfm16m" path="res://player/cat/sprites/jump/blue/injured/cat_jump_blue_injured_3.png" id="80_ij47m"]
-[ext_resource type="Texture2D" uid="uid://cqjl5haprxvhw" path="res://player/cat/sprites/hit/purple/cat_damage_purple_1.png" id="80_lmwgk"]
 [ext_resource type="Texture2D" uid="uid://7acvsu8aaten" path="res://player/cat/sprites/attack_neutral/purple/cat_attack_purple_4.png" id="81_e7dth"]
 [ext_resource type="Texture2D" uid="uid://mw7b7jbstotl" path="res://player/cat/sprites/jump/blue/injured/cat_jump_blue_injured_4.png" id="81_hidg7"]
-[ext_resource type="Texture2D" uid="uid://itd53aj2wq0b" path="res://player/cat/sprites/hit/purple/cat_damage_purple_2.png" id="81_prshl"]
 [ext_resource type="Texture2D" uid="uid://bahci6ftyisv0" path="res://player/cat/sprites/walk/purple/cat_walk_purple_1.png" id="81_uaahp"]
 [ext_resource type="Texture2D" uid="uid://l2tbgbvmwfiq" path="res://player/cat/sprites/jump/purple/cat_jump_purple_4.png" id="82_1nwcy"]
-[ext_resource type="Texture2D" uid="uid://by00gmwl1gxlt" path="res://player/cat/sprites/hit/purple/cat_damage_purple_3.png" id="82_2kyl3"]
 [ext_resource type="Texture2D" uid="uid://ci64o3cnl35r7" path="res://player/cat/sprites/walk/blue/injured/cat_injured_walk_1.png" id="82_k2ut1"]
 [ext_resource type="Texture2D" uid="uid://c8a7tc16vqfm2" path="res://player/cat/sprites/walk/purple/cat_walk_purple_2.png" id="82_ykbqv"]
 [ext_resource type="Texture2D" uid="uid://btj1dsyifqswl" path="res://player/cat/sprites/hit/purple/cat_damage_purple_4.png" id="83_7rhq2"]
@@ -156,7 +144,6 @@
 [ext_resource type="Texture2D" uid="uid://btk5p43wfccnd" path="res://player/cat/sprites/air_attack_neutral/purple/injured/cat_injured_aerial_attack_purple_4.png" id="142_v60u5"]
 [ext_resource type="Texture2D" uid="uid://bf7y2ij8h35p2" path="res://player/cat/sprites/air_attack_neutral/purple/injured/cat_injured_aerial_attack_purple_5.png" id="143_jrvc0"]
 [ext_resource type="Texture2D" uid="uid://bwdmqktbmm38n" path="res://player/cat/sprites/air_attack_neutral/purple/injured/cat_injured_aerial_attack_purple_6.png" id="144_5s5bd"]
-[ext_resource type="Texture2D" uid="uid://cj8uvko2dpc82" path="res://player/cat/sprites/air_attack_neutral/purple/injured/cat_injured_aerial_attack_purple_7.png" id="145_mt6vi"]
 [ext_resource type="Texture2D" uid="uid://dlle2wk7wclhs" path="res://player/cat/sprites/attack_neutral/purple/injured/cat_injured_attack_purple_1.png" id="146_w8qb1"]
 [ext_resource type="Texture2D" uid="uid://gebu5m4eyfcl" path="res://player/cat/sprites/attack_neutral/purple/injured/cat_injured_attack_purple_2.png" id="147_70bpw"]
 [ext_resource type="Texture2D" uid="uid://r032ejwfn0x6" path="res://player/cat/sprites/attack_neutral/purple/injured/cat_injured_attack_purple_3.png" id="148_y8fwd"]
@@ -178,9 +165,6 @@
 [ext_resource type="Texture2D" uid="uid://bvhdnrr0sixla" path="res://player/cat/sprites/dash_attack/purple/injured/cat_injured_dash_attack_purple_6.png" id="164_w4pyb"]
 [ext_resource type="Texture2D" uid="uid://dvm3dg7t018ix" path="res://player/cat/sprites/dash_attack/purple/injured/cat_injured_dash_attack_purple_7.png" id="165_vfk03"]
 [ext_resource type="Texture2D" uid="uid://irj5hwxioxme" path="res://player/cat/sprites/jump/purple/injured/cat_jump_purple_injured_1.png" id="166_ddevt"]
-[ext_resource type="Texture2D" uid="uid://o75gjvbjslrj" path="res://player/cat/sprites/hit/purple/injured/cat_damage_purple_injured_1.png" id="167_2kbtm"]
-[ext_resource type="Texture2D" uid="uid://cym70lhnb2ghh" path="res://player/cat/sprites/hit/purple/injured/cat_damage_purple_injured_2.png" id="168_isvpt"]
-[ext_resource type="Texture2D" uid="uid://bptembmyfi8re" path="res://player/cat/sprites/hit/purple/injured/cat_damage_purple_injured_3.png" id="169_2xns2"]
 [ext_resource type="Texture2D" uid="uid://dvi4pfbagrji5" path="res://player/cat/sprites/hit/purple/injured/cat_damage_purple_injured_4.png" id="170_m5igm"]
 [ext_resource type="Texture2D" uid="uid://bjc5kjhuhr8hc" path="res://player/cat/sprites/hit/purple/injured/cat_damage_purple_injured_5.png" id="171_7lald"]
 [ext_resource type="Texture2D" uid="uid://dui83tsi0pjg4" path="res://player/cat/sprites/hit/purple/injured/cat_damage_purple_injured_6.png" id="172_36vxm"]
@@ -222,9 +206,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_0vbui")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_4qjb5")
 }],
 "loop": false,
 "name": &"blue_air_attack_neutral",
@@ -315,15 +296,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("30_owvel")
-}, {
-"duration": 1.0,
-"texture": ExtResource("31_7wtpn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("33_smwt7")
-}, {
-"duration": 1.0,
 "texture": ExtResource("34_q61c0")
 }, {
 "duration": 1.0,
@@ -371,9 +343,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("46_xcoog")
-}, {
-"duration": 1.0,
-"texture": ExtResource("47_oe37y")
 }],
 "loop": false,
 "name": &"blue_injured_air_attack_neutral",
@@ -463,15 +432,6 @@ animations = [{
 "speed": 15.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("69_4xcbi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("70_24sbm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("71_bw111")
-}, {
 "duration": 1.0,
 "texture": ExtResource("72_mh0ma")
 }, {
@@ -612,9 +572,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("53_mm7ja")
-}, {
-"duration": 1.0,
-"texture": ExtResource("54_s1kkk")
 }],
 "loop": false,
 "name": &"purple_air_attack_neutral",
@@ -705,15 +662,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("80_lmwgk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("81_prshl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("82_2kyl3")
-}, {
-"duration": 1.0,
 "texture": ExtResource("83_7rhq2")
 }, {
 "duration": 1.0,
@@ -761,9 +709,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("144_5s5bd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("145_mt6vi")
 }],
 "loop": false,
 "name": &"purple_injured_air_attack_neutral",
@@ -853,15 +798,6 @@ animations = [{
 "speed": 15.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("167_2kbtm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("168_isvpt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("169_2xns2")
-}, {
 "duration": 1.0,
 "texture": ExtResource("170_m5igm")
 }, {
@@ -997,7 +933,7 @@ _ending_video_audiostream = ExtResource("2_qwj5k")
 position = Vector2(12, -8)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_qk47r")
-animation = &"blue_air_attack_neutral"
+animation = &"blue_hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g467b")
