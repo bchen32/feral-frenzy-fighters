@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="1_ynwnh"]
 [ext_resource type="PackedScene" uid="uid://ju3ra5auyqg8" path="res://levels/cat_tree/cat_tree_level.tscn" id="2_mcce5"]
 [ext_resource type="PackedScene" uid="uid://cqwih0alupqsb" path="res://gui/hud/damage_ui.tscn" id="2_tb6xb"]
-[ext_resource type="Script" path="res://levels/camera.gd" id="4_g3460"]
 [ext_resource type="AudioStream" uid="uid://gv5krwja5mbt" path="res://levels/cat_tree/music/catfight.wav" id="5_7efgp"]
+[ext_resource type="PackedScene" uid="uid://cmvf4h60u8y1p" path="res://levels/camera.tscn" id="5_lovfr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lo5pr"]
 size = Vector2(156, 1913.5)
@@ -62,17 +62,16 @@ shape = SubResource("RectangleShape2D_ew3br")
 collision_layer = 2
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DeadAreas/DeadArea4"]
-position = Vector2(528, 793)
+position = Vector2(528, 900)
 shape = SubResource("RectangleShape2D_ew3br")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7efgp")
+volume_db = 1.0
+autoplay = true
+
+[node name="Camera2D" parent="." instance=ExtResource("5_lovfr")]
 position = Vector2(960, 538)
-limit_left = 0
-limit_top = 0
-limit_right = 1920
-limit_bottom = 1080
-limit_smoothed = true
-script = ExtResource("4_g3460")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 

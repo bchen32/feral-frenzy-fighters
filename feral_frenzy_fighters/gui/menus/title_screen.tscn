@@ -39,6 +39,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u2ssx")
+beginning_cutscene_path = "res://gui/menus/cutscenes/cat_v_cat_pre_battle.ogv"
 
 [node name="CutscenePlayer" parent="." node_paths=PackedStringArray("node_to_show", "audio_stream_player") instance=ExtResource("2_g7u1a")]
 visible = false

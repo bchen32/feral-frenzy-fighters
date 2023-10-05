@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://levels/lobby.gd" id="1_kt3by"]
 [ext_resource type="PackedScene" uid="uid://ju3ra5auyqg8" path="res://levels/cat_tree/cat_tree_level.tscn" id="2_kxqd3"]
 [ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="3_xfftx"]
-[ext_resource type="Script" path="res://levels/camera.gd" id="4_7wk5b"]
+[ext_resource type="PackedScene" uid="uid://cmvf4h60u8y1p" path="res://levels/camera.tscn" id="5_guw43"]
 [ext_resource type="PackedScene" uid="uid://cqwih0alupqsb" path="res://gui/hud/damage_ui.tscn" id="5_vp1oi"]
 [ext_resource type="AudioStream" uid="uid://gv5krwja5mbt" path="res://levels/cat_tree/music/catfight.wav" id="6_ap5ei"]
 
@@ -58,14 +58,13 @@ collision_layer = 2
 position = Vector2(528, 793)
 shape = SubResource("RectangleShape2D_ew3br")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ap5ei")
+volume_db = 1.0
+autoplay = true
+
+[node name="Camera2D" parent="." instance=ExtResource("5_guw43")]
 position = Vector2(960, 538)
-limit_left = 0
-limit_top = 0
-limit_right = 1920
-limit_bottom = 1080
-limit_smoothed = true
-script = ExtResource("4_7wk5b")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
