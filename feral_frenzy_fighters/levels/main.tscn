@@ -20,13 +20,13 @@ _players = [NodePath("Player"), NodePath("Player2")]
 [node name="CatTreeLevel" parent="." instance=ExtResource("2_mcce5")]
 
 [node name="Player" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("1_ynwnh")]
-position = Vector2(750, 500)
+position = Vector2(407, 711)
 _damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
 _dead_areas = NodePath("../DeadAreas")
 _ending_video = "res://gui/menus/cutscenes/cat_v_cat_player_two_wins.ogv"
 
 [node name="Player2" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("1_ynwnh")]
-position = Vector2(1100, 500)
+position = Vector2(1546, 708)
 player_num = 1
 _damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
 _dead_areas = NodePath("../DeadAreas")

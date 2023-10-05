@@ -11,11 +11,11 @@ var original_position
 func _ready():
 	player_1 = $"../Player"
 	player_2 = $"../Player2"
-	event_spawner = $"../CatTreeLevel".get_node("Events/EventSpawner")
+	event_spawner = $"../CatTreeLevel".get_node("Events/EventSpawner") # somehow detect which level is active
 	original_position = self.global_position
 
 func _process(delta):
-	overview_mode = event_spawner.set_camera_overview
+	overview_mode = event_spawner.set_camera_overview # event spawner within levels can't reference this camera outside of its level scene, so camera references them
 
 func _physics_process(delta):
 	if overview_mode == false and player_2 != null:

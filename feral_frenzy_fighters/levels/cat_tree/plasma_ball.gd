@@ -1,6 +1,6 @@
 extends Interactable
 
-@export var unstable = false
+var unstable = false
 var original_position
 var current_position
 var destination
@@ -8,6 +8,7 @@ var amount_of_times_moved = 0
 var max_times_to_move = 5
 var speed
 var reset_speed
+var min_destination_distance = 1000
 
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @onready var sprite = self.get_node("PlasmaBallSprite")
@@ -21,7 +22,7 @@ func _ready():
 	original_position = self.position
 	current_position = self.position
 	destination = Vector2(0, 0) # just to set variable to be a vector2
-	speed = 200.0
+	speed = 2000
 	reset_speed = speed
 	self.self_modulate = Color.WHITE
 
@@ -34,10 +35,14 @@ func _process(delta):
 	if self.health <= 0 && unstable == false:
 		_stability_change(true)
 		unstable = true
+	
+	if unstable == true:
+		event_spawner.change_set_overview(true)
 
 func _change_health(health_change: float):
-	self.health += health_change
-	anim.play("Damage")
+	if unstable == false:
+		self.health += health_change
+		anim.play("Damage")
 
 func _stability_change(turning_unstable: bool):
 	if turning_unstable == true:
@@ -51,10 +56,13 @@ func _stability_change(turning_unstable: bool):
 		
 		plasma_hitbox.setup(50, 50, 0, 0, 15, 2, 0, 0)
 	elif turning_unstable == false:
-		sprite.get_child(0).queue_free() # remove hitbox
+		sprite.get_child(0).queue_free()
 		
 		anim.play_backwards("StabilityChange")
 		await anim.animation_finished
+		
+		if event_spawner.current_event_happening == false:
+			event_spawner.change_set_overview(false)
 		
 		self.health = self.maxHealth
 		speed = reset_speed
@@ -66,7 +74,7 @@ func _choose_random_point():
 	var rand_y = randi_range(0, 1080)
 	destination = Vector2(rand_x, rand_y)
 	
-	if self.position.distance_to(destination) < 800: # if the new point is close enough to the current position or original position
+	if self.position.distance_to(destination) < min_destination_distance:
 		_choose_random_point()
 	else:
 		amount_of_times_moved += 1
@@ -76,7 +84,7 @@ func _move_ball(delta):
 		self.position = self.position.move_toward(destination, speed * delta)
 	
 	elif self.position.distance_to(destination) < 0.1 && !self.position.distance_to(original_position) < 0.1: # otherwise, if the plasma ball reaches the destination and it's NOT the original position
-		speed -= 300.0 * delta
+		speed -= reset_speed / 6
 		
 		if amount_of_times_moved >= max_times_to_move:
 			destination = original_position

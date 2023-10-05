@@ -99,9 +99,9 @@ size = Vector2(375, 74)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwyq8"]
 size = Vector2(77.5176, 246.273)
 
-[node name="cat_tree_zig_zag" type="Node2D"]
+[node name="CatTreeZigZag" type="Node2D"]
 script = ExtResource("1_0heff")
-starting_health = 60
+starting_health = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_1aar2")
