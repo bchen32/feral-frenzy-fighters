@@ -395,7 +395,7 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
-[node name="Audio Sliders" type="Control" parent="Background"]
+[node name="AudioSliders" type="Control" parent="Background"]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -405,14 +405,14 @@ offset_right = 707.0
 offset_bottom = 366.0
 scale = Vector2(1.92, 1.92)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/Audio Sliders"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/AudioSliders"]
 custom_minimum_size = Vector2(575, 0)
 layout_mode = 0
 offset_bottom = 482.0
 scale = Vector2(0.5, 0.5)
 theme_override_constants/separation = 256
 
-[node name="MusicSlider" type="HSlider" parent="Background/Audio Sliders/VBoxContainer"]
+[node name="MusicSlider" type="HSlider" parent="Background/AudioSliders/VBoxContainer"]
 z_index = 1
 z_as_relative = false
 layout_mode = 2
@@ -421,7 +421,7 @@ theme_override_icons/grabber = ExtResource("20_yxcn2")
 theme_override_icons/grabber_highlight = ExtResource("20_yxcn2")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_ii6ab")
 
-[node name="MusicText" type="RichTextLabel" parent="Background/Audio Sliders/VBoxContainer/MusicSlider"]
+[node name="MusicText" type="RichTextLabel" parent="Background/AudioSliders/VBoxContainer/MusicSlider"]
 clip_contents = false
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 0
@@ -437,12 +437,12 @@ theme_override_font_sizes/normal_font_size = 128
 text = "Music"
 scroll_active = false
 
-[node name="MusicBG" type="Sprite2D" parent="Background/Audio Sliders/VBoxContainer/MusicSlider"]
+[node name="MusicBG" type="Sprite2D" parent="Background/AudioSliders/VBoxContainer/MusicSlider"]
 z_as_relative = false
 position = Vector2(287.958, 58.2083)
 texture = ExtResource("21_uhsip")
 
-[node name="SfxSlider" type="HSlider" parent="Background/Audio Sliders/VBoxContainer"]
+[node name="SfxSlider" type="HSlider" parent="Background/AudioSliders/VBoxContainer"]
 z_index = 1
 z_as_relative = false
 layout_mode = 2
@@ -450,7 +450,7 @@ theme_override_icons/grabber = ExtResource("20_yxcn2")
 theme_override_icons/grabber_highlight = ExtResource("20_yxcn2")
 theme_override_styles/slider = SubResource("StyleBoxTexture_hw7k6")
 
-[node name="SFX" type="RichTextLabel" parent="Background/Audio Sliders/VBoxContainer/SfxSlider"]
+[node name="SFX" type="RichTextLabel" parent="Background/AudioSliders/VBoxContainer/SfxSlider"]
 clip_contents = false
 layout_mode = 2
 offset_left = 191.583
@@ -465,7 +465,7 @@ theme_override_font_sizes/normal_font_size = 128
 text = "SFX"
 scroll_active = false
 
-[node name="SFXBg" type="Sprite2D" parent="Background/Audio Sliders/VBoxContainer/SfxSlider"]
+[node name="SFXBg" type="Sprite2D" parent="Background/AudioSliders/VBoxContainer/SfxSlider"]
 z_as_relative = false
 position = Vector2(287.958, 59)
 texture = ExtResource("21_uhsip")
@@ -494,8 +494,8 @@ bus = &"Music"
 [connection signal="pressed" from="Background/Title/ButtonsVBox/ButtonsHBox/Quit/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="button_pressed" from="Background/TopBarButtons/InstructionsButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="button_pressed" from="Background/TopBarButtons/SettingsButton" to="." method="_on_settings_button_button_pressed"]
-[connection signal="value_changed" from="Background/Audio Sliders/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="Background/Audio Sliders/VBoxContainer/SfxSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="Background/AudioSliders/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Background/AudioSliders/VBoxContainer/SfxSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="on_first_button_pressed" from="Background/PlayDialog" to="." method="_on_play_dialog_on_online_button_pressed"]
 [connection signal="on_second_button_pressed" from="Background/PlayDialog" to="." method="_on_play_dialog_on_local_button_pressed"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
