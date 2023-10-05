@@ -2,11 +2,6 @@ class_name WalkJumpState
 extends JumpState
 
 
-func enter():
-	character.play_anim("jump")
-	character.play_audio(character.AudioType.JUMP)
-
-
 func exit():
 	character.air_speed_upper_bound = character.walk_speed
 	character.air_speed_lower_bound = -character.walk_speed

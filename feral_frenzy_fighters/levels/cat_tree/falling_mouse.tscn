@@ -111,6 +111,7 @@ texture = ExtResource("2_wpyag")
 [node name="VentSFX" type="AudioStreamPlayer2D" parent="VentParent"]
 position = Vector2(0, 150)
 stream = ExtResource("3_6onvi")
+bus = &"SFX"
 
 [node name="MouseParent" type="Node2D" parent="."]
 
@@ -119,6 +120,7 @@ texture = ExtResource("3_khrie")
 
 [node name="MouseSFX" type="AudioStreamPlayer2D" parent="MouseParent"]
 stream = ExtResource("5_48n66")
+bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

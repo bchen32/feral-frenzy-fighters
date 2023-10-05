@@ -54,8 +54,7 @@ func _stability_change(turning_unstable: bool):
 		var plasma_hitbox = hitbox_scene.instantiate()
 		sprite.add_child(plasma_hitbox)
 		
-		# (width, height, x_offset, y_offset, damage, knockback_scale, knockback_y_offset)
-		plasma_hitbox.setup(50, 50, 0, 0, 15, 2, 0)
+		plasma_hitbox.setup(50, 50, 0, 0, 15, 2, 0, 0)
 	elif turning_unstable == false:
 		sprite.get_child(0).queue_free()
 		

@@ -25,8 +25,7 @@ func _physics_process(delta):
 		var zoom_factor_1 = abs(player_1.global_position.x - player_2.global_position.x)/(1920-500)
 		var zoom_factor_2 = abs(player_1.global_position.y - player_2.global_position.y)/(1080-500)
 		var zoom_factor = max(max(zoom_factor_1, zoom_factor_2), 0.6)
-		
-		print("Camera2D: zoom_factor_1 = ", zoom_factor_1, " | zoom_factor_2 = ", zoom_factor_2, " | zoom_factor = ", zoom_factor)
+	
 		
 		if zoom_factor > 1:
 			zoom_factor = 1
