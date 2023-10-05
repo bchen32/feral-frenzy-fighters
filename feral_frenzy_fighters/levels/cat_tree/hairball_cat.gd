@@ -3,7 +3,7 @@ extends Node2D
 var x_positions = [250, 1670]
 var facing_left = false
 var shoot = false
-var speed = 10
+var speed = 1000
 
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @onready var sprite = self.get_child(0)
@@ -38,7 +38,7 @@ func _ready():
 func _physics_process(delta):
 	if shoot == true:
 		hairball.visible = true
-		hairball.position = hairball.position.move_toward(aim.position, speed * 100 * delta) # move hairball towards the aim point in the amount of seconds
+		hairball.position = hairball.position.move_toward(aim.position, speed * delta) # move hairball towards the aim point in the amount of seconds
 		hairball.rotate(6 * delta)
 
 func _shoot_hairball():

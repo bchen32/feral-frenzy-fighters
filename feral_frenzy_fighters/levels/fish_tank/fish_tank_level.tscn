@@ -1,9 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://bsova147i2vec"]
 
-[ext_resource type="Texture2D" uid="uid://d2cl4nbvj4fyq" path="res://levels/Whitebox Tileset.png" id="1_tevbf"]
+[ext_resource type="Texture2D" uid="uid://d2cl4nbvj4fyq" path="res://levels/whitebox_tileset.png" id="1_ql4i3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_og865"]
-texture = ExtResource("1_tevbf")
+texture = ExtResource("1_ql4i3")
 separation = Vector2i(15, 0)
 texture_region_size = Vector2i(60, 60)
 0:0/0 = 0

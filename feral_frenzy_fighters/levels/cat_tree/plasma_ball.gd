@@ -22,7 +22,7 @@ func _ready():
 	original_position = self.position
 	current_position = self.position
 	destination = Vector2(0, 0) # just to set variable to be a vector2
-	speed = 20
+	speed = 2000
 	reset_speed = speed
 	self.self_modulate = Color.WHITE
 
@@ -82,7 +82,7 @@ func _choose_random_point():
 
 func _move_ball(delta):
 	if !self.position.distance_to(destination) < 0.1: # if the plasma ball hasn't reached the destination
-		self.position = self.position.move_toward(destination, speed * 100 * delta)
+		self.position = self.position.move_toward(destination, speed * delta)
 	
 	elif self.position.distance_to(destination) < 0.1 && !self.position.distance_to(original_position) < 0.1: # otherwise, if the plasma ball reaches the destination and it's NOT the original position
 		speed -= reset_speed / 6
