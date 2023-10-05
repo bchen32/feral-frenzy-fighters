@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://br6txao4iioos"]
+[gd_scene load_steps=26 format=3 uid="uid://br6txao4iioos"]
 
 [ext_resource type="Script" path="res://gui/menus/title_screen.gd" id="1_u2ssx"]
 [ext_resource type="PackedScene" uid="uid://sjcnk7j4e0i4" path="res://gui/menus/cutscene_player.tscn" id="2_g7u1a"]
@@ -20,10 +20,16 @@
 [ext_resource type="Texture2D" uid="uid://bmspoqpdiawy6" path="res://gui/menus/sprites/screens/examples/credits_example.png" id="16_qc3e7"]
 [ext_resource type="Texture2D" uid="uid://2skm4qqo0wwc" path="res://gui/menus/sprites/screens/titles/credits_ui.png" id="17_y7rfj"]
 [ext_resource type="Texture2D" uid="uid://wnqsljtiihby" path="res://gui/menus/sprites/buttons/icons/arrow.png" id="19_egfgu"]
+[ext_resource type="Texture2D" uid="uid://d2pnd6moyijur" path="res://gui/menus/sprites/slider/sound_volume_slider_icon.png" id="20_yxcn2"]
+[ext_resource type="Texture2D" uid="uid://cjvi1ar5e1yr4" path="res://gui/menus/sprites/slider/sound_volume_border.png" id="21_uhsip"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0tfhe"]
 font = ExtResource("15_3jjna")
 font_size = 35
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ii6ab"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hw7k6"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -133,19 +139,41 @@ size_flags_horizontal = 3
 
 [node name="CreditsButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Credits"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = -1
+anchor_left = 0.609
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 0.609
 anchor_bottom = 0.5
-offset_left = -121.5
+offset_left = -162.157
 offset_top = 37.0
-offset_right = 202.5
+offset_right = 161.843
 offset_bottom = 199.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_0h4m0")
 text = "Credits"
+
+[node name="Options" type="Control" parent="Background/Title/ButtonsVBox/ButtonsHBox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionsButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Options"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.609
+anchor_top = 0.5
+anchor_right = 0.609
+anchor_bottom = 0.5
+offset_left = -227.157
+offset_top = 38.473
+offset_right = 96.843
+offset_bottom = 200.473
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_0h4m0")
+text = "Options
+"
 
 [node name="Extras" type="Control" parent="Background/Title/ButtonsVBox/ButtonsHBox"]
 visible = false
@@ -176,15 +204,15 @@ size_flags_horizontal = 3
 
 [node name="QuitButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Quit"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = -1
+anchor_left = 0.237
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 0.237
 anchor_bottom = 0.5
-offset_left = -258.5
-offset_top = 38.0
-offset_right = 61.5
-offset_bottom = 198.0
+offset_left = -153.638
+offset_top = 33.473
+offset_right = 166.362
+offset_bottom = 193.473
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_0h4m0")
@@ -368,6 +396,81 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
+[node name="AudioSliders" type="Control" parent="Background"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 707.0
+offset_top = 366.0
+offset_right = 707.0
+offset_bottom = 366.0
+scale = Vector2(1.92, 1.92)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/AudioSliders"]
+custom_minimum_size = Vector2(575, 0)
+layout_mode = 0
+offset_bottom = 482.0
+scale = Vector2(0.5, 0.5)
+theme_override_constants/separation = 256
+
+[node name="MusicSlider" type="HSlider" parent="Background/AudioSliders/VBoxContainer"]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+theme_override_constants/center_grabber = 0
+theme_override_icons/grabber = ExtResource("20_yxcn2")
+theme_override_icons/grabber_highlight = ExtResource("20_yxcn2")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_ii6ab")
+
+[node name="MusicText" type="RichTextLabel" parent="Background/AudioSliders/VBoxContainer/MusicSlider"]
+clip_contents = false
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 0
+offset_left = 108.792
+offset_top = -139.708
+offset_right = 508.792
+offset_bottom = -39.7083
+theme_override_colors/default_color = Color(0.59375, 0.761719, 0.824219, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/normal_font = ExtResource("15_3jjna")
+theme_override_font_sizes/normal_font_size = 128
+text = "Music"
+scroll_active = false
+
+[node name="MusicBG" type="Sprite2D" parent="Background/AudioSliders/VBoxContainer/MusicSlider"]
+z_as_relative = false
+position = Vector2(287.958, 58.2083)
+texture = ExtResource("21_uhsip")
+
+[node name="SfxSlider" type="HSlider" parent="Background/AudioSliders/VBoxContainer"]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("20_yxcn2")
+theme_override_icons/grabber_highlight = ExtResource("20_yxcn2")
+theme_override_styles/slider = SubResource("StyleBoxTexture_hw7k6")
+
+[node name="SFX" type="RichTextLabel" parent="Background/AudioSliders/VBoxContainer/SfxSlider"]
+clip_contents = false
+layout_mode = 2
+offset_left = 191.583
+offset_top = -139.708
+offset_right = 941.583
+offset_bottom = -39.7084
+theme_override_colors/default_color = Color(0.59375, 0.761719, 0.824219, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/normal_font = ExtResource("15_3jjna")
+theme_override_font_sizes/normal_font_size = 128
+text = "SFX"
+scroll_active = false
+
+[node name="SFXBg" type="Sprite2D" parent="Background/AudioSliders/VBoxContainer/SfxSlider"]
+z_as_relative = false
+position = Vector2(287.958, 59)
+texture = ExtResource("21_uhsip")
+
 [node name="PlayDialog" parent="Background" instance=ExtResource("13_1rr67")]
 visible = false
 layout_mode = 1
@@ -380,16 +483,20 @@ anchor_bottom = 0.5
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_n3vdy")
 autoplay = true
+bus = &"Music"
 
 [connection signal="mouse_entered" from="Background/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="mouse_exited" from="Background/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_mouse_exited"]
 [connection signal="pressed" from="Background/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="toggled" from="Background/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_toggled"]
 [connection signal="pressed" from="Background/Title/ButtonsVBox/ButtonsHBox/Credits/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Background/Title/ButtonsVBox/ButtonsHBox/Options/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Background/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="pressed" from="Background/Title/ButtonsVBox/ButtonsHBox/Quit/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="button_pressed" from="Background/TopBarButtons/InstructionsButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="button_pressed" from="Background/TopBarButtons/SettingsButton" to="." method="_on_settings_button_button_pressed"]
+[connection signal="value_changed" from="Background/AudioSliders/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Background/AudioSliders/VBoxContainer/SfxSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="on_first_button_pressed" from="Background/PlayDialog" to="." method="_on_play_dialog_on_online_button_pressed"]
 [connection signal="on_second_button_pressed" from="Background/PlayDialog" to="." method="_on_play_dialog_on_local_button_pressed"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

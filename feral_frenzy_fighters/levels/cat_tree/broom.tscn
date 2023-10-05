@@ -122,5 +122,6 @@ libraries = {
 [node name="BroomSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_adg8x")
 volume_db = 15.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="BroomTriggerArea" to="." method="_on_area_2d_body_entered"]

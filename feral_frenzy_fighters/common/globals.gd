@@ -7,5 +7,7 @@ var cutscene_player_end_game: bool = false
 var player1_won: bool = false
 
 var audio_stream_to_play_during_cutscene: AudioStream
+var sfx_multiplier = 1
+var music_multiplier = 1
 
 
