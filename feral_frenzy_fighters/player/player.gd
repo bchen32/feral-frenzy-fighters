@@ -13,7 +13,7 @@ extends CharacterBody2D
 @export var air_jump_accel: float = 600.0
 @export var walk_speed: float = 400.0
 @export var dash_speed: float = 600.0
-@export var dash_attack_speed: float = 900.0
+@export var dash_attack_speed: float = 750.0
 @export var air_jump_speed: float = 400.0
 @export var jump_speed: float = -1000.0
 @export var terminal_vel: float = 1800.0
@@ -49,8 +49,6 @@ extends CharacterBody2D
 		"knockback_x_offset": 20.0,
 		"knockback_y_offset": -5.0,
 		"hitboxes": [
-			#{"start_frame": 12, "end_frame": 16, "width": 10, "height": 10, "x_offset": 0, "y_offset": -40},
-			#{"start_frame": 16, "end_frame": 20, "width": 20, "height": 10, "x_offset": 20, "y_offset": -40},
 			{"start_frame": 4, "end_frame": 24, "width": 20, "height": 40, "x_offset": 30, "y_offset": 0}
 		]
 	}

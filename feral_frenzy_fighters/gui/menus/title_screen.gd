@@ -3,8 +3,8 @@ extends Control
 @export var beginning_cutscene_path: String
 
 func _ready():
-	$"Background/AudioSliders/VBoxContainer/MusicSlider". value = 50
-	$"Background/AudioSliders/VBoxContainer/SfxSlider".value = 100
+	$"Background/AudioSliders/VBoxContainer/MusicSlider".value = 50 if Globals.music_val == -1 else Globals.music_val
+	$"Background/AudioSliders/VBoxContainer/SfxSlider".value = 100 if Globals.sfx_val == -1 else Globals.sfx_val
 	
 func _on_play_button_pressed():
 	$Background/PlayDialog.show()
@@ -90,10 +90,12 @@ func _on_options_button_pressed():
 
 func _on_music_slider_value_changed(value):
 	var music_max = $"Background/AudioSliders/VBoxContainer/MusicSlider".max_value
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"),linear_to_db(value/music_max))
+	Globals.music_val = value
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(value / music_max))
 	
 
 
 func _on_sfx_slider_value_changed(value):
 	var sfx_max = $"Background/AudioSliders/VBoxContainer/SfxSlider".max_value
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"),linear_to_db(value/sfx_max))
+	Globals.sfx_val = value
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(value / sfx_max))

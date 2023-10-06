@@ -69,6 +69,7 @@ shape = SubResource("RectangleShape2D_ew3br")
 stream = ExtResource("5_7efgp")
 volume_db = 1.0
 autoplay = true
+bus = &"Music"
 
 [node name="Camera2D" parent="." instance=ExtResource("5_lovfr")]
 position = Vector2(960, 538)
@@ -83,11 +84,5 @@ offset_left = -539.0
 offset_top = -145.0
 offset_right = 613.0
 offset_bottom = -145.0
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_7efgp")
-volume_db = 1.0
-autoplay = true
-bus = &"Music"
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
