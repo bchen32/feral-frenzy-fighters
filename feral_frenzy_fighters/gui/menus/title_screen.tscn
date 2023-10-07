@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://br6txao4iioos"]
+[gd_scene load_steps=27 format=3 uid="uid://br6txao4iioos"]
 
 [ext_resource type="Script" path="res://gui/menus/title_screen.gd" id="1_u2ssx"]
 [ext_resource type="PackedScene" uid="uid://sjcnk7j4e0i4" path="res://gui/menus/cutscene_player.tscn" id="2_g7u1a"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dclv8jmg2tr7f" path="res://gui/menus/sprites/screens/icons/bloody_corner.png" id="7_r2mbp"]
 [ext_resource type="Texture2D" uid="uid://cj184dq5mth1s" path="res://gui/menus/sprites/screens/icons/bloody knife.png" id="8_elnab"]
 [ext_resource type="Texture2D" uid="uid://8gchhqqboee3" path="res://gui/menus/sprites/screens/examples/title_example.png" id="9_ylx86"]
+[ext_resource type="Script" path="res://gui/menus/button.gd" id="11_6h56s"]
 [ext_resource type="Texture2D" uid="uid://u756v8lp0brt" path="res://gui/menus/sprites/screens/titles/title_ui.png" id="11_noaj0"]
 [ext_resource type="Texture2D" uid="uid://clujpn5meb28i" path="res://gui/menus/sprites/screens/examples/instructions_example.png" id="12_7u5fq"]
 [ext_resource type="PackedScene" uid="uid://4fy3j4oxf7c2" path="res://gui/dialog.tscn" id="13_1rr67"]
@@ -127,6 +128,7 @@ grow_vertical = 2
 theme = ExtResource("3_0h4m0")
 theme_type_variation = &"BigButton"
 text = "Play"
+script = ExtResource("11_6h56s")
 
 [node name="ButtonsHBox" type="HBoxContainer" parent="Background/Title/ButtonsVBox"]
 layout_mode = 2

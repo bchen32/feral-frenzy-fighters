@@ -5,13 +5,14 @@ extends Control
 func _ready():
 	$"Background/AudioSliders/VBoxContainer/MusicSlider".value = 50 if Globals.music_val == -1 else Globals.music_val
 	$"Background/AudioSliders/VBoxContainer/SfxSlider".value = 100 if Globals.sfx_val == -1 else Globals.sfx_val
-	
+	$Background/Title/ButtonsVBox/Play/PlayButton.grab_focus()
 func _on_play_button_pressed():
 	$Background/PlayDialog.show()
 
 func _on_credits_button_pressed():
 	$Background/TopBarButtons/InstructionsButton.character = ""
 	$Background/TopBarButtons/InstructionsButton.refresh_button_apperance()
+	$Background/TopBarButtons/InstructionsButton.grab_focus()
 	
 	$Background/Credits.show()
 	$Background/Title.hide()
