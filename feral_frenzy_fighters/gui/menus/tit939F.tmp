@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://br6txao4iioos"]
+[gd_scene load_steps=27 format=3 uid="uid://br6txao4iioos"]
 
 [ext_resource type="Script" path="res://gui/menus/title_screen.gd" id="1_u2ssx"]
 [ext_resource type="PackedScene" uid="uid://sjcnk7j4e0i4" path="res://gui/menus/cutscene_player.tscn" id="2_g7u1a"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://gui/menus/button.gd" id="11_6h56s"]
 [ext_resource type="Texture2D" uid="uid://u756v8lp0brt" path="res://gui/menus/sprites/screens/titles/title_ui.png" id="11_noaj0"]
 [ext_resource type="Texture2D" uid="uid://clujpn5meb28i" path="res://gui/menus/sprites/screens/examples/instructions_example.png" id="12_7u5fq"]
+[ext_resource type="PackedScene" uid="uid://4fy3j4oxf7c2" path="res://gui/dialog.tscn" id="13_1rr67"]
 [ext_resource type="Texture2D" uid="uid://in6v5g06sma5" path="res://gui/menus/sprites/screens/titles/instructions_ui.png" id="13_tnsa6"]
 [ext_resource type="Texture2D" uid="uid://dcpm33cc5luse" path="res://gui/menus/sprites/screens/pop_up.png" id="14_va4on"]
 [ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="15_3jjna"]
@@ -22,11 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://wnqsljtiihby" path="res://gui/menus/sprites/buttons/icons/arrow.png" id="19_egfgu"]
 [ext_resource type="Texture2D" uid="uid://d2pnd6moyijur" path="res://gui/menus/sprites/slider/sound_volume_slider_icon.png" id="20_yxcn2"]
 [ext_resource type="Texture2D" uid="uid://cjvi1ar5e1yr4" path="res://gui/menus/sprites/slider/sound_volume_border.png" id="21_uhsip"]
-[ext_resource type="Script" path="res://gui/dialog.gd" id="23_4bb6r"]
-[ext_resource type="Texture2D" uid="uid://rb31ehfgk53n" path="res://gui/menus/sprites/screens/examples/options_example.png" id="24_i6uum"]
-[ext_resource type="Texture2D" uid="uid://b5jm0t8cpmgq6" path="res://gui/menus/sprites/screens/faded_black.png" id="25_bmnas"]
-[ext_resource type="Texture2D" uid="uid://cnadtlxa56n4j" path="res://gui/menus/sprites/screens/pop_up_blue.png" id="26_ds1jq"]
-[ext_resource type="Texture2D" uid="uid://crx7dfnmm8rsn" path="res://gui/menus/sprites/screens/titles/multiplayer_ui.png" id="27_e51u0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0tfhe"]
 font = ExtResource("15_3jjna")
@@ -477,7 +473,7 @@ z_as_relative = false
 position = Vector2(287.958, 59)
 texture = ExtResource("21_uhsip")
 
-[node name="PlayDialog" type="Control" parent="Background"]
+[node name="PlayDialog" parent="Background" instance=ExtResource("13_1rr67")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -485,104 +481,6 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("23_4bb6r")
-
-[node name="OptionsExample" type="Sprite2D" parent="Background/PlayDialog"]
-visible = false
-modulate = Color(1, 1, 1, 0.772549)
-position = Vector2(964, 542)
-texture = ExtResource("24_i6uum")
-
-[node name="DialogShade" type="TextureRect" parent="Background/PlayDialog"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("25_bmnas")
-
-[node name="DialogBackground" type="TextureRect" parent="Background/PlayDialog"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -473.0
-offset_top = -509.0
-offset_right = 533.0
-offset_bottom = 497.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("26_ds1jq")
-metadata/_edit_group_ = true
-
-[node name="PlayUIArea" type="Control" parent="Background/PlayDialog/DialogBackground"]
-anchors_preset = 0
-offset_left = 65.0
-offset_top = 51.0
-offset_right = 961.0
-offset_bottom = 958.0
-
-[node name="DialogTitle" type="TextureRect" parent="Background/PlayDialog/DialogBackground/PlayUIArea"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -331.0
-offset_top = 93.0
-offset_right = 376.0
-offset_bottom = 246.0
-grow_horizontal = 2
-texture = ExtResource("27_e51u0")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayDialog/DialogBackground/PlayUIArea"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -206.0
-offset_top = -110.5
-offset_right = 117.0
-offset_bottom = 217.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.25, 1.25)
-
-[node name="PlayOnlineButton" type="Button" parent="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-theme = ExtResource("3_0h4m0")
-theme_override_font_sizes/font_size = 60
-text = "Online"
-
-[node name="Spacer" type="Control" parent="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-
-[node name="PlayLocalButton" type="Button" parent="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer"]
-custom_minimum_size = Vector2(100, 150)
-layout_mode = 2
-theme = ExtResource("3_0h4m0")
-theme_override_font_sizes/font_size = 60
-text = "Local"
-
-[node name="CloseButton" parent="Background/PlayDialog/DialogBackground" instance=ExtResource("5_7a6wa")]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_bottom = 0.0
-offset_left = -181.0
-offset_right = 33.0
-offset_bottom = 209.0
-grow_horizontal = 0
-grow_vertical = 1
-character = "X"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_n3vdy")
@@ -603,7 +501,4 @@ bus = &"Music"
 [connection signal="value_changed" from="Background/AudioSliders/VBoxContainer/SfxSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="on_first_button_pressed" from="Background/PlayDialog" to="." method="_on_play_dialog_on_online_button_pressed"]
 [connection signal="on_second_button_pressed" from="Background/PlayDialog" to="." method="_on_play_dialog_on_local_button_pressed"]
-[connection signal="pressed" from="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayOnlineButton" to="Background/PlayDialog" method="_on_first_button_pressed" flags=18]
-[connection signal="pressed" from="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayLocalButton" to="Background/PlayDialog" method="_on_second_button_pressed" flags=18]
-[connection signal="button_pressed" from="Background/PlayDialog/DialogBackground/CloseButton" to="Background/PlayDialog" method="_on_close_button_button_pressed" flags=18]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

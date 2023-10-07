@@ -2,45 +2,64 @@ extends Control
 
 @export var beginning_cutscene_path: String
 
+var ui
+
+class menu:
+	var _queue = []
+	
+	func _init(item):
+		_queue.append(item)
+		self._queue = _queue
+		print("starting with", item)
+	
+	func next(item):
+		_queue.back().hide()
+		_queue.append(item)
+		item.show()
+		print("appending", item)
+		
+	func back():
+		print("popping", _queue.back())
+		_queue.pop_back().hide()
+		_queue.back().show()
+		
+		
+
+
 func _ready():
 	$"Background/AudioSliders/VBoxContainer/MusicSlider".value = 50 if Globals.music_val == -1 else Globals.music_val
 	$"Background/AudioSliders/VBoxContainer/SfxSlider".value = 100 if Globals.sfx_val == -1 else Globals.sfx_val
 	$Background/Title/ButtonsVBox/Play/PlayButton.grab_focus()
+	ui = menu.new($Background/Title)
+	
+	
 func _on_play_button_pressed():
-	$Background/PlayDialog.show()
+	ui.next($Background/PlayDialog)
 
 func _on_credits_button_pressed():
 	$Background/TopBarButtons/InstructionsButton.character = ""
 	$Background/TopBarButtons/InstructionsButton.refresh_button_apperance()
 	$Background/TopBarButtons/InstructionsButton.grab_focus()
 	
-	$Background/Credits.show()
-	$Background/Title.hide()
+	ui.next($Background/Credits)
 
 func _on_quit_button_pressed():
 	get_tree().quit()
 
 func _on_credits_back_button_pressed():
-	$Background/Credits.hide()
-	$Background/Title.show()
-	$"Background/AudioSliders".hide()
+	ui.back()
 	
 func _on_audio_stream_player_2d_finished():
 	$AudioStreamPlayer2D.play()
 
 func _on_instructions_button_pressed():
 	if $Background/TopBarButtons/InstructionsButton.character != "":
-		# going to instructions screen
 		$Background/TopBarButtons/InstructionsButton.character = ""
-		$Background/Title.hide()
-		$Background/Instructions.show()
+		ui.next($Background/Instructions)
 	else:
 		# coming from instructions/credits screen
 		$Background/TopBarButtons/InstructionsButton.character = "?"
-		$Background/Title.show()
-		$Background/Instructions.hide()
-		$Background/Credits.hide()
-		$"Background/AudioSliders".hide()
+		ui.back()
 	
 	$Background/TopBarButtons/InstructionsButton.refresh_button_apperance()
 
@@ -79,13 +98,10 @@ func _on_play_button_mouse_exited():
 func _on_options_button_pressed():
 	if $Background/TopBarButtons/InstructionsButton.character != "":
 		$Background/TopBarButtons/InstructionsButton.character = ""
-		$Background/Title.hide()
-		$"Background/AudioSliders".show()
+		ui.next($"Background/AudioSliders")
 	else:
 		$Background/TopBarButtons/InstructionsButton.character = "?"
-		$Background/Title.show()
-		$Background/Credits.hide()
-		$"Background/AudioSliders".hide()
+		ui.back()
 	$Background/TopBarButtons/InstructionsButton.refresh_button_apperance()
 
 
