@@ -33,8 +33,7 @@ func broom():
 	add_child(broom_hitbox)
 	sfx.play()
 	
-	# (width, height, x_offset, y_offset, damage, knockback_scale, knockback_y_offset)
-	broom_hitbox.setup(205, 160, 0, 0, 20, 2, 0)
+	broom_hitbox.setup(205, 160, 0, 0, 20, 2, 0, 0)
 	
 	await get_tree().create_timer(0.1).timeout # wait amount of seconds
 	
