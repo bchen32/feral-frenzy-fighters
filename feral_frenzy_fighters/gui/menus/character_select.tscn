@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxytim7slaepy"]
+
+[ext_resource type="Texture2D" uid="uid://dpaluibvjuaoc" path="res://gui/menus/sprites/screens/screen_background.png" id="1_b6vqj"]
+[ext_resource type="Script" path="res://gui/menus/character_select.gd" id="1_m4wkg"]
+
+[node name="CharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_m4wkg")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_b6vqj")

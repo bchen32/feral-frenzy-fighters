@@ -136,7 +136,7 @@ theme_override_constants/separation = 32
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="Background/Title/ButtonsVBox/Play" groups=["Button"]]
+[node name="PlayButton" type="Button" parent="Background/Title/ButtonsVBox/Play" groups=["TitleButtons"]]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -167,7 +167,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CreditsButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Credits" groups=["Button"]]
+[node name="CreditsButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Credits" groups=["TitleButtons"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.609
@@ -189,7 +189,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OptionsButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Options" groups=["Button"]]
+[node name="OptionsButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Options" groups=["TitleButtons"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.609
@@ -213,7 +213,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ExtrasButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Extras" groups=["Button"]]
+[node name="ExtrasButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Extras" groups=["TitleButtons"]]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -235,7 +235,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="QuitButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Quit" groups=["Button"]]
+[node name="QuitButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Quit" groups=["TitleButtons"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.237
@@ -424,7 +424,7 @@ script = ExtResource("28_mlo4o")
 character = "?"
 icon_texture = ExtResource("19_egfgu")
 
-[node name="IconButtonClick" type="TextureButton" parent="Background/TopBarButtons/InstructionsButton" groups=["Button"]]
+[node name="IconButtonClick" type="TextureButton" parent="Background/TopBarButtons/InstructionsButton" groups=["TitleButtons"]]
 visible = false
 layout_mode = 0
 offset_right = 200.0
@@ -478,7 +478,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 script = ExtResource("28_mlo4o")
 
-[node name="IconButtonClick" type="TextureButton" parent="Background/TopBarButtons/SettingsButton" groups=["Button"]]
+[node name="IconButtonClick" type="TextureButton" parent="Background/TopBarButtons/SettingsButton" groups=["TitleButtons"]]
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 200.0
@@ -673,7 +673,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.25, 1.25)
 
-[node name="PlayOnlineButton" type="Button" parent="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer" groups=["Button"]]
+[node name="PlayOnlineButton" type="Button" parent="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer" groups=["TitleButtons"]]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme = ExtResource("3_0h4m0")
@@ -685,7 +685,7 @@ text = "Online"
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="PlayLocalButton" type="Button" parent="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer" groups=["Button"]]
+[node name="PlayLocalButton" type="Button" parent="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer" groups=["TitleButtons"]]
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
 theme = ExtResource("3_0h4m0")
@@ -706,7 +706,7 @@ grow_horizontal = 0
 script = ExtResource("28_mlo4o")
 character = "X"
 
-[node name="IconButtonClick" type="TextureButton" parent="Background/PlayDialog/DialogBackground/CloseButton" groups=["Button"]]
+[node name="IconButtonClick" type="TextureButton" parent="Background/PlayDialog/DialogBackground/CloseButton" groups=["TitleButtons"]]
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 200.0
