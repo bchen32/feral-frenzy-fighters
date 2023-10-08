@@ -64,8 +64,7 @@ func _on_play_dialog_on_local_button_pressed():
 	_on_button_selected()
 	character_select.become_active()
 	self.set_process(false)
-	
-	
+
 
 func _on_play_button_mouse_entered():
 	for children in $MainMenu/BloodySplatters.get_children():
