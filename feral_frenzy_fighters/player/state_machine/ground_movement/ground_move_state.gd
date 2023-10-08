@@ -3,7 +3,7 @@ extends State
 
 
 func update(delta):
-	play_audio()	
+	play_audio()
 	if InputManager.is_action_pressed(character.get_input("jump")):
 		return get_jump_state()
 	if not character.is_on_floor():
@@ -13,6 +13,7 @@ func update(delta):
 	var direction = InputManager.get_axis(
 		character.get_input("left"), character.get_input("right")
 	)
+	
 	if direction:
 		character.anim_player.flip_h = direction > 0
 		if character.velocity.x * direction < 0:  # vel and direction are opposite

@@ -74,7 +74,7 @@ var curr_hitboxes: Array[Node]
 var curr_hitboxes_ends: Array[int]
 
 # networking stuff
-var chosen_attack: int
+var chosen_attack: Dictionary
 var display_name: String
 var player_state_type: Globals.States
 var stock: int
@@ -141,7 +141,7 @@ func _ready():
 	else:
 		anim_player.flip_h = true
 		p1_icon.visible = true
-	state_machine.init()
+	state_machine.init(self)
 
 
 func reset_frame():
