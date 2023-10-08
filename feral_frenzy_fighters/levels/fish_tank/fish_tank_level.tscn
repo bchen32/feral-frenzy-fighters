@@ -334,6 +334,16 @@ metadata/_edit_lock_ = true
 [node name="TreasureChest" parent="Environment/ActiveEnvironment" instance=ExtResource("9_akjcm")]
 position = Vector2(383, 717)
 
+[node name="PipelineLeft" parent="Environment/ActiveEnvironment" node_paths=PackedStringArray("connecting_pipe") instance=ExtResource("11_ibf3h")]
+position = Vector2(192, 500)
+connecting_pipe = NodePath("../PipelineRight")
+
+[node name="PipelineRight" parent="Environment/ActiveEnvironment" node_paths=PackedStringArray("connecting_pipe") instance=ExtResource("11_ibf3h")]
+position = Vector2(1728, 500)
+scale = Vector2(-1, -1)
+entry_pipe = false
+connecting_pipe = NodePath("../PipelineLeft")
+
 [node name="Events" type="Node2D" parent="."]
 
 [node name="EventSpawner" type="Node2D" parent="Events"]
@@ -342,6 +352,3 @@ position = Vector2(383, 717)
 
 [node name="Player" parent="." instance=ExtResource("10_ajri3")]
 position = Vector2(552, 792)
-
-[node name="Pipeline" parent="." instance=ExtResource("11_ibf3h")]
-position = Vector2(158, 544)
