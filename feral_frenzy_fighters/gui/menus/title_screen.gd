@@ -1,8 +1,6 @@
 extends Control
 
 @export var beginning_cutscene_path: String
-var character_select
-var stage_select
 var ui
 
 func _ready():
@@ -11,7 +9,6 @@ func _ready():
 	$"MainMenu/Title/ButtonsVBox/Play/PlayButton".grab_focus()
 	
 	ui = Globals.menu.new($MainMenu/Title)
-	character_select = $CharacterSelect
 
 func _process(delta):
 	if Input.is_action_pressed("ui_back"):
@@ -60,9 +57,10 @@ func _on_play_dialog_on_local_button_pressed():
 	Globals.cutscene_player_video_path = beginning_cutscene_path
 	Globals.cutscene_player_end_game = false
 	Globals.audio_stream_to_play_during_cutscene = preload("res://levels/cat_tree/music/catfight.wav")
-	
+	var character_select = preload("res://gui/menus/character_select.tscn").instantiate()
+	character_select.position.x = get_viewport().size.x
+	add_child(character_select)
 	_on_button_selected()
-	character_select.become_active()
 	self.set_process(false)
 
 
