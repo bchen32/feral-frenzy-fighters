@@ -40,15 +40,15 @@ func get_lobby_state_string(lobby_num: int):
 	return lobby_state 
 
 func add_player(player_id: int):
-	#_players[player_id] = preload("res://player/player.tscn").instantiate()
-	#_players[player_id].player_num = len(_players)
-	#_players[player_id].player_id = player_id
-	#if _players[player_id].player_num == 1:
-	#	_players[player_id].name = "Player"
-	#else:
-	#	_players[player_id].name = "Player%s" % [_players[player_id].player_num]
+	_players[player_id] = preload("res://player/player.tscn").instantiate()
+	_players[player_id].player_num = len(_players)
+	_players[player_id].player_id = player_id
+	if _players[player_id].player_num == 1:
+		_players[player_id].name = "Player"
+	else:
+		_players[player_id].name = "Player%s" % [_players[player_id].player_num]
 	
-	if len(_players) + 1 >= TARGET_PLAYERS:
+	if len(_players) >= TARGET_PLAYERS:
 		_lobby_game_state = NetworkManager.NetworkGameState.IN_FIRST_CUTSCENE
 		_network_manager.game_state_change.rpc(_lobby_game_state, "")
 		
@@ -83,11 +83,14 @@ func add_player(player_id: int):
 															 START_STOCK,
 															 START_PERCENTAGE)
 	else:
-		_players[player_id] = _waiting_lobby_scene.get_node("Player")
 		_players[player_id].player_num = len(_players)
 		_players[player_id].player_id = player_id
 		
-		#_waiting_lobby_scene.add_child(_players[player_id])
+		if _waiting_lobby_scene.has_node(String(_players[player_id].name)):
+			_waiting_lobby_scene.remove_child(
+					_waiting_lobby_scene.get_node(String(_players[player_id].name)))
+		
+		_waiting_lobby_scene.add_child(_players[player_id])
 		_network_manager.game_state_change.rpc_id(player_id, _lobby_game_state, 
 												  _players[player_id].display_name)
 
