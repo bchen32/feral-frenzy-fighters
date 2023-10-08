@@ -3,6 +3,7 @@ extends Node2D
 var bubble_time = 7
 var min_time_between = 5
 var max_time_between = 10
+var reset_fall_grav_scale: float
 @onready var anim = self.get_node("AnimationPlayer")
 
 # Called when the node enters the scene tree for the first time.
@@ -23,7 +24,8 @@ func _cycle():
 	_cycle()
 
 func _on_area_2d_body_entered(body):
-	body.fall_grav_scale *= -1
+	reset_fall_grav_scale = body.fall_grav_scale
+	body.fall_grav_scale = -7.0
 
 func _on_area_2d_body_exited(body):
-	body.fall_grav_scale *= -1
+	body.fall_grav_scale = reset_fall_grav_scale

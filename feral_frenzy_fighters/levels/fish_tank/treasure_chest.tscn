@@ -23,7 +23,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Area2D:visible")
+tracks/1/path = NodePath("../CPUParticles2D:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -35,14 +35,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../CPUParticles2D:emitting")
+tracks/2/path = NodePath("../Area2D/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_51w3f"]
@@ -62,7 +62,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Area2D:visible")
+tracks/1/path = NodePath("../CPUParticles2D:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -74,14 +74,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../CPUParticles2D:emitting")
+tracks/2/path = NodePath("../Area2D/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_f7x60"]
@@ -102,7 +102,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Area2D:visible")
+tracks/1/path = NodePath("../CPUParticles2D:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -114,14 +114,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../CPUParticles2D:emitting")
+tracks/2/path = NodePath("../Area2D/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2yavy"]
@@ -132,13 +132,13 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mq3jv"]
-size = Vector2(436, 2306)
+size = Vector2(103, 461)
 
 [node name="TreasureChest" type="Node2D"]
-scale = Vector2(0.25, 0.25)
 script = ExtResource("1_icqki")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_ksdoa")
 offset = Vector2(-30, 0)
 
@@ -148,27 +148,27 @@ libraries = {
 "": SubResource("AnimationLibrary_2yavy")
 }
 
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-2, -923)
-shape = SubResource("RectangleShape2D_mq3jv")
-
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2(0, 200)
+position = Vector2(0, 50)
 emitting = false
 amount = 20
 speed_scale = 0.75
 texture = ExtResource("4_he01u")
 emission_shape = 3
-emission_rect_extents = Vector2(150, 5)
+emission_rect_extents = Vector2(50, 5)
 direction = Vector2(0, -1)
 spread = 0.0
 gravity = Vector2(0, -980)
 scale_amount_min = 0.05
-scale_amount_max = 0.2
+scale_amount_max = 0.1
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -174.5)
+shape = SubResource("RectangleShape2D_mq3jv")
+disabled = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

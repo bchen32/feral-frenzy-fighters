@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsova147i2vec"]
+[gd_scene load_steps=14 format=3 uid="uid://bsova147i2vec"]
 
 [ext_resource type="Texture2D" uid="uid://bh65jpfqqtp5k" path="res://levels/fish_tank/sprites/decor/fish_level_wallpaper.png" id="1_rxrr6"]
 [ext_resource type="Texture2D" uid="uid://bhglr8sk5bivy" path="res://levels/fish_tank/sprites/decor/table.png" id="2_818kr"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dqb25pfnhgat2" path="res://levels/cat_tree/sprites/decor/book_thin_purple.png" id="7_vnb83"]
 [ext_resource type="Texture2D" uid="uid://bkvumebdleqtd" path="res://levels/cat_tree/sprites/decor/book_thin.png" id="8_w02iu"]
 [ext_resource type="PackedScene" uid="uid://c6wndhaby67a4" path="res://levels/fish_tank/treasure_chest.tscn" id="9_akjcm"]
+[ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="10_ajri3"]
+[ext_resource type="PackedScene" uid="uid://ch0a3pyvecm4r" path="res://levels/fish_tank/pipeline.tscn" id="11_ibf3h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_25un7"]
 texture = ExtResource("3_3pu7q")
@@ -249,11 +251,13 @@ self_modulate = Color(0.823529, 0.823529, 0.823529, 1)
 position = Vector2(960.5, 540)
 scale = Vector2(1.00052, 1)
 texture = ExtResource("1_rxrr6")
+metadata/_edit_lock_ = true
 
 [node name="Table" type="Sprite2D" parent="Environment"]
 position = Vector2(960.5, 975.25)
 scale = Vector2(1.00052, 1.13784)
 texture = ExtResource("2_818kr")
+metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="Environment"]
 tile_set = SubResource("TileSet_vvfh8")
@@ -295,6 +299,7 @@ layer_4/tile_data = PackedInt32Array(983044, 65536, 0, 983045, 65536, 0, 983046,
 position = Vector2(960.75, 510.25)
 scale = Vector2(0.972421, 1.03795)
 texture = ExtResource("4_5glbj")
+metadata/_edit_lock_ = true
 
 [node name="Decorations" type="Node2D" parent="Environment"]
 
@@ -303,22 +308,26 @@ position = Vector2(1082, 1007)
 rotation = 1.45598
 scale = Vector2(2, 2)
 texture = ExtResource("5_xma4l")
+metadata/_edit_lock_ = true
 
 [node name="TestTubeRack" type="Sprite2D" parent="Environment/Decorations"]
 position = Vector2(1747, 1077)
 scale = Vector2(2, 2)
 texture = ExtResource("6_elfyn")
+metadata/_edit_lock_ = true
 
 [node name="BookThinPurple" type="Sprite2D" parent="Environment/Decorations"]
 position = Vector2(-8, 621)
 scale = Vector2(1.48, 2.13)
 texture = ExtResource("7_vnb83")
+metadata/_edit_lock_ = true
 
 [node name="BookThin" type="Sprite2D" parent="Environment/Decorations"]
 position = Vector2(82, 655)
 rotation = -0.0364975
 scale = Vector2(1.64, 1.93)
 texture = ExtResource("8_w02iu")
+metadata/_edit_lock_ = true
 
 [node name="ActiveEnvironment" type="Node2D" parent="Environment"]
 
@@ -330,3 +339,9 @@ position = Vector2(383, 717)
 [node name="EventSpawner" type="Node2D" parent="Events"]
 
 [node name="Interactables" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("10_ajri3")]
+position = Vector2(552, 792)
+
+[node name="Pipeline" parent="." instance=ExtResource("11_ibf3h")]
+position = Vector2(158, 544)
