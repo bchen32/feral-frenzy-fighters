@@ -69,12 +69,12 @@ beginning_cutscene_path = "res://gui/menus/cutscenes/cat_v_cat_pre_battle.ogv"
 [node name="CutscenePlayer" parent="." node_paths=PackedStringArray("node_to_show", "audio_stream_player") instance=ExtResource("2_g7u1a")]
 visible = false
 layout_mode = 1
-node_to_show = NodePath("../MainMenu")
+node_to_show = NodePath("../Background")
 audio_stream_player = NodePath("../AudioStreamPlayer2D")
 audio_stream_to_play_during = ExtResource("4_n3vdy")
 audio_stream_to_play_after = ExtResource("4_n3vdy")
 
-[node name="MainMenu" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -82,30 +82,30 @@ texture = ExtResource("4_eh3f6")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="BloodySplatters" type="Node2D" parent="MainMenu"]
+[node name="BloodySplatters" type="Node2D" parent="Background"]
 
-[node name="BloodSplatTwo" type="Sprite2D" parent="MainMenu/BloodySplatters"]
+[node name="BloodSplatTwo" type="Sprite2D" parent="Background/BloodySplatters"]
 visible = false
 position = Vector2(1666, 727)
 texture = ExtResource("5_ktlsn")
 
-[node name="BloodSplatOne" type="Sprite2D" parent="MainMenu/BloodySplatters"]
+[node name="BloodSplatOne" type="Sprite2D" parent="Background/BloodySplatters"]
 visible = false
 position = Vector2(351, 568)
 texture = ExtResource("6_oxx04")
 
-[node name="BloodyCorner" type="Sprite2D" parent="MainMenu/BloodySplatters"]
+[node name="BloodyCorner" type="Sprite2D" parent="Background/BloodySplatters"]
 visible = false
 position = Vector2(816, 203)
 texture = ExtResource("7_r2mbp")
 
-[node name="BloodyKnife" type="Sprite2D" parent="MainMenu/BloodySplatters"]
+[node name="BloodyKnife" type="Sprite2D" parent="Background/BloodySplatters"]
 visible = false
 position = Vector2(1427.31, 425.836)
 scale = Vector2(1.56709, 1.56709)
 texture = ExtResource("8_elnab")
 
-[node name="Title" type="Control" parent="MainMenu"]
+[node name="Title" type="Control" parent="Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,7 +113,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ButtonsVBox" type="VBoxContainer" parent="MainMenu/Title"]
+[node name="ButtonsVBox" type="VBoxContainer" parent="Background/Title"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -128,11 +128,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 32
 
-[node name="Play" type="Control" parent="MainMenu/Title/ButtonsVBox"]
+[node name="Play" type="Control" parent="Background/Title/ButtonsVBox"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="MainMenu/Title/ButtonsVBox/Play" groups=["TitleButtons"]]
+[node name="PlayButton" type="Button" parent="Background/Title/ButtonsVBox/Play" groups=["TitleButtons"]]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -154,16 +154,16 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_vu2cy")
 text = "Play"
 script = ExtResource("11_6h56s")
 
-[node name="ButtonsHBox" type="HBoxContainer" parent="MainMenu/Title/ButtonsVBox"]
+[node name="ButtonsHBox" type="HBoxContainer" parent="Background/Title/ButtonsVBox"]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Credits" type="Control" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox"]
+[node name="Credits" type="Control" parent="Background/Title/ButtonsVBox/ButtonsHBox"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CreditsButton" type="Button" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox/Credits" groups=["TitleButtons"]]
+[node name="CreditsButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Credits" groups=["TitleButtons"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.609
@@ -180,12 +180,12 @@ theme = ExtResource("3_0h4m0")
 theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
 text = "Credits"
 
-[node name="Options" type="Control" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox"]
+[node name="Options" type="Control" parent="Background/Title/ButtonsVBox/ButtonsHBox"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OptionsButton" type="Button" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox/Options" groups=["TitleButtons"]]
+[node name="OptionsButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Options" groups=["TitleButtons"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.609
@@ -203,13 +203,13 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
 text = "Options
 "
 
-[node name="Extras" type="Control" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox"]
+[node name="Extras" type="Control" parent="Background/Title/ButtonsVBox/ButtonsHBox"]
 visible = false
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ExtrasButton" type="Button" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox/Extras" groups=["TitleButtons"]]
+[node name="ExtrasButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Extras" groups=["TitleButtons"]]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -226,12 +226,12 @@ theme = ExtResource("3_0h4m0")
 theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
 text = "Extras"
 
-[node name="Quit" type="Control" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox"]
+[node name="Quit" type="Control" parent="Background/Title/ButtonsVBox/ButtonsHBox"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="QuitButton" type="Button" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox/Quit" groups=["TitleButtons"]]
+[node name="QuitButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Quit" groups=["TitleButtons"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.237
@@ -248,7 +248,7 @@ theme = ExtResource("3_0h4m0")
 theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
 text = "Quit"
 
-[node name="GameIcon" type="TextureRect" parent="MainMenu/Title"]
+[node name="GameIcon" type="TextureRect" parent="Background/Title"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -261,19 +261,19 @@ grow_horizontal = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("11_noaj0")
 
-[node name="Instructions" type="Control" parent="MainMenu"]
+[node name="Instructions" type="Control" parent="Background"]
 visible = false
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="InstructionsExample" type="Sprite2D" parent="MainMenu/Instructions"]
+[node name="InstructionsExample" type="Sprite2D" parent="Background/Instructions"]
 visible = false
 modulate = Color(1, 1, 1, 0.658824)
 position = Vector2(955, 540)
 texture = ExtResource("12_7u5fq")
 
-[node name="InstructionsIcon" type="TextureRect" parent="MainMenu/Instructions"]
+[node name="InstructionsIcon" type="TextureRect" parent="Background/Instructions"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -285,7 +285,7 @@ offset_bottom = 312.0
 grow_horizontal = 2
 texture = ExtResource("13_tnsa6")
 
-[node name="TextureRect" type="TextureRect" parent="MainMenu/Instructions"]
+[node name="TextureRect" type="TextureRect" parent="Background/Instructions"]
 layout_mode = 0
 offset_left = 246.0
 offset_top = 219.0
@@ -293,7 +293,7 @@ offset_right = 1674.0
 offset_bottom = 1069.0
 texture = ExtResource("14_va4on")
 
-[node name="InstructionsLabel" type="Label" parent="MainMenu/Instructions/TextureRect"]
+[node name="InstructionsLabel" type="Label" parent="Background/Instructions/TextureRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -328,7 +328,7 @@ label_settings = SubResource("LabelSettings_0tfhe")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Credits" type="Control" parent="MainMenu"]
+[node name="Credits" type="Control" parent="Background"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -337,13 +337,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CreditsExample" type="Sprite2D" parent="MainMenu/Credits"]
+[node name="CreditsExample" type="Sprite2D" parent="Background/Credits"]
 visible = false
 modulate = Color(1, 1, 1, 0.792157)
 position = Vector2(958, 540)
 texture = ExtResource("16_qc3e7")
 
-[node name="CreditsBackground" type="TextureRect" parent="MainMenu/Credits"]
+[node name="CreditsBackground" type="TextureRect" parent="Background/Credits"]
 layout_mode = 0
 offset_left = 246.0
 offset_top = 219.0
@@ -351,7 +351,7 @@ offset_right = 1674.0
 offset_bottom = 1069.0
 texture = ExtResource("14_va4on")
 
-[node name="CreditsLabel" type="Label" parent="MainMenu/Credits/CreditsBackground"]
+[node name="CreditsLabel" type="Label" parent="Background/Credits/CreditsBackground"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -388,7 +388,7 @@ label_settings = SubResource("LabelSettings_0tfhe")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CreditsIcon" type="TextureRect" parent="MainMenu/Credits"]
+[node name="CreditsIcon" type="TextureRect" parent="Background/Credits"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -400,7 +400,7 @@ offset_bottom = 267.0
 grow_horizontal = 2
 texture = ExtResource("17_y7rfj")
 
-[node name="TopBarButtons" type="HBoxContainer" parent="MainMenu"]
+[node name="TopBarButtons" type="HBoxContainer" parent="Background"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -413,14 +413,14 @@ grow_horizontal = 0
 scale = Vector2(0.75, 0.75)
 alignment = 1
 
-[node name="InstructionsButton" type="Control" parent="MainMenu/TopBarButtons"]
+[node name="InstructionsButton" type="Control" parent="Background/TopBarButtons"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 script = ExtResource("28_mlo4o")
 character = "?"
 icon_texture = ExtResource("19_egfgu")
 
-[node name="IconButtonClick" type="TextureButton" parent="MainMenu/TopBarButtons/InstructionsButton" groups=["TitleButtons"]]
+[node name="IconButtonClick" type="TextureButton" parent="Background/TopBarButtons/InstructionsButton" groups=["TitleButtons"]]
 visible = false
 layout_mode = 0
 offset_right = 200.0
@@ -429,7 +429,7 @@ texture_normal = ExtResource("29_pqkes")
 texture_pressed = ExtResource("30_jsdcc")
 texture_hover = ExtResource("31_jv14s")
 
-[node name="Icon" type="TextureRect" parent="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick"]
+[node name="Icon" type="TextureRect" parent="Background/TopBarButtons/InstructionsButton/IconButtonClick"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -445,7 +445,7 @@ grow_vertical = 2
 texture = ExtResource("32_abyt0")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick"]
+[node name="Label" type="Label" parent="Background/TopBarButtons/InstructionsButton/IconButtonClick"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -464,17 +464,17 @@ label_settings = SubResource("LabelSettings_p67dp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Spacer" type="Control" parent="MainMenu/TopBarButtons"]
+[node name="Spacer" type="Control" parent="Background/TopBarButtons"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="SettingsButton" type="Control" parent="MainMenu/TopBarButtons"]
+[node name="SettingsButton" type="Control" parent="Background/TopBarButtons"]
 visible = false
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 script = ExtResource("28_mlo4o")
 
-[node name="IconButtonClick" type="TextureButton" parent="MainMenu/TopBarButtons/SettingsButton" groups=["TitleButtons"]]
+[node name="IconButtonClick" type="TextureButton" parent="Background/TopBarButtons/SettingsButton" groups=["TitleButtons"]]
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 200.0
@@ -482,7 +482,7 @@ texture_normal = ExtResource("29_pqkes")
 texture_pressed = ExtResource("30_jsdcc")
 texture_hover = ExtResource("31_jv14s")
 
-[node name="Icon" type="TextureRect" parent="MainMenu/TopBarButtons/SettingsButton/IconButtonClick"]
+[node name="Icon" type="TextureRect" parent="Background/TopBarButtons/SettingsButton/IconButtonClick"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -498,7 +498,7 @@ grow_vertical = 2
 texture = ExtResource("32_abyt0")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="MainMenu/TopBarButtons/SettingsButton/IconButtonClick"]
+[node name="Label" type="Label" parent="Background/TopBarButtons/SettingsButton/IconButtonClick"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -517,7 +517,7 @@ label_settings = SubResource("LabelSettings_p67dp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AudioSliders" type="Control" parent="MainMenu"]
+[node name="AudioSliders" type="Control" parent="Background"]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -527,14 +527,14 @@ offset_right = 707.0
 offset_bottom = 366.0
 scale = Vector2(1.92, 1.92)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/AudioSliders"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/AudioSliders"]
 custom_minimum_size = Vector2(575, 0)
 layout_mode = 0
 offset_bottom = 482.0
 scale = Vector2(0.5, 0.5)
 theme_override_constants/separation = 256
 
-[node name="MusicSlider" type="HSlider" parent="MainMenu/AudioSliders/VBoxContainer"]
+[node name="MusicSlider" type="HSlider" parent="Background/AudioSliders/VBoxContainer"]
 z_index = 1
 z_as_relative = false
 layout_mode = 2
@@ -543,7 +543,7 @@ theme_override_icons/grabber = ExtResource("20_yxcn2")
 theme_override_icons/grabber_highlight = ExtResource("20_yxcn2")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_ii6ab")
 
-[node name="MusicText" type="RichTextLabel" parent="MainMenu/AudioSliders/VBoxContainer/MusicSlider"]
+[node name="MusicText" type="RichTextLabel" parent="Background/AudioSliders/VBoxContainer/MusicSlider"]
 clip_contents = false
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 0
@@ -559,12 +559,12 @@ theme_override_font_sizes/normal_font_size = 128
 text = "Music"
 scroll_active = false
 
-[node name="MusicBG" type="Sprite2D" parent="MainMenu/AudioSliders/VBoxContainer/MusicSlider"]
+[node name="MusicBG" type="Sprite2D" parent="Background/AudioSliders/VBoxContainer/MusicSlider"]
 z_as_relative = false
 position = Vector2(287.958, 58.2083)
 texture = ExtResource("21_uhsip")
 
-[node name="SfxSlider" type="HSlider" parent="MainMenu/AudioSliders/VBoxContainer"]
+[node name="SfxSlider" type="HSlider" parent="Background/AudioSliders/VBoxContainer"]
 z_index = 1
 z_as_relative = false
 layout_mode = 2
@@ -572,7 +572,7 @@ theme_override_icons/grabber = ExtResource("20_yxcn2")
 theme_override_icons/grabber_highlight = ExtResource("20_yxcn2")
 theme_override_styles/slider = SubResource("StyleBoxTexture_hw7k6")
 
-[node name="SFX" type="RichTextLabel" parent="MainMenu/AudioSliders/VBoxContainer/SfxSlider"]
+[node name="SFX" type="RichTextLabel" parent="Background/AudioSliders/VBoxContainer/SfxSlider"]
 clip_contents = false
 layout_mode = 2
 offset_left = 191.583
@@ -587,12 +587,12 @@ theme_override_font_sizes/normal_font_size = 128
 text = "SFX"
 scroll_active = false
 
-[node name="SFXBg" type="Sprite2D" parent="MainMenu/AudioSliders/VBoxContainer/SfxSlider"]
+[node name="SFXBg" type="Sprite2D" parent="Background/AudioSliders/VBoxContainer/SfxSlider"]
 z_as_relative = false
 position = Vector2(287.958, 59)
 texture = ExtResource("21_uhsip")
 
-[node name="PlayDialog" type="Control" parent="MainMenu"]
+[node name="PlayDialog" type="Control" parent="Background"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -604,13 +604,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("23_4bb6r")
 
-[node name="OptionsExample" type="Sprite2D" parent="MainMenu/PlayDialog"]
+[node name="OptionsExample" type="Sprite2D" parent="Background/PlayDialog"]
 visible = false
 modulate = Color(1, 1, 1, 0.772549)
 position = Vector2(964, 542)
 texture = ExtResource("24_i6uum")
 
-[node name="DialogShade" type="TextureRect" parent="MainMenu/PlayDialog"]
+[node name="DialogShade" type="TextureRect" parent="Background/PlayDialog"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -619,7 +619,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("25_bmnas")
 
-[node name="DialogBackground" type="TextureRect" parent="MainMenu/PlayDialog"]
+[node name="DialogBackground" type="TextureRect" parent="Background/PlayDialog"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -635,14 +635,14 @@ grow_vertical = 2
 texture = ExtResource("26_ds1jq")
 metadata/_edit_group_ = true
 
-[node name="PlayUIArea" type="Control" parent="MainMenu/PlayDialog/DialogBackground"]
+[node name="PlayUIArea" type="Control" parent="Background/PlayDialog/DialogBackground"]
 anchors_preset = 0
 offset_left = 65.0
 offset_top = 51.0
 offset_right = 961.0
 offset_bottom = 958.0
 
-[node name="DialogTitle" type="TextureRect" parent="MainMenu/PlayDialog/DialogBackground/PlayUIArea"]
+[node name="DialogTitle" type="TextureRect" parent="Background/PlayDialog/DialogBackground/PlayUIArea"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -654,7 +654,7 @@ offset_bottom = 246.0
 grow_horizontal = 2
 texture = ExtResource("27_e51u0")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/PlayDialog/DialogBackground/PlayUIArea"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayDialog/DialogBackground/PlayUIArea"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -669,7 +669,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.25, 1.25)
 
-[node name="PlayOnlineButton" type="Button" parent="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer" groups=["TitleButtons"]]
+[node name="PlayOnlineButton" type="Button" parent="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer" groups=["TitleButtons"]]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme = ExtResource("3_0h4m0")
@@ -677,11 +677,11 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxTexture_mn2ma")
 text = "Online"
 
-[node name="Spacer" type="Control" parent="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer"]
+[node name="Spacer" type="Control" parent="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="PlayLocalButton" type="Button" parent="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer" groups=["TitleButtons"]]
+[node name="PlayLocalButton" type="Button" parent="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer" groups=["TitleButtons"]]
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
 theme = ExtResource("3_0h4m0")
@@ -689,7 +689,7 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxTexture_mn2ma")
 text = "Local"
 
-[node name="CloseButton" type="Control" parent="MainMenu/PlayDialog/DialogBackground"]
+[node name="CloseButton" type="Control" parent="Background/PlayDialog/DialogBackground"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = 1
@@ -702,7 +702,7 @@ grow_horizontal = 0
 script = ExtResource("28_mlo4o")
 character = "X"
 
-[node name="IconButtonClick" type="TextureButton" parent="MainMenu/PlayDialog/DialogBackground/CloseButton" groups=["TitleButtons"]]
+[node name="IconButtonClick" type="TextureButton" parent="Background/PlayDialog/DialogBackground/CloseButton" groups=["TitleButtons"]]
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 200.0
@@ -710,7 +710,7 @@ texture_normal = ExtResource("29_pqkes")
 texture_pressed = ExtResource("30_jsdcc")
 texture_hover = ExtResource("31_jv14s")
 
-[node name="Icon" type="TextureRect" parent="MainMenu/PlayDialog/DialogBackground/CloseButton/IconButtonClick"]
+[node name="Icon" type="TextureRect" parent="Background/PlayDialog/DialogBackground/CloseButton/IconButtonClick"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -726,7 +726,7 @@ grow_vertical = 2
 texture = ExtResource("32_abyt0")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="MainMenu/PlayDialog/DialogBackground/CloseButton/IconButtonClick"]
+[node name="Label" type="Label" parent="Background/PlayDialog/DialogBackground/CloseButton/IconButtonClick"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -746,7 +746,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CharacterSelect" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("33_ofrhh")
@@ -766,33 +765,33 @@ stream = ExtResource("4_n3vdy")
 autoplay = true
 bus = &"Music"
 
-[connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_button_entered"]
-[connection signal="mouse_entered" from="MainMenu/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_mouse_entered"]
-[connection signal="mouse_exited" from="MainMenu/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_mouse_exited"]
-[connection signal="pressed" from="MainMenu/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Credits/CreditsButton" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Credits/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Options/OptionsButton" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Options/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_instructions_button_pressed"]
-[connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Quit/QuitButton" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Quit/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="button_pressed" from="MainMenu/TopBarButtons/InstructionsButton" to="." method="_on_instructions_button_pressed"]
-[connection signal="focus_entered" from="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick" to="MainMenu/TopBarButtons/InstructionsButton" method="_on_icon_button_click_pressed" flags=18]
-[connection signal="button_pressed" from="MainMenu/TopBarButtons/SettingsButton" to="." method="_on_settings_button_button_pressed"]
-[connection signal="focus_entered" from="MainMenu/TopBarButtons/SettingsButton/IconButtonClick" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/TopBarButtons/SettingsButton/IconButtonClick" to="MainMenu/TopBarButtons/SettingsButton" method="_on_icon_button_click_pressed" flags=18]
-[connection signal="value_changed" from="MainMenu/AudioSliders/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="MainMenu/AudioSliders/VBoxContainer/SfxSlider" to="." method="_on_sfx_slider_value_changed"]
-[connection signal="on_first_button_pressed" from="MainMenu/PlayDialog" to="." method="_on_play_dialog_on_online_button_pressed"]
-[connection signal="on_second_button_pressed" from="MainMenu/PlayDialog" to="." method="_on_play_dialog_on_local_button_pressed"]
-[connection signal="focus_entered" from="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayOnlineButton" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayOnlineButton" to="MainMenu/PlayDialog" method="_on_first_button_pressed" flags=18]
-[connection signal="focus_entered" from="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayLocalButton" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayLocalButton" to="MainMenu/PlayDialog" method="_on_second_button_pressed" flags=18]
-[connection signal="button_pressed" from="MainMenu/PlayDialog/DialogBackground/CloseButton" to="MainMenu/PlayDialog" method="_on_close_button_button_pressed" flags=18]
-[connection signal="focus_entered" from="MainMenu/PlayDialog/DialogBackground/CloseButton/IconButtonClick" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/PlayDialog/DialogBackground/CloseButton/IconButtonClick" to="MainMenu/PlayDialog/DialogBackground/CloseButton" method="_on_icon_button_click_pressed" flags=18]
+[connection signal="focus_entered" from="Background/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_button_entered"]
+[connection signal="mouse_entered" from="Background/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_mouse_entered"]
+[connection signal="mouse_exited" from="Background/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_mouse_exited"]
+[connection signal="pressed" from="Background/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="focus_entered" from="Background/Title/ButtonsVBox/ButtonsHBox/Credits/CreditsButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="Background/Title/ButtonsVBox/ButtonsHBox/Credits/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="focus_entered" from="Background/Title/ButtonsVBox/ButtonsHBox/Options/OptionsButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="Background/Title/ButtonsVBox/ButtonsHBox/Options/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="focus_entered" from="Background/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="Background/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_instructions_button_pressed"]
+[connection signal="focus_entered" from="Background/Title/ButtonsVBox/ButtonsHBox/Quit/QuitButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="Background/Title/ButtonsVBox/ButtonsHBox/Quit/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="button_pressed" from="Background/TopBarButtons/InstructionsButton" to="." method="_on_instructions_button_pressed"]
+[connection signal="focus_entered" from="Background/TopBarButtons/InstructionsButton/IconButtonClick" to="." method="_on_button_entered"]
+[connection signal="pressed" from="Background/TopBarButtons/InstructionsButton/IconButtonClick" to="Background/TopBarButtons/InstructionsButton" method="_on_icon_button_click_pressed" flags=18]
+[connection signal="button_pressed" from="Background/TopBarButtons/SettingsButton" to="." method="_on_settings_button_button_pressed"]
+[connection signal="focus_entered" from="Background/TopBarButtons/SettingsButton/IconButtonClick" to="." method="_on_button_entered"]
+[connection signal="pressed" from="Background/TopBarButtons/SettingsButton/IconButtonClick" to="Background/TopBarButtons/SettingsButton" method="_on_icon_button_click_pressed" flags=18]
+[connection signal="value_changed" from="Background/AudioSliders/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Background/AudioSliders/VBoxContainer/SfxSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="on_first_button_pressed" from="Background/PlayDialog" to="." method="_on_play_dialog_on_online_button_pressed"]
+[connection signal="on_second_button_pressed" from="Background/PlayDialog" to="." method="_on_play_dialog_on_local_button_pressed"]
+[connection signal="focus_entered" from="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayOnlineButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayOnlineButton" to="Background/PlayDialog" method="_on_first_button_pressed" flags=18]
+[connection signal="focus_entered" from="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayLocalButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayLocalButton" to="Background/PlayDialog" method="_on_second_button_pressed" flags=18]
+[connection signal="button_pressed" from="Background/PlayDialog/DialogBackground/CloseButton" to="Background/PlayDialog" method="_on_close_button_button_pressed" flags=18]
+[connection signal="focus_entered" from="Background/PlayDialog/DialogBackground/CloseButton/IconButtonClick" to="." method="_on_button_entered"]
+[connection signal="pressed" from="Background/PlayDialog/DialogBackground/CloseButton/IconButtonClick" to="Background/PlayDialog/DialogBackground/CloseButton" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

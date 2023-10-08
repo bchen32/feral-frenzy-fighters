@@ -1,48 +1,17 @@
 extends Control
 
 @export var beginning_cutscene_path: String
-
-var ui
 var character_select
 var stage_select
-
-class menu:
-	var _queue = []
-	
-	func _init(item):
-		_queue.append(item)
-		self._queue = _queue
-		#print("starting with", item)
-	
-	func next(item):
-		_queue.back().hide()
-		_queue.append(item)
-		item.show()
-		focus_button(item)
-		#print("appending", item)
-	
-	func back():
-		#print("popping", _queue.back())
-		if len(_queue) > 1:
-			_queue.pop_back().hide()
-			_queue.back().show()
-			focus_button(_queue.back())
-		
-	
-	func focus_button(item):
-		for node in item.get_tree().get_nodes_in_group("TitleButtons"):
-			print(node)
-			if node.is_visible_in_tree():
-				print("pee")
-				node.grab_focus()
-				return 
+var ui
 
 func _ready():
-	$"Background/AudioSliders/VBoxContainer/MusicSlider".value = 50 if Globals.music_val == -1 else Globals.music_val
-	$"Background/AudioSliders/VBoxContainer/SfxSlider".value = 100 if Globals.sfx_val == -1 else Globals.sfx_val
-	$Background/Title/ButtonsVBox/Play/PlayButton.grab_focus()
+	$"MainMenu/AudioSliders/VBoxContainer/MusicSlider".value = 50 if Globals.music_val == -1 else Globals.music_val
+	$"MainMenu/AudioSliders/VBoxContainer/SfxSlider".value = 100 if Globals.sfx_val == -1 else Globals.sfx_val
+	$"MainMenu/Title/ButtonsVBox/Play/PlayButton".grab_focus()
 	
-	ui = menu.new($Background/Title)
+	ui = Globals.menu.new($MainMenu/Title)
+	character_select = $CharacterSelect
 
 func _process(delta):
 	if Input.is_action_pressed("ui_back"):
@@ -50,17 +19,18 @@ func _process(delta):
 			$SFX.stream = preload("res://gui/menus/sfx/unbutton.wav")
 			$SFX.play()
 			ui.back()
+			
 
 func _on_play_button_pressed():
-	ui.next($Background/PlayDialog)
+	ui.next($MainMenu/PlayDialog)
 	_on_button_selected()
 
 func _on_credits_button_pressed():
-	$Background/TopBarButtons/InstructionsButton.character = ""
-	$Background/TopBarButtons/InstructionsButton.refresh_button_apperance()
-	$Background/TopBarButtons/InstructionsButton.grab_focus()
+	$MainMenu/TopBarButtons/InstructionsButton.character = ""
+	$MainMenu/TopBarButtons/InstructionsButton.refresh_button_apperance()
+	$MainMenu/TopBarButtons/InstructionsButton.grab_focus()
 	_on_button_selected()
-	ui.next($Background/Credits)
+	ui.next($MainMenu/Credits)
 
 func _on_quit_button_pressed():
 	get_tree().quit()
@@ -72,7 +42,7 @@ func _on_audio_stream_player_2d_finished():
 	$AudioStreamPlayer2D.play()
 
 func _on_instructions_button_pressed():
-	ui.next($Background/Instructions)
+	ui.next($MainMenu/Instructions)
 	_on_button_selected()
 
 func _on_settings_button_button_pressed():
@@ -91,34 +61,31 @@ func _on_play_dialog_on_local_button_pressed():
 	Globals.cutscene_player_end_game = false
 	Globals.audio_stream_to_play_during_cutscene = preload("res://levels/cat_tree/music/catfight.wav")
 	
-	character_select = preload("res://gui/menus/character_select.tscn").instantiate()
-	add_child(character_select)
 	_on_button_selected()
+	character_select.become_active()
+	self.set_process(false)
+	
+	
 
 func _on_play_button_mouse_entered():
-	$Background/BloodyKnife.show()
-	$Background/BloodyCorner.show()
-	$Background/BloodSplatOne.show()
-	$Background/BloodSplatTwo.show()
-	$Background/BloodyKnife.show() 
+	for children in $MainMenu/BloodySplatters.get_children():
+		children.show()
 
 func _on_play_button_mouse_exited():
-	$Background/BloodyKnife.hide()
-	$Background/BloodyCorner.hide()
-	$Background/BloodSplatOne.hide()
-	$Background/BloodSplatTwo.hide()
+	for children in $MainMenu/BloodySplatters.get_children():
+		children.hide()
 
 func _on_options_button_pressed():
-	ui.next($"Background/AudioSliders")
+	ui.next($"MainMenu/AudioSliders")
 	_on_button_selected()
 
 func _on_music_slider_value_changed(value):
-	var music_max = $"Background/AudioSliders/VBoxContainer/MusicSlider".max_value
+	var music_max = $"MainMenu/AudioSliders/VBoxContainer/MusicSlider".max_value
 	Globals.music_val = value
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(value / music_max))
 
 func _on_sfx_slider_value_changed(value):
-	var sfx_max = $"Background/AudioSliders/VBoxContainer/SfxSlider".max_value
+	var sfx_max = $"MainMenu/AudioSliders/VBoxContainer/SfxSlider".max_value
 	Globals.sfx_val = value
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(value / sfx_max))
 
