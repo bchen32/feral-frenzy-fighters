@@ -40,6 +40,7 @@ func get_lobby_state_string(lobby_num: int):
 	return lobby_state 
 
 func add_player(player_id: int):
+	print("wee")
 	_players[player_id] = preload("res://player/player.tscn").instantiate()
 	_players[player_id].player_num = len(_players)
 	_players[player_id].player_id = player_id
@@ -60,7 +61,7 @@ func add_player(player_id: int):
 		
 		# setup game state while they are in the cutscene
 		for player_key in _players:
-			var player = _players[player_key]
+			var player = self._players[player_key]
 			
 			player.stock = START_STOCK
 			player.percentage = START_PERCENTAGE
@@ -72,10 +73,14 @@ func add_player(player_id: int):
 				1:
 					player.position = Vector2(880, 247)
 			
-			if _players[player_id] in _waiting_lobby_scene.get_children():
-				_waiting_lobby_scene.remove_child(_players[player_id])
+			print(player)
 			
-			_level_scene.add_child(_players[player_id])
+			if player in _waiting_lobby_scene.get_children():
+				_waiting_lobby_scene.remove_child(player)
+			
+			print(player)
+			
+			_level_scene.add_child(player)
 			
 			_network_manager.initial_game_information.rpc_id(player.player_id, 
 															 player.player_num,
@@ -85,6 +90,12 @@ func add_player(player_id: int):
 	else:
 		_players[player_id].player_num = len(_players)
 		_players[player_id].player_id = player_id
+		
+		match _players[player_id].player_num:
+			0:
+				_players[player_id].position = Vector2(464, 247)
+			1:
+				_players[player_id].position = Vector2(880, 247)
 		
 		if _waiting_lobby_scene.has_node(String(_players[player_id].name)):
 			_waiting_lobby_scene.remove_child(
