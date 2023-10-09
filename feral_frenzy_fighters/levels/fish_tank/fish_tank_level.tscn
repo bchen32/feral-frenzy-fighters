@@ -304,6 +304,7 @@ metadata/_edit_lock_ = true
 [node name="Decorations" type="Node2D" parent="Environment"]
 
 [node name="Pen" type="Sprite2D" parent="Environment/Decorations"]
+self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
 position = Vector2(1082, 1007)
 rotation = 1.45598
 scale = Vector2(2, 2)
@@ -311,18 +312,21 @@ texture = ExtResource("5_xma4l")
 metadata/_edit_lock_ = true
 
 [node name="TestTubeRack" type="Sprite2D" parent="Environment/Decorations"]
+self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
 position = Vector2(1747, 1077)
 scale = Vector2(2, 2)
 texture = ExtResource("6_elfyn")
 metadata/_edit_lock_ = true
 
 [node name="BookThinPurple" type="Sprite2D" parent="Environment/Decorations"]
+self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
 position = Vector2(-8, 621)
 scale = Vector2(1.48, 2.13)
 texture = ExtResource("7_vnb83")
 metadata/_edit_lock_ = true
 
 [node name="BookThin" type="Sprite2D" parent="Environment/Decorations"]
+self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
 position = Vector2(82, 655)
 rotation = -0.0364975
 scale = Vector2(1.64, 1.93)
