@@ -1,5 +1,12 @@
 extends Control
+
+@onready var p1_portrait = $Background/PlayerPortraits/Player1Portrait
+@onready var p2_portrait = $Background/PlayerPortraits/Player2Portrait
+@onready var p1_text = $Background/PlayerNames/Player1Text
+@onready var p2_text = $Background/PlayerNames/Player1Text
+
 var ui
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	show()
