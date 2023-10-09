@@ -302,7 +302,7 @@ func acknowledge_death():
 		stocks -= 1
 		if _damage_label:
 			_damage_label.set_player_death_count(player_num, stocks)
-
+		
 		if not _is_lobby and stocks <= 0:
 			Globals.player1_won = player_num != 0
 			Globals.cutscene_player_end_game = true

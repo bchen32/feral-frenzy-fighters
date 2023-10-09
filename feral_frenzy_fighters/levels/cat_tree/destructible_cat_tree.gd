@@ -1,5 +1,7 @@
 extends Interactable
 
+signal cat_tree_destroyed
+
 @export var starting_health: int
 var destroyed = false
 @onready var anim = self.get_node("AnimationPlayer")
@@ -23,6 +25,8 @@ func _change_health(health_change: float):
 func _destroy_self():
 	physical_collision.queue_free()
 	hitbox.queue_free()
+	
+	cat_tree_destroyed.emit()
 	
 	anim.speed_scale = 1.25
 	anim.play("Falling")

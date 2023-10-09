@@ -1,7 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cebbdj1i22bos"]
+[gd_scene load_steps=10 format=3 uid="uid://cebbdj1i22bos"]
 
+[ext_resource type="Script" path="res://levels/tutorial/tutorial.gd" id="1_f82af"]
 [ext_resource type="Texture2D" uid="uid://u713f0nhv05n" path="res://levels/tutorial/tilesets/75x75_tutorial_waiting_stage_tileset.png" id="1_tq22i"]
 [ext_resource type="PackedScene" uid="uid://2g6vl7paf0fg" path="res://levels/cat_tree/cat_tree_left.tscn" id="2_04luf"]
+[ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="3_og5f5"]
+[ext_resource type="Texture2D" uid="uid://wnqsljtiihby" path="res://gui/menus/sprites/buttons/icons/arrow.png" id="5_26401"]
+[ext_resource type="Script" path="res://levels/tutorial/arrow_direction.gd" id="6_k2hb0"]
+[ext_resource type="PackedScene" uid="uid://bj67e35cxlvj7" path="res://levels/tutorial/goal_area.tscn" id="7_b57ej"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yt8op"]
 texture = ExtResource("1_tq22i")
@@ -28,6 +33,7 @@ physics_layer_0/collision_layer = 4
 sources/0 = SubResource("TileSetAtlasSource_yt8op")
 
 [node name="Tutorial" type="Node2D"]
+script = ExtResource("1_f82af")
 
 [node name="Environment" type="Node2D" parent="."]
 
@@ -39,3 +45,38 @@ layer_0/tile_data = PackedInt32Array(720908, 65536, 0, 720907, 65536, 0, 720906,
 
 [node name="CatTreeLeft" parent="Environment" instance=ExtResource("2_04luf")]
 position = Vector2(937, 825)
+scale = Vector2(1, 0.9)
+
+[node name="AttackGoalArea" parent="." instance=ExtResource("7_b57ej")]
+position = Vector2(937, 588)
+scale = Vector2(1, 2.1)
+external_trigger_area = true
+
+[node name="RightGoalArea" parent="." instance=ExtResource("7_b57ej")]
+position = Vector2(1370, 712)
+active_goal_area = true
+
+[node name="TopGoalArea" parent="." instance=ExtResource("7_b57ej")]
+position = Vector2(945, 238)
+
+[node name="Player" parent="." instance=ExtResource("3_og5f5")]
+position = Vector2(567, 751)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(1.75, 1.75)
+
+[node name="ArrowDirection" type="TextureRect" parent="Player/Camera2D" node_paths=PackedStringArray("target_area")]
+modulate = Color(1, 0.505882, 0.439216, 1)
+offset_left = 223.0
+offset_top = -87.0
+offset_right = 423.0
+offset_bottom = 113.0
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("5_26401")
+script = ExtResource("6_k2hb0")
+target_area = NodePath("../../../RightGoalArea")
+
+[connection signal="cat_tree_destroyed" from="Environment/CatTreeLeft" to="." method="_on_cat_tree_left_cat_tree_destroyed"]
+[connection signal="goal_area_fufilled" from="AttackGoalArea" to="." method="_on_attack_goal_area_goal_area_fufilled"]
+[connection signal="goal_area_fufilled" from="RightGoalArea" to="." method="_on_right_goal_area_goal_area_fufilled"]
+[connection signal="goal_area_fufilled" from="TopGoalArea" to="." method="_on_top_goal_area_goal_area_fufilled"]
