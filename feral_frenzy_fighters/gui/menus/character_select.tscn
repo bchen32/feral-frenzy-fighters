@@ -4,20 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://dpaluibvjuaoc" path="res://gui/menus/sprites/screens/screen_background.png" id="2_p5ahl"]
 [ext_resource type="Texture2D" uid="uid://b7cpj70v5wlqx" path="res://gui/menus/sprites/screens/character_select/player1_character_card.png" id="3_3xujn"]
 [ext_resource type="Texture2D" uid="uid://82eu6fdyfbt7" path="res://gui/hud/sprites/head_icons/cat_head_icon_blue.png" id="3_slkil"]
+[ext_resource type="Texture2D" uid="uid://2f40vlydd1q5" path="res://gui/menus/sprites/screens/character_select/character_select_background_head.png" id="3_tiawo"]
 [ext_resource type="Texture2D" uid="uid://cw1jrbqv2ua74" path="res://gui/menus/sprites/screens/character_select/player2_character_card.png" id="4_2v6uk"]
 [ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="4_dln4l"]
 [ext_resource type="Texture2D" uid="uid://olroa8428o5p" path="res://gui/hud/sprites/head_icons/fish_head_icon.png" id="5_7q0c8"]
 [ext_resource type="Texture2D" uid="uid://ba4sqm1tnt2g1" path="res://gui/hud/sprites/head_icons/turtle_head_icon.png" id="6_6nay2"]
 [ext_resource type="Texture2D" uid="uid://deoofxekcwx7e" path="res://gui/hud/sprites/cs_icons/cat_display.png" id="8_21ubo"]
-[ext_resource type="Texture2D" uid="uid://cdmutblqw3hoi" path="res://gui/hud/sprites/cs_icons/fish_display.png" id="9_gycom"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amffy"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.707031, 0.464844, 0.753906, 1)
+[ext_resource type="Texture2D" uid="uid://hmrruicpuegu" path="res://gui/hud/sprites/head_icons/selection_box.png" id="8_nhpyy"]
 
 [sub_resource type="Theme" id="Theme_5uuse"]
 default_font = ExtResource("4_dln4l")
@@ -32,44 +25,6 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_p5ahl")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Background"]
-layout_mode = 0
-offset_left = 560.0
-offset_top = 280.0
-offset_right = 1596.0
-offset_bottom = 536.0
-theme_override_constants/separation = 100
-
-[node name="Cat" type="Button" parent="Background/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_neighbor_left = NodePath("../Turtle")
-focus_neighbor_right = NodePath("../Fish")
-theme_override_styles/focus = SubResource("StyleBoxFlat_amffy")
-icon = ExtResource("3_slkil")
-flat = true
-
-[node name="Fish" type="Button" parent="Background/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_neighbor_left = NodePath("../Cat")
-focus_neighbor_right = NodePath("../Turtle")
-theme_override_styles/focus = SubResource("StyleBoxFlat_amffy")
-icon = ExtResource("5_7q0c8")
-flat = true
-
-[node name="Turtle" type="Button" parent="Background/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_neighbor_left = NodePath("../Fish")
-focus_neighbor_right = NodePath("../Cat")
-theme_override_styles/focus = SubResource("StyleBoxFlat_amffy")
-icon = ExtResource("6_6nay2")
-flat = true
 
 [node name="PlayerCards" type="HBoxContainer" parent="Background"]
 layout_mode = 0
@@ -104,32 +59,177 @@ theme_override_constants/separation = 1050
 layout_mode = 2
 texture = ExtResource("8_21ubo")
 expand_mode = 3
+flip_h = true
 
 [node name="Player2Portrait" type="TextureRect" parent="Background/PlayerPortraits"]
 layout_mode = 2
-texture = ExtResource("9_gycom")
+texture = ExtResource("8_21ubo")
 expand_mode = 3
 
-[node name="PlayerNames" type="HBoxContainer" parent="Background"]
-layout_mode = 2
-offset_left = 192.0
-offset_top = 635.0
-offset_right = 1717.0
-offset_bottom = 1399.0
-theme_override_constants/separation = 1325
-
-[node name="Player1Text" type="RichTextLabel" parent="Background/PlayerNames"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
+[node name="Player1Text" type="RichTextLabel" parent="Background"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -765.0
+offset_top = 97.0
+offset_right = -665.0
+offset_bottom = 861.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = SubResource("Theme_5uuse")
 theme_override_font_sizes/normal_font_size = 60
 text = "Cat"
 fit_content = true
+autowrap_mode = 0
 
-[node name="Player2Text" type="RichTextLabel" parent="Background/PlayerNames"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
+[node name="Player2Text" type="RichTextLabel" parent="Background"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 664.0
+offset_top = 97.0
+offset_right = 764.0
+offset_bottom = 861.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = SubResource("Theme_5uuse")
 theme_override_font_sizes/normal_font_size = 60
 text = "Cat"
 fit_content = true
+autowrap_mode = 0
+
+[node name="IconBackgrounds" type="HBoxContainer" parent="Background"]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 280.0
+offset_right = 1596.0
+offset_bottom = 536.0
+theme_override_constants/separation = 50
+
+[node name="Cat" type="TextureRect" parent="Background/IconBackgrounds"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../Turtle")
+focus_neighbor_right = NodePath("../Fish")
+texture = ExtResource("3_tiawo")
+
+[node name="Fish" type="TextureRect" parent="Background/IconBackgrounds"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../Cat")
+focus_neighbor_right = NodePath("../Turtle")
+texture = ExtResource("3_tiawo")
+
+[node name="Turtle" type="TextureRect" parent="Background/IconBackgrounds"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../Fish")
+focus_neighbor_right = NodePath("../Cat")
+texture = ExtResource("3_tiawo")
+
+[node name="Icons" type="HBoxContainer" parent="Background"]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 279.0
+offset_right = 1612.0
+offset_bottom = 535.0
+theme_override_constants/separation = 100
+
+[node name="Cat" type="TextureRect" parent="Background/Icons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../Turtle")
+focus_neighbor_right = NodePath("../Fish")
+texture = ExtResource("3_slkil")
+
+[node name="Fish" type="TextureRect" parent="Background/Icons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../Cat")
+focus_neighbor_right = NodePath("../Turtle")
+texture = ExtResource("5_7q0c8")
+
+[node name="Turtle" type="TextureRect" parent="Background/Icons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../Fish")
+focus_neighbor_right = NodePath("../Cat")
+texture = ExtResource("6_6nay2")
+
+[node name="P2Buttons" type="HBoxContainer" parent="Background"]
+layout_mode = 0
+offset_left = 566.0
+offset_top = 266.0
+offset_right = 2053.0
+offset_bottom = 536.0
+theme_override_constants/separation = 55
+
+[node name="CatButton" type="TextureButton" parent="Background/P2Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../TurtleButton")
+focus_neighbor_right = NodePath("../FishButton")
+texture_normal = ExtResource("8_nhpyy")
+
+[node name="FishButton" type="TextureButton" parent="Background/P2Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../CatButton")
+focus_neighbor_right = NodePath("../TurtleButton")
+texture_normal = ExtResource("8_nhpyy")
+
+[node name="TurtleButton" type="TextureButton" parent="Background/P2Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../FishButton")
+focus_neighbor_right = NodePath("../CatButton")
+texture_normal = ExtResource("8_nhpyy")
+
+[node name="P1Buttons" type="HBoxContainer" parent="Background"]
+layout_mode = 0
+offset_left = 566.0
+offset_top = 266.0
+offset_right = 2053.0
+offset_bottom = 536.0
+theme_override_constants/separation = 55
+
+[node name="CatButton" type="TextureButton" parent="Background/P1Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../TurtleButton")
+focus_neighbor_right = NodePath("../FishButton")
+texture_normal = ExtResource("8_nhpyy")
+
+[node name="FishButton" type="TextureButton" parent="Background/P1Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../CatButton")
+focus_neighbor_right = NodePath("../TurtleButton")
+texture_normal = ExtResource("8_nhpyy")
+
+[node name="TurtleButton" type="TextureButton" parent="Background/P1Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../FishButton")
+focus_neighbor_right = NodePath("../CatButton")
+texture_normal = ExtResource("8_nhpyy")
