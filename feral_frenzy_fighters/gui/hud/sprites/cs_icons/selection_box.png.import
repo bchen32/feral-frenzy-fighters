@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hmrruicpuegu"
-path="res://.godot/imported/selection_box.png-67be5b5bd1defb512219559888015568.ctex"
+path="res://.godot/imported/selection_box.png-e6e00177363878318571a3679a1f5fe5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/hud/sprites/head_icons/selection_box.png"
-dest_files=["res://.godot/imported/selection_box.png-67be5b5bd1defb512219559888015568.ctex"]
+source_file="res://gui/hud/sprites/cs_icons/selection_box.png"
+dest_files=["res://.godot/imported/selection_box.png-e6e00177363878318571a3679a1f5fe5.ctex"]
 
 [params]
 

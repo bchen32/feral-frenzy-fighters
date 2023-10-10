@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3ybusdp7d784"
-path="res://.godot/imported/playertwo_select_character.png-8ef15f44aed719327fe169eb285597ee.ctex"
+uid="uid://dl1j8fhw67dbc"
+path="res://.godot/imported/stages_select_background.png-fa109c1c311f9edc2265c8c9ddf2885e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/hud/sprites/head_icons/playertwo_select_character.png"
-dest_files=["res://.godot/imported/playertwo_select_character.png-8ef15f44aed719327fe169eb285597ee.ctex"]
+source_file="res://gui/hud/sprites/stage_select_icons/stages_select_background.png"
+dest_files=["res://.godot/imported/stages_select_background.png-fa109c1c311f9edc2265c8c9ddf2885e.ctex"]
 
 [params]
 

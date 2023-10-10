@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://xm4ynqxv76f8"]
+[gd_scene load_steps=13 format=3 uid="uid://xm4ynqxv76f8"]
 
 [ext_resource type="Script" path="res://gui/menus/character_select.gd" id="1_l7hwe"]
 [ext_resource type="Texture2D" uid="uid://dpaluibvjuaoc" path="res://gui/menus/sprites/screens/screen_background.png" id="2_p5ahl"]
@@ -11,8 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://ba4sqm1tnt2g1" path="res://gui/hud/sprites/head_icons/turtle_head_icon.png" id="6_6nay2"]
 [ext_resource type="Texture2D" uid="uid://deoofxekcwx7e" path="res://gui/hud/sprites/cs_icons/cat_display.png" id="8_21ubo"]
 [ext_resource type="Texture2D" uid="uid://hmrruicpuegu" path="res://gui/hud/sprites/cs_icons/selection_box.png" id="11_0l6ms"]
-[ext_resource type="AudioStream" uid="uid://coneg16uuc06h" path="res://gui/menus/sfx/button.wav" id="12_d8f5d"]
-[ext_resource type="AudioStream" uid="uid://bw1ubqplxxg77" path="res://gui/menus/sfx/select.wav" id="13_i8kyi"]
 
 [sub_resource type="Theme" id="Theme_5uuse"]
 default_font = ExtResource("4_dln4l")
@@ -280,22 +278,3 @@ size_flags_vertical = 4
 focus_neighbor_left = NodePath("../FishButton")
 focus_neighbor_right = NodePath("../CatButton")
 texture_normal = ExtResource("11_0l6ms")
-
-[node name="P1Sounds" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_d8f5d")
-bus = &"SFX"
-
-[node name="P2Sounds" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_d8f5d")
-bus = &"SFX"
-
-[node name="MenuSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_i8kyi")
-bus = &"SFX"
-
-[connection signal="mouse_entered" from="Background/P1Buttons/CatButton" to="." method="_on_button_mouse_entered" binds= [0]]
-[connection signal="pressed" from="Background/P1Buttons/CatButton" to="." method="_p1_lock_in"]
-[connection signal="mouse_entered" from="Background/P1Buttons/FishButton" to="." method="_on_button_mouse_entered" binds= [1]]
-[connection signal="pressed" from="Background/P1Buttons/FishButton" to="." method="_p1_lock_in"]
-[connection signal="mouse_entered" from="Background/P1Buttons/TurtleButton" to="." method="_on_button_mouse_entered" binds= [2]]
-[connection signal="pressed" from="Background/P1Buttons/TurtleButton" to="." method="_p1_lock_in"]

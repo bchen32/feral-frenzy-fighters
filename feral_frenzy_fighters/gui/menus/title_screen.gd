@@ -16,6 +16,7 @@ func _process(delta):
 			$SFX.stream = preload("res://gui/menus/sfx/unbutton.wav")
 			$SFX.play()
 			ui.back()
+
 			
 
 func _on_play_button_pressed():
@@ -61,7 +62,9 @@ func _on_play_dialog_on_local_button_pressed():
 	character_select.position.x = get_viewport().size.x
 	add_child(character_select)
 	_on_button_selected()
-	self.set_process(false)
+	set_process(false)
+	$MainMenu.hide() #This unfocuses the menu buttons. Please don't ask.
+	$MainMenu.show()
 
 
 func _on_play_button_mouse_entered():
