@@ -1,46 +1,33 @@
 extends Camera2D
 
-var player_1
-var player_2
+@export var players: Array[Node] = []
+@export var level: Node
+@export var pos_speed: float = 800.0
+@export var zoom_speed: float = 2.0
+@export var max_zoom: float = 2.0
+@export var margin: Vector2 = Vector2(800.0, 400.0)
 
-var overview_mode = false
-
-var event_spawner
-var original_position
+var event_spawner: Node
+var target_zoom: float
+var initial_pos: Vector2
+var target_pos: Vector2
 
 func _ready():
-	player_1 = $"../Player"
-	player_2 = $"../Player2"
-	event_spawner = $"../CatTreeLevel".get_node("Events/EventSpawner") # somehow detect which level is active
-	original_position = self.global_position
+	event_spawner = level.get_node("Events/EventSpawner")
+	initial_pos = position
+	target_pos = position
+	target_zoom = zoom.x
 
 func _process(delta):
-	overview_mode = event_spawner.set_camera_overview # event spawner within levels can't reference this camera outside of its level scene, so camera references them
-
-func _physics_process(delta):
-	if overview_mode == false and player_2 != null:
-		self.global_position = self.global_position.move_toward((player_1.global_position + player_2.global_position) * 0.5, 5)
-		var zoom_speed = 0.01
-		
-		var zoom_factor_1 = abs(player_1.global_position.x - player_2.global_position.x)/(1920-500)
-		var zoom_factor_2 = abs(player_1.global_position.y - player_2.global_position.y)/(1080-500)
-		var zoom_factor = max(max(zoom_factor_1, zoom_factor_2), 0.6)
-	
-		
-		if zoom_factor > 1:
-			zoom_factor = 1
-		
-		self.zoom = Vector2(1 / zoom_factor, 1 / zoom_factor)
-	elif overview_mode == true or player_2 == null:
-		self.global_position = self.global_position.move_toward(original_position, 5)
-		var zoom_speed = 0.01
-		
-		if self.zoom.x < 0.95:
-			self.zoom.x += zoom_speed
-		elif self.zoom.x > 1.00:
-			self.zoom.x -= zoom_speed
-		
-		if self.zoom.y < 0.95:
-			self.zoom.y += zoom_speed
-		elif self.zoom.y > 1.00:
-			self.zoom.y -= zoom_speed
+	if event_spawner.set_camera_overview or len(players) == 1:
+		target_pos = initial_pos
+		target_zoom = 1.0
+	else:
+		target_pos = (players[0].position + players[1].position) / 2
+		var zoom_x = (get_viewport().get_visible_rect().size.x - margin.x) / (abs(players[1].position.x - players[0].position.x))
+		var zoom_y = (get_viewport().get_visible_rect().size.y - margin.y) / (abs(players[1].position.y - players[0].position.y))
+		print(zoom_x)
+		print(zoom_y)
+		target_zoom = max(min(zoom_x, zoom_y, max_zoom), 1)
+	position = position.move_toward(target_pos, pos_speed * delta)
+	zoom = zoom.move_toward(Vector2(target_zoom, target_zoom), zoom_speed * delta)
