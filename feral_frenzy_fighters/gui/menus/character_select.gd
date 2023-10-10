@@ -24,11 +24,13 @@ func _ready():
 	for button in $Background/P1Buttons.get_children():
 		if button.is_visible():
 			p1_selection.append(button)
+			button.texture_normal = graybox
 		
 	for button in $Background/P2Buttons.get_children():
 		if button.is_visible():
 			p2_selection.append(button)
-	
+			button.texture_normal = graybox
+			
 	p1_selection[0].texture_normal = purplebox
 	p2_selection[0].texture_normal = bluebox
 	$Background/Player1Text/P1Ready.hide()
@@ -159,7 +161,8 @@ func _on_button_mouse_entered(extra_arg_0):
 		on_character1_change()
 	
 func _p1_lock_in():
-	p1_locked = true
-	$Background/Player1Text/P1Ready.show()
-	on_locked_in()
+	if !p1_locked:
+		p1_locked = true
+		$Background/Player1Text/P1Ready.show()
+		on_locked_in()
 

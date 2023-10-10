@@ -24,19 +24,22 @@ func _ready():
 		if button.is_visible():
 			p1_selection.append(button)
 			button.modulate.a = unlocked_transparency
+			button.texture_normal = graybox
 	for button in $Background/Player1ButtonsContainer/P1ButtonsBottom.get_children():
 		if button.is_visible():
 			p1_selection.append(button)
 			button.modulate.a = unlocked_transparency
-			
+			button.texture_normal = graybox
 	for button in $Background/Player2ButtonsContainer/P2ButtonsTop.get_children():
 		if button.is_visible():
 			p2_selection.append(button)
 			button.modulate.a = unlocked_transparency
+			button.texture_normal = graybox
 	for button in $Background/Player2ButtonsContainer/P2ButtonsBottom.get_children():
 		if button.is_visible():
 			p2_selection.append(button)
 			button.modulate.a = unlocked_transparency
+			button.texture_normal = graybox
 
 	p1_selection[0].texture_normal = purplebox
 	p2_selection[0].texture_normal = bluebox
@@ -189,7 +192,8 @@ func _on_button_mouse_entered(extra_arg_0):
 		on_stage1_change()
 
 func _p1_lock_in():
-	p1_locked = true
-	p1_selection[p1_stage].modulate.a = 1
-	actual_selection.append(p1_stage)
-	on_locked_in()
+	if !p1_locked:
+		p1_locked = true
+		p1_selection[p1_stage].modulate.a = 1
+		actual_selection.append(p1_stage)
+		on_locked_in()
