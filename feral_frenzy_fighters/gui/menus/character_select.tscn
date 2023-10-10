@@ -86,6 +86,27 @@ text = "Cat"
 fit_content = true
 autowrap_mode = 0
 
+[node name="P1Ready" type="RichTextLabel" parent="Background/Player1Text"]
+visible = false
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -263.0
+offset_right = 148.0
+offset_bottom = 501.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_5uuse")
+theme_override_font_sizes/normal_font_size = 100
+text = "READY"
+fit_content = true
+autowrap_mode = 0
+
 [node name="Player2Text" type="RichTextLabel" parent="Background"]
 clip_contents = false
 layout_mode = 1
@@ -103,6 +124,27 @@ grow_vertical = 2
 theme = SubResource("Theme_5uuse")
 theme_override_font_sizes/normal_font_size = 60
 text = "Cat"
+fit_content = true
+autowrap_mode = 0
+
+[node name="P2Ready" type="RichTextLabel" parent="Background/Player2Text"]
+visible = false
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.0
+offset_top = -263.0
+offset_right = 146.0
+offset_bottom = 501.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_5uuse")
+theme_override_font_sizes/normal_font_size = 100
+text = "READY"
 fit_content = true
 autowrap_mode = 0
 
@@ -163,6 +205,7 @@ focus_neighbor_right = NodePath("../Turtle")
 texture = ExtResource("5_7q0c8")
 
 [node name="Turtle" type="TextureRect" parent="Background/Icons"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -172,9 +215,9 @@ texture = ExtResource("6_6nay2")
 
 [node name="P2Buttons" type="HBoxContainer" parent="Background"]
 layout_mode = 0
-offset_left = 566.0
+offset_left = 564.0
 offset_top = 266.0
-offset_right = 2053.0
+offset_right = 2051.0
 offset_bottom = 536.0
 theme_override_constants/separation = 55
 
@@ -195,6 +238,7 @@ focus_neighbor_right = NodePath("../TurtleButton")
 texture_normal = ExtResource("8_nhpyy")
 
 [node name="TurtleButton" type="TextureButton" parent="Background/P2Buttons"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -204,9 +248,9 @@ texture_normal = ExtResource("8_nhpyy")
 
 [node name="P1Buttons" type="HBoxContainer" parent="Background"]
 layout_mode = 0
-offset_left = 566.0
+offset_left = 564.0
 offset_top = 266.0
-offset_right = 2053.0
+offset_right = 2051.0
 offset_bottom = 536.0
 theme_override_constants/separation = 55
 
@@ -227,6 +271,7 @@ focus_neighbor_right = NodePath("../TurtleButton")
 texture_normal = ExtResource("8_nhpyy")
 
 [node name="TurtleButton" type="TextureButton" parent="Background/P1Buttons"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

@@ -5,14 +5,18 @@ extends Control
 @onready var p1_text = $Background/Player1Text
 @onready var p2_text = $Background/Player2Text
 
-@onready var p1_selection = []
-@onready var p1_character = 0
-@onready var p2_selection = []
-@onready var p2_character = 0
-
 @onready var graybox = preload("res://gui/hud/sprites/head_icons/selection_box.png")
 @onready var bluebox = preload("res://gui/hud/sprites/head_icons/playerone_select_character.png")
 @onready var purplebox = preload("res://gui/hud/sprites/head_icons/playertwo_select_character.png")
+
+var p1_selection = []
+var p1_character = 0
+var p2_selection = []
+var p2_character = 0
+var p1_locked = false
+var p2_locked = false
+
+
 
 var ui
 
@@ -20,13 +24,17 @@ var ui
 func _ready():
 	
 	for button in $Background/P1Buttons.get_children():
-		p1_selection.append(button)
+		if button.is_visible():
+			p1_selection.append(button)
 		
 	for button in $Background/P2Buttons.get_children():
-		p2_selection.append(button)
+		if button.is_visible():
+			p2_selection.append(button)
 	
 	p1_selection[0].texture_normal = bluebox
 	p2_selection[0].texture_normal = purplebox
+	$Background/Player1Text/P1Ready.hide()
+	$Background/Player2Text/P2Ready.hide()
 	
 	show()
 	ui = Globals.menu.new($Background)
@@ -43,55 +51,65 @@ func _process(delta):
 			ui.back()
 		else:
 			become_inactive()
-			
-	if Input.is_action_just_pressed("p1_left"):
-		if p1_character <= 0:
-			p1_selection[p1_character].texture_normal = graybox
-			p1_selection[len(p1_selection)-1].texture_normal = bluebox
-			p1_character = len(p1_selection)-1
-			on_character1_change()
-		else:
-			p1_selection[p1_character].texture_normal = graybox
-			p1_character-=1
-			p1_selection[p1_character].texture_normal = bluebox
-			on_character1_change()
-			
-	if Input.is_action_just_pressed("p1_right"):
-		if p1_character >= len(p1_selection)-1:
-			p1_selection[p1_character].texture_normal = graybox
-			p1_selection[0].texture_normal = bluebox
-			p1_character = 0
-			on_character1_change()
-		else:
-			p1_selection[p1_character].texture_normal = graybox
-			p1_character+=1
-			p1_selection[p1_character].texture_normal = bluebox
-			on_character1_change()
+	if !p1_locked:
+		if Input.is_action_just_pressed("p1_left"):
+			if p1_character <= 0:
+				p1_selection[p1_character].texture_normal = graybox
+				p1_selection[len(p1_selection)-1].texture_normal = bluebox
+				p1_character = len(p1_selection)-1
+				on_character1_change()
+			else:
+				p1_selection[p1_character].texture_normal = graybox
+				p1_character-=1
+				p1_selection[p1_character].texture_normal = bluebox
+				on_character1_change()
+				
+		if Input.is_action_just_pressed("p1_right"):
+			if p1_character >= len(p1_selection)-1:
+				p1_selection[p1_character].texture_normal = graybox
+				p1_selection[0].texture_normal = bluebox
+				p1_character = 0
+				on_character1_change()
+			else:
+				p1_selection[p1_character].texture_normal = graybox
+				p1_character+=1
+				p1_selection[p1_character].texture_normal = bluebox
+				on_character1_change()
+	
+	if !p2_locked:
+		if Input.is_action_just_pressed("p2_left"):
+			if p2_character <= 0:
+				p2_selection[p2_character].texture_normal = graybox
+				p2_selection[len(p2_selection)-1].texture_normal = purplebox
+				p2_character = len(p2_selection)-1
+				on_character2_change()
+			else:
+				p2_selection[p2_character].texture_normal = graybox
+				p2_character-=1
+				p2_selection[p2_character].texture_normal = purplebox
+				on_character2_change()
 
-	if Input.is_action_just_pressed("p2_left"):
-		if p2_character <= 0:
-			p2_selection[p2_character].texture_normal = graybox
-			p2_selection[len(p2_selection)-1].texture_normal = purplebox
-			p2_character = len(p2_selection)-1
-			on_character2_change()
-		else:
-			p2_selection[p2_character].texture_normal = graybox
-			p2_character-=1
-			p2_selection[p2_character].texture_normal = purplebox
-			on_character2_change()
-
-	if Input.is_action_just_pressed("p2_right"):
-		if p2_character >= len(p2_selection)-1:
-			p2_selection[p2_character].texture_normal = graybox
-			p2_selection[0].texture_normal = purplebox
-			p2_character = 0
-			on_character2_change()
-		else:
-			p2_selection[p2_character].texture_normal = graybox
-			p2_character+=1
-			p2_selection[p2_character].texture_normal = purplebox
-			on_character2_change()
-			
+		if Input.is_action_just_pressed("p2_right"):
+			if p2_character >= len(p2_selection)-1:
+				p2_selection[p2_character].texture_normal = graybox
+				p2_selection[0].texture_normal = purplebox
+				p2_character = 0
+				on_character2_change()
+			else:
+				p2_selection[p2_character].texture_normal = graybox
+				p2_character+=1
+				p2_selection[p2_character].texture_normal = purplebox
+				on_character2_change()
+	
+	if Input.is_action_just_pressed("p1_attack"):
+		p1_locked = true
+		$Background/Player1Text/P1Ready.show()
+		on_locked_in()
+	if Input.is_action_just_pressed("p2_attack"):
+		p2_locked = true
+		$Background/Player2Text/P2Ready.show()
+		on_locked_in()
+		
 
 func become_inactive():
 	var tween := create_tween()
@@ -123,4 +141,8 @@ func on_character2_change():
 		2:
 			p2_text.text = str("Turtle")
 
-
+func on_locked_in():
+	#set player 1's character to p1_character
+	#set player 2's character to p1_character
+	#go next screen
+	pass
