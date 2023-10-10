@@ -26,8 +26,6 @@ func _process(delta):
 		target_pos = (players[0].position + players[1].position) / 2
 		var zoom_x = (get_viewport().get_visible_rect().size.x - margin.x) / (abs(players[1].position.x - players[0].position.x))
 		var zoom_y = (get_viewport().get_visible_rect().size.y - margin.y) / (abs(players[1].position.y - players[0].position.y))
-		print(zoom_x)
-		print(zoom_y)
 		target_zoom = max(min(zoom_x, zoom_y, max_zoom), 1)
 	position = position.move_toward(target_pos, pos_speed * delta)
 	zoom = zoom.move_toward(Vector2(target_zoom, target_zoom), zoom_speed * delta)
