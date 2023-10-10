@@ -1,6 +1,7 @@
 class_name PlayerCharacter
 extends CharacterBody2D
 
+@export var sprite_scene: PackedScene
 @export var player_num: int = 0
 @export var stocks: int = 3
 @export var walk_accel: float = 6000.0
@@ -59,11 +60,9 @@ extends CharacterBody2D
 @export var _ending_video_audiostream: AudioStream
 @export var _is_lobby: bool = false
 
-@onready var anim_player: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: Node = $StateMachine
-@onready var p1_icon: Sprite2D = $Player1Icon
-@onready var p2_icon: Sprite2D = $Player2Icon
 
+var anim_player: AnimatedSprite2D
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 var frame: int = 0
 var percentage: float = 0.0
@@ -122,6 +121,11 @@ enum AudioType { ATTACK, DASH, DEATH, HIT, WALK, JUMP }
 
 func _ready():
 	randomize()
+	var sprites = sprite_scene.instantiate()
+	add_child(sprites)
+	anim_player = sprites.get_node("AnimatedSprite2D")
+	var p1_icon = sprites.get_node("Player1Icon")
+	var p2_icon = sprites.get_node("Player2Icon")
 	if _damage_label:
 		_damage_label.set_player_death_count(player_num, stocks)
 
@@ -132,10 +136,12 @@ func _ready():
 	_initial_player_position = position
 	if player_num == 1:
 		anim_player.flip_h = false
-		p2_icon.visible = true
+		if p2_icon:
+			p2_icon.visible = true
 	else:
 		anim_player.flip_h = true
-		p1_icon.visible = true
+		if p1_icon:
+			p1_icon.visible = true
 	state_machine.init()
 
 
@@ -144,10 +150,13 @@ func reset_frame():
 
 
 func play_anim(animation_name: String):
-	if percentage > 40:
-		anim_player.play(("blue_" if player_num else "purple_") + "injured_" + animation_name)
+	if player_num == 3: # beanbag only
+		anim_player.play(animation_name)
 	else:
-		anim_player.play(("blue_" if player_num else "purple_") + animation_name)
+		if percentage > 40:
+			anim_player.play(("blue_" if player_num else "purple_") + "injured_" + animation_name)
+		else:
+			anim_player.play(("blue_" if player_num else "purple_") + animation_name)
 
 
 func play_audio(audio_type: AudioType):

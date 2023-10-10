@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://cebbdj1i22bos"]
+[gd_scene load_steps=12 format=3 uid="uid://cebbdj1i22bos"]
 
 [ext_resource type="Script" path="res://levels/tutorial/tutorial.gd" id="1_f82af"]
 [ext_resource type="Texture2D" uid="uid://u713f0nhv05n" path="res://levels/tutorial/tilesets/75x75_tutorial_waiting_stage_tileset.png" id="1_tq22i"]
 [ext_resource type="PackedScene" uid="uid://2g6vl7paf0fg" path="res://levels/cat_tree/cat_tree_left.tscn" id="2_04luf"]
 [ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="3_og5f5"]
 [ext_resource type="Texture2D" uid="uid://wnqsljtiihby" path="res://gui/menus/sprites/buttons/icons/arrow.png" id="5_26401"]
+[ext_resource type="PackedScene" uid="uid://bxhh26xr10bd8" path="res://player/cat/cat.tscn" id="6_37toa"]
 [ext_resource type="Script" path="res://levels/tutorial/arrow_direction.gd" id="6_k2hb0"]
 [ext_resource type="PackedScene" uid="uid://bj67e35cxlvj7" path="res://levels/tutorial/goal_area.tscn" id="7_b57ej"]
+[ext_resource type="PackedScene" uid="uid://dt3ng036hrmki" path="res://player/beanbag/beanbag.tscn" id="9_q8syt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yt8op"]
 texture = ExtResource("1_tq22i")
@@ -61,6 +63,7 @@ position = Vector2(945, 238)
 
 [node name="Player" parent="." instance=ExtResource("3_og5f5")]
 position = Vector2(567, 751)
+sprite_scene = ExtResource("6_37toa")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(1.75, 1.75)
@@ -75,6 +78,11 @@ scale = Vector2(0.45, 0.45)
 texture = ExtResource("5_26401")
 script = ExtResource("6_k2hb0")
 target_area = NodePath("../../../RightGoalArea")
+
+[node name="Player2" parent="." instance=ExtResource("3_og5f5")]
+position = Vector2(1121, 743)
+sprite_scene = ExtResource("9_q8syt")
+player_num = 2
 
 [connection signal="cat_tree_destroyed" from="Environment/CatTreeLeft" to="." method="_on_cat_tree_left_cat_tree_destroyed"]
 [connection signal="goal_area_fufilled" from="AttackGoalArea" to="." method="_on_attack_goal_area_goal_area_fufilled"]
