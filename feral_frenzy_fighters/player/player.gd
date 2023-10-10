@@ -150,7 +150,7 @@ func reset_frame():
 
 
 func play_anim(animation_name: String):
-	if player_num == 3: # beanbag only
+	if player_num == 2: # beanbag only
 		anim_player.play(animation_name)
 	else:
 		if percentage > 40:
