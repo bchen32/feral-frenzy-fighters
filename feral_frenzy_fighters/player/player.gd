@@ -177,9 +177,21 @@ func play_audio(audio_type: AudioType):
 
 	$SoundEffectPlayer.play()
 
-func blood_splatter():
+func blood_splatter(
+	spread: float = 45, 
+	amount: int = percentage,
+	location: Vector2 = self.global_position, 
+	direction: Vector3 = Vector3(0,0,0), 
+	vel: Vector2 = Vector2(200,500)):
+		
 	var splatter = physics_blood.instantiate()
-	splatter.global_position = self.global_position
+	splatter.amount = amount*2 + 25
+	splatter.global_position = location
+	splatter.process_material.direction = direction
+	splatter.process_material.spread = spread
+	splatter.process_material.initial_velocity_min = vel.x
+	splatter.process_material.initial_velocity_max = vel.y
+	
 	get_parent().add_child(splatter)
 
 func get_input(input_name: String):
@@ -316,8 +328,8 @@ func acknowledge_death():
 			Globals.cutscene_player_video_path = _ending_video
 			Globals.audio_stream_to_play_during_cutscene = _ending_video_audiostream
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
-	else:
-		play_audio(AudioType.DEATH)
+	play_audio(AudioType.DEATH)
+	blood_splatter(30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
 
 func _physics_process(delta: float):
 	set_collision_mask_value(4, not Input.is_action_pressed(get_input("down")))  # drop through platforms while down is held
