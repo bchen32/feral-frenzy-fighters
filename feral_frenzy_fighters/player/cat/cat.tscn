@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsv627o3y2xj5"]
+
+[ext_resource type="SpriteFrames" uid="uid://bmpan0xehi8df" path="res://player/cat/cat_spriteframes.tres" id="1_v2u55"]
+[ext_resource type="Texture2D" uid="uid://4qycb863wp66" path="res://gui/hud/sprites/stats_paw_prints/cat_paw_purple.png" id="181_cqjxl"]
+[ext_resource type="Texture2D" uid="uid://deib7k7oiogeg" path="res://gui/hud/sprites/stats_paw_prints/cat_paw_blue.png" id="182_nhe2i"]
+
+[node name="Cat" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(12, -8)
+scale = Vector2(0.1, 0.1)
+sprite_frames = ExtResource("1_v2u55")
+animation = &"blue_hit"
+
+[node name="Player1Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -64)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("181_cqjxl")
+
+[node name="Player2Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -64)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("182_nhe2i")

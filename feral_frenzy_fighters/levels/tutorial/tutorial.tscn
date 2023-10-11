@@ -1,0 +1,210 @@
+[gd_scene load_steps=18 format=3 uid="uid://cebbdj1i22bos"]
+
+[ext_resource type="Script" path="res://levels/tutorial/tutorial.gd" id="1_f82af"]
+[ext_resource type="Texture2D" uid="uid://u713f0nhv05n" path="res://levels/tutorial/tilesets/75x75_tutorial_waiting_stage_tileset.png" id="1_tq22i"]
+[ext_resource type="PackedScene" uid="uid://2g6vl7paf0fg" path="res://levels/cat_tree/cat_tree_left.tscn" id="2_04luf"]
+[ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="3_og5f5"]
+[ext_resource type="Texture2D" uid="uid://uk8l6kbu2oih" path="res://levels/cat_tree/tilesets/wallpaper_complete.png" id="4_vgnqx"]
+[ext_resource type="PackedScene" uid="uid://bsv627o3y2xj5" path="res://player/cat/cat.tscn" id="6_37toa"]
+[ext_resource type="Script" path="res://levels/tutorial/arrow_direction.gd" id="6_k2hb0"]
+[ext_resource type="PackedScene" uid="uid://bj67e35cxlvj7" path="res://levels/tutorial/goal_area.tscn" id="7_b57ej"]
+[ext_resource type="Texture2D" uid="uid://tlykuvqt8y0n" path="res://levels/tutorial/UI/arrow_purple.png" id="7_j86gc"]
+[ext_resource type="PackedScene" uid="uid://caorfjy1fvecb" path="res://levels/tutorial/tutorial_billboard.tscn" id="9_754rh"]
+[ext_resource type="PackedScene" uid="uid://dt3ng036hrmki" path="res://player/beanbag/beanbag.tscn" id="9_q8syt"]
+[ext_resource type="Texture2D" uid="uid://b705gvrh4dpob" path="res://levels/tutorial/UI/tutorial_title_ui.png" id="10_mfhbq"]
+[ext_resource type="PackedScene" uid="uid://cqwih0alupqsb" path="res://gui/hud/damage_ui.tscn" id="11_rw5lg"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yt8op"]
+texture = ExtResource("1_tq22i")
+texture_region_size = Vector2i(75, 75)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-37.5, -37.5, 37.5, -37.5, 37.5, 37.5, -37.5, 37.5)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-37.5, -37.5, 37.5, -37.5, 37.5, 37.5, -37.5, 37.5)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-37.5, -37.5, 37.5, -37.5, 37.5, 37.5, -37.5, 37.5)
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_g8e42"]
+tile_size = Vector2i(75, 75)
+physics_layer_0/collision_layer = 4
+sources/0 = SubResource("TileSetAtlasSource_yt8op")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2vdw"]
+size = Vector2(1776, 103)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5nid"]
+size = Vector2(212, 1328.5)
+
+[node name="Tutorial" type="Node2D" node_paths=PackedStringArray("tutorial_billboard")]
+script = ExtResource("1_f82af")
+tutorial_billboard = NodePath("Player/TutorialBillboard")
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="GameBackground" type="Sprite2D" parent="Environment"]
+position = Vector2(1020, 648)
+scale = Vector2(1.43542, 1.72037)
+texture = ExtResource("4_vgnqx")
+
+[node name="TileMap" type="TileMap" parent="Environment"]
+tile_set = SubResource("TileSet_g8e42")
+cell_quadrant_size = 75
+format = 2
+layer_0/tile_data = PackedInt32Array(720908, 65536, 0, 720907, 65536, 0, 720906, 65536, 0, 720905, 65536, 0, 720904, 65536, 0, 720903, 65536, 0, 720909, 65536, 0, 720910, 65536, 0, 720911, 65536, 0, 720912, 65536, 0, 720913, 65536, 0, 720902, 65536, 0, 720914, 65536, 0, 786439, 196608, 0, 786440, 196608, 0, 786441, 196608, 0, 786442, 196608, 0, 786444, 196608, 0, 786445, 196608, 0, 786446, 196608, 0, 786447, 196608, 0, 786448, 196608, 0, 786449, 196608, 0, 786443, 196608, 0, 851979, 196608, 0, 851978, 196608, 0, 851977, 196608, 0, 851976, 196608, 0, 851975, 196608, 0, 917511, 196608, 0, 917512, 196608, 0, 917513, 196608, 0, 917514, 196608, 0, 851980, 196608, 0, 851981, 196608, 0, 851982, 196608, 0, 851983, 196608, 0, 851984, 196608, 0, 917520, 196608, 0, 851985, 196608, 0, 917521, 196608, 0, 917519, 196608, 0, 917518, 196608, 0, 917517, 196608, 0, 917516, 196608, 0, 917515, 196608, 0, 720901, 0, 0, 720915, 131072, 0, 786438, 196608, 0, 851974, 196608, 0, 917510, 196608, 0, 786450, 196608, 0, 851986, 196608, 0, 917522, 196608, 0)
+
+[node name="CatTreeLeft" parent="Environment" instance=ExtResource("2_04luf")]
+position = Vector2(937, 825)
+scale = Vector2(1, 0.9)
+
+[node name="Player2" parent="." node_paths=PackedStringArray("_damage_label") instance=ExtResource("3_og5f5")]
+visible = false
+position = Vector2(1122, 766)
+scale = Vector2(1.5, 1.5)
+sprite_scene = ExtResource("9_q8syt")
+player_num = 1
+stocks = 1
+walk_accel = null
+dash_accel = null
+tilt_attack_accel = null
+dash_attack_accel = null
+air_accel = null
+walk_jump_accel = null
+dash_jump_accel = null
+air_jump_accel = null
+walk_speed = null
+dash_speed = null
+dash_attack_speed = null
+air_jump_speed = null
+jump_speed = null
+terminal_vel = null
+fall_grav_scale = null
+kb_base = null
+kb_hitstun_scale = null
+kb_decay = null
+inverse_weight = null
+attacks = null
+_damage_label = NodePath("../Player/DamageUI")
+_ending_video = null
+_is_lobby = null
+
+[node name="Player2GoalArea" parent="Player2" instance=ExtResource("7_b57ej")]
+z_index = 1
+position = Vector2(-11.3333, -14.6667)
+scale = Vector2(0.57, 0.4)
+external_trigger_area = true
+
+[node name="AttackGoalArea" parent="." instance=ExtResource("7_b57ej")]
+position = Vector2(937, 588)
+scale = Vector2(1, 2.1)
+external_trigger_area = true
+
+[node name="RightGoalArea" parent="." instance=ExtResource("7_b57ej")]
+position = Vector2(1370, 712)
+active_goal_area = true
+
+[node name="TopGoalArea" parent="." instance=ExtResource("7_b57ej")]
+position = Vector2(945, 238)
+
+[node name="Player" parent="." node_paths=PackedStringArray("_damage_label") instance=ExtResource("3_og5f5")]
+z_index = 1
+position = Vector2(567, 751)
+sprite_scene = ExtResource("6_37toa")
+player_num = null
+stocks = null
+walk_accel = null
+dash_accel = null
+tilt_attack_accel = null
+dash_attack_accel = null
+air_accel = null
+walk_jump_accel = null
+dash_jump_accel = null
+air_jump_accel = null
+walk_speed = null
+dash_speed = null
+dash_attack_speed = null
+air_jump_speed = null
+jump_speed = null
+terminal_vel = null
+fall_grav_scale = null
+kb_base = null
+kb_hitstun_scale = null
+kb_decay = null
+inverse_weight = null
+attacks = null
+_damage_label = NodePath("DamageUI")
+_ending_video = null
+_is_lobby = null
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(1.75, 1.75)
+
+[node name="ArrowDirection" type="TextureRect" parent="Player/Camera2D" node_paths=PackedStringArray("target_area")]
+offset_left = 223.0
+offset_top = -87.0
+offset_right = 423.0
+offset_bottom = 113.0
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("7_j86gc")
+script = ExtResource("6_k2hb0")
+target_area = NodePath("../../../RightGoalArea")
+
+[node name="TutorialBillboard" parent="Player" instance=ExtResource("9_754rh")]
+offset_left = 268.0
+offset_top = -239.0
+offset_right = 1246.0
+offset_bottom = 261.0
+scale = Vector2(0.25, 0.25)
+
+[node name="TextureRect" type="TextureRect" parent="Player"]
+offset_left = -138.0
+offset_top = -261.0
+offset_right = 481.0
+offset_bottom = -99.0
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("10_mfhbq")
+
+[node name="DamageUI" parent="Player" instance=ExtResource("11_rw5lg")]
+visible = false
+offset_left = -164.0
+offset_top = 230.0
+offset_right = 268.0
+offset_bottom = 230.0
+tutorial_mode = true
+
+[node name="DeadAreas" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadAreas"]
+position = Vector2(987, -57)
+shape = SubResource("RectangleShape2D_p2vdw")
+debug_color = Color(0.960784, 0, 0, 0.419608)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="DeadAreas"]
+position = Vector2(952, 1180)
+shape = SubResource("RectangleShape2D_p2vdw")
+debug_color = Color(0.960784, 0, 0, 0.419608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DeadAreas"]
+position = Vector2(1946, 589)
+shape = SubResource("RectangleShape2D_b5nid")
+debug_color = Color(0.960784, 0, 0, 0.419608)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="DeadAreas"]
+position = Vector2(-5, 563)
+shape = SubResource("RectangleShape2D_b5nid")
+debug_color = Color(0.960784, 0, 0, 0.419608)
+
+[connection signal="cat_tree_destroyed" from="Environment/CatTreeLeft" to="." method="_on_cat_tree_left_cat_tree_destroyed"]
+[connection signal="goal_area_fufilled" from="AttackGoalArea" to="." method="_on_attack_goal_area_goal_area_fufilled"]
+[connection signal="goal_area_fufilled" from="RightGoalArea" to="." method="_on_right_goal_area_goal_area_fufilled"]
+[connection signal="goal_area_fufilled" from="TopGoalArea" to="." method="_on_top_goal_area_goal_area_fufilled"]
+[connection signal="on_direction_changed" from="Player/Camera2D/ArrowDirection" to="." method="_on_arrow_direction_on_direction_changed"]
+[connection signal="body_entered" from="DeadAreas" to="." method="_on_dead_areas_body_entered"]

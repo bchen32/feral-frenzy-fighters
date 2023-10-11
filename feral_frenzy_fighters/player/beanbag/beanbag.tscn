@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt3ng036hrmki"]
+
+[ext_resource type="Texture2D" uid="uid://do03ofua4d1pu" path="res://player/beanbag/sprites/idle/beanbag.png" id="1_isaae"]
+[ext_resource type="Texture2D" uid="uid://cddl4y870rsny" path="res://player/beanbag/sprites/hit/beanbag_hit.png" id="2_5wac5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7kcja"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_isaae")
+}],
+"loop": false,
+"name": &"fall",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5wac5")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_isaae")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Beanbag" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_7kcja")
+animation = &"fall"

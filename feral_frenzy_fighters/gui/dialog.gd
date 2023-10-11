@@ -13,7 +13,7 @@ func _process(delta):
 	pass
 
 func _on_close_button_button_pressed():
-	hide()
+	self.owner.ui.back()
 
 func _on_first_button_pressed():
 	on_first_button_pressed.emit()
