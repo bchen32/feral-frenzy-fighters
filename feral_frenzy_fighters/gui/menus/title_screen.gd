@@ -7,6 +7,7 @@ func _ready():
 	$"MainMenu/AudioSliders/VBoxContainer/MusicSlider".value = 50 if Globals.music_val == -1 else Globals.music_val
 	$"MainMenu/AudioSliders/VBoxContainer/SfxSlider".value = 100 if Globals.sfx_val == -1 else Globals.sfx_val
 	$"MainMenu/Title/ButtonsVBox/Play/PlayButton".grab_focus()
+	Globals.setup_controls()
 	
 	ui = Globals.menu.new($MainMenu/Title)
 
@@ -16,8 +17,6 @@ func _process(delta):
 			$SFX.stream = preload("res://gui/menus/sfx/unbutton.wav")
 			$SFX.play()
 			ui.back()
-
-			
 
 func _on_play_button_pressed():
 	ui.next($MainMenu/PlayDialog)
@@ -99,3 +98,6 @@ func _on_button_selected():
 
 func _on_tutorial_button_pressed():
 	get_tree().change_scene_to_file("res://levels/tutorial/tutorial.tscn")
+	
+
+
