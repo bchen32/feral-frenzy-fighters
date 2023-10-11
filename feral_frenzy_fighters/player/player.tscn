@@ -41,18 +41,6 @@ character = NodePath("..")
 attenuation = 0.0
 bus = &"SFX"
 
-[node name="Player1Icon" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -64)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("200_o0wrq")
-
-[node name="Player2Icon" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -64)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("201_t66lp")
-
 [node name="BloodExplosion" type="CPUParticles2D" parent="."]
 visible = false
 amount = 100
