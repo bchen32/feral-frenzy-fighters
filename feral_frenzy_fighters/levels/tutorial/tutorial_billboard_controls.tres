@@ -1,23 +1,27 @@
-[gd_resource type="SpriteFrames" load_steps=31 format=3 uid="uid://dh6e8w1pyrd1g"]
+[gd_resource type="SpriteFrames" load_steps=37 format=3 uid="uid://dh6e8w1pyrd1g"]
 
 [ext_resource type="Texture2D" uid="uid://dl88i01ob5fva" path="res://levels/tutorial/UI/frames/attack/button_B_O-1.png" id="1_5jtuw"]
 [ext_resource type="Texture2D" uid="uid://bufex2k2kjlmu" path="res://levels/tutorial/UI/frames/attack/button_B_O-2.png" id="2_huky8"]
 [ext_resource type="Texture2D" uid="uid://gawfqou6abxo" path="res://levels/tutorial/UI/frames/dash/left_bumper_1.png" id="3_kbvn2"]
 [ext_resource type="Texture2D" uid="uid://cbtgm08hfa1ak" path="res://levels/tutorial/UI/frames/dash/left_bumper_2.png" id="4_gwidg"]
+[ext_resource type="Texture2D" uid="uid://brploh4s02vel" path="res://levels/tutorial/UI/frames/down-crouch/left_joystick_down-1.png" id="5_hif47"]
 [ext_resource type="Texture2D" uid="uid://n1f0u0c3e263" path="res://levels/tutorial/UI/frames/jump/button_A_X-1.png" id="5_tqt7a"]
+[ext_resource type="Texture2D" uid="uid://b2gu87mp277uw" path="res://levels/tutorial/UI/frames/down-crouch/left_joystick_down-2.png" id="6_0ro67"]
 [ext_resource type="Texture2D" uid="uid://b44lysj1iqbyk" path="res://levels/tutorial/UI/frames/jump/button_A_X-2.png" id="6_y3v1n"]
 [ext_resource type="Texture2D" uid="uid://cpcpjkhxl5g5x" path="res://levels/tutorial/UI/frames/left/left_joystick_left-1.png" id="7_dhm3a"]
 [ext_resource type="Texture2D" uid="uid://csefnpl70qpwq" path="res://levels/tutorial/UI/frames/left/left_joystick_left-2.png" id="8_lwg24"]
 [ext_resource type="Texture2D" uid="uid://dk0nfppu5pdw4" path="res://levels/tutorial/UI/frames/right/left_joystick_right-1.png" id="9_vixj2"]
 [ext_resource type="Texture2D" uid="uid://c87iin3th42ld" path="res://levels/tutorial/UI/frames/right/left_joystick_right-2.png" id="10_sdnpd"]
-[ext_resource type="Texture2D" uid="uid://cegc2fag4pi03" path="res://levels/tutorial/UI/frames/attack/keyboard_space-1.png" id="11_valrj"]
-[ext_resource type="Texture2D" uid="uid://dtfgvw2p7q705" path="res://levels/tutorial/UI/frames/attack/keyboard_space-2.png" id="12_bgdhx"]
+[ext_resource type="Texture2D" uid="uid://bj4u8awjjgvnl" path="res://levels/tutorial/UI/frames/attack/keyboard_SPACEBAR-1.png" id="11_u8wt4"]
+[ext_resource type="Texture2D" uid="uid://cetqh3tyht5ta" path="res://levels/tutorial/UI/frames/attack/keyboard_SPACEBAR-2.png" id="12_gweah"]
 [ext_resource type="Texture2D" uid="uid://bj1lkq42mbcvu" path="res://levels/tutorial/UI/frames/dash/keyboard_shift_1.png" id="13_mux5r"]
 [ext_resource type="Texture2D" uid="uid://b1lc66sbtt3te" path="res://levels/tutorial/UI/frames/dash/keyboard_shift_2.png" id="14_vixjb"]
 [ext_resource type="Texture2D" uid="uid://cuta6qehgvvop" path="res://levels/tutorial/UI/frames/jump/keyboard_UP-1.png" id="15_jsjju"]
 [ext_resource type="Texture2D" uid="uid://dy8r67w3t4tky" path="res://levels/tutorial/UI/frames/jump/keyboard_UP-2.png" id="16_dpcwc"]
 [ext_resource type="Texture2D" uid="uid://cr53rl28hqkxx" path="res://levels/tutorial/UI/frames/left/keyboard_A-1.png" id="17_gyj62"]
+[ext_resource type="Texture2D" uid="uid://rllxks2i74f7" path="res://levels/tutorial/UI/frames/down-crouch/keyboard_S-1.png" id="17_tlrrk"]
 [ext_resource type="Texture2D" uid="uid://vci3tgvvqln8" path="res://levels/tutorial/UI/frames/left/keyboard_A-2.png" id="18_5sxl6"]
+[ext_resource type="Texture2D" uid="uid://rmn8r628qi14" path="res://levels/tutorial/UI/frames/down-crouch/keyboard_S-2.png" id="18_08crx"]
 [ext_resource type="Texture2D" uid="uid://5q4ipal113n" path="res://levels/tutorial/UI/frames/right/keyboard_D-1.png" id="19_la0vk"]
 [ext_resource type="Texture2D" uid="uid://bwe4ao78tift0" path="res://levels/tutorial/UI/frames/right/keyboard_D-2.png" id="20_ceir0"]
 [ext_resource type="Texture2D" uid="uid://cbnsf7epd32bb" path="res://levels/tutorial/UI/frames/attack/keyboard_ALT-1.png" id="21_6vo6m"]
@@ -28,8 +32,10 @@
 [ext_resource type="Texture2D" uid="uid://dge4ih0xg4cv3" path="res://levels/tutorial/UI/frames/jump/keyboard_W-2.png" id="26_y3v3m"]
 [ext_resource type="Texture2D" uid="uid://cqawa71btp0e0" path="res://levels/tutorial/UI/frames/left/keyboard_LEFT-1.png" id="27_ieqh5"]
 [ext_resource type="Texture2D" uid="uid://dwdufh5b1kdeb" path="res://levels/tutorial/UI/frames/left/keyboard_LEFT-2.png" id="28_avc6k"]
+[ext_resource type="Texture2D" uid="uid://cgdr2tkn0dh74" path="res://levels/tutorial/UI/frames/down-crouch/keyboard_DOWN-1.png" id="29_bcpn1"]
 [ext_resource type="Texture2D" uid="uid://bmgo3rq7vobiu" path="res://levels/tutorial/UI/frames/right/keyboard_RIGHT-1.png" id="29_spbhm"]
 [ext_resource type="Texture2D" uid="uid://bp4by8bncrai4" path="res://levels/tutorial/UI/frames/right/keyboard_RIGHT-2.png" id="30_8xkdk"]
+[ext_resource type="Texture2D" uid="uid://csn5j85g0hbp1" path="res://levels/tutorial/UI/frames/down-crouch/keyboard_DOWN-2.png" id="30_saha5"]
 
 [resource]
 animations = [{
@@ -53,6 +59,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"joystick_dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_hif47")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0ro67")
+}],
+"loop": true,
+"name": &"joystick_fall",
 "speed": 5.0
 }, {
 "frames": [{
@@ -90,10 +107,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_valrj")
+"texture": ExtResource("11_u8wt4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_bgdhx")
+"texture": ExtResource("12_gweah")
 }],
 "loop": true,
 "name": &"p1_attack",
@@ -108,6 +125,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"p1_dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_tlrrk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_08crx")
+}],
+"loop": true,
+"name": &"p1_fall",
 "speed": 5.0
 }, {
 "frames": [{
@@ -163,6 +191,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"p2_dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_bcpn1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_saha5")
+}],
+"loop": true,
+"name": &"p2_fall",
 "speed": 5.0
 }, {
 "frames": [{

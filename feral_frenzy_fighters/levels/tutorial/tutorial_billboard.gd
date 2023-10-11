@@ -24,7 +24,6 @@ func _update_control_animations(tutorial_action: TutorialAction):
 	
 	match tutorial_action:
 		TutorialAction.FALL:
-			return
 			base_action_string = "fall"
 		TutorialAction.JUMP:
 			base_action_string = "jump"

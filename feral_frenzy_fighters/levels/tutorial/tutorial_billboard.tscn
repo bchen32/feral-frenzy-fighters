@@ -62,7 +62,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/PlayerSprite"]
-position = Vector2(117.5, 96)
+position = Vector2(229.5, 96)
 scale = Vector2(0.3, 0.3)
 sprite_frames = ExtResource("2_o6wof")
 animation = &"blue_idle"
@@ -71,30 +71,30 @@ animation = &"blue_idle"
 layout_mode = 0
 offset_left = 33.0
 offset_top = 55.0
-offset_right = 292.0
-offset_bottom = 661.0
+offset_right = 388.0
+offset_bottom = 699.0
+alignment = 1
 
 [node name="Control" type="Control" parent="Control/VBoxContainer"]
-custom_minimum_size = Vector2(150, 150)
+custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 
 [node name="JoystickAnimation" type="AnimatedSprite2D" parent="Control/VBoxContainer/Control"]
 position = Vector2(129, 95)
 sprite_frames = ExtResource("34_sj0b5")
-animation = &"joystick_attack"
+animation = &"p2_fall"
 
 [node name="Control2" type="Control" parent="Control/VBoxContainer"]
-custom_minimum_size = Vector2(150, 150)
+custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 
 [node name="P1Animation" type="AnimatedSprite2D" parent="Control/VBoxContainer/Control2"]
 position = Vector2(130, 94)
-scale = Vector2(0.18375, 0.56)
 sprite_frames = ExtResource("34_sj0b5")
 animation = &"p1_attack"
 
 [node name="Control3" type="Control" parent="Control/VBoxContainer"]
-custom_minimum_size = Vector2(150, 150)
+custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 
 [node name="P2Animation" type="AnimatedSprite2D" parent="Control/VBoxContainer/Control3"]

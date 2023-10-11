@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0vhc2iarfqbi"
-path="res://.godot/imported/keyboard_ENTER-2.png-4d0b55d125c93f0800d032637f10ebdc.ctex"
+uid="uid://cetqh3tyht5ta"
+path="res://.godot/imported/keyboard_SPACEBAR-2.png-00ef93eda056b2f6921cdb5ebea1ddd6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/tutorial/UI/frames/skip/keyboard_ENTER-2.png"
-dest_files=["res://.godot/imported/keyboard_ENTER-2.png-4d0b55d125c93f0800d032637f10ebdc.ctex"]
+source_file="res://levels/tutorial/UI/frames/attack/keyboard_SPACEBAR-2.png"
+dest_files=["res://.godot/imported/keyboard_SPACEBAR-2.png-00ef93eda056b2f6921cdb5ebea1ddd6.ctex"]
 
 [params]
 

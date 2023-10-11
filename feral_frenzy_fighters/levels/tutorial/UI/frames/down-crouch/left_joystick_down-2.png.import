@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0vhc2iarfqbi"
-path="res://.godot/imported/keyboard_ENTER-2.png-4d0b55d125c93f0800d032637f10ebdc.ctex"
+uid="uid://b2gu87mp277uw"
+path="res://.godot/imported/left_joystick_down-2.png-f0fa39ac08069c640a692444c6de856f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/tutorial/UI/frames/skip/keyboard_ENTER-2.png"
-dest_files=["res://.godot/imported/keyboard_ENTER-2.png-4d0b55d125c93f0800d032637f10ebdc.ctex"]
+source_file="res://levels/tutorial/UI/frames/down-crouch/left_joystick_down-2.png"
+dest_files=["res://.godot/imported/left_joystick_down-2.png-f0fa39ac08069c640a692444c6de856f.ctex"]
 
 [params]
 
