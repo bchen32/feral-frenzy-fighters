@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://caorfjy1fvecb"]
+[gd_scene load_steps=6 format=3 uid="uid://caorfjy1fvecb"]
 
 [ext_resource type="Texture2D" uid="uid://cnadtlxa56n4j" path="res://gui/menus/sprites/screens/pop_up_blue.png" id="1_voixl"]
 [ext_resource type="Script" path="res://levels/tutorial/tutorial_billboard.gd" id="1_ys11l"]
 [ext_resource type="SpriteFrames" uid="uid://bmpan0xehi8df" path="res://player/cat/cat_spriteframes.tres" id="2_o6wof"]
+[ext_resource type="Theme" uid="uid://ciapr50n3vxqt" path="res://default_ui_theme.tres" id="5_38lvd"]
 [ext_resource type="SpriteFrames" uid="uid://dh6e8w1pyrd1g" path="res://levels/tutorial/tutorial_billboard_controls.tres" id="34_sj0b5"]
 
 [node name="TutorialBillboard" type="Control"]
@@ -101,5 +102,15 @@ layout_mode = 2
 position = Vector2(126, 67)
 sprite_frames = ExtResource("34_sj0b5")
 animation = &"p2_attack"
+
+[node name="SkipTutorialButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 578.0
+offset_top = -35.0
+offset_right = 881.0
+offset_bottom = 87.0
+theme = ExtResource("5_38lvd")
+theme_override_font_sizes/font_size = 35
+text = "Skip Tutorial"
 
 [connection signal="animation_finished" from="Control/PlayerSprite/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
