@@ -114,3 +114,4 @@ theme_override_font_sizes/font_size = 35
 text = "Skip Tutorial"
 
 [connection signal="animation_finished" from="Control/PlayerSprite/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="pressed" from="SkipTutorialButton" to="." method="_on_skip_tutorial_button_pressed"]

@@ -12,8 +12,11 @@ func _ready():
 func _process(delta):
 	var attack_goal_distance_vector: Vector2 = \
 		($AttackGoalArea.global_position + Vector2(0, 196)) - $Player.global_position
+	var player2_goal_distance_vector: Vector2 = \
+		($Player2/Player2GoalArea.global_position) - $Player.global_position
 	
-	if $AttackGoalArea.active_goal_area and abs(attack_goal_distance_vector.length()) < 100:
+	if ($AttackGoalArea.active_goal_area and abs(attack_goal_distance_vector.length()) < 100) or \
+	   ($Player2/Player2GoalArea.active_goal_area and abs(player2_goal_distance_vector.length()) < 100):
 		$Player/TutorialBillboard.set_tutorial_action(TutorialBillboard.TutorialAction.ATTACK)
 
 
@@ -50,9 +53,9 @@ func _on_arrow_direction_on_direction_changed():
 			$Player/TutorialBillboard.set_tutorial_action(TutorialBillboard.TutorialAction.WALK_LEFT)
 		ArrowDirection.Direction.LEFT:
 			$Player/TutorialBillboard.set_tutorial_action(TutorialBillboard.TutorialAction.WALK_RIGHT)
-		ArrowDirection.Direction.UP:
-			$Player/TutorialBillboard.set_tutorial_action(TutorialBillboard.TutorialAction.JUMP)
 		ArrowDirection.Direction.DOWN:
+			$Player/TutorialBillboard.set_tutorial_action(TutorialBillboard.TutorialAction.JUMP)
+		ArrowDirection.Direction.UP:
 			$Player/TutorialBillboard.set_tutorial_action(TutorialBillboard.TutorialAction.FALL)
 
 
@@ -63,5 +66,4 @@ func _on_dead_areas_body_entered(body):
 		else:
 			assert(body == $Player2)
 			
-			# done with tutorial!
-			print("done with tutorial!")
+			get_tree().change_scene_to_file("res://gui/menus/title_screen.tscn")

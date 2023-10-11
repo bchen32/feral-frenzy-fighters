@@ -67,3 +67,6 @@ func set_tutorial_action(tutorial_action: TutorialAction):
 
 func _on_animated_sprite_2d_animation_finished():
 	$Control/PlayerSprite/AnimatedSprite2D.play($Control/PlayerSprite/AnimatedSprite2D.animation)
+
+func _on_skip_tutorial_button_pressed():
+	get_tree().change_scene_to_file("res://gui/menus/title_screen.tscn")
