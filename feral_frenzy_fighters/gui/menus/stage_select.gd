@@ -84,7 +84,7 @@ func _process(delta):
 				p1_selection[p1_stage].texture_normal = purplebox
 				on_stage1_change()
 				
-		if Input.is_action_just_pressed("p1_attack"):
+		if Input.is_action_just_pressed("p1_jump"):
 			p1_locked = true
 			p1_selection[p1_stage].modulate.a = 1
 			actual_selection.append(p1_stage)
@@ -115,7 +115,7 @@ func _process(delta):
 				p2_selection[p2_stage].texture_normal = bluebox
 				on_stage2_change()
 				
-		if Input.is_action_just_pressed("p2_attack"):
+		if Input.is_action_just_pressed("p2_jump"):
 			p2_locked = true
 			p2_selection[p2_stage].modulate.a = 1
 			actual_selection.append(p2_stage)
