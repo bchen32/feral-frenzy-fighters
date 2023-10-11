@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ju3ra5auyqg8"]
+[gd_scene load_steps=29 format=3 uid="uid://ju3ra5auyqg8"]
 
 [ext_resource type="Texture2D" uid="uid://uk8l6kbu2oih" path="res://levels/cat_tree/tilesets/wallpaper_complete.png" id="1_a55mx"]
 [ext_resource type="Texture2D" uid="uid://t8uj7yrrto1f" path="res://levels/cat_tree/sprites/decor/science_board.png" id="2_xvjod"]
@@ -140,7 +140,11 @@ size = Vector2(373, 74)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhfje"]
 size = Vector2(247, 240)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hrrr5"]
+polygon = PackedVector2Array(678, 827, 679, 899, 1196, 899, 1197, 827)
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v3l2i"]
+resource_local_to_scene = true
 polygon = PackedVector2Array(75, 226, 74, 300, 449, 299, 450, 226)
 
 [node name="CatTreeLevel" type="Node2D"]
@@ -179,7 +183,7 @@ layer_3/modulate = Color(1, 1, 1, 1)
 layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = 0
-layer_3/tile_data = PackedInt32Array()
+layer_3/tile_data = PackedInt32Array(720905, 0, 0, 720906, 65536, 0, 720911, 131072, 0, 720910, 65536, 0)
 layer_4/name = "Solid Physical"
 layer_4/enabled = true
 layer_4/modulate = Color(1, 1, 1, 1)
@@ -315,6 +319,9 @@ metadata/_edit_lock_ = true
 
 [node name="LightOccluders" type="Node2D" parent="."]
 
+[node name="BigLO" type="LightOccluder2D" parent="LightOccluders"]
+occluder = SubResource("OccluderPolygon2D_hrrr5")
+
 [node name="LO1" type="LightOccluder2D" parent="LightOccluders"]
 occluder = SubResource("OccluderPolygon2D_v3l2i")
 
@@ -324,10 +331,6 @@ occluder = SubResource("OccluderPolygon2D_v3l2i")
 
 [node name="LO3" type="LightOccluder2D" parent="LightOccluders"]
 position = Vector2(77, 525)
-occluder = SubResource("OccluderPolygon2D_v3l2i")
-
-[node name="LO4" type="LightOccluder2D" parent="LightOccluders"]
-position = Vector2(676, 599)
 occluder = SubResource("OccluderPolygon2D_v3l2i")
 
 [node name="LO5" type="LightOccluder2D" parent="LightOccluders"]
