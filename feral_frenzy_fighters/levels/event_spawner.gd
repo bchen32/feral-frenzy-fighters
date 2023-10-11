@@ -4,10 +4,16 @@ extends Node2D
 
 var start_new_random_event = false # used to trigger new event once
 var set_camera_overview = false # this is referenced BY the camera, not to the camera
-var current_event_happening = false # used to actively detect if current event is occurring
+var current_event_happening = false
+
+var longest_event_rate = 20.0
+var shortest_event_rate = 1.0
+var current_event_rate: float
+var progression_rate = 0.05 # percentage of how much event rate will progress each time an event concludes
 
 func _ready():
-	await get_tree().create_timer(3).timeout
+	current_event_rate = longest_event_rate
+	await get_tree().create_timer(current_event_rate).timeout
 	start_new_random_event = true
 
 func _process(_delta):
@@ -26,7 +32,13 @@ func _choose_events():
 func _on_child_exiting_tree(_node): # when a child exits the tree (meaning a spawned event has concluded)
 	change_set_overview(false)
 	current_event_happening = false
-	await get_tree().create_timer(randi_range(3, 8)).timeout
+	
+	if current_event_rate > shortest_event_rate:
+		var rate_difference = ((longest_event_rate - shortest_event_rate) * progression_rate)
+		print("event_spawner: Event Rate changed from: ", current_event_rate, " to ", current_event_rate - rate_difference)
+		current_event_rate -= rate_difference
+	
+	await get_tree().create_timer(current_event_rate).timeout
 	start_new_random_event = true
 	pass
 
