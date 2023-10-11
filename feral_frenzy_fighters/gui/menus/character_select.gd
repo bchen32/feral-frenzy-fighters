@@ -17,6 +17,7 @@ extends Control
 @onready var p2_locked = false
 
 var cat_character: PackedScene = preload("res://player/cat/cat.tscn")
+var fish_character: PackedScene = preload("res://player/fish/fish.tscn")
 
 var ui
 
@@ -155,7 +156,7 @@ func on_locked_in():
 			"Cat":
 				Globals.player_sprites.append(cat_character)
 			"Fish":
-				pass
+				Globals.player_sprites.append(fish_character)
 			"Turtle":
 				pass
 	
