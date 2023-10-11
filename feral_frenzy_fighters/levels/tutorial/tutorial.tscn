@@ -1,14 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://cebbdj1i22bos"]
+[gd_scene load_steps=15 format=3 uid="uid://cebbdj1i22bos"]
 
 [ext_resource type="Script" path="res://levels/tutorial/tutorial.gd" id="1_f82af"]
 [ext_resource type="Texture2D" uid="uid://u713f0nhv05n" path="res://levels/tutorial/tilesets/75x75_tutorial_waiting_stage_tileset.png" id="1_tq22i"]
 [ext_resource type="PackedScene" uid="uid://2g6vl7paf0fg" path="res://levels/cat_tree/cat_tree_left.tscn" id="2_04luf"]
 [ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="3_og5f5"]
-[ext_resource type="Texture2D" uid="uid://wnqsljtiihby" path="res://gui/menus/sprites/buttons/icons/arrow.png" id="5_26401"]
-[ext_resource type="PackedScene" uid="uid://bxhh26xr10bd8" path="res://player/cat/cat.tscn" id="6_37toa"]
+[ext_resource type="PackedScene" uid="uid://bsv627o3y2xj5" path="res://player/cat/cat.tscn" id="6_37toa"]
 [ext_resource type="Script" path="res://levels/tutorial/arrow_direction.gd" id="6_k2hb0"]
 [ext_resource type="PackedScene" uid="uid://bj67e35cxlvj7" path="res://levels/tutorial/goal_area.tscn" id="7_b57ej"]
+[ext_resource type="Texture2D" uid="uid://tlykuvqt8y0n" path="res://levels/tutorial/UI/arrow_purple.png" id="7_j86gc"]
+[ext_resource type="PackedScene" uid="uid://caorfjy1fvecb" path="res://levels/tutorial/tutorial_billboard.tscn" id="9_754rh"]
 [ext_resource type="PackedScene" uid="uid://dt3ng036hrmki" path="res://player/beanbag/beanbag.tscn" id="9_q8syt"]
+[ext_resource type="Texture2D" uid="uid://b705gvrh4dpob" path="res://levels/tutorial/UI/tutorial_title_ui.png" id="10_mfhbq"]
+[ext_resource type="PackedScene" uid="uid://cqwih0alupqsb" path="res://gui/hud/damage_ui.tscn" id="11_rw5lg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yt8op"]
 texture = ExtResource("1_tq22i")
@@ -34,8 +37,9 @@ tile_size = Vector2i(75, 75)
 physics_layer_0/collision_layer = 4
 sources/0 = SubResource("TileSetAtlasSource_yt8op")
 
-[node name="Tutorial" type="Node2D"]
+[node name="Tutorial" type="Node2D" node_paths=PackedStringArray("tutorial_billboard")]
 script = ExtResource("1_f82af")
+tutorial_billboard = NodePath("Player/TutorialBillboard")
 
 [node name="Environment" type="Node2D" parent="."]
 
@@ -69,15 +73,35 @@ sprite_scene = ExtResource("6_37toa")
 zoom = Vector2(1.75, 1.75)
 
 [node name="ArrowDirection" type="TextureRect" parent="Player/Camera2D" node_paths=PackedStringArray("target_area")]
-modulate = Color(1, 0.505882, 0.439216, 1)
 offset_left = 223.0
 offset_top = -87.0
 offset_right = 423.0
 offset_bottom = 113.0
 scale = Vector2(0.45, 0.45)
-texture = ExtResource("5_26401")
+texture = ExtResource("7_j86gc")
 script = ExtResource("6_k2hb0")
 target_area = NodePath("../../../RightGoalArea")
+
+[node name="TutorialBillboard" parent="Player" instance=ExtResource("9_754rh")]
+offset_left = 268.0
+offset_top = -239.0
+offset_right = 1246.0
+offset_bottom = 261.0
+scale = Vector2(0.2, 0.2)
+
+[node name="TextureRect" type="TextureRect" parent="Player"]
+offset_left = -138.0
+offset_top = -261.0
+offset_right = 481.0
+offset_bottom = -99.0
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("10_mfhbq")
+
+[node name="DamageUI" parent="Player" instance=ExtResource("11_rw5lg")]
+offset_left = 63.0
+offset_top = 242.0
+offset_right = 63.0
+offset_bottom = 242.0
 
 [node name="Player2" parent="." instance=ExtResource("3_og5f5")]
 position = Vector2(1121, 743)
@@ -88,3 +112,4 @@ player_num = 2
 [connection signal="goal_area_fufilled" from="AttackGoalArea" to="." method="_on_attack_goal_area_goal_area_fufilled"]
 [connection signal="goal_area_fufilled" from="RightGoalArea" to="." method="_on_right_goal_area_goal_area_fufilled"]
 [connection signal="goal_area_fufilled" from="TopGoalArea" to="." method="_on_top_goal_area_goal_area_fufilled"]
+[connection signal="on_direction_changed" from="Player/Camera2D/ArrowDirection" to="." method="_on_arrow_direction_on_direction_changed"]
