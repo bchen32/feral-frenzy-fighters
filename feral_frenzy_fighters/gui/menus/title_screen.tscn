@@ -109,6 +109,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -36.0
+offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -119,13 +121,14 @@ anchor_left = 0.5
 anchor_top = 0.527
 anchor_right = 0.5
 anchor_bottom = 0.527
-offset_left = -573.0
-offset_top = -27.633
-offset_right = 611.0
-offset_bottom = 204.367
+offset_left = -674.0
+offset_top = -26.16
+offset_right = 740.0
+offset_bottom = 353.84
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 32
+theme_override_constants/separation = 180
+alignment = 1
 
 [node name="Play" type="Control" parent="MainMenu/Title/ButtonsVBox"]
 custom_minimum_size = Vector2(0, 100)
@@ -138,10 +141,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -214.0
-offset_top = -74.0
-offset_right = 174.0
-offset_bottom = 120.0
+offset_left = -231.0
+offset_top = -37.027
+offset_right = 157.0
+offset_bottom = 156.973
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_bottom = NodePath("../../ButtonsHBox/Options/OptionsButton")
@@ -155,7 +158,8 @@ script = ExtResource("11_6h56s")
 
 [node name="ButtonsHBox" type="HBoxContainer" parent="MainMenu/Title/ButtonsVBox"]
 layout_mode = 2
-theme_override_constants/separation = 32
+theme_override_constants/separation = -50
+alignment = 1
 
 [node name="Credits" type="Control" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox"]
 custom_minimum_size = Vector2(0, 100)
@@ -163,18 +167,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="CreditsButton" type="Button" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox/Credits" groups=["TitleButtons"]]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.609
-anchor_top = 0.5
-anchor_right = 0.609
-anchor_bottom = 0.5
-offset_left = -162.157
-offset_top = 37.0
-offset_right = 161.843
-offset_bottom = 199.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 324.0
+offset_bottom = 162.0
 theme = ExtResource("3_0h4m0")
 theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
 text = "Credits"
@@ -185,22 +180,27 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="OptionsButton" type="Button" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox/Options" groups=["TitleButtons"]]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.609
-anchor_top = 0.5
-anchor_right = 0.609
-anchor_bottom = 0.5
-offset_left = -227.157
-offset_top = 38.473
-offset_right = 96.843
-offset_bottom = 200.473
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 324.0
+offset_bottom = 162.0
 theme = ExtResource("3_0h4m0")
 theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
 text = "Options
 "
+
+[node name="Tutorial" type="Control" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TutorialButton" type="Button" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox/Tutorial" groups=["TitleButtons"]]
+layout_mode = 0
+offset_right = 324.0
+offset_bottom = 162.0
+theme = ExtResource("3_0h4m0")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
+text = "Tutorial"
 
 [node name="Extras" type="Control" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox"]
 visible = false
@@ -209,18 +209,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ExtrasButton" type="Button" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox/Extras" groups=["TitleButtons"]]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = -45.0
-offset_right = 90.0
-offset_bottom = 45.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 237.0
+offset_bottom = 90.0
 theme = ExtResource("3_0h4m0")
 theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
 text = "Extras"
@@ -231,18 +222,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="QuitButton" type="Button" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox/Quit" groups=["TitleButtons"]]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.237
-anchor_top = 0.5
-anchor_right = 0.237
-anchor_bottom = 0.5
-offset_left = -153.638
-offset_top = 33.473
-offset_right = 166.362
-offset_bottom = 193.473
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 160.0
 theme = ExtResource("3_0h4m0")
 theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
 text = "Quit"
@@ -517,7 +499,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AudioSliders" type="Control" parent="MainMenu"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 707.0
@@ -761,6 +742,8 @@ bus = &"Music"
 [connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Credits/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Options/OptionsButton" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Options/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Tutorial/TutorialButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Tutorial/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Quit/QuitButton" to="." method="_on_button_entered"]
