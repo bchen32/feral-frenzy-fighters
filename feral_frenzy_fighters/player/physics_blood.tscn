@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://duxeguxel7e8u"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xecpy"]
+particle_flag_disable_z = true
+direction = Vector3(1, -100, 0)
+spread = 180.0
+gravity = Vector3(0, 500, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 500.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 3.0
+scale_max = 5.0
+color = Color(0.871094, 0, 0, 1)
+collision_mode = 1
+collision_friction = 0.75
+collision_bounce = 0.0
+
+[node name="PhysicsBlood" type="GPUParticles2D"]
+position = Vector2(303, 124)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_xecpy")
+lifetime = 10.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 144

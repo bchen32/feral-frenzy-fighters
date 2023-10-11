@@ -64,6 +64,8 @@ extends CharacterBody2D
 @onready var p1_icon: Sprite2D = $Player1Icon
 @onready var p2_icon: Sprite2D = $Player2Icon
 
+@export var physics_blood: PackedScene
+
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 var frame: int = 0
 var percentage: float = 0.0
@@ -175,6 +177,10 @@ func play_audio(audio_type: AudioType):
 
 	$SoundEffectPlayer.play()
 
+func blood_splatter():
+	var splatter = physics_blood.instantiate()
+	splatter.global_position = self.global_position
+	get_parent().add_child(splatter)
 
 func get_input(input_name: String):
 	if NetworkManager.is_connected:
@@ -263,6 +269,7 @@ func acknowledge_hit(player_num: int, hit_info: Dictionary):
 	kb_angle = hit_info["kb_angle"]
 	global_position.y += hit_info["kb_y_offset"]
 	play_audio(AudioType.HIT)
+	
 
 func acknowledge_death():
 	var hit_direction = \
