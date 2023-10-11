@@ -1,7 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://bty60wgry21nu"]
+[gd_scene load_steps=189 format=3 uid="uid://bty60wgry21nu"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ewoqh"]
 [ext_resource type="AudioStream" uid="uid://2pedg4faj0li" path="res://gui/menus/music/triumphant.wav" id="2_qwj5k"]
+[ext_resource type="Texture2D" uid="uid://cj55wu5fdhdqs" path="res://player/cat/sprites/air_attack_neutral/blue/cat_aerial_attack_blue_1.png" id="3_60qvl"]
+[ext_resource type="Texture2D" uid="uid://c3135aw71cpqq" path="res://player/cat/sprites/attack_neutral/blue/cat_attack_blue_1.png" id="3_ufwgx"]
+[ext_resource type="PackedScene" uid="uid://duxeguxel7e8u" path="res://player/physics_blood.tscn" id="3_x78ow"]
+[ext_resource type="Texture2D" uid="uid://cepbu0q5xwcsa" path="res://player/cat/sprites/attack_neutral/blue/cat_attack_blue_2.png" id="4_bp7vd"]
+[ext_resource type="Texture2D" uid="uid://cu1iw2ycwutya" path="res://player/cat/sprites/air_attack_neutral/blue/cat_aerial_attack_blue_2.png" id="4_rq2ad"]
+[ext_resource type="Texture2D" uid="uid://cf87iqnt15rhv" path="res://player/cat/sprites/air_attack_neutral/blue/cat_aerial_attack_blue_3.png" id="5_cqh10"]
+[ext_resource type="Texture2D" uid="uid://c16nyjr2r602t" path="res://player/cat/sprites/attack_neutral/blue/cat_attack_blue_3.png" id="5_hxqdu"]
+[ext_resource type="Texture2D" uid="uid://bx42og864j3nq" path="res://player/cat/sprites/attack_neutral/blue/cat_attack_blue_4.png" id="6_i6iwx"]
+[ext_resource type="Texture2D" uid="uid://bffol23m4hcw" path="res://player/cat/sprites/air_attack_neutral/blue/cat_aerial_attack_blue_4.png" id="6_it3db"]
+[ext_resource type="Texture2D" uid="uid://d4iar60qkb1nq" path="res://player/cat/sprites/attack_neutral/blue/cat_attack_blue_5.png" id="7_a1758"]
+[ext_resource type="Texture2D" uid="uid://uasgc3801208" path="res://player/cat/sprites/air_attack_neutral/blue/cat_aerial_attack_blue_5.png" id="7_o3bgo"]
+[ext_resource type="Texture2D" uid="uid://mgkis7uy7y0h" path="res://player/cat/sprites/jump/blue/cat_jump_blue_4.png" id="7_o13ca"]
+[ext_resource type="Texture2D" uid="uid://cm8v1nndrkbnt" path="res://player/cat/sprites/air_attack_neutral/blue/cat_aerial_attack_blue_6.png" id="8_0vbui"]
+[ext_resource type="Texture2D" uid="uid://buwsm6rfcfvte" path="res://player/cat/sprites/run/blue/cat_run_blue_1.png" id="8_8ib33"]
+[ext_resource type="Texture2D" uid="uid://pijb8w5j4udp" path="res://player/cat/sprites/jump/blue/cat_jump_blue_1.png" id="9_4u4xr"]
+[ext_resource type="Texture2D" uid="uid://dr6hcorb8vmyg" path="res://player/cat/sprites/run/blue/cat_run_blue_2.png" id="9_eyi6i"]
+[ext_resource type="Texture2D" uid="uid://cx8bpfrplxspo" path="res://player/cat/sprites/jump/blue/cat_jump_blue_2.png" id="10_clcrb"]
 [ext_resource type="Script" path="res://player/state_machine/state_machine.gd" id="10_s8jpq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g467b"]
@@ -11,6 +28,7 @@ size = Vector2(36, 76)
 collision_mask = 30
 script = ExtResource("1_ewoqh")
 _ending_video_audiostream = ExtResource("2_qwj5k")
+physics_blood = ExtResource("3_x78ow")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g467b")
@@ -22,6 +40,18 @@ character = NodePath("..")
 [node name="SoundEffectPlayer" type="AudioStreamPlayer2D" parent="."]
 attenuation = 0.0
 bus = &"SFX"
+
+[node name="Player1Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -64)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("200_o0wrq")
+
+[node name="Player2Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -64)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("201_t66lp")
 
 [node name="BloodExplosion" type="CPUParticles2D" parent="."]
 visible = false
