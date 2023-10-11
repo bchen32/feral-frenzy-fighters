@@ -11,7 +11,31 @@ size = Vector2(36, 76)
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 30
 script = ExtResource("1_ewoqh")
+player_num = null
+stocks = null
+walk_accel = null
+dash_accel = null
+tilt_attack_accel = null
+dash_attack_accel = null
+air_accel = null
+walk_jump_accel = null
+dash_jump_accel = null
+air_jump_accel = null
+walk_speed = null
+dash_speed = null
+dash_attack_speed = null
+air_jump_speed = null
+jump_speed = null
+terminal_vel = null
+fall_grav_scale = null
+kb_base = null
+kb_hitstun_scale = null
+kb_decay = null
+inverse_weight = null
+attacks = null
+_ending_video = null
 _ending_video_audiostream = ExtResource("2_qwj5k")
+_is_lobby = null
 physics_blood = ExtResource("3_x78ow")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

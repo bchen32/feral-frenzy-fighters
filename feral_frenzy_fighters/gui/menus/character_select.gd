@@ -16,6 +16,8 @@ extends Control
 @onready var p1_locked = false
 @onready var p2_locked = false
 
+var cat_character: PackedScene = preload("res://player/cat/cat.tscn")
+
 var ui
 
 # Called when the node enters the scene tree for the first time.
@@ -145,6 +147,18 @@ func on_character2_change():
 
 func on_locked_in():
 	#SET PLAYER CHARACTERS HERE
+	
+	Globals.player_sprites.clear()
+	
+	for player_text in [p1_text, p2_text]:
+		match player_text.text:
+			"Cat":
+				Globals.player_sprites.append(cat_character)
+			"Fish":
+				pass
+			"Turtle":
+				pass
+	
 	$MenuSound.play()
 	if p1_locked and p2_locked:
 		var stage_select = preload("res://gui/menus/stage_select.tscn").instantiate()

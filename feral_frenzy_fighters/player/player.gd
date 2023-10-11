@@ -123,6 +123,10 @@ enum AudioType { ATTACK, DASH, DEATH, HIT, WALK, JUMP }
 
 func _ready():
 	randomize()
+	
+	if Globals.player_sprites.size() > player_num:
+		sprite_scene = Globals.player_sprites[player_num]
+	
 	var sprites = sprite_scene.instantiate()
 	add_child(sprites)
 	anim_player = sprites.get_node("AnimatedSprite2D")

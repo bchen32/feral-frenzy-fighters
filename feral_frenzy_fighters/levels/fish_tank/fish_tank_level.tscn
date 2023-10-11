@@ -399,3 +399,6 @@ texture = ExtResource("14_btqcf")
 
 [node name="Player" parent="." instance=ExtResource("10_ajri3")]
 position = Vector2(552, 792)
+
+[node name="Player2" parent="." instance=ExtResource("10_ajri3")]
+position = Vector2(1366, 792)
