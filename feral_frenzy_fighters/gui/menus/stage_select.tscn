@@ -1,0 +1,157 @@
+[gd_scene load_steps=11 format=3 uid="uid://kdnby6t3cu7f"]
+
+[ext_resource type="Texture2D" uid="uid://dpaluibvjuaoc" path="res://gui/menus/sprites/screens/screen_background.png" id="1_fdfi8"]
+[ext_resource type="Script" path="res://gui/menus/stage_select.gd" id="1_u3a4l"]
+[ext_resource type="Texture2D" uid="uid://l7f5xmyfd33c" path="res://gui/menus/sprites/screens/examples/new_stages_example.png" id="3_5ongw"]
+[ext_resource type="Texture2D" uid="uid://b2rt3pcgemsmr" path="res://gui/hud/sprites/stage_select_icons/cat_level_select_image.png" id="3_ti4ec"]
+[ext_resource type="Texture2D" uid="uid://dl1j8fhw67dbc" path="res://gui/hud/sprites/stage_select_icons/stages_select_background.png" id="3_uogas"]
+[ext_resource type="Texture2D" uid="uid://bdev7bnl4emwa" path="res://gui/hud/sprites/stage_select_icons/fish_level_select_image.png" id="4_d7bvs"]
+[ext_resource type="Texture2D" uid="uid://bniprnwe6473y" path="res://gui/menus/sprites/screens/titles/stages_ui (1).png" id="4_kpv76"]
+[ext_resource type="Texture2D" uid="uid://cw7myyjxxr6n8" path="res://gui/hud/sprites/stage_select_icons/random_select_stage.png" id="4_tsooh"]
+[ext_resource type="AudioStream" uid="uid://coneg16uuc06h" path="res://gui/menus/sfx/button.wav" id="7_3tqbt"]
+[ext_resource type="AudioStream" uid="uid://bw1ubqplxxg77" path="res://gui/menus/sfx/select.wav" id="8_myv1g"]
+
+[node name="StageSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_u3a4l")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="NewStagesExample" type="Sprite2D" parent="Background"]
+visible = false
+position = Vector2(954, 550)
+texture = ExtResource("3_5ongw")
+
+[node name="StagesUi(1)" type="Sprite2D" parent="Background"]
+position = Vector2(947, 171)
+texture = ExtResource("4_kpv76")
+
+[node name="StageIconsContainer" type="VBoxContainer" parent="Background"]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 324.0
+offset_right = 1288.0
+offset_bottom = 886.0
+scale = Vector2(1.275, 1.271)
+theme_override_constants/separation = 0
+
+[node name="StageIconsTop" type="HBoxContainer" parent="Background/StageIconsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="CatStageIcon" type="TextureRect" parent="Background/StageIconsContainer/StageIconsTop"]
+layout_mode = 2
+texture = ExtResource("3_ti4ec")
+
+[node name="FishStageIcon" type="TextureRect" parent="Background/StageIconsContainer/StageIconsTop"]
+layout_mode = 2
+texture = ExtResource("4_d7bvs")
+
+[node name="StageIconsBottom" type="HBoxContainer" parent="Background/StageIconsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="TurtleStageIcon" type="TextureRect" parent="Background/StageIconsContainer/StageIconsBottom"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("3_uogas")
+
+[node name="Player2ButtonsContainer" type="VBoxContainer" parent="Background"]
+layout_mode = 0
+offset_left = 394.0
+offset_top = 306.0
+offset_right = 1294.0
+offset_bottom = 868.0
+scale = Vector2(1.28892, 1.28892)
+theme_override_constants/separation = 7
+
+[node name="P2ButtonsTop" type="HBoxContainer" parent="Background/Player2ButtonsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 17
+alignment = 1
+
+[node name="P2CatStageButton" type="TextureButton" parent="Background/Player2ButtonsContainer/P2ButtonsTop"]
+layout_mode = 2
+texture_normal = ExtResource("4_tsooh")
+
+[node name="P2FishStageButton" type="TextureButton" parent="Background/Player2ButtonsContainer/P2ButtonsTop"]
+layout_mode = 2
+texture_normal = ExtResource("4_tsooh")
+
+[node name="P2ButtonsBottom" type="HBoxContainer" parent="Background/Player2ButtonsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="P2TurtleStageButton" type="TextureButton" parent="Background/Player2ButtonsContainer/P2ButtonsBottom"]
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("4_tsooh")
+
+[node name="Player1ButtonsContainer" type="VBoxContainer" parent="Background"]
+layout_mode = 0
+offset_left = 394.0
+offset_top = 306.0
+offset_right = 1294.0
+offset_bottom = 868.0
+scale = Vector2(1.28892, 1.28892)
+theme_override_constants/separation = 7
+
+[node name="P1ButtonsTop" type="HBoxContainer" parent="Background/Player1ButtonsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 17
+alignment = 1
+
+[node name="P1CatStageButton" type="TextureButton" parent="Background/Player1ButtonsContainer/P1ButtonsTop"]
+layout_mode = 2
+texture_normal = ExtResource("4_tsooh")
+
+[node name="P1FishStageButton" type="TextureButton" parent="Background/Player1ButtonsContainer/P1ButtonsTop"]
+layout_mode = 2
+texture_normal = ExtResource("4_tsooh")
+
+[node name="P1ButtonsBottom" type="HBoxContainer" parent="Background/Player1ButtonsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="P1TurtleStageButton" type="TextureButton" parent="Background/Player1ButtonsContainer/P1ButtonsBottom"]
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("4_tsooh")
+
+[node name="FadeOut" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 0)
+z_index = 5
+z_as_relative = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_fdfi8")
+
+[node name="P1Sounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_3tqbt")
+bus = &"SFX"
+
+[node name="P2Sounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_3tqbt")
+bus = &"SFX"
+
+[node name="MenuSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_myv1g")
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="Background/Player1ButtonsContainer/P1ButtonsTop/P1CatStageButton" to="." method="_on_button_mouse_entered" binds= [0]]
+[connection signal="pressed" from="Background/Player1ButtonsContainer/P1ButtonsTop/P1CatStageButton" to="." method="_p1_lock_in"]
+[connection signal="button_down" from="Background/Player1ButtonsContainer/P1ButtonsTop/P1FishStageButton" to="." method="_p1_lock_in"]
+[connection signal="mouse_entered" from="Background/Player1ButtonsContainer/P1ButtonsTop/P1FishStageButton" to="." method="_on_button_mouse_entered" binds= [1]]
+[connection signal="button_down" from="Background/Player1ButtonsContainer/P1ButtonsBottom/P1TurtleStageButton" to="." method="_p1_lock_in"]
+[connection signal="mouse_entered" from="Background/Player1ButtonsContainer/P1ButtonsBottom/P1TurtleStageButton" to="." method="_on_button_mouse_entered" binds= [2]]

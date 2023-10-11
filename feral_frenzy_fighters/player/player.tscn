@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bty60wgry21nu"]
+[gd_scene load_steps=6 format=3 uid="uid://bty60wgry21nu"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ewoqh"]
 [ext_resource type="AudioStream" uid="uid://2pedg4faj0li" path="res://gui/menus/music/triumphant.wav" id="2_qwj5k"]
+[ext_resource type="PackedScene" uid="uid://duxeguxel7e8u" path="res://player/physics_blood.tscn" id="3_x78ow"]
 [ext_resource type="Script" path="res://player/state_machine/state_machine.gd" id="10_s8jpq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g467b"]
@@ -10,7 +11,32 @@ size = Vector2(36, 76)
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 30
 script = ExtResource("1_ewoqh")
+player_num = null
+stocks = null
+walk_accel = null
+dash_accel = null
+tilt_attack_accel = null
+dash_attack_accel = null
+air_accel = null
+walk_jump_accel = null
+dash_jump_accel = null
+air_jump_accel = null
+walk_speed = null
+dash_speed = null
+dash_attack_speed = null
+air_jump_speed = null
+jump_speed = null
+terminal_vel = null
+fall_grav_scale = null
+kb_base = null
+kb_hitstun_scale = null
+kb_decay = null
+inverse_weight = null
+attacks = null
+_ending_video = null
 _ending_video_audiostream = ExtResource("2_qwj5k")
+_is_lobby = null
+physics_blood = ExtResource("3_x78ow")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g467b")
@@ -22,3 +48,14 @@ character = NodePath("..")
 [node name="SoundEffectPlayer" type="AudioStreamPlayer2D" parent="."]
 attenuation = 0.0
 bus = &"SFX"
+
+[node name="BloodExplosion" type="CPUParticles2D" parent="."]
+visible = false
+amount = 100
+explosiveness = 1.0
+randomness = 1.0
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+scale_amount_max = 5.0
+color = Color(0.871094, 0, 0, 1)

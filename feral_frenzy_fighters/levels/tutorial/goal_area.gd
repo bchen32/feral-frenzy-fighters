@@ -16,8 +16,10 @@ func _process(delta):
 	if _past_active_goal_area != active_goal_area:
 		if active_goal_area:
 			$AnimationPlayer.play("flicker")
+			monitoring = true
 		else:
 			$AnimationPlayer.stop()
+			monitoring = false
 		
 		_past_active_goal_area = active_goal_area
 

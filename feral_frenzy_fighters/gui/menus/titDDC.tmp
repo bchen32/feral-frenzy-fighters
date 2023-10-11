@@ -1,0 +1,600 @@
+[gd_scene load_steps=31 format=3 uid="uid://br6txao4iioos"]
+
+[ext_resource type="Script" path="res://gui/menus/title_screen.gd" id="1_u2ssx"]
+[ext_resource type="PackedScene" uid="uid://sjcnk7j4e0i4" path="res://gui/menus/cutscene_player.tscn" id="2_g7u1a"]
+[ext_resource type="Theme" uid="uid://ciapr50n3vxqt" path="res://default_ui_theme.tres" id="3_0h4m0"]
+[ext_resource type="Texture2D" uid="uid://dpaluibvjuaoc" path="res://gui/menus/sprites/screens/screen_background.png" id="4_eh3f6"]
+[ext_resource type="AudioStream" uid="uid://b6vmgj8xixu57" path="res://gui/menus/music/intro_theme.wav" id="4_n3vdy"]
+[ext_resource type="PackedScene" uid="uid://cdoygoqidt2gt" path="res://gui/menus/icon_button.tscn" id="5_7a6wa"]
+[ext_resource type="Texture2D" uid="uid://ddsx8fpmm8fun" path="res://gui/menus/sprites/screens/icons/blood_splat_two.png" id="5_ktlsn"]
+[ext_resource type="Texture2D" uid="uid://dxb5rblyg4hxs" path="res://gui/menus/sprites/screens/icons/blood_splat_one.png" id="6_oxx04"]
+[ext_resource type="Texture2D" uid="uid://dclv8jmg2tr7f" path="res://gui/menus/sprites/screens/icons/bloody_corner.png" id="7_r2mbp"]
+[ext_resource type="Texture2D" uid="uid://cj184dq5mth1s" path="res://gui/menus/sprites/screens/icons/bloody knife.png" id="8_elnab"]
+[ext_resource type="Texture2D" uid="uid://8gchhqqboee3" path="res://gui/menus/sprites/screens/examples/title_example.png" id="9_ylx86"]
+[ext_resource type="Script" path="res://gui/menus/button.gd" id="11_6h56s"]
+[ext_resource type="Texture2D" uid="uid://u756v8lp0brt" path="res://gui/menus/sprites/screens/titles/title_ui.png" id="11_noaj0"]
+[ext_resource type="Texture2D" uid="uid://clujpn5meb28i" path="res://gui/menus/sprites/screens/examples/instructions_example.png" id="12_7u5fq"]
+[ext_resource type="Texture2D" uid="uid://in6v5g06sma5" path="res://gui/menus/sprites/screens/titles/instructions_ui.png" id="13_tnsa6"]
+[ext_resource type="Texture2D" uid="uid://dcpm33cc5luse" path="res://gui/menus/sprites/screens/pop_up.png" id="14_va4on"]
+[ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="15_3jjna"]
+[ext_resource type="Texture2D" uid="uid://bmspoqpdiawy6" path="res://gui/menus/sprites/screens/examples/credits_example.png" id="16_qc3e7"]
+[ext_resource type="Texture2D" uid="uid://2skm4qqo0wwc" path="res://gui/menus/sprites/screens/titles/credits_ui.png" id="17_y7rfj"]
+[ext_resource type="Texture2D" uid="uid://wnqsljtiihby" path="res://gui/menus/sprites/buttons/icons/arrow.png" id="19_egfgu"]
+[ext_resource type="Texture2D" uid="uid://d2pnd6moyijur" path="res://gui/menus/sprites/slider/sound_volume_slider_icon.png" id="20_yxcn2"]
+[ext_resource type="Texture2D" uid="uid://cjvi1ar5e1yr4" path="res://gui/menus/sprites/slider/sound_volume_border.png" id="21_uhsip"]
+[ext_resource type="Script" path="res://gui/dialog.gd" id="23_4bb6r"]
+[ext_resource type="Texture2D" uid="uid://rb31ehfgk53n" path="res://gui/menus/sprites/screens/examples/options_example.png" id="24_i6uum"]
+[ext_resource type="Texture2D" uid="uid://b5jm0t8cpmgq6" path="res://gui/menus/sprites/screens/faded_black.png" id="25_bmnas"]
+[ext_resource type="Texture2D" uid="uid://cnadtlxa56n4j" path="res://gui/menus/sprites/screens/pop_up_blue.png" id="26_ds1jq"]
+[ext_resource type="Texture2D" uid="uid://crx7dfnmm8rsn" path="res://gui/menus/sprites/screens/titles/multiplayer_ui.png" id="27_e51u0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0tfhe"]
+font = ExtResource("15_3jjna")
+font_size = 35
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ii6ab"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hw7k6"]
+
+[node name="TitleScreen" type="Node"]
+script = ExtResource("1_u2ssx")
+beginning_cutscene_path = "res://gui/menus/cutscenes/cat_v_cat_pre_battle.ogv"
+
+[node name="CutscenePlayer" parent="." node_paths=PackedStringArray("node_to_show", "audio_stream_player") instance=ExtResource("2_g7u1a")]
+visible = false
+node_to_show = NodePath("../Background")
+audio_stream_player = NodePath("../AudioStreamPlayer2D")
+audio_stream_to_play_during = ExtResource("4_n3vdy")
+audio_stream_to_play_after = ExtResource("4_n3vdy")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("4_eh3f6")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="BloodSplatTwo" type="Sprite2D" parent="Background"]
+visible = false
+position = Vector2(1666, 727)
+texture = ExtResource("5_ktlsn")
+
+[node name="BloodSplatOne" type="Sprite2D" parent="Background"]
+visible = false
+position = Vector2(351, 568)
+texture = ExtResource("6_oxx04")
+
+[node name="BloodyCorner" type="Sprite2D" parent="Background"]
+visible = false
+position = Vector2(816, 203)
+texture = ExtResource("7_r2mbp")
+
+[node name="BloodyKnife" type="Sprite2D" parent="Background"]
+visible = false
+position = Vector2(1427.31, 425.836)
+scale = Vector2(1.56709, 1.56709)
+texture = ExtResource("8_elnab")
+
+[node name="TitleExample" type="Sprite2D" parent="Background"]
+visible = false
+modulate = Color(1, 1, 1, 0.345098)
+position = Vector2(958, 543)
+texture = ExtResource("9_ylx86")
+
+[node name="Title" type="Control" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="Background/Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.527
+anchor_right = 0.5
+anchor_bottom = 0.527
+offset_left = -573.0
+offset_top = -27.633
+offset_right = 611.0
+offset_bottom = 204.367
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="Play" type="Control" parent="Background/Title/ButtonsVBox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="Background/Title/ButtonsVBox/Play" groups=["Button"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.0
+offset_top = -74.0
+offset_right = 174.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_0h4m0")
+theme_type_variation = &"BigButton"
+text = "Play"
+script = ExtResource("11_6h56s")
+
+[node name="ButtonsHBox" type="HBoxContainer" parent="Background/Title/ButtonsVBox"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Credits" type="Control" parent="Background/Title/ButtonsVBox/ButtonsHBox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CreditsButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Credits" groups=["Button"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.609
+anchor_top = 0.5
+anchor_right = 0.609
+anchor_bottom = 0.5
+offset_left = -162.157
+offset_top = 37.0
+offset_right = 161.843
+offset_bottom = 199.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_0h4m0")
+text = "Credits"
+
+[node name="Options" type="Control" parent="Background/Title/ButtonsVBox/ButtonsHBox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionsButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Options" groups=["Button"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.609
+anchor_top = 0.5
+anchor_right = 0.609
+anchor_bottom = 0.5
+offset_left = -227.157
+offset_top = 38.473
+offset_right = 96.843
+offset_bottom = 200.473
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_0h4m0")
+text = "Options
+"
+
+[node name="Extras" type="Control" parent="Background/Title/ButtonsVBox/ButtonsHBox"]
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ExtrasButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Extras" groups=["Button"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -45.0
+offset_right = 90.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_0h4m0")
+text = "Extras"
+
+[node name="Quit" type="Control" parent="Background/Title/ButtonsVBox/ButtonsHBox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuitButton" type="Button" parent="Background/Title/ButtonsVBox/ButtonsHBox/Quit" groups=["Button"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.237
+anchor_top = 0.5
+anchor_right = 0.237
+anchor_bottom = 0.5
+offset_left = -153.638
+offset_top = 33.473
+offset_right = 166.362
+offset_bottom = 193.473
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_0h4m0")
+text = "Quit"
+
+[node name="GameIcon" type="TextureRect" parent="Background/Title"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -603.0
+offset_top = 102.0
+offset_right = 1831.0
+offset_bottom = 932.0
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_noaj0")
+
+[node name="Instructions" type="Control" parent="Background"]
+visible = false
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="InstructionsExample" type="Sprite2D" parent="Background/Instructions"]
+visible = false
+modulate = Color(1, 1, 1, 0.658824)
+position = Vector2(955, 540)
+texture = ExtResource("12_7u5fq")
+
+[node name="InstructionsIcon" type="TextureRect" parent="Background/Instructions"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -513.0
+offset_top = 41.0
+offset_right = 530.0
+offset_bottom = 312.0
+grow_horizontal = 2
+texture = ExtResource("13_tnsa6")
+
+[node name="TextureRect" type="TextureRect" parent="Background/Instructions"]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 219.0
+offset_right = 1674.0
+offset_bottom = 1069.0
+texture = ExtResource("14_va4on")
+
+[node name="InstructionsLabel" type="Label" parent="Background/Instructions/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -321.5
+offset_top = -187.5
+offset_right = 321.5
+offset_bottom = 187.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Keyboard Controls:
+Player 1:
+Movement: WASD  |  Dash: Shift  |  Attack: Space
+Taunt: Numbers 1-3
+
+Player 2:
+Movement: Arrow Keys  |  Dash: CTRL  |  Attack: Alt
+Taunt: Numbers 7-9
+
+Skip Cutscenes: Enter
+
+Xbox Controls:
+Movement: Left Joystick
+Jump: A button
+Dash: Left Shoulder
+Attack: B button
+Skip Cutscenes: Menu/start button
+"
+label_settings = SubResource("LabelSettings_0tfhe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="Control" parent="Background"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CreditsExample" type="Sprite2D" parent="Background/Credits"]
+visible = false
+modulate = Color(1, 1, 1, 0.792157)
+position = Vector2(958, 540)
+texture = ExtResource("16_qc3e7")
+
+[node name="CreditsBackground" type="TextureRect" parent="Background/Credits"]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 219.0
+offset_right = 1674.0
+offset_bottom = 1069.0
+texture = ExtResource("14_va4on")
+
+[node name="CreditsLabel" type="Label" parent="Background/Credits/CreditsBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -584.0
+offset_top = -364.0
+offset_right = 613.0
+offset_bottom = 377.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+Audrey Wright- Assistant Producer
+
+Benjamin Chen- Programmer
+
+Bobby Youstra- Programmer
+
+Dr.Toprac- Producer
+
+Esha Nigudkar- Cutscene Artist and Narrative Designer
+
+Jaime Lopez- Sound Designer and Programmer
+
+Joyce Qin- Character Artist/Animator
+
+Karina Arellano- UI and Environment Artist and Scrum Master
+
+Nevin Portillo- Level Designer and Programmer
+
+"
+label_settings = SubResource("LabelSettings_0tfhe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreditsIcon" type="TextureRect" parent="Background/Credits"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -275.0
+offset_top = 84.0
+offset_right = 327.0
+offset_bottom = 267.0
+grow_horizontal = 2
+texture = ExtResource("17_y7rfj")
+
+[node name="TopBarButtons" type="HBoxContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -336.0
+offset_top = 20.0
+offset_right = 82.0
+offset_bottom = 226.0
+grow_horizontal = 0
+scale = Vector2(0.75, 0.75)
+alignment = 1
+
+[node name="InstructionsButton" parent="Background/TopBarButtons" instance=ExtResource("5_7a6wa")]
+layout_mode = 2
+character = "?"
+icon_texture = ExtResource("19_egfgu")
+
+[node name="Spacer" type="Control" parent="Background/TopBarButtons"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="SettingsButton" parent="Background/TopBarButtons" instance=ExtResource("5_7a6wa")]
+visible = false
+layout_mode = 2
+
+[node name="AudioSliders" type="Control" parent="Background"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 707.0
+offset_top = 366.0
+offset_right = 707.0
+offset_bottom = 366.0
+scale = Vector2(1.92, 1.92)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/AudioSliders"]
+custom_minimum_size = Vector2(575, 0)
+layout_mode = 0
+offset_bottom = 482.0
+scale = Vector2(0.5, 0.5)
+theme_override_constants/separation = 256
+
+[node name="MusicSlider" type="HSlider" parent="Background/AudioSliders/VBoxContainer"]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+theme_override_constants/center_grabber = 0
+theme_override_icons/grabber = ExtResource("20_yxcn2")
+theme_override_icons/grabber_highlight = ExtResource("20_yxcn2")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_ii6ab")
+
+[node name="MusicText" type="RichTextLabel" parent="Background/AudioSliders/VBoxContainer/MusicSlider"]
+clip_contents = false
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 0
+offset_left = 108.792
+offset_top = -139.708
+offset_right = 508.792
+offset_bottom = -39.7083
+theme_override_colors/default_color = Color(0.59375, 0.761719, 0.824219, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/normal_font = ExtResource("15_3jjna")
+theme_override_font_sizes/normal_font_size = 128
+text = "Music"
+scroll_active = false
+
+[node name="MusicBG" type="Sprite2D" parent="Background/AudioSliders/VBoxContainer/MusicSlider"]
+z_as_relative = false
+position = Vector2(287.958, 58.2083)
+texture = ExtResource("21_uhsip")
+
+[node name="SfxSlider" type="HSlider" parent="Background/AudioSliders/VBoxContainer"]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("20_yxcn2")
+theme_override_icons/grabber_highlight = ExtResource("20_yxcn2")
+theme_override_styles/slider = SubResource("StyleBoxTexture_hw7k6")
+
+[node name="SFX" type="RichTextLabel" parent="Background/AudioSliders/VBoxContainer/SfxSlider"]
+clip_contents = false
+layout_mode = 2
+offset_left = 191.583
+offset_top = -139.708
+offset_right = 941.583
+offset_bottom = -39.7084
+theme_override_colors/default_color = Color(0.59375, 0.761719, 0.824219, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/normal_font = ExtResource("15_3jjna")
+theme_override_font_sizes/normal_font_size = 128
+text = "SFX"
+scroll_active = false
+
+[node name="SFXBg" type="Sprite2D" parent="Background/AudioSliders/VBoxContainer/SfxSlider"]
+z_as_relative = false
+position = Vector2(287.958, 59)
+texture = ExtResource("21_uhsip")
+
+[node name="PlayDialog" type="Control" parent="Background"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("23_4bb6r")
+
+[node name="OptionsExample" type="Sprite2D" parent="Background/PlayDialog"]
+visible = false
+modulate = Color(1, 1, 1, 0.772549)
+position = Vector2(964, 542)
+texture = ExtResource("24_i6uum")
+
+[node name="DialogShade" type="TextureRect" parent="Background/PlayDialog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("25_bmnas")
+
+[node name="DialogBackground" type="TextureRect" parent="Background/PlayDialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -473.0
+offset_top = -509.0
+offset_right = 533.0
+offset_bottom = 497.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("26_ds1jq")
+metadata/_edit_group_ = true
+
+[node name="PlayUIArea" type="Control" parent="Background/PlayDialog/DialogBackground"]
+anchors_preset = 0
+offset_left = 65.0
+offset_top = 51.0
+offset_right = 961.0
+offset_bottom = 958.0
+
+[node name="DialogTitle" type="TextureRect" parent="Background/PlayDialog/DialogBackground/PlayUIArea"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -331.0
+offset_top = 93.0
+offset_right = 376.0
+offset_bottom = 246.0
+grow_horizontal = 2
+texture = ExtResource("27_e51u0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayDialog/DialogBackground/PlayUIArea"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -110.5
+offset_right = 117.0
+offset_bottom = 217.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+
+[node name="PlayOnlineButton" type="Button" parent="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer" groups=["Button"]]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme = ExtResource("3_0h4m0")
+theme_override_font_sizes/font_size = 60
+text = "Online"
+
+[node name="Spacer" type="Control" parent="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="PlayLocalButton" type="Button" parent="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer" groups=["Button"]]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+theme = ExtResource("3_0h4m0")
+theme_override_font_sizes/font_size = 60
+text = "Local"
+
+[node name="CloseButton" parent="Background/PlayDialog/DialogBackground" instance=ExtResource("5_7a6wa")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -181.0
+offset_right = 33.0
+offset_bottom = 209.0
+grow_horizontal = 0
+grow_vertical = 1
+character = "X"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_n3vdy")
+autoplay = true
+bus = &"Music"
+
+[connection signal="mouse_entered" from="Background/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_mouse_entered"]
+[connection signal="mouse_exited" from="Background/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_mouse_exited"]
+[connection signal="pressed" from="Background/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Background/Title/ButtonsVBox/ButtonsHBox/Credits/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Background/Title/ButtonsVBox/ButtonsHBox/Options/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Background/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_instructions_button_pressed"]
+[connection signal="pressed" from="Background/Title/ButtonsVBox/ButtonsHBox/Quit/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="button_pressed" from="Background/TopBarButtons/InstructionsButton" to="." method="_on_instructions_button_pressed"]
+[connection signal="button_pressed" from="Background/TopBarButtons/SettingsButton" to="." method="_on_settings_button_button_pressed"]
+[connection signal="value_changed" from="Background/AudioSliders/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Background/AudioSliders/VBoxContainer/SfxSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="on_first_button_pressed" from="Background/PlayDialog" to="." method="_on_play_dialog_on_online_button_pressed"]
+[connection signal="on_second_button_pressed" from="Background/PlayDialog" to="." method="_on_play_dialog_on_local_button_pressed"]
+[connection signal="pressed" from="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayOnlineButton" to="Background/PlayDialog" method="_on_first_button_pressed" flags=18]
+[connection signal="pressed" from="Background/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayLocalButton" to="Background/PlayDialog" method="_on_second_button_pressed" flags=18]
+[connection signal="button_pressed" from="Background/PlayDialog/DialogBackground/CloseButton" to="Background/PlayDialog" method="_on_close_button_button_pressed" flags=18]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
