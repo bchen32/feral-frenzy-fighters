@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://xm4ynqxv76f8"]
+[gd_scene load_steps=17 format=3 uid="uid://xm4ynqxv76f8"]
 
 [ext_resource type="Script" path="res://gui/menus/character_select.gd" id="1_l7hwe"]
 [ext_resource type="Texture2D" uid="uid://dpaluibvjuaoc" path="res://gui/menus/sprites/screens/screen_background.png" id="2_p5ahl"]
 [ext_resource type="Texture2D" uid="uid://b7cpj70v5wlqx" path="res://gui/menus/sprites/screens/character_select/player1_character_card.png" id="3_3xujn"]
 [ext_resource type="Texture2D" uid="uid://82eu6fdyfbt7" path="res://gui/hud/sprites/head_icons/cat_head_icon_blue.png" id="3_slkil"]
 [ext_resource type="Texture2D" uid="uid://2f40vlydd1q5" path="res://gui/menus/sprites/screens/character_select/character_select_background_head.png" id="3_tiawo"]
+[ext_resource type="Texture2D" uid="uid://b5jjsc1wyfmc0" path="res://gui/menus/sprites/screens/examples/new_characters_screen_example (2).png" id="3_y07iv"]
 [ext_resource type="Texture2D" uid="uid://cw1jrbqv2ua74" path="res://gui/menus/sprites/screens/character_select/player2_character_card.png" id="4_2v6uk"]
 [ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="4_dln4l"]
 [ext_resource type="Texture2D" uid="uid://olroa8428o5p" path="res://gui/hud/sprites/head_icons/fish_head_icon.png" id="5_7q0c8"]
@@ -13,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://hmrruicpuegu" path="res://gui/hud/sprites/cs_icons/selection_box.png" id="11_0l6ms"]
 [ext_resource type="AudioStream" uid="uid://coneg16uuc06h" path="res://gui/menus/sfx/button.wav" id="12_d8f5d"]
 [ext_resource type="AudioStream" uid="uid://bw1ubqplxxg77" path="res://gui/menus/sfx/select.wav" id="13_i8kyi"]
+[ext_resource type="Texture2D" uid="uid://b258wqkbna8yg" path="res://gui/menus/sprites/screens/titles/characters_ui.png" id="15_ys53q"]
 
 [sub_resource type="Theme" id="Theme_5uuse"]
 default_font = ExtResource("4_dln4l")
@@ -28,12 +30,22 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_p5ahl")
 
+[node name="NewCharactersScreenExample(2)" type="Sprite2D" parent="Background"]
+visible = false
+modulate = Color(1, 1, 1, 0.486275)
+position = Vector2(958, 540)
+texture = ExtResource("3_y07iv")
+
+[node name="CharactersUi" type="Sprite2D" parent="Background"]
+position = Vector2(956, 183)
+texture = ExtResource("15_ys53q")
+
 [node name="PlayerCards" type="HBoxContainer" parent="Background"]
 layout_mode = 0
 offset_left = 40.0
-offset_top = 150.0
+offset_top = 271.0
 offset_right = 1907.0
-offset_bottom = 914.0
+offset_bottom = 1035.0
 theme_override_constants/separation = 1000
 
 [node name="TextureRect" type="TextureRect" parent="Background/PlayerCards"]
@@ -49,10 +61,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.65
 anchor_bottom = 1.0
-offset_left = 56.0
-offset_top = -474.0
-offset_right = 1914.0
-offset_bottom = -474.0
+offset_left = 55.0
+offset_top = -353.0
+offset_right = 1913.0
+offset_bottom = -353.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 1050
@@ -76,10 +88,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -765.0
-offset_top = 97.0
-offset_right = -665.0
-offset_bottom = 861.0
+offset_left = -766.0
+offset_top = 218.0
+offset_right = -666.0
+offset_bottom = 982.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_5uuse")
@@ -117,10 +129,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 664.0
-offset_top = 97.0
-offset_right = 764.0
-offset_bottom = 861.0
+offset_left = 663.0
+offset_top = 218.0
+offset_right = 763.0
+offset_bottom = 982.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_5uuse")
@@ -152,10 +164,10 @@ autowrap_mode = 0
 
 [node name="IconBackgrounds" type="HBoxContainer" parent="Background"]
 layout_mode = 0
-offset_left = 560.0
-offset_top = 280.0
-offset_right = 1596.0
-offset_bottom = 536.0
+offset_left = 559.0
+offset_top = 401.0
+offset_right = 1595.0
+offset_bottom = 657.0
 theme_override_constants/separation = 50
 
 [node name="Cat" type="TextureRect" parent="Background/IconBackgrounds"]
@@ -184,10 +196,10 @@ texture = ExtResource("3_tiawo")
 
 [node name="Icons" type="HBoxContainer" parent="Background"]
 layout_mode = 0
-offset_left = 576.0
-offset_top = 279.0
-offset_right = 1612.0
-offset_bottom = 535.0
+offset_left = 575.0
+offset_top = 400.0
+offset_right = 1611.0
+offset_bottom = 656.0
 theme_override_constants/separation = 100
 
 [node name="Cat" type="TextureRect" parent="Background/Icons"]
@@ -217,10 +229,10 @@ texture = ExtResource("6_6nay2")
 
 [node name="P2Buttons" type="HBoxContainer" parent="Background"]
 layout_mode = 0
-offset_left = 564.0
-offset_top = 266.0
-offset_right = 2051.0
-offset_bottom = 536.0
+offset_left = 563.0
+offset_top = 387.0
+offset_right = 2050.0
+offset_bottom = 657.0
 theme_override_constants/separation = 55
 
 [node name="CatButton" type="TextureButton" parent="Background/P2Buttons"]
@@ -250,10 +262,10 @@ texture_normal = ExtResource("11_0l6ms")
 
 [node name="P1Buttons" type="HBoxContainer" parent="Background"]
 layout_mode = 0
-offset_left = 564.0
-offset_top = 266.0
-offset_right = 2051.0
-offset_bottom = 536.0
+offset_left = 563.0
+offset_top = 387.0
+offset_right = 2050.0
+offset_bottom = 657.0
 theme_override_constants/separation = 55
 
 [node name="CatButton" type="TextureButton" parent="Background/P1Buttons"]
