@@ -62,10 +62,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/PlayerSprite"]
-position = Vector2(94, 144)
+position = Vector2(117.5, 96)
 scale = Vector2(0.3, 0.3)
 sprite_frames = ExtResource("2_o6wof")
-animation = &"blue_fall"
+animation = &"blue_idle"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 0
@@ -79,7 +79,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 
 [node name="JoystickAnimation" type="AnimatedSprite2D" parent="Control/VBoxContainer/Control"]
-position = Vector2(140, 94)
+position = Vector2(129, 95)
 sprite_frames = ExtResource("34_sj0b5")
 animation = &"joystick_attack"
 
@@ -88,8 +88,8 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 
 [node name="P1Animation" type="AnimatedSprite2D" parent="Control/VBoxContainer/Control2"]
-position = Vector2(179, 80)
-scale = Vector2(0.5475, 0.56)
+position = Vector2(130, 94)
+scale = Vector2(0.18375, 0.56)
 sprite_frames = ExtResource("34_sj0b5")
 animation = &"p1_attack"
 
@@ -98,6 +98,8 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 
 [node name="P2Animation" type="AnimatedSprite2D" parent="Control/VBoxContainer/Control3"]
-position = Vector2(126, 50)
+position = Vector2(126, 67)
 sprite_frames = ExtResource("34_sj0b5")
 animation = &"p2_attack"
+
+[connection signal="animation_finished" from="Control/PlayerSprite/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -253,6 +253,7 @@ offset_right = 182.0
 offset_bottom = 166.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("11_0a8ss")
+stretch_mode = 2
 
 [node name="ProgressBar3" type="ProgressBar" parent="P2"]
 visible = false

@@ -26,14 +26,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if target_area == null or target_area.is_player_in_area:
+	var position_delta: Vector2 = target_area.global_position - _player.global_position
+	
+	if target_area == null or target_area.is_player_in_area or position_delta.length() < 100:
 		hide()
 		return
 	else:
 		show()
 	
 	var new_direction: Direction
-	var position_delta: Vector2 = target_area.global_position - _player.global_position
 	
 	if abs(position_delta.x) > abs(position_delta.y):
 		if position_delta.x > 0:
