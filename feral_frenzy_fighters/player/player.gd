@@ -126,9 +126,16 @@ func _ready():
 	
 	if Globals.player_sprites.size() > player_num:
 		sprite_scene = Globals.player_sprites[player_num]
-	
 	var sprites = sprite_scene.instantiate()
 	add_child(sprites)
+	var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
+	if "cat" in sprites.get_scene_file_path():
+		if player_num:
+			player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_blue.png")
+		else:
+			player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_purple.png")
+	elif "fish" in sprites.get_scene_file_path():
+		player_head.texture = load("res://gui/hud/sprites/head_icons/fish_head_icon.png")
 	anim_player = sprites.get_node("AnimatedSprite2D")
 	var p1_icon = sprites.get_node("Player1Icon")
 	var p2_icon = sprites.get_node("Player2Icon")
