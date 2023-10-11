@@ -44,6 +44,8 @@ func _ready():
 	var tween := create_tween()
 	tween.tween_property($Background, "global_position", Vector2(0,0), .5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	set_process(true)   
+	on_character1_change()
+	on_character2_change()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
