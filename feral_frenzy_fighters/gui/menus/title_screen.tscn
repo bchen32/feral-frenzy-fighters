@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://br6txao4iioos"]
+[gd_scene load_steps=40 format=3 uid="uid://br6txao4iioos"]
 
 [ext_resource type="Script" path="res://gui/menus/title_screen.gd" id="1_u2ssx"]
 [ext_resource type="PackedScene" uid="uid://sjcnk7j4e0i4" path="res://gui/menus/cutscene_player.tscn" id="2_g7u1a"]
@@ -12,12 +12,10 @@
 [ext_resource type="Script" path="res://gui/menus/button.gd" id="11_6h56s"]
 [ext_resource type="Texture2D" uid="uid://gs5n0glm0abr" path="res://gui/menus/sprites/buttons/button_blue_highlight.png" id="11_jd057"]
 [ext_resource type="Texture2D" uid="uid://u756v8lp0brt" path="res://gui/menus/sprites/screens/titles/title_ui.png" id="11_noaj0"]
-[ext_resource type="Texture2D" uid="uid://clujpn5meb28i" path="res://gui/menus/sprites/screens/examples/instructions_example.png" id="12_7u5fq"]
 [ext_resource type="Texture2D" uid="uid://bar3a8okfu77w" path="res://gui/menus/sprites/buttons/button_highlight.png" id="13_oy3x2"]
 [ext_resource type="Texture2D" uid="uid://in6v5g06sma5" path="res://gui/menus/sprites/screens/titles/instructions_ui.png" id="13_tnsa6"]
 [ext_resource type="Texture2D" uid="uid://dcpm33cc5luse" path="res://gui/menus/sprites/screens/pop_up.png" id="14_va4on"]
 [ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="15_3jjna"]
-[ext_resource type="Texture2D" uid="uid://bmspoqpdiawy6" path="res://gui/menus/sprites/screens/examples/credits_example.png" id="16_qc3e7"]
 [ext_resource type="Texture2D" uid="uid://2skm4qqo0wwc" path="res://gui/menus/sprites/screens/titles/credits_ui.png" id="17_y7rfj"]
 [ext_resource type="Texture2D" uid="uid://wnqsljtiihby" path="res://gui/menus/sprites/buttons/icons/arrow.png" id="19_egfgu"]
 [ext_resource type="Texture2D" uid="uid://d2pnd6moyijur" path="res://gui/menus/sprites/slider/sound_volume_slider_icon.png" id="20_yxcn2"]
@@ -185,8 +183,7 @@ offset_right = 324.0
 offset_bottom = 162.0
 theme = ExtResource("3_0h4m0")
 theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
-text = "Options
-"
+text = "Options"
 
 [node name="Tutorial" type="Control" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox"]
 custom_minimum_size = Vector2(0, 100)
@@ -247,12 +244,6 @@ visible = false
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-
-[node name="InstructionsExample" type="Sprite2D" parent="MainMenu/Instructions"]
-visible = false
-modulate = Color(1, 1, 1, 0.658824)
-position = Vector2(955, 540)
-texture = ExtResource("12_7u5fq")
 
 [node name="InstructionsIcon" type="TextureRect" parent="MainMenu/Instructions"]
 layout_mode = 1
@@ -318,12 +309,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CreditsExample" type="Sprite2D" parent="MainMenu/Credits"]
-visible = false
-modulate = Color(1, 1, 1, 0.792157)
-position = Vector2(958, 540)
-texture = ExtResource("16_qc3e7")
-
 [node name="CreditsBackground" type="TextureRect" parent="MainMenu/Credits"]
 layout_mode = 0
 offset_left = 246.0
@@ -362,9 +347,7 @@ Joyce Qin- Character Artist/Animator
 
 Karina Arellano- UI and Environment Artist and Scrum Master
 
-Nevin Portillo- Level Designer and Programmer
-
-"
+Nevin Portillo- Level Designer and Programmer"
 label_settings = SubResource("LabelSettings_0tfhe")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -499,6 +482,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AudioSliders" type="Control" parent="MainMenu"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 707.0
@@ -508,7 +492,6 @@ offset_bottom = 366.0
 scale = Vector2(1.92, 1.92)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/AudioSliders"]
-visible = false
 custom_minimum_size = Vector2(575, 0)
 layout_mode = 0
 offset_bottom = 482.0

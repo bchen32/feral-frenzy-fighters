@@ -66,8 +66,10 @@ volume_db = 1.0
 autoplay = true
 bus = &"Music"
 
-[node name="Camera2D" parent="." instance=ExtResource("5_guw43")]
+[node name="Camera2D" parent="." node_paths=PackedStringArray("players", "level") instance=ExtResource("5_guw43")]
 position = Vector2(960, 538)
+players = [NodePath("../Player")]
+level = NodePath("../CatTreeLevel")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
