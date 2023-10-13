@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://d2cl4nbvj4fyq" path="res://levels/whitebox_tileset.png" id="1_4e4q7"]
 
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_og865"]
 texture = ExtResource("1_4e4q7")
 separation = Vector2i(15, 0)
