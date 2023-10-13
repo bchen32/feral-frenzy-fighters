@@ -83,6 +83,7 @@ var kb_angle: float = 0.0
 var flip_h: bool = false
 
 var _initial_player_position: Vector2
+var beanbag: bool = false
 
 var _attack_sfx = [
 	preload("res://player/cat/sfx/attack/attack_1.wav"),
@@ -136,9 +137,14 @@ func _ready():
 			player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_purple.png")
 	elif "fish" in sprites.get_scene_file_path():
 		player_head.texture = load("res://gui/hud/sprites/head_icons/fish_head_icon.png")
+	elif "beanbag" in sprites.get_scene_file_path():
+		beanbag = true
 	anim_player = sprites.get_node("AnimatedSprite2D")
-	var p1_icon = sprites.get_node("Player1Icon")
-	var p2_icon = sprites.get_node("Player2Icon")
+	var p1_icon
+	var p2_icon
+	if not beanbag:
+		p1_icon = sprites.get_node("Player1Icon")
+		p2_icon = sprites.get_node("Player2Icon")
 	if _damage_label:
 		_damage_label.set_player_death_count(player_num, stocks)
 
@@ -163,7 +169,7 @@ func reset_frame():
 
 
 func play_anim(animation_name: String):
-	if player_num == 2: # beanbag only
+	if beanbag: # beanbag only
 		anim_player.play(animation_name)
 	else:
 		if percentage > 40:
