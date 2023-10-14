@@ -19,6 +19,12 @@ _players = [NodePath("Player"), NodePath("Player2")]
 
 [node name="CatTreeLevel" parent="." instance=ExtResource("2_mcce5")]
 
+[node name="PlayerSpawnLoc" type="Node2D" parent="."]
+position = Vector2(750, 500)
+
+[node name="PlayerSpawnLoc2" type="Node2D" parent="."]
+position = Vector2(1100, 500)
+
 [node name="Player" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("1_ynwnh")]
 position = Vector2(750, 500)
 _damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")

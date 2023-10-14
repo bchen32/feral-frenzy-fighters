@@ -18,10 +18,10 @@ func _init(network_manager: NetworkManager):
 	_network_manager = network_manager
 
 func _ready():
-	#_level_scene = preload("res://levels/main.tscn").instantiate()
+	_level_scene = preload("res://levels/main.tscn").instantiate()
 	_waiting_lobby_scene = preload("res://levels/lobby.tscn").instantiate()
 	
-	#get_window().call_deferred("add_child", _level_scene)
+	get_window().call_deferred("add_child", _level_scene)
 	get_window().call_deferred("add_child", _waiting_lobby_scene)
 
 func is_lobby_available():
@@ -41,13 +41,25 @@ func get_lobby_state_string(lobby_num: int):
 
 func add_player(player_id: int):
 	print("wee")
+	
+	for player_key in _players:
+		var player = _players[player_key]
+		player.player_num = len(_players)
+		print("player num pre:%s" % player.player_num)
+	
 	_players[player_id] = preload("res://player/player.tscn").instantiate()
-	_players[player_id].player_num = len(_players)
+	_players[player_id].player_num = len(_players) - 1
 	_players[player_id].player_id = player_id
-	if _players[player_id].player_num == 1:
+	if _players[player_id].player_num == 0:
 		_players[player_id].name = "Player"
 	else:
-		_players[player_id].name = "Player%s" % [_players[player_id].player_num]
+		_players[player_id].name = "Player%s" % [_players[player_id].player_num + 1]
+	
+	for player_key in _players:
+		var player = _players[player_key]
+		print("player num post:%s" % player.player_num)
+	
+	print(len(_players))
 	
 	if len(_players) >= TARGET_PLAYERS:
 		_lobby_game_state = NetworkManager.NetworkGameState.IN_FIRST_CUTSCENE
@@ -58,6 +70,9 @@ func add_player(player_id: int):
 		for player_key in _players:
 			var player = _players[player_key]
 			display_names.append(player.display_name)
+			print("player num:%s" % player.player_num)
+		
+		print(_players)
 		
 		# setup game state while they are in the cutscene
 		for player_key in _players:
@@ -80,6 +95,9 @@ func add_player(player_id: int):
 			
 			print(player)
 			
+			if _level_scene.has_node(NodePath(player.name)):
+				_level_scene.remove_child(_level_scene.get_node(NodePath(player.name)))
+			
 			_level_scene.add_child(player)
 			
 			_network_manager.initial_game_information.rpc_id(player.player_id, 
@@ -88,9 +106,6 @@ func add_player(player_id: int):
 															 START_STOCK,
 															 START_PERCENTAGE)
 	else:
-		_players[player_id].player_num = len(_players)
-		_players[player_id].player_id = player_id
-		
 		match _players[player_id].player_num:
 			0:
 				_players[player_id].position = Vector2(464, 247)

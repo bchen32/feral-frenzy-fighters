@@ -26,16 +26,7 @@ func _on_body_entered(body: Node2D):
 	if body not in excludes and body is PlayerCharacter:
 		excludes.append(body)  # only process collision once
 		
-		if NetworkManager.is_connected:
-			var hit_info: Dictionary = {
-				"dmg": dmg,
-				"kb": get_kb(body),
-				"kb_y_offset": kb_y_offset,
-				"kb_angle": get_parent().global_position.angle_to_point(body.global_position + Vector2(0, kb_y_offset))
-			}
-			
-			NetworkManager.report_hit.rpc(body.player_num, hit_info)
-		else:
+		if not NetworkManager.is_connected:
 			body.percentage += dmg
 			body.play_audio(PlayerCharacter.AudioType.HIT)
 			var kb = get_kb(body)

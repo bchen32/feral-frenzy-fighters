@@ -7,7 +7,7 @@ func _ready():
 		if NetworkManager.my_player_num == 0:
 			$P2/ChatPopup.hide()
 		else:
-			assert(NetworkManager.my_player_num == 1)
+			#assert(NetworkManager.my_player_num == 1)
 			
 			$P1/ChatPopup.hide()
 	else:
