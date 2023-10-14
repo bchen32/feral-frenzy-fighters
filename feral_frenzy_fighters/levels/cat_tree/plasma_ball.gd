@@ -10,10 +10,12 @@ var speed
 var reset_speed
 var min_destination_distance = 1000
 
+#hitbox settings: line 85
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @onready var sprite = self.get_node("PlasmaBallSprite")
 @onready var anim = self.get_node("AnimationPlayer")
 @onready var event_spawner = $"../../Events/EventSpawner"
+@onready var hitbox = self.get_node("Hitbox")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,7 +44,15 @@ func _process(delta):
 func _change_health(health_change: float):
 	if unstable == false:
 		self.health += health_change
-		anim.play("Damage")
+		
+		if anim.is_playing():
+			anim.stop()
+		
+		if self.health > 0:
+			anim.play("Damage")
+			await anim.animation_finished
+			if !hitbox.get_overlapping_bodies().is_empty():
+				anim.play("Indication")
 
 func _stability_change(turning_unstable: bool):
 	if turning_unstable == true:
@@ -50,14 +60,8 @@ func _stability_change(turning_unstable: bool):
 		await anim.animation_finished
 		
 		_choose_random_point()
-		
-		var plasma_hitbox = hitbox_scene.instantiate()
-		sprite.add_child(plasma_hitbox)
-		
-		plasma_hitbox.setup(50, 50, 0, 0, 15, 2, 0, 0)
 	elif turning_unstable == false:
 		sprite.get_child(0).queue_free()
-		
 		anim.play_backwards("StabilityChange")
 		await anim.animation_finished
 		
@@ -78,6 +82,11 @@ func _choose_random_point():
 		_choose_random_point()
 	else:
 		amount_of_times_moved += 1
+		
+		var plasma_hitbox = hitbox_scene.instantiate()
+		sprite.add_child(plasma_hitbox)
+		
+		plasma_hitbox.setup(50, 50, 0, 0, 15, 2, 0, 0)
 
 func _move_ball(delta):
 	if !self.position.distance_to(destination) < 0.1: # if the plasma ball hasn't reached the destination
@@ -89,7 +98,17 @@ func _move_ball(delta):
 		if amount_of_times_moved >= max_times_to_move:
 			destination = original_position
 		elif amount_of_times_moved < max_times_to_move: 
+			sprite.get_child(0).queue_free()
 			_choose_random_point()
 	
 	elif self.position.distance_to(destination) < 0.1 && self.position.distance_to(original_position) < 0.1: # otherwise, if the plasma ball reaches the destination and IT IS the original position
 		_stability_change(false)
+
+func _on_hitbox_body_entered(body):
+	if unstable == false:
+		anim.play("Indication")
+
+func _on_hitbox_body_exited(body):
+	if unstable == false:
+		if hitbox.get_overlapping_bodies().is_empty():
+			anim.play("RESET")

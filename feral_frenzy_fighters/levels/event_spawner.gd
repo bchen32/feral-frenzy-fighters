@@ -9,7 +9,7 @@ var current_event_happening = false
 var longest_event_rate = 20.0
 var shortest_event_rate = 1.0
 var current_event_rate: float
-var progression_rate = 0.05 # percentage of how much event rate will progress each time an event concludes
+var progression_rate = 0.1 # percentage of how much event rate will progress each time an event concludes
 
 func _ready():
 	current_event_rate = longest_event_rate

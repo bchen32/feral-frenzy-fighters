@@ -1,5 +1,6 @@
 extends Node2D
 
+#hitbox settings: line 84
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @onready var anim = get_node("AnimationPlayer")
 @onready var mouse_sprite = get_node("MouseParent/Mouse")

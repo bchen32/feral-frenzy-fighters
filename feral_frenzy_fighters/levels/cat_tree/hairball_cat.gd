@@ -5,6 +5,7 @@ var facing_left = false
 var shoot = false
 var speed = 1000
 
+#hitbox settings: line 61
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @onready var sprite = self.get_child(0)
 @onready var anim = self.get_child(1)
