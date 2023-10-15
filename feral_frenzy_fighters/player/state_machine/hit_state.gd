@@ -9,7 +9,17 @@ func enter():
 	character.blood_splatter(180)
 	hitstun = floor(character.kb * character.kb_hitstun_scale)
 	character.set_physics_process(false)
-	await(Globals.shake(character.anim_player,5 * character.percentage/10,.005 + character.percentage/10000, 5 + character.percentage/20)) #I CANT BELIVE THIS WORKED
+	
+	Globals.shake(
+	character.anim_player,
+	5 * character.percentage/10,
+	.005 + character.percentage/10000,
+	5 + character.percentage/10,
+	Time.get_unix_time_from_system(),
+	true) 
+	
+	await Globals.shake_completed
+	
 	character.set_physics_process(true)
 	character.velocity.x = cos(character.kb_angle) * character.kb
 	character.velocity.y = sin(character.kb_angle) * character.kb

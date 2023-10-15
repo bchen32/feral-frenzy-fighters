@@ -306,8 +306,8 @@ func acknowledge_hit(player_num: int, hit_info: Dictionary):
 	kb = hit_info["kb"]
 	kb_angle = hit_info["kb_angle"]
 	global_position.y += hit_info["kb_y_offset"]
-	play_audio(AudioType.HIT)
-	
+	#play_audio(AudioType.HIT)
+
 
 func acknowledge_death():
 	var hit_direction = \
@@ -360,11 +360,11 @@ func acknowledge_death():
 func _physics_process(delta: float):
 	set_collision_mask_value(4, not Input.is_action_pressed(get_input("down")))  # drop through platforms while down is held
 	frame += 1
-	state_machine.update(delta)
 	move_and_slide()
-
+	state_machine.update(delta)
 
 func _process(_delta: float):
+	
 	if anim_player.flip_h:
 		anim_player.position.x = -12
 	else:

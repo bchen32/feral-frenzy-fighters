@@ -17,6 +17,8 @@ var p2_inputs = []
 var p1_gamepad = []
 var p2_gamepad = []
 
+signal shake_completed
+var passwords = {}
 
 class menu:
 	var _queue = []
@@ -83,7 +85,9 @@ func rebind_p2(device_number: int):
 	for event in p2_gamepad:
 		event.set_device(device_number)
 		
-func shake(node, amount: float = 5, duration: float = .01, count: int = 10):
+func shake(node, amount: float = 5, duration: float = .01, count: int = 10, password = 0, player = false):
+	passwords[node] = password
+	print("first ", passwords[node])
 	var og_pos = node.global_position
 	for i in count:
 			randomize()
@@ -94,8 +98,15 @@ func shake(node, amount: float = 5, duration: float = .01, count: int = 10):
 			Vector2(randf_range(node.global_position.x + -amount,node.global_position.x + amount), randf_range(node.global_position.y + -amount, node.global_position.y + amount)), 
 			duration)
 			await get_tree().create_timer(duration).timeout
-			amount/=2
-	node.global_position = og_pos
+			amount/=1.2
+			
+	if player == true:
+		if passwords[node] == password:
+			node.global_position = og_pos
+			print("last ", passwords[node])
+			emit_signal("shake_completed", passwords[node])
+	else:
+		node.global_position = og_pos
 		
 
 
