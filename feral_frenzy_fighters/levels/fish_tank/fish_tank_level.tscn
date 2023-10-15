@@ -9,9 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://dqb25pfnhgat2" path="res://levels/cat_tree/sprites/decor/book_thin_purple.png" id="7_vnb83"]
 [ext_resource type="Texture2D" uid="uid://bkvumebdleqtd" path="res://levels/cat_tree/sprites/decor/book_thin.png" id="8_w02iu"]
 [ext_resource type="PackedScene" uid="uid://c6wndhaby67a4" path="res://levels/fish_tank/treasure_chest.tscn" id="9_akjcm"]
-[ext_resource type="Texture2D" uid="uid://cm5orikkk4au6" path="res://levels/fish_tank/sprites/decor/tiki_cat_head.png" id="9_y2paj"]
 [ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="10_ajri3"]
 [ext_resource type="Texture2D" uid="uid://bi4tgihcsasu7" path="res://levels/fish_tank/sprites/decor/tiki hut.png" id="10_ehe4q"]
+[ext_resource type="PackedScene" uid="uid://cadamwrackyxx" path="res://levels/fish_tank/tiki_head.tscn" id="10_hjvma"]
 [ext_resource type="PackedScene" uid="uid://ch0a3pyvecm4r" path="res://levels/fish_tank/pipeline.tscn" id="11_ibf3h"]
 [ext_resource type="Texture2D" uid="uid://c2sy06qgow26p" path="res://levels/fish_tank/sprites/interactables/boulder.png" id="13_tfp88"]
 [ext_resource type="Texture2D" uid="uid://1yn0d3vivecv" path="res://levels/fish_tank/sprites/interactables/osha_toy.png" id="14_btqcf"]
@@ -342,27 +342,24 @@ scale = Vector2(1.64, 1.93)
 texture = ExtResource("8_w02iu")
 metadata/_edit_lock_ = true
 
-[node name="TikiCatHead" type="Sprite2D" parent="Environment/Decorations"]
-z_index = -1
-position = Vector2(771, 748)
-rotation = 0.163603
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("9_y2paj")
-metadata/_edit_lock_ = true
-
-[node name="TikiCatHead2" type="Sprite2D" parent="Environment/Decorations"]
-z_index = -1
-position = Vector2(1144, 748)
-rotation = -0.164061
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("9_y2paj")
-metadata/_edit_lock_ = true
-
 [node name="TikiHut" type="Sprite2D" parent="Environment/Decorations"]
 position = Vector2(1571, 724)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("10_ehe4q")
 metadata/_edit_lock_ = true
+
+[node name="TikiHead" parent="Environment/Decorations" instance=ExtResource("10_hjvma")]
+z_index = -1
+position = Vector2(771, 748)
+rotation = 0.164061
+scale = Vector2(0.5, 0.5)
+
+[node name="TikiHead2" parent="Environment/Decorations" instance=ExtResource("10_hjvma")]
+z_index = -1
+position = Vector2(1144, 748)
+rotation = -0.164061
+scale = Vector2(0.5, 0.5)
+p1_tiki = false
 
 [node name="ActiveEnvironment" type="Node2D" parent="Environment"]
 
