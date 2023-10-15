@@ -6,7 +6,7 @@ var hitstun: int
 
 func enter():
 	character.play_anim("hit")
-	character.blood_splatter(180)
+	character.play_particles(character.physics_blood, 0, 180)
 	hitstun = floor(character.kb * character.kb_hitstun_scale)
 	character.set_physics_process(false)
 	

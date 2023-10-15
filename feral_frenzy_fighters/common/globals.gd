@@ -55,14 +55,18 @@ func _ready():
 			p1_inputs.append(InputMap.action_get_events(action))
 
 	for x in len(p1_inputs):
-		p1_gamepad.append(p1_inputs[x][1])
+		for y in len(p1_inputs[x]):
+			if "Joypad" in p1_inputs[x][y]:
+				p1_gamepad.append(p1_inputs[x][y])
 
 	for action in InputMap.get_actions():
 		if "p2" in action:
 			p2_inputs.append(InputMap.action_get_events(action))
 
 	for x in len(p2_inputs):
-		p2_gamepad.append(p2_inputs[x][1])
+		for y in len(p2_inputs[x]):
+			if "Joypad" in p2_inputs[x][y]:
+				p2_gamepad.append(p2_inputs[x][y])
 
 
 func setup_controls():

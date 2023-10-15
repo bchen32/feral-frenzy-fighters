@@ -11,6 +11,7 @@ var reset_speed
 var min_destination_distance = 1000
 
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+@export var particles: PackedScene
 @onready var sprite = self.get_node("PlasmaBallSprite")
 @onready var anim = self.get_node("AnimationPlayer")
 @onready var event_spawner = $"../../Events/EventSpawner"
@@ -43,6 +44,11 @@ func _change_health(health_change: float):
 	if unstable == false:
 		self.health += health_change
 		anim.play("Damage")
+		
+		var sparks = particles.instantiate()
+		sparks.global_position = global_position
+		get_parent().add_child(sparks)
+		sparks.emitting = true
 
 func _stability_change(turning_unstable: bool):
 	if turning_unstable == true:

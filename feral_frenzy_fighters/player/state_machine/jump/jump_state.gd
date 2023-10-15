@@ -6,6 +6,29 @@ func enter():
 	character.play_anim("jump")
 	character.play_audio(character.AudioType.JUMP)
 	character.jumps_left -= 1
+	
+	var char_vel = character.velocity.y #Another insane (mentally) workaround to get Y vel when jump was started.
+	await Globals.get_tree().create_timer(0.01).timeout
+	
+	if abs(char_vel) < .01:
+		character.play_particles(
+		character.dash_particles,
+		0,
+		45,
+		int(20 + int(abs(character.velocity.x/20))), #Lmfao vvvvvvv
+		character.position + Vector2(character.CS.get_shape().get_rect().size.x/2 * sign(character.velocity.x), character.CS.get_shape().get_rect().size.y/2 ),
+		-Vector3(1*sign(character.velocity.x),-1,0),
+		Vector2(50,200))
+	else:
+		character.play_particles(
+		character.dash_particles,
+		0,
+		45,
+		int(20), #Lmfao vvvvvvv
+		character.position + Vector2(character.CS.get_shape().get_rect().size.x/2 * sign(character.velocity.x), character.CS.get_shape().get_rect().size.y/2 ),
+		-Vector3(1*sign(character.velocity.x),-1,0),
+		Vector2(200,200))
+		
 
 
 func update(_delta):

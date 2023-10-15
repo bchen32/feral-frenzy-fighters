@@ -23,7 +23,9 @@ extends CharacterBody2D
 @export var kb_hitstun_scale: float = 0.015
 @export var kb_decay: float = 1500.0
 @export var inverse_weight: float = 10.0
+@onready var CS = $CollisionShape2D
 @export var attacks: Dictionary = {
+
 	"neutral":
 	{
 		"frames": 30,
@@ -62,7 +64,8 @@ extends CharacterBody2D
 
 @onready var state_machine: Node = $StateMachine
 
-@export var physics_blood: PackedScene
+@export var physics_blood:Array[PackedScene]
+@export var dash_particles:Array[PackedScene]
 
 var anim_player: AnimatedSprite2D
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
@@ -203,22 +206,36 @@ func play_audio(audio_type: AudioType):
 
 	$SoundEffectPlayer.play()
 
-func blood_splatter(
+func play_particles(
+	list: Array,
+	index: int = 0,
 	spread: float = 45, 
-	amount: int = percentage,
+	amount: int = 1,
 	location: Vector2 = self.global_position, 
 	direction: Vector3 = Vector3(0,0,0), 
 	vel: Vector2 = Vector2(200,500)):
+
+	var splatter = list[index].instantiate()
+	
+	if splatter.get_class() == "GPUParticles2D":
+		splatter.amount = amount
+		splatter.global_position = location
+		splatter.process_material.direction = direction
+		splatter.process_material.spread = spread
+		splatter.process_material.initial_velocity_min = vel.x
+		splatter.process_material.initial_velocity_max = vel.y
 		
-	var splatter = physics_blood.instantiate()
-	splatter.amount = amount*2 + 25
-	splatter.global_position = location
-	splatter.process_material.direction = direction
-	splatter.process_material.spread = spread
-	splatter.process_material.initial_velocity_min = vel.x
-	splatter.process_material.initial_velocity_max = vel.y
+	elif splatter.get_class() == "CPUParticles2D":
+		splatter.amount = amount
+		splatter.global_position = location
+		splatter.direction = Vector2(direction.x,direction.y)
+		splatter.spread = spread
+		splatter.initial_velocity_min = vel.x
+		splatter.initial_velocity_max = vel.y
 	
 	get_parent().add_child(splatter)
+	splatter.emitting = true
+
 
 func get_input(input_name: String):
 	if NetworkManager.is_connected:
@@ -355,7 +372,7 @@ func acknowledge_death():
 			Globals.audio_stream_to_play_during_cutscene = _ending_video_audiostream
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
 	play_audio(AudioType.DEATH)
-	blood_splatter(30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
+	play_particles(physics_blood,0, 30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
 
 func _physics_process(delta: float):
 	set_collision_mask_value(4, not Input.is_action_pressed(get_input("down")))  # drop through platforms while down is held
