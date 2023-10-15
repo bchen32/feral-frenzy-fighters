@@ -11,6 +11,7 @@ size = Vector2(36, 76)
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 30
 script = ExtResource("1_ewoqh")
+stocks = 5
 _ending_video_audiostream = ExtResource("2_qwj5k")
 physics_blood = ExtResource("3_x78ow")
 
