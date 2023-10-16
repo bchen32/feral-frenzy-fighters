@@ -1,44 +1,123 @@
-[gd_scene load_steps=6 format=3 uid="uid://blblpyd2p40xn"]
+[gd_scene load_steps=9 format=3 uid="uid://blblpyd2p40xn"]
 
 [ext_resource type="Texture2D" uid="uid://bgmonsjmhthu2" path="res://levels/fish_tank/sprites/events/volcano_3_nolava.png" id="1_dq2pi"]
 [ext_resource type="Script" path="res://levels/fish_tank/volcano.gd" id="1_fmmku"]
-[ext_resource type="Texture2D" uid="uid://cq44bxu7u172k" path="res://levels/fish_tank/sprites/events/pebbles_hotpink.png" id="3_a508n"]
 [ext_resource type="Texture2D" uid="uid://dox8pd81l4t0x" path="res://levels/fish_tank/sprites/decor/bubbles.png" id="4_isncy"]
+[ext_resource type="Texture2D" uid="uid://dh3yu08mhuwhj" path="res://levels/fish_tank/sprites/events/volcano_3.png" id="4_s414h"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wcgja"]
-emission_shape = 3
-emission_box_extents = Vector3(1450, 1000, 1)
-particle_flag_disable_z = true
-direction = Vector3(0, 1, 0)
-spread = 0.0
-gravity = Vector3(0, 400, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-scale_min = 0.3
-scale_max = 0.3
+[sub_resource type="Animation" id="Animation_qoth4"]
+resource_name = "Active"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_s414h")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ActiveParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ActiveParticles:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_g6efy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_dq2pi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ActiveParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ActiveParticles:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_kd6cd"]
+resource_name = "Eruption"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ActiveParticles:speed_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7gtcm"]
+_data = {
+"Active": SubResource("Animation_qoth4"),
+"Eruption": SubResource("Animation_kd6cd"),
+"RESET": SubResource("Animation_g6efy")
+}
 
 [node name="Volcano" type="Node2D"]
+position = Vector2(947, 761)
+scale = Vector2(0.9, 0.9)
 script = ExtResource("1_fmmku")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_dq2pi")
 
-[node name="PebbleSpawn" type="Node2D" parent="."]
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(0, -1600)
-emitting = false
-amount = 40
-process_material = SubResource("ParticleProcessMaterial_wcgja")
-texture = ExtResource("3_a508n")
-lifetime = 5.0
-one_shot = true
-explosiveness = 1.0
-
 [node name="ActiveParticles" type="CPUParticles2D" parent="."]
 position = Vector2(-25, -100)
 emitting = false
 amount = 12
+lifetime = 0.85
 texture = ExtResource("4_isncy")
 emission_shape = 3
 emission_rect_extents = Vector2(100, 1)
@@ -52,6 +131,7 @@ scale_amount_max = 0.2
 position = Vector2(-25, -100)
 emitting = false
 amount = 150
+lifetime = 0.47
 one_shot = true
 texture = ExtResource("4_isncy")
 emission_shape = 3
@@ -63,3 +143,13 @@ initial_velocity_min = 600.0
 initial_velocity_max = 600.0
 scale_amount_min = 0.1
 scale_amount_max = 0.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7gtcm")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PebbleSpawn" type="Node2D" parent="."]

@@ -3,25 +3,23 @@ extends Node2D
 enum Volcano_States {DORMANT, ACTIVE, ERUPTING}
 var volcano_state = Volcano_States.DORMANT
 
-var active_max_delay = 30
-var active_min_delay = 15
+var active_max_delay = 1
+var active_min_delay = 0
 var active_delay: float
-var erupt_max_delay = 30
-var erupt_min_delay = 15
+var erupt_max_delay = 3
+var erupt_min_delay = 2
 var erupt_delay: float
 
-var num = 0
-
-var pebble_amount = 40
-var spawn_area_width = 1450
-var spawn_area_height = 1000
+var pebble_amount = 70
+var spawn_area_width = 1550
+var spawn_area_height = -5000
 var spawn_area_y_offset = -1600
 
-@onready var sprite = get_node("Sprite2D")
+@onready var anim = get_node("AnimationPlayer")
 @onready var pebble_spawn = get_node("PebbleSpawn")
-@onready var active_particles = get_node("ActiveParticles")
 @onready var eruption_particles = get_node("EruptionParticles")
 @onready var event_spawner = $"../EventSpawner"
+@onready var timer = get_node("Timer")
 var pebble = preload("res://levels/fish_tank/pebble.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -30,36 +28,42 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#if event_spawner.current_event_happening == false:
+	#	timer.paused = false
+	#else:
+	#	timer.paused = true
+	#print(timer.time_left)
 	pass
 
 func _volcano_process():
 	match volcano_state:
 		Volcano_States.DORMANT:
 			print("Volcano is DORMANT.")
-			eruption_particles.emitting = false
+			anim.play("RESET")
+			timer.start(randi_range(active_min_delay, active_max_delay))
+			await timer.timeout
+			
+			volcano_state = Volcano_States.ACTIVE
 		Volcano_States.ACTIVE:
 			print("Volcano is ACTIVE.")
-			active_particles.emitting = true
+			anim.play("Active")
+			timer.start(randi_range(erupt_min_delay, erupt_max_delay))
+			await timer.timeout
+			
+			volcano_state = Volcano_States.ERUPTING
 		Volcano_States.ERUPTING:
 			print("Volcano is ERUPTING.")
-			active_particles.emitting = false
+			anim.play("Erupting")
 			eruption_particles.emitting = true
-	
-	await get_tree().create_timer(3).timeout
-	
-	num += 1
-	if num > 2:
-		num = 0
-	
-	match num:
-		0:
+			await get_tree().create_timer(eruption_particles.lifetime).timeout
+			
+			for p in pebble_amount:
+				var rand_x = randf_range(-spawn_area_width / 2, spawn_area_width / 2)
+				var rand_y = randf_range(spawn_area_y_offset, spawn_area_y_offset + spawn_area_height)
+				var new_pebble = pebble.instantiate()
+				pebble_spawn.add_child(new_pebble)
+				new_pebble.position = Vector2(rand_x, rand_y)
+			
+			await get_tree().create_timer(5).timeout
 			volcano_state = Volcano_States.DORMANT
-		1:
-			volcano_state = Volcano_States.ACTIVE
-		2:
-			volcano_state = Volcano_States.ERUPTING
-	
 	_volcano_process()
-
-func _eruption():
-	pass

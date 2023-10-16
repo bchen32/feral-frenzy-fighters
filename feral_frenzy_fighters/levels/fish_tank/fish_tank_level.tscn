@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bsova147i2vec"]
+[gd_scene load_steps=19 format=3 uid="uid://bsova147i2vec"]
 
 [ext_resource type="Texture2D" uid="uid://bh65jpfqqtp5k" path="res://levels/fish_tank/sprites/decor/fish_level_wallpaper.png" id="1_rxrr6"]
 [ext_resource type="Texture2D" uid="uid://bhglr8sk5bivy" path="res://levels/fish_tank/sprites/decor/table.png" id="2_818kr"]
@@ -9,12 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://dqb25pfnhgat2" path="res://levels/cat_tree/sprites/decor/book_thin_purple.png" id="7_vnb83"]
 [ext_resource type="Texture2D" uid="uid://bkvumebdleqtd" path="res://levels/cat_tree/sprites/decor/book_thin.png" id="8_w02iu"]
 [ext_resource type="PackedScene" uid="uid://c6wndhaby67a4" path="res://levels/fish_tank/treasure_chest.tscn" id="9_akjcm"]
-[ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="10_ajri3"]
 [ext_resource type="Texture2D" uid="uid://bi4tgihcsasu7" path="res://levels/fish_tank/sprites/decor/tiki hut.png" id="10_ehe4q"]
 [ext_resource type="PackedScene" uid="uid://cadamwrackyxx" path="res://levels/fish_tank/tiki_head.tscn" id="10_hjvma"]
 [ext_resource type="PackedScene" uid="uid://ch0a3pyvecm4r" path="res://levels/fish_tank/pipeline.tscn" id="11_ibf3h"]
 [ext_resource type="PackedScene" uid="uid://blblpyd2p40xn" path="res://levels/fish_tank/volcano.tscn" id="13_d5umk"]
-[ext_resource type="Script" path="res://levels/event_spawner.gd" id="13_k0tf4"]
 [ext_resource type="Texture2D" uid="uid://c2sy06qgow26p" path="res://levels/fish_tank/sprites/interactables/boulder.png" id="13_tfp88"]
 [ext_resource type="Texture2D" uid="uid://1yn0d3vivecv" path="res://levels/fish_tank/sprites/interactables/osha_toy.png" id="14_btqcf"]
 
@@ -248,6 +246,9 @@ physics_layer_0/collision_layer = 4
 physics_layer_1/collision_layer = 8
 sources/0 = SubResource("TileSetAtlasSource_25un7")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqywv"]
+size = Vector2(285, 94.9999)
+
 [node name="FishTankLevel" type="Node2D"]
 
 [node name="Environment" type="Node2D" parent="."]
@@ -300,7 +301,7 @@ layer_4/enabled = true
 layer_4/modulate = Color(1, 1, 1, 1)
 layer_4/y_sort_enabled = false
 layer_4/y_sort_origin = 0
-layer_4/z_index = 0
+layer_4/z_index = 1
 layer_4/tile_data = PackedInt32Array(983044, 65536, 0, 983045, 65536, 0, 983046, 65536, 0, 983047, 65536, 0, 983048, 65536, 0, 983050, 65536, 0, 983049, 65536, 0, 983051, 65536, 0, 983052, 65536, 0, 983053, 65536, 0, 983055, 65536, 0, 983054, 65536, 0, 983056, 65536, 0, 983057, 65536, 0, 983058, 65536, 0, 983059, 65536, 0, 983060, 65536, 0, 983061, 65536, 0, 983062, 65536, 0, 983063, 65536, 0, 983064, 65536, 0, 983065, 65536, 0, 983066, 65536, 0, 983067, 65536, 0, 983043, 0, 1, 983068, 131072, 1, 655363, 327680, 1, 720899, 327680, 1, 786435, 327680, 1, 851971, 327680, 1, 917507, 327680, 1, 589827, 327680, 1, 524291, 327680, 1, 458755, 327680, 1, 393219, 327680, 1, 327683, 327680, 1, 262147, 327680, 1, 196611, 327680, 1, 131075, 327680, 1, 917532, 458752, 1, 851996, 458752, 1, 786460, 458752, 1, 720924, 458752, 1, 655388, 458752, 1, 589852, 458752, 1, 524316, 458752, 1, 458780, 458752, 1, 393244, 458752, 1, 327708, 458752, 1, 262172, 458752, 1, 196636, 458752, 1, 131100, 458752, 1, 917508, 0, 2, 917509, 0, 2, 917510, 0, 2, 917511, 0, 2, 917512, 0, 2, 917513, 0, 2, 917514, 0, 2, 917515, 0, 2, 917516, 0, 2, 917517, 0, 2, 917518, 0, 2, 917519, 0, 2, 917520, 0, 2, 917521, 0, 2, 917522, 0, 2, 917523, 0, 2, 917524, 0, 2, 917525, 0, 2, 917526, 0, 2, 917527, 0, 2, 917528, 0, 2, 917529, 0, 2, 917530, 0, 2, 917531, 0, 2)
 
 [node name="GlareTank" type="Sprite2D" parent="Environment"]
@@ -322,6 +323,7 @@ metadata/_edit_lock_ = true
 
 [node name="TestTubeRack" type="Sprite2D" parent="Environment/Decorations"]
 self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+z_index = 1
 position = Vector2(1747, 1077)
 scale = Vector2(2, 2)
 texture = ExtResource("6_elfyn")
@@ -329,7 +331,7 @@ metadata/_edit_lock_ = true
 
 [node name="BookThinPurple" type="Sprite2D" parent="Environment/Decorations"]
 self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
-z_index = 1
+z_index = 2
 position = Vector2(-8, 621)
 scale = Vector2(1.48, 2.13)
 texture = ExtResource("7_vnb83")
@@ -337,7 +339,7 @@ metadata/_edit_lock_ = true
 
 [node name="BookThin" type="Sprite2D" parent="Environment/Decorations"]
 self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
-z_index = 1
+z_index = 2
 position = Vector2(81, 649)
 rotation = -0.0364975
 scale = Vector2(1.64, 1.93)
@@ -345,10 +347,17 @@ texture = ExtResource("8_w02iu")
 metadata/_edit_lock_ = true
 
 [node name="TikiHut" type="Sprite2D" parent="Environment/Decorations"]
-position = Vector2(1571, 724)
+position = Vector2(1571, 727)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("10_ehe4q")
 metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Environment/Decorations/TikiHut"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Decorations/TikiHut/StaticBody2D"]
+position = Vector2(0.833252, -107.5)
+shape = SubResource("RectangleShape2D_cqywv")
 
 [node name="TikiHead" parent="Environment/Decorations" instance=ExtResource("10_hjvma")]
 z_index = -1
@@ -369,10 +378,12 @@ p1_tiki = false
 position = Vector2(383, 717)
 
 [node name="PipelineLeft" parent="Environment/ActiveEnvironment" node_paths=PackedStringArray("connecting_pipe") instance=ExtResource("11_ibf3h")]
+z_index = 1
 position = Vector2(192, 500)
 connecting_pipe = NodePath("../PipelineRight")
 
 [node name="PipelineRight" parent="Environment/ActiveEnvironment" node_paths=PackedStringArray("connecting_pipe") instance=ExtResource("11_ibf3h")]
+z_index = 1
 position = Vector2(1728, 500)
 scale = Vector2(-1, -1)
 entry_pipe = false
@@ -381,13 +392,11 @@ connecting_pipe = NodePath("../PipelineLeft")
 [node name="Events" type="Node2D" parent="."]
 
 [node name="EventSpawner" type="Node2D" parent="Events"]
-script = ExtResource("13_k0tf4")
 metadata/_edit_lock_ = true
 
 [node name="Volcano" parent="Events" instance=ExtResource("13_d5umk")]
 z_index = -2
 position = Vector2(944, 565)
-scale = Vector2(0.9, 0.9)
 
 [node name="Interactables" type="Node2D" parent="."]
 
@@ -402,11 +411,3 @@ metadata/_edit_lock_ = true
 position = Vector2(419, 311)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("14_btqcf")
-
-[node name="Player" parent="." instance=ExtResource("10_ajri3")]
-position = Vector2(552, 792)
-
-[node name="Player2" parent="." instance=ExtResource("10_ajri3")]
-position = Vector2(1366, 792)
-
-[connection signal="child_exiting_tree" from="Events/EventSpawner" to="Events/EventSpawner" method="_on_child_exiting_tree"]
