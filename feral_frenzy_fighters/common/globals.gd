@@ -17,6 +17,11 @@ var p2_inputs = []
 var p1_gamepad = []
 var p2_gamepad = []
 
+var player_gamepad = {
+	0 : false,
+	1 : false
+}
+
 signal shake_completed
 var passwords = {}
 
@@ -77,9 +82,16 @@ func setup_controls():
 	if len(Input.get_connected_joypads()) >= 2:
 		rebind_p1(0)
 		rebind_p2(1)
+		player_gamepad[0] = true
+		player_gamepad[1] = true
 	else:
 		rebind_p1(10) # Removes Joypad control from p1 (10 is an arbitrary number)
 		rebind_p2(0) # Makes the sole controller player p2
+		player_gamepad[0] = false
+		player_gamepad[1] = true
+		
+		
+		
 
 func rebind_p1(device_number: int):
 	for event in p1_gamepad:

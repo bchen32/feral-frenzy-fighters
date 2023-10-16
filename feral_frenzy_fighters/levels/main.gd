@@ -38,6 +38,7 @@ func _ready():
 	NetworkManager.recieved_player_data.connect(_game_information)
 	NetworkManager.death_acked.connect(_ack_death)
 	NetworkManager.hit_acked.connect(_ack_hit)
+	Globals.setup_controls()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

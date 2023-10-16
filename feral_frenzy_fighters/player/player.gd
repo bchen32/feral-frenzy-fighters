@@ -24,7 +24,9 @@ extends CharacterBody2D
 @export var kb_decay: float = 1500.0
 @export var inverse_weight: float = 10.0
 @onready var CS = $CollisionShape2D
+@onready var gamepad = Globals.player_gamepad[player_num]
 @export var attacks: Dictionary = {
+
 
 	"neutral":
 	{

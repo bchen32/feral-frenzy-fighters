@@ -22,23 +22,24 @@ func exit():
 
 
 func update(delta):
-	var direction = Input.get_axis(character.get_input("left"), character.get_input("right"))
-	#var left = Input.get_action_strength(character.get_input("left"))
-	#var right = Input.get_action_strength(character.get_input("right"))
-	var last_stick = stick_change
 	
-	stick_change = direction
+	if character.gamepad == true:
+		var direction = Input.get_axis(character.get_input("left"), character.get_input("right"))
+		var last_stick = stick_change
 	
+		stick_change = direction
 	
-	
-	if abs(last_stick - stick_change) > .25:
-		print("stick diff: ", abs(last_stick - stick_change))
-		print("twerk")
-		flick_dash = true
-	
-	if Input.is_action_pressed(character.get_input("dash")) || flick_dash == true:
-		flick_dash = false
-		return Globals.States.DASH
+		if abs(last_stick - stick_change) > .50:
+			flick_dash = true
+			
+		if Input.is_action_pressed(character.get_input("dash")) || flick_dash == true:
+			flick_dash = false
+			return Globals.States.DASH
+				
+	else:
+		if Input.is_action_pressed(character.get_input("dash")):
+			return Globals.States.DASH
+		
 	
 	return super(delta)
 
