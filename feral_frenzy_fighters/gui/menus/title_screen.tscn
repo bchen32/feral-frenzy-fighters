@@ -715,7 +715,6 @@ bus = &"SFX"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_n3vdy")
-autoplay = true
 bus = &"Music"
 
 [connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_button_entered"]

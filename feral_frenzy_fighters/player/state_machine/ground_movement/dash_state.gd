@@ -21,7 +21,7 @@ func exit():
 
 
 func update(delta):
-	if not Input.is_action_pressed(character.get_input("dash")):
+	if not Input.is_action_pressed(character.get_input("dash")) && abs(Input.get_axis(character.get_input("left"), character.get_input("right"))) < .1:
 		return Globals.States.WALK
 	return super(delta)
 
