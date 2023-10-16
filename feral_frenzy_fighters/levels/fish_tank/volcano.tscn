@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://blblpyd2p40xn"]
+
+[ext_resource type="Texture2D" uid="uid://bgmonsjmhthu2" path="res://levels/fish_tank/sprites/events/volcano_3_nolava.png" id="1_dq2pi"]
+[ext_resource type="Script" path="res://levels/fish_tank/volcano.gd" id="1_fmmku"]
+[ext_resource type="Texture2D" uid="uid://cq44bxu7u172k" path="res://levels/fish_tank/sprites/events/pebbles_hotpink.png" id="3_a508n"]
+[ext_resource type="Texture2D" uid="uid://dox8pd81l4t0x" path="res://levels/fish_tank/sprites/decor/bubbles.png" id="4_isncy"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wcgja"]
+emission_shape = 3
+emission_box_extents = Vector3(1450, 1000, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 400, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.3
+scale_max = 0.3
+
+[node name="Volcano" type="Node2D"]
+script = ExtResource("1_fmmku")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dq2pi")
+
+[node name="PebbleSpawn" type="Node2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -1600)
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_wcgja")
+texture = ExtResource("3_a508n")
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+
+[node name="ActiveParticles" type="CPUParticles2D" parent="."]
+position = Vector2(-25, -100)
+emitting = false
+amount = 12
+texture = ExtResource("4_isncy")
+emission_shape = 3
+emission_rect_extents = Vector2(100, 1)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -980)
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+
+[node name="EruptionParticles" type="CPUParticles2D" parent="."]
+position = Vector2(-25, -100)
+emitting = false
+amount = 150
+one_shot = true
+texture = ExtResource("4_isncy")
+emission_shape = 3
+emission_rect_extents = Vector2(100, 1)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -980)
+initial_velocity_min = 600.0
+initial_velocity_max = 600.0
+scale_amount_min = 0.1
+scale_amount_max = 0.2
