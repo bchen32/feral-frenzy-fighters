@@ -127,13 +127,8 @@ enum AudioType { ATTACK, DASH, DEATH, HIT, WALK, JUMP }
 
 func _ready():
 	randomize()
-	if _damage_label:
-		_damage_label.set_player_death_count(player_num, stocks)
-
-	if _dead_areas:
-		for dead_area in _dead_areas.get_children():
-			dead_area.body_entered.connect(_on_dead_area_entered)
-
+	refresh_damage_label(_damage_label)
+	
 	_initial_player_position = position
 	if player_num == 1:
 		anim_player.flip_h = false
@@ -142,11 +137,29 @@ func _ready():
 		anim_player.flip_h = true
 		p1_icon.visible = true
 	state_machine.init(self)
+	
+	refresh_dead_areas(_dead_areas)
 
+func refresh_dead_areas(new_dead_areas: Node2D):
+	if _dead_areas:
+		for dead_area in _dead_areas.get_children():
+			if dead_area.body_entered.is_connected(_on_dead_area_entered):
+				dead_area.body_entered.disconnect(_on_dead_area_entered)
+		
+	_dead_areas = new_dead_areas
+	
+	if _dead_areas:
+		for dead_area in _dead_areas.get_children():
+			dead_area.body_entered.connect(_on_dead_area_entered)
+
+func refresh_damage_label(new_damage_label: Control):
+	_damage_label = new_damage_label
+	
+	if _damage_label:
+		_damage_label.set_player_death_count(player_num, stocks)
 
 func reset_frame():
 	frame = 0
-
 
 func play_anim(animation_name: String):
 	if percentage > 80:
@@ -245,10 +258,7 @@ func end_attack():
 
 func _on_dead_area_entered(body: Node2D):
 	if body == self:
-		if not _is_lobby and NetworkManager.is_connected:
-			NetworkManager.report_death.rpc(player_num)
-		else:
-			acknowledge_death()
+		acknowledge_death()
 
 
 func acknowledge_hit(player_num: int, hit_info: Dictionary):
@@ -297,7 +307,10 @@ func acknowledge_death():
 		stocks -= 1
 		if _damage_label:
 			_damage_label.set_player_death_count(player_num, stocks)
-
+		
+		if NetworkManager.is_host:
+			NetworkManager.update_damage_label.rpc(player_num, 0, stocks)
+		
 		if not _is_lobby and stocks <= 0:
 			Globals.player1_won = player_num != 0
 			Globals.cutscene_player_end_game = true
@@ -327,7 +340,7 @@ func _process(_delta: float):
 		anim_player.position.y = 8
 	else:
 		anim_player.position.y = -8
-	if _damage_label:
+	if _damage_label and NetworkManager.is_host:
 		_damage_label.set_player_damage(player_num, percentage)
 	
 	if NetworkManager.is_connected and (_is_lobby or player_num == NetworkManager.my_player_num):

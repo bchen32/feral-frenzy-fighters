@@ -27,6 +27,7 @@ enum ChatEmoji {
 }
 
 var display_names: Array
+var damage_label: DamageUI
 var my_player_num: int
 var initial_stock: int
 var initial_percentage: int
@@ -183,6 +184,12 @@ func ack_hit(player_num: int, hit_data: Dictionary):
 func ack_chat(player_num: int, chat_emoji: ChatEmoji):
 	chat_acked.emit(player_num, chat_emoji)
 
+@rpc("authority", "reliable", "call_remote")
+func update_damage_label(player_num: int, percentage: int, stock: int):
+	if damage_label != null:
+		damage_label.set_player_damage(player_num, percentage)
+		damage_label.set_player_death_count(player_num, stock)
+
 @rpc("any_peer", "reliable", "call_remote")
 func player_input(input_action: String):
 	# later we should do state replication on this stuff to prevent cheating, 
@@ -209,26 +216,6 @@ func game_state_change_request(requested_game_state: NetworkManager.NetworkGameS
 	if sender_id in _players_in_which_lobbies:
 		_players_in_which_lobbies[sender_id].game_state_change_request(sender_id,
 																	   requested_game_state)
-
-@rpc("any_peer", "reliable", "call_remote")
-func report_death(player_num: int):
-	var sender_id = multiplayer.get_remote_sender_id()
-	var lobby = _players_in_which_lobbies[sender_id]
-	
-	if lobby not in _death_reports:
-		_death_reports[lobby] = {}
-	
-	if player_num not in _death_reports[lobby]:
-		_death_reports[lobby][player_num] = [sender_id]
-	elif sender_id not in _death_reports[lobby][player_num]:
-		_death_reports[lobby][player_num].append(sender_id)
-	
-	if _death_reports[lobby][player_num].size() >= 2:
-		lobby.death_on_player(player_num)
-		
-		ack_death.rpc(player_num)
-		
-		_death_reports[lobby].erase(player_num)
 
 @rpc("any_peer", "reliable", "call_remote")
 func report_chat(emoji: NetworkManager.ChatEmoji):

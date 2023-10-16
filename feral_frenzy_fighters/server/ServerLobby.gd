@@ -45,8 +45,6 @@ func get_lobby_state_string(lobby_num: int):
 	return lobby_state 
 
 func add_player(player_id: int):
-	print("wee")
-	
 	for player_key in _players:
 		var player = _players[player_key]
 		print("player num pre:%s" % player.player_num)
@@ -62,8 +60,6 @@ func add_player(player_id: int):
 	for player_key in _players:
 		var player = _players[player_key]
 		print("player num post:%s" % player.player_num)
-	
-	print(len(_players))
 	
 	if len(_players) >= TARGET_PLAYERS:
 		_lobby_game_state = NetworkManager.NetworkGameState.IN_FIRST_CUTSCENE
@@ -92,17 +88,16 @@ func add_player(player_id: int):
 				1:
 					player.position = Vector2(880, 247)
 			
-			print(player)
-			
 			if player in _waiting_lobby_scene.get_children():
 				_waiting_lobby_scene.remove_child(player)
-			
-			print(player)
 			
 			get_window().call_deferred("remove_child", _waiting_lobby_scene)
 			
 			if _level_scene.has_node(NodePath(player.name)):
 				_level_scene.remove_child(_level_scene.get_node(NodePath(player.name)))
+			
+			player.refresh_dead_areas(_level_scene.get_node("DeadAreas"))
+			player.refresh_damage_label(_level_scene.get_node("Camera2D/CanvasLayer/DamageUI"))
 			
 			_level_scene.add_child(player)
 			
@@ -121,6 +116,8 @@ func add_player(player_id: int):
 		if _waiting_lobby_scene.has_node(String(_players[player_id].name)):
 			_waiting_lobby_scene.remove_child(
 					_waiting_lobby_scene.get_node(String(_players[player_id].name)))
+		
+		_players[player_id].refresh_dead_areas(_waiting_lobby_scene.get_node("DeadAreas"))
 		
 		_waiting_lobby_scene.add_child(_players[player_id])
 		_network_manager.game_state_change.rpc_id(player_id, _lobby_game_state, 

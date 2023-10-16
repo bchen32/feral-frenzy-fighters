@@ -36,6 +36,9 @@ func _on_body_entered(body: Node2D):
 			body.hit = true
 			body.kb = kb
 			body.kb_angle = angle
+			
+			if NetworkManager.is_host:
+				NetworkManager.update_damage_label.rpc(body.player_num, body.percentage, body.stocks)
 
 func _on_area_2d_area_entered(area):
 	#print("Self.parent is: ", self.get_parent())

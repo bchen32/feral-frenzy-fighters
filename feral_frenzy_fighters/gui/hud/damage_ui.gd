@@ -1,5 +1,7 @@
 extends Control
 
+class_name DamageUI
+
 func _ready():
 	if NetworkManager.is_connected:
 		NetworkManager.connect("chat_acked", acknowledge_chat)
