@@ -182,11 +182,10 @@ func play_anim(animation_name: String):
 
 
 func play_audio(audio_type: AudioType):
-	if $SoundEffectPlayer.playing:
-		$SoundEffectPlayer.stop()
 
 	var audio_stream: AudioStream
-
+	var audio_player = preload("res://player/playerSFX.tscn").instantiate()
+	
 	match audio_type:
 		AudioType.ATTACK:
 			audio_stream = _attack_sfx[randi_range(0, _attack_sfx.size() - 1)]
@@ -201,10 +200,9 @@ func play_audio(audio_type: AudioType):
 		AudioType.JUMP: 
 			audio_stream = _jump_sfx[randi_range(0, _jump_sfx.size() - 1)]
 		
-
-	$SoundEffectPlayer.stream = audio_stream
-
-	$SoundEffectPlayer.play()
+	add_child(audio_player)
+	audio_player.stream = audio_stream
+	audio_player.play()
 
 func play_particles(
 	list: Array,
@@ -323,7 +321,6 @@ func acknowledge_hit(player_num: int, hit_info: Dictionary):
 	kb = hit_info["kb"]
 	kb_angle = hit_info["kb_angle"]
 	global_position.y += hit_info["kb_y_offset"]
-	#play_audio(AudioType.HIT)
 
 
 func acknowledge_death():

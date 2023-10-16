@@ -10,7 +10,7 @@ particles_anim_loop = false
 
 [sub_resource type="Gradient" id="Gradient_hlt30"]
 offsets = PackedFloat32Array(0, 0.222552)
-colors = PackedColorArray(0.996078, 0.996078, 1, 1, 1, 1, 1, 0)
+colors = PackedColorArray(0.996078, 0.996078, 1, 1, 0.838897, 0.838897, 0.838897, 0)
 
 [node name="dash" type="CPUParticles2D"]
 material = SubResource("CanvasItemMaterial_ifs31")

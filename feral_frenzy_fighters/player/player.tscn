@@ -24,10 +24,6 @@ shape = SubResource("RectangleShape2D_g467b")
 script = ExtResource("10_s8jpq")
 character = NodePath("..")
 
-[node name="SoundEffectPlayer" type="AudioStreamPlayer2D" parent="."]
-attenuation = 0.0
-bus = &"SFX"
-
 [node name="BloodExplosion" type="CPUParticles2D" parent="."]
 visible = false
 amount = 100
