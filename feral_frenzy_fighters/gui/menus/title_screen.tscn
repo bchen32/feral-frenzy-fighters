@@ -506,6 +506,7 @@ theme_override_constants/center_grabber = 0
 theme_override_icons/grabber = ExtResource("20_yxcn2")
 theme_override_icons/grabber_highlight = ExtResource("20_yxcn2")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_ii6ab")
+max_value = 200.0
 
 [node name="MusicText" type="RichTextLabel" parent="MainMenu/AudioSliders/VBoxContainer/MusicSlider"]
 clip_contents = false
@@ -535,6 +536,7 @@ layout_mode = 2
 theme_override_icons/grabber = ExtResource("20_yxcn2")
 theme_override_icons/grabber_highlight = ExtResource("20_yxcn2")
 theme_override_styles/slider = SubResource("StyleBoxTexture_hw7k6")
+max_value = 200.0
 
 [node name="SFX" type="RichTextLabel" parent="MainMenu/AudioSliders/VBoxContainer/SfxSlider"]
 clip_contents = false
@@ -711,6 +713,7 @@ vertical_alignment = 1
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("34_r00cv")
+volume_db = -5.0
 bus = &"SFX"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]

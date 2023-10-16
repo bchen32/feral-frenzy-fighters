@@ -295,14 +295,17 @@ texture_normal = ExtResource("11_0l6ms")
 
 [node name="P1Sounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_d8f5d")
+volume_db = -5.0
 bus = &"SFX"
 
 [node name="P2Sounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_d8f5d")
+volume_db = -5.0
 bus = &"SFX"
 
 [node name="MenuSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_i8kyi")
+volume_db = -5.0
 bus = &"SFX"
 
 [connection signal="mouse_entered" from="Background/P1Buttons/CatButton" to="." method="_on_button_mouse_entered" binds= [0]]

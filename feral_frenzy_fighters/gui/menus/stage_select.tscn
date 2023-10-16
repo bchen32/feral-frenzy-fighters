@@ -140,14 +140,17 @@ texture = ExtResource("1_fdfi8")
 
 [node name="P1Sounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_3tqbt")
+volume_db = -5.0
 bus = &"SFX"
 
 [node name="P2Sounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_3tqbt")
+volume_db = -5.0
 bus = &"SFX"
 
 [node name="MenuSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_myv1g")
+volume_db = -5.0
 bus = &"SFX"
 
 [connection signal="mouse_entered" from="Background/Player1ButtonsContainer/P1ButtonsTop/P1CatStageButton" to="." method="_on_button_mouse_entered" binds= [0]]
