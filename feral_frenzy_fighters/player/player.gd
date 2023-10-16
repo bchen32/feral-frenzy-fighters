@@ -318,7 +318,6 @@ func _physics_process(delta: float):
 	state_machine.update(delta)
 	move_and_slide()
 
-
 func _process(_delta: float):
 	if anim_player.flip_h:
 		anim_player.position.x = -12
@@ -338,3 +337,20 @@ func _process(_delta: float):
 			NetworkManager.send_network_input.rpc(input_actions)
 		#NetworkManager.update_game_information.rpc(position, state_machine.curr_state,
 		#										   anim_player.flip_h)
+
+func _enter_tree():
+	var multiplayer_replication_config: SceneReplicationConfig = $MultiplayerSynchronizer.replication_config
+	var old_multiplayer_sync: MultiplayerSynchronizer = $MultiplayerSynchronizer
+	var root_path: NodePath = $MultiplayerSynchronizer.root_path
+	
+	remove_child(old_multiplayer_sync)
+	old_multiplayer_sync.queue_free()
+	
+	var multiplayer_sync = MultiplayerSynchronizer.new()
+	
+	multiplayer_sync.name = NodePath("MultiplayerSynchronizer")
+	multiplayer_sync.replication_config = multiplayer_replication_config
+	multiplayer_sync.root_path = root_path
+	
+	call_deferred("add_child", multiplayer_sync)
+

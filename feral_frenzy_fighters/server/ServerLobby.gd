@@ -21,6 +21,11 @@ func _ready():
 	_level_scene = preload("res://levels/main.tscn").instantiate()
 	_waiting_lobby_scene = preload("res://levels/lobby.tscn").instantiate()
 	
+	if _level_scene.has_node("Player"):
+		_level_scene.remove_child(_level_scene.get_node("Player"))
+	if _level_scene.has_node("Player2"):
+		_level_scene.remove_child(_level_scene.get_node("Player2"))
+	
 	get_window().call_deferred("add_child", _level_scene)
 	get_window().call_deferred("add_child", _waiting_lobby_scene)
 
@@ -44,7 +49,6 @@ func add_player(player_id: int):
 	
 	for player_key in _players:
 		var player = _players[player_key]
-		player.player_num = len(_players)
 		print("player num pre:%s" % player.player_num)
 	
 	_players[player_id] = preload("res://player/player.tscn").instantiate()
@@ -95,6 +99,8 @@ func add_player(player_id: int):
 			
 			print(player)
 			
+			get_window().call_deferred("remove_child", _waiting_lobby_scene)
+			
 			if _level_scene.has_node(NodePath(player.name)):
 				_level_scene.remove_child(_level_scene.get_node(NodePath(player.name)))
 			
@@ -140,7 +146,7 @@ func game_state_change_request(sender_id: int, requested_game_state: NetworkMana
 		
 		if len(_ready_to_battle) == len(_players):
 			_lobby_game_state = NetworkManager.NetworkGameState.IN_BATTLE
-			
+				
 			for player_key in _players:
 				_network_manager.game_state_change.rpc_id(player_key, _lobby_game_state, "")
 			
