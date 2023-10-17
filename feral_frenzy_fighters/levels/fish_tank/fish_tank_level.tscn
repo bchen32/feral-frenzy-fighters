@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bsova147i2vec"]
+[gd_scene load_steps=21 format=3 uid="uid://bsova147i2vec"]
 
 [ext_resource type="Texture2D" uid="uid://bh65jpfqqtp5k" path="res://levels/fish_tank/sprites/decor/fish_level_wallpaper.png" id="1_rxrr6"]
 [ext_resource type="Texture2D" uid="uid://bhglr8sk5bivy" path="res://levels/fish_tank/sprites/decor/table.png" id="2_818kr"]
@@ -14,7 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://ch0a3pyvecm4r" path="res://levels/fish_tank/pipeline.tscn" id="11_ibf3h"]
 [ext_resource type="PackedScene" uid="uid://blblpyd2p40xn" path="res://levels/fish_tank/volcano.tscn" id="13_d5umk"]
 [ext_resource type="Texture2D" uid="uid://c2sy06qgow26p" path="res://levels/fish_tank/sprites/interactables/boulder.png" id="13_tfp88"]
+[ext_resource type="Script" path="res://levels/event_spawner.gd" id="13_xyfhw"]
 [ext_resource type="Texture2D" uid="uid://1yn0d3vivecv" path="res://levels/fish_tank/sprites/interactables/osha_toy.png" id="14_btqcf"]
+[ext_resource type="PackedScene" uid="uid://pak8t28sflvo" path="res://levels/fish_tank/fish_net.tscn" id="14_hfays"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_25un7"]
 texture = ExtResource("3_3pu7q")
@@ -240,7 +242,7 @@ texture_region_size = Vector2i(60, 60)
 2:7/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 2:7/0/physics_layer_1/angular_velocity = 0.0
 
-[sub_resource type="TileSet" id="TileSet_vvfh8"]
+[sub_resource type="TileSet" id="TileSet_q0bxu"]
 tile_size = Vector2i(60, 60)
 physics_layer_0/collision_layer = 4
 physics_layer_1/collision_layer = 8
@@ -268,7 +270,7 @@ texture = ExtResource("2_818kr")
 metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="Environment"]
-tile_set = SubResource("TileSet_vvfh8")
+tile_set = SubResource("TileSet_q0bxu")
 cell_quadrant_size = 60
 format = 2
 layer_0/name = "Water"
@@ -392,6 +394,8 @@ connecting_pipe = NodePath("../PipelineLeft")
 [node name="Events" type="Node2D" parent="."]
 
 [node name="EventSpawner" type="Node2D" parent="Events"]
+script = ExtResource("13_xyfhw")
+event_array = Array[PackedScene]([ExtResource("14_hfays")])
 metadata/_edit_lock_ = true
 
 [node name="Volcano" parent="Events" instance=ExtResource("13_d5umk")]
@@ -411,3 +415,5 @@ metadata/_edit_lock_ = true
 position = Vector2(419, 311)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("14_btqcf")
+
+[connection signal="child_exiting_tree" from="Events/EventSpawner" to="Events/EventSpawner" method="_on_child_exiting_tree"]

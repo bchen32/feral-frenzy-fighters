@@ -15,9 +15,7 @@ var spawn_area_y_offset = -1600
 
 @onready var anim = get_node("AnimationPlayer")
 @onready var pebble_spawn = get_node("PebbleSpawn")
-@onready var eruption_particles = get_node("EruptionParticles")
 @onready var event_spawner = $"../EventSpawner"
-@onready var timer = get_node("Timer")
 var pebble = preload("res://levels/fish_tank/pebble.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -26,32 +24,30 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if event_spawner.current_event_happening == false:
-		timer.paused = false
-	else:
-		timer.paused = true
+	if event_spawner.start_external_event == true: # will only happen after volcano called event_spawner's _external_event()
+		volcano_state = Volcano_States.ERUPTING
+		_volcano_process()
+		event_spawner.start_external_event = false
 
 func _volcano_process():
 	match volcano_state:
 		Volcano_States.DORMANT:
 			print("Volcano is DORMANT.")
 			anim.play("RESET")
-			timer.start(randi_range(active_min_delay, active_max_delay))
-			await timer.timeout
+			await get_tree().create_timer(randi_range(active_min_delay, active_max_delay)).timeout
 			
 			volcano_state = Volcano_States.ACTIVE
+			_volcano_process()
 		Volcano_States.ACTIVE:
 			print("Volcano is ACTIVE.")
 			anim.play("Active")
-			timer.start(randi_range(erupt_min_delay, erupt_max_delay))
-			await timer.timeout
+			await get_tree().create_timer(randi_range(erupt_min_delay, erupt_max_delay)).timeout
 			
-			volcano_state = Volcano_States.ERUPTING
+			event_spawner._external_event(false) # tell event_spawner volcano event wants to start next time
 		Volcano_States.ERUPTING:
 			print("Volcano is ERUPTING.")
-			anim.play("Erupting")
-			eruption_particles.emitting = true
-			await get_tree().create_timer(eruption_particles.lifetime).timeout
+			anim.play("Eruption")
+			await get_tree().create_timer(0.5).timeout
 			
 			for p in pebble_amount:
 				var rand_x = randf_range(-spawn_area_width / 2, spawn_area_width / 2)
@@ -61,5 +57,6 @@ func _volcano_process():
 				new_pebble.position = Vector2(rand_x, rand_y)
 			
 			await get_tree().create_timer(5).timeout
+			event_spawner._external_event(true) # tell event_spawner volcano event has finished
 			volcano_state = Volcano_States.DORMANT
-	_volcano_process()
+			_volcano_process()
