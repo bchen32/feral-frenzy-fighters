@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var _players: Array[PlayerCharacter] 
+var stage
 
 func _game_information(player_datas: Dictionary):
 	for player_num in player_datas:
@@ -38,6 +39,8 @@ func _ready():
 	NetworkManager.recieved_player_data.connect(_game_information)
 	NetworkManager.death_acked.connect(_ack_death)
 	NetworkManager.hit_acked.connect(_ack_hit)
+	stage = Globals.selected_stage.instantiate()
+	add_child(stage)
 	Globals.setup_controls()
 
 

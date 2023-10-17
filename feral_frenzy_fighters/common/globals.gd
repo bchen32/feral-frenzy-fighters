@@ -17,6 +17,8 @@ var p2_inputs = []
 var p1_gamepad = []
 var p2_gamepad = []
 
+var selected_stage: PackedScene
+
 var player_gamepad = {
 	0 : false,
 	1 : false

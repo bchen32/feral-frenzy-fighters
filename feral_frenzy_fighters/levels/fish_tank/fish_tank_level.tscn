@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bsova147i2vec"]
+[gd_scene load_steps=25 format=3 uid="uid://bsova147i2vec"]
 
 [ext_resource type="Texture2D" uid="uid://bh65jpfqqtp5k" path="res://levels/fish_tank/sprites/decor/fish_level_wallpaper.png" id="1_rxrr6"]
 [ext_resource type="Texture2D" uid="uid://bhglr8sk5bivy" path="res://levels/fish_tank/sprites/decor/table.png" id="2_818kr"]
@@ -13,8 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="10_ajri3"]
 [ext_resource type="Texture2D" uid="uid://bi4tgihcsasu7" path="res://levels/fish_tank/sprites/decor/tiki hut.png" id="10_ehe4q"]
 [ext_resource type="PackedScene" uid="uid://ch0a3pyvecm4r" path="res://levels/fish_tank/pipeline.tscn" id="11_ibf3h"]
+[ext_resource type="Script" path="res://levels/event_spawner.gd" id="13_j25pg"]
 [ext_resource type="Texture2D" uid="uid://c2sy06qgow26p" path="res://levels/fish_tank/sprites/interactables/boulder.png" id="13_tfp88"]
 [ext_resource type="Texture2D" uid="uid://1yn0d3vivecv" path="res://levels/fish_tank/sprites/interactables/osha_toy.png" id="14_btqcf"]
+[ext_resource type="Script" path="res://levels/camera.gd" id="16_70p13"]
+[ext_resource type="PackedScene" uid="uid://bsv627o3y2xj5" path="res://player/cat/cat.tscn" id="16_x4wuj"]
+[ext_resource type="PackedScene" uid="uid://cqwih0alupqsb" path="res://gui/hud/damage_ui.tscn" id="17_gim06"]
+[ext_resource type="AudioStream" uid="uid://0jlnqn0e0dnf" path="res://levels/fish_tank/fishfight.wav" id="20_gt66t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_25un7"]
 texture = ExtResource("3_3pu7q")
@@ -246,6 +251,12 @@ physics_layer_0/collision_layer = 4
 physics_layer_1/collision_layer = 8
 sources/0 = SubResource("TileSetAtlasSource_25un7")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_so32m"]
+size = Vector2(156, 1913.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oi1xg"]
+size = Vector2(3746.5, 285.5)
+
 [node name="FishTankLevel" type="Node2D"]
 
 [node name="Environment" type="Node2D" parent="."]
@@ -382,6 +393,8 @@ connecting_pipe = NodePath("../PipelineLeft")
 [node name="Events" type="Node2D" parent="."]
 
 [node name="EventSpawner" type="Node2D" parent="Events"]
+position = Vector2(0, -2)
+script = ExtResource("13_j25pg")
 
 [node name="Interactables" type="Node2D" parent="."]
 
@@ -397,8 +410,77 @@ position = Vector2(419, 311)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("14_btqcf")
 
-[node name="Player" parent="." instance=ExtResource("10_ajri3")]
+[node name="Player" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("10_ajri3")]
 position = Vector2(552, 792)
+sprite_scene = ExtResource("16_x4wuj")
+_damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
+_dead_areas = NodePath("../DeadAreas")
 
-[node name="Player2" parent="." instance=ExtResource("10_ajri3")]
+[node name="Player2" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("10_ajri3")]
 position = Vector2(1366, 792)
+sprite_scene = ExtResource("16_x4wuj")
+player_num = 1
+_damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
+_dead_areas = NodePath("../DeadAreas")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("players", "level")]
+position = Vector2(960, 538)
+limit_left = -200
+limit_top = -100
+limit_right = 2120
+limit_bottom = 1180
+editor_draw_limits = true
+script = ExtResource("16_70p13")
+players = [NodePath("../Player"), NodePath("../Player2")]
+level = NodePath("..")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="DamageUI" parent="Camera2D/CanvasLayer" instance=ExtResource("17_gim06")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -539.0
+offset_top = -145.0
+offset_right = 613.0
+offset_bottom = -145.0
+metadata/_edit_use_anchors_ = true
+
+[node name="DeadAreas" type="Node2D" parent="."]
+position = Vector2(-3, 557)
+
+[node name="DeadArea" type="Area2D" parent="DeadAreas"]
+position = Vector2(-732, -708)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadAreas/DeadArea"]
+position = Vector2(399, 595)
+shape = SubResource("RectangleShape2D_so32m")
+
+[node name="DeadArea2" type="Area2D" parent="DeadAreas"]
+position = Vector2(-732, -708)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadAreas/DeadArea2"]
+position = Vector2(2955, 567)
+shape = SubResource("RectangleShape2D_so32m")
+
+[node name="DeadArea3" type="Area2D" parent="DeadAreas"]
+collision_layer = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DeadAreas/DeadArea3"]
+position = Vector2(955, -1046)
+shape = SubResource("RectangleShape2D_oi1xg")
+
+[node name="DeadArea4" type="Area2D" parent="DeadAreas"]
+collision_layer = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DeadAreas/DeadArea4"]
+position = Vector2(528, 900)
+shape = SubResource("RectangleShape2D_oi1xg")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_gt66t")
+volume_db = 1.0
+autoplay = true
+bus = &"Music"
