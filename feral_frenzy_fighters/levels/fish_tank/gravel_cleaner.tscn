@@ -1,0 +1,135 @@
+[gd_scene load_steps=9 format=3 uid="uid://dhva4w7eajg41"]
+
+[ext_resource type="Texture2D" uid="uid://dox8pd81l4t0x" path="res://levels/fish_tank/sprites/decor/bubbles.png" id="1_020so"]
+[ext_resource type="Texture2D" uid="uid://b8j7x3vi0wsb7" path="res://levels/fish_tank/sprites/events/gravel cleaner.png" id="1_uvb7i"]
+[ext_resource type="Script" path="res://levels/fish_tank/gravel_cleaner.gd" id="1_y5pa7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bmh1"]
+size = Vector2(121, 196)
+
+[sub_resource type="Animation" id="Animation_q46im"]
+resource_name = "SuckFromLeft"
+length = 6.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.2, 1.8, 2, 3, 3.2, 5, 5.2, 6.2),
+"transitions": PackedFloat32Array(0.5, 1, 0.5, 1, -2, 1, -2, 1, 2, 1),
+"update": 0,
+"values": [Vector2(2000, -290), Vector2(300, -290), Vector2(300, -290), Vector2(300, -260), Vector2(300, -260), Vector2(300, 300), Vector2(300, 300), Vector2(1600, 300), Vector2(1600, 300), Vector2(1600, -500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.8, 6.03),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_60g3p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2000, -290)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wr2dy"]
+resource_name = "SuckFromRight"
+length = 6.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.2, 1.8, 2, 3, 3.2, 5, 5.2, 6.2),
+"transitions": PackedFloat32Array(0.5, 1, 0.5, 1, -2, 1, -2, 1, 2, 1),
+"update": 0,
+"values": [Vector2(-80, -290), Vector2(1620, -290), Vector2(1620, -290), Vector2(1620, -260), Vector2(1620, -260), Vector2(1620, 300), Vector2(1620, 300), Vector2(320, 300), Vector2(320, 300), Vector2(320, -500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.8, 6.03),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g4vo6"]
+_data = {
+"RESET": SubResource("Animation_60g3p"),
+"SuckFromLeft": SubResource("Animation_q46im"),
+"SuckFromRight": SubResource("Animation_wr2dy")
+}
+
+[node name="GravelCleaner" type="Node2D"]
+position = Vector2(2000, -290)
+script = ExtResource("1_y5pa7")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 525)
+emitting = false
+amount = 20
+lifetime = 1.2
+speed_scale = 1.25
+local_coords = true
+texture = ExtResource("1_020so")
+emission_shape = 3
+emission_rect_extents = Vector2(35, 15)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, -980)
+scale_amount_min = 0.05
+scale_amount_max = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uvb7i")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(1.5, 482)
+shape = SubResource("RectangleShape2D_4bmh1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g4vo6")
+}
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]

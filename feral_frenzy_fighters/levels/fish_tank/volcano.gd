@@ -8,7 +8,7 @@ var active_min_delay = 20
 var erupt_max_delay = 30
 var erupt_min_delay = 20
 
-var pebble_amount = 70
+var pebble_amount = 80
 var spawn_area_width = 1550
 var spawn_area_height = -5000
 var spawn_area_y_offset = -1600
