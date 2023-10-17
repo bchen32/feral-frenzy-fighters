@@ -10,10 +10,8 @@ func enter():
 	hitstun = floor(character.kb * character.kb_hitstun_scale)
 	character.velocity.x = cos(character.kb_angle) * character.kb
 	character.velocity.y = sin(character.kb_angle) * character.kb
-	print(character.velocity.y)
 	if character.velocity.y > 0: # Make spikes less punishing
 		character.velocity.y *= character.spike_mult
-	print(character.velocity.y)
 	character.hit = false
 
 

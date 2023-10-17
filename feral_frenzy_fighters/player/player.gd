@@ -21,7 +21,7 @@ extends CharacterBody2D
 @export var fall_grav_scale: float = 1.8
 @export var kb_base: float = 500.0
 @export var kb_hitstun_scale: float = 0.015
-@export var kb_decay: float = 1000.0
+@export var kb_decay: float = 2000.0
 @export var inverse_weight: float = 10.0
 @export var spike_mult: float = 0.5
 @export var hit_grav: float = 1500.0
@@ -33,8 +33,8 @@ extends CharacterBody2D
 		"frames": 30,
 		"damage": 10,
 		"knockback_scale": 1.0,
-		"knockback_x_offset": 10.0,
-		"knockback_y_offset": -10.0,
+		"knockback_x_offset": 20.0,
+		"knockback_y_offset": -20.0,
 		"hitboxes": [{"start_frame": 8, "end_frame": 16, "width": 28, "height": 10, "x_offset": 12, "y_offset": 0}]
 	},
 	"air_neutral":
