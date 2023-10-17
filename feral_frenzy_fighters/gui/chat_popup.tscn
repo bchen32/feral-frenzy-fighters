@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c76e6fhbc8jb2"]
+[gd_scene load_steps=9 format=3 uid="uid://c76e6fhbc8jb2"]
 
 [ext_resource type="Script" path="res://gui/chat_popup.gd" id="1_haknm"]
 [ext_resource type="Texture2D" uid="uid://mn0h7wb5ting" path="res://gui/menus/sprites/screens/reactions_pop_up.png" id="1_uv7cc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cukdhdxg7vsii" path="res://gui/menus/sprites/buttons/icons/chat_icon.png" id="3_bxp0a"]
 [ext_resource type="Texture2D" uid="uid://caq7e6yit4hkr" path="res://gui/menus/sprites/buttons/icons/reaction_thumb_up_icon.png" id="4_t25yf"]
 [ext_resource type="Texture2D" uid="uid://daaxv81eiw4u3" path="res://gui/menus/sprites/buttons/icons/reaction_skull_icon.png" id="5_f1inr"]
+[ext_resource type="AudioStream" uid="uid://coneg16uuc06h" path="res://gui/menus/sfx/button.wav" id="8_akr14"]
 
 [node name="ChatPopup" type="Control"]
 layout_mode = 3
@@ -62,6 +63,11 @@ icon_texture = ExtResource("3_bxp0a")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_akr14")
+volume_db = -5.0
+bus = &"SFX"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -286,5 +286,9 @@ _is_blue_popup = true
 [node name="ChatParticles" parent="P2" instance=ExtResource("9_hfx12")]
 position = Vector2(143, -105)
 
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+bus = &"SFX"
+
 [connection signal="chat_sent" from="P1/ChatPopup" to="." method="_on_p1_chat_sent"]
 [connection signal="chat_sent" from="P2/ChatPopup" to="." method="_on_p2_chat_sent"]

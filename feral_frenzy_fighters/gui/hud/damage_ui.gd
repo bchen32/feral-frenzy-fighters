@@ -45,10 +45,16 @@ func acknowledge_chat(player_num: int, chat_emoji: NetworkManager.ChatEmoji):
 		match chat_emoji:
 			NetworkManager.ChatEmoji.THUMBS_UP:
 				$P1/ChatParticles.texture = preload("res://gui/menus/sprites/buttons/icons/reaction_thumb_up_icon.png")
+				$SFX.stream = preload("res://gui/menus/sfx/good.wav")
+				$SFX.play()
 			NetworkManager.ChatEmoji.THUMBS_DOWN:
 				$P1/ChatParticles.texture = preload("res://gui/menus/sprites/buttons/icons/reaction_thumb_down_icon.png")
+				$SFX.stream = preload("res://gui/menus/sfx/bad.wav")
+				$SFX.play()
 			NetworkManager.ChatEmoji.SKULL:
 				$P1/ChatParticles.texture = preload("res://gui/menus/sprites/buttons/icons/reaction_skull_icon.png")
+				$SFX.stream = preload("res://gui/menus/sfx/pretend_its_bones.wav")
+				$SFX.play()
 		
 		$P1/ChatParticles.emitting = true
 	else:
@@ -57,10 +63,16 @@ func acknowledge_chat(player_num: int, chat_emoji: NetworkManager.ChatEmoji):
 		match chat_emoji:
 			NetworkManager.ChatEmoji.THUMBS_UP:
 				$P2/ChatParticles.texture = preload("res://gui/menus/sprites/buttons/icons/reaction_thumb_up_icon_blue.png")
+				$SFX.stream = preload("res://gui/menus/sfx/good.wav")
+				$SFX.play()
 			NetworkManager.ChatEmoji.THUMBS_DOWN:
 				$P2/ChatParticles.texture = preload("res://gui/menus/sprites/buttons/icons/reaction_thumb_down_icon_blue.png")
+				$SFX.stream = preload("res://gui/menus/sfx/bad.wav")
+				$SFX.play()
 			NetworkManager.ChatEmoji.SKULL:
 				$P2/ChatParticles.texture = preload("res://gui/menus/sprites/buttons/icons/reaction_skull_icon_blue.png")
+				$SFX.stream = preload("res://gui/menus/sfx/pretend_its_bones.wav")
+				$SFX.play()
 		
 		$P2/ChatParticles.emitting = true
 
