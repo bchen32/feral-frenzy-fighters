@@ -219,12 +219,13 @@ func game_state_change_request(requested_game_state: NetworkManager.NetworkGameS
 
 @rpc("any_peer", "reliable", "call_remote")
 func report_chat(emoji: NetworkManager.ChatEmoji):
-	var sender_id = multiplayer.get_remote_sender_id()
-	var lobby = _players_in_which_lobbies[sender_id]
-	var chatty_player_num = lobby._players[sender_id].player_num
-	
-	for player_key in lobby._players:
-		ack_chat.rpc_id(player_key, chatty_player_num, emoji) 
+	if NetworkManager.is_host:
+		var sender_id = multiplayer.get_remote_sender_id()
+		var lobby = _players_in_which_lobbies[sender_id]
+		var chatty_player_num = lobby._players[sender_id].player_num
+		
+		for player_key in lobby._players:
+			ack_chat.rpc_id(player_key, chatty_player_num, emoji) 
 
 @rpc("any_peer", "reliable", "call_remote")
 func report_hit(player_num: int, hit_data: Dictionary):

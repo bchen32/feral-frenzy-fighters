@@ -312,6 +312,9 @@ func acknowledge_death():
 			NetworkManager.update_damage_label.rpc(player_num, 0, stocks)
 		
 		if not _is_lobby and stocks <= 0:
+			if NetworkManager.is_host:
+				NetworkManager._players_in_which_lobbies[player_id].on_player_completely_dead(player_num)
+			
 			Globals.player1_won = player_num != 0
 			Globals.cutscene_player_end_game = true
 			Globals.cutscene_player_video_path = _ending_video

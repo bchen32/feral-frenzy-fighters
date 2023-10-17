@@ -173,21 +173,13 @@ func update():
 	#for player_key in _players:
 		#_network_manager.game_information.rpc_id(player_key, player_datas)
 
-func death_on_player(player_num: int):
+func on_player_completely_dead(dead_player_num: int):
 	for player_key in _players:
-		var dead_player = _players[player_key]
+		_lobby_game_state = NetworkManager.NetworkGameState.IN_SECOND_CUTSCENE
+		#print("dead: %s" % dead_player.player_num)
 		
-		if dead_player.player_num == player_num:
-			dead_player.stock -= 1
-			dead_player.percentage = 0
-			
-			if dead_player.stock <= 0:
-				for player_key_to_send in _players:
-					_lobby_game_state = NetworkManager.NetworkGameState.IN_SECOND_CUTSCENE
-					#print("dead: %s" % dead_player.player_num)
-					
-					_network_manager.game_state_change.rpc_id(player_key_to_send, _lobby_game_state, 
-															  "%s" % dead_player.player_num)
+		_network_manager.game_state_change.rpc_id(player_key, _lobby_game_state, 
+												  "%s" % dead_player_num)
 
 func hit_on_player(player_num: int, hit_data: Dictionary):
 	for player_key in _players:
