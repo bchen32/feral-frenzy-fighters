@@ -23,7 +23,8 @@ extends CharacterBody2D
 @export var kb_hitstun_scale: float = 0.015
 @export var kb_decay: float = 2000.0
 @export var inverse_weight: float = 10.0
-@export var bounce_thresh: float = 500.0
+@export var spike_mult: float = 0.1
+@export var bounce_thresh: float = 100.0
 @export var bounce_decay: float = 0.6
 @export var attacks: Dictionary = {
 	"neutral":

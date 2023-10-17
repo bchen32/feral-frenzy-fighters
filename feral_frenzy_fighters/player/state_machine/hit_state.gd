@@ -7,9 +7,13 @@ var hitstun: int
 func enter():
 	character.play_anim("hit")
 	character.blood_splatter(180)
-	hitstun = floor(character.kb * character.kb_hitstun_scale)
 	character.velocity.x = cos(character.kb_angle) * character.kb
 	character.velocity.y = sin(character.kb_angle) * character.kb
+	print(character.velocity.y)
+	if character.velocity.y > 0: # Make spikes less punishing
+		character.velocity.y *= character.spike_mult
+	print(character.velocity.y)
+	hitstun = floor(character.velocity.length() * character.kb_hitstun_scale)
 	character.hit = false
 
 
@@ -35,16 +39,16 @@ func update(delta):
 		var norm = collision.get_normal()
 		if character.velocity.project(norm).length() > character.bounce_thresh:
 			character.velocity = character.velocity.bounce(norm) * character.bounce_decay
-			hitstun = floor(hitstun * character.bounce_decay)
 			character.kb_angle = atan2(character.velocity.y, character.velocity.x)
+			if character.velocity.y > 0: # Make spikes less punishing
+				character.velocity.y *= character.spike_mult
+			hitstun = floor(character.velocity.length() * character.kb_hitstun_scale)
 	if character.velocity.x > 0:
 		character.velocity.x -= character.kb_decay * cos(character.kb_angle) * delta
 		character.velocity.x = maxf(character.velocity.x, 0.0)
 	elif character.velocity.x < 0:
 		character.velocity.x -= character.kb_decay * cos(character.kb_angle) * delta
 		character.velocity.x = minf(character.velocity.x, 0.0)
-	# Only decay upwards vertical velocity
-	if character.velocity.y < 0:
-		character.velocity.y -= character.kb_decay * sin(character.kb_angle) * delta
-		character.velocity.y = minf(character.velocity.y, 0.0)
+	character.velocity.y += character.get_grav() * delta
+	character.velocity.y = minf(character.velocity.y, character.terminal_vel)
 	return Globals.States.HIT
