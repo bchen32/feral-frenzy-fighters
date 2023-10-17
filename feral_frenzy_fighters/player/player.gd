@@ -21,8 +21,10 @@ extends CharacterBody2D
 @export var fall_grav_scale: float = 1.8
 @export var kb_base: float = 500.0
 @export var kb_hitstun_scale: float = 0.015
-@export var kb_decay: float = 1500.0
+@export var kb_decay: float = 2000.0
 @export var inverse_weight: float = 10.0
+@export var bounce_thresh: float = 500.0
+@export var bounce_decay: float = 0.6
 @export var attacks: Dictionary = {
 	"neutral":
 	{
@@ -339,7 +341,7 @@ func acknowledge_death():
 	
 	ko_icon_load.global_position = ko_icon_position
 	
-	position = _initial_player_position
+	position = _initial_player_position # needs to reload state machine (hit stun carries over)
 	velocity = Vector2(0, 0)
 	percentage = 0
 	
