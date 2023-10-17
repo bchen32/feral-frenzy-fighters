@@ -1,22 +1,24 @@
 class_name PlayerCharacter
 extends CharacterBody2D
 
+@export var sprite_scene: PackedScene
 @export var player_num: int = 0
 @export var stocks: int = 3
-@export var walk_accel: float = 4800.0
-@export var dash_accel: float = 6000.0
+@export var walk_accel: float = 6000.0
+@export var dash_accel: float = 9000.0
+@export var tilt_attack_accel: float = 1200.0
 @export var dash_attack_accel: float = 1500.0
-@export var air_accel: float = 2400.0
-@export var walk_jump_accel: float = 600.0 # jump accels not scaled by delta
+@export var air_accel: float = 3600.0
+@export var walk_jump_accel: float = 800.0 # jump accels not scaled by delta
 @export var dash_jump_accel: float = 1200.0
-@export var air_jump_accel: float = 900.0
-@export var walk_speed: float = 300.0
+@export var air_jump_accel: float = 600.0
+@export var walk_speed: float = 400.0
 @export var dash_speed: float = 600.0
-@export var dash_attack_speed: float = 900.0
-@export var air_jump_speed: float = 300.0
-@export var jump_speed: float = -1200.0
+@export var dash_attack_speed: float = 750.0
+@export var air_jump_speed: float = 400.0
+@export var jump_speed: float = -1000.0
 @export var terminal_vel: float = 1200.0
-@export var fall_grav_scale: float = 1.5
+@export var fall_grav_scale: float = 1.8
 @export var kb_base: float = 500.0
 @export var kb_hitstun_scale: float = 0.015
 @export var kb_decay: float = 1500.0
@@ -24,29 +26,30 @@ extends CharacterBody2D
 @export var attacks: Dictionary = {
 	"neutral":
 	{
-		"frames": 20,
-		"damage": 10,
-		"knockback_scale": 1.0,
-		"knockback_y_offset": -10.0,
-		"hitboxes": [{"start_frame": 8, "end_frame": 16, "width": 20, "height": 10, "x_offset": 20, "y_offset": 0}]
-	},
-	"air_neutral":
-	{
 		"frames": 30,
 		"damage": 10,
 		"knockback_scale": 1.0,
+		"knockback_x_offset": 10.0,
+		"knockback_y_offset": -10.0,
+		"hitboxes": [{"start_frame": 8, "end_frame": 16, "width": 28, "height": 10, "x_offset": 12, "y_offset": 0}]
+	},
+	"air_neutral":
+	{
+		"frames": 20,
+		"damage": 10,
+		"knockback_scale": 1.0,
+		"knockback_x_offset": 0.0,
 		"knockback_y_offset": 0.0,
-		"hitboxes": [{"start_frame": 4, "end_frame": 24, "width": 40, "height": 40, "x_offset": 0, "y_offset": 0}]
+		"hitboxes": [{"start_frame": 4, "end_frame": 20, "width": 40, "height": 40, "x_offset": 0, "y_offset": 0}]
 	},
 	"dash_attack":
 	{
-		"frames": 60,
+		"frames": 45,
 		"damage": 15,
 		"knockback_scale": 1.0,
+		"knockback_x_offset": 20.0,
 		"knockback_y_offset": -5.0,
 		"hitboxes": [
-			#{"start_frame": 12, "end_frame": 16, "width": 10, "height": 10, "x_offset": 0, "y_offset": -40},
-			#{"start_frame": 16, "end_frame": 20, "width": 20, "height": 10, "x_offset": 20, "y_offset": -40},
 			{"start_frame": 4, "end_frame": 24, "width": 20, "height": 40, "x_offset": 30, "y_offset": 0}
 		]
 	}
@@ -57,17 +60,17 @@ extends CharacterBody2D
 @export var _ending_video_audiostream: AudioStream
 @export var _is_lobby: bool = false
 
-@onready var anim_player: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: Node = $StateMachine
-@onready var p1_icon: Sprite2D = $Player1Icon
-@onready var p2_icon: Sprite2D = $Player2Icon
 
+@export var physics_blood: PackedScene
+
+var anim_player: AnimatedSprite2D
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 var frame: int = 0
 var percentage: float = 0.0
 var air_speed_upper_bound: float = walk_speed
 var air_speed_lower_bound: float = -walk_speed
-var jumps_left: int = 1
+var jumps_left: int = 3
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Be careful not to desync curr_hitboxes_ends from curr_hitboxes (sadly no tuples in GDScript)
 var curr_hitboxes: Array[Node]
@@ -87,6 +90,7 @@ var kb_angle: float = 0.0
 var flip_h: bool = false
 
 var _initial_player_position: Vector2
+var beanbag: bool = false
 
 var _attack_sfx = [
 	preload("res://player/cat/sfx/attack/attack_1.wav"),
@@ -129,14 +133,44 @@ func _ready():
 	randomize()
 	refresh_damage_label(_damage_label)
 	
+	
+	if Globals.player_sprites.size() > player_num:
+		sprite_scene = Globals.player_sprites[player_num]
+	var sprites = sprite_scene.instantiate()
+	add_child(sprites)
+	var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
+	if "cat" in sprites.get_scene_file_path():
+		if player_num:
+			player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_blue.png")
+		else:
+			player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_purple.png")
+	elif "fish" in sprites.get_scene_file_path():
+		player_head.texture = load("res://gui/hud/sprites/head_icons/fish_head_icon.png")
+	elif "beanbag" in sprites.get_scene_file_path():
+		beanbag = true
+	anim_player = sprites.get_node("AnimatedSprite2D")
+	var p1_icon
+	var p2_icon
+	if not beanbag:
+		p1_icon = sprites.get_node("Player1Icon")
+		p2_icon = sprites.get_node("Player2Icon")
+	if _damage_label:
+		_damage_label.set_player_death_count(player_num, stocks)
+
+	if _dead_areas:
+		for dead_area in _dead_areas.get_children():
+			dead_area.body_entered.connect(_on_dead_area_entered)
+
 	_initial_player_position = position
 	if player_num == 1:
 		anim_player.flip_h = false
-		p2_icon.visible = true
+		if p2_icon:
+			p2_icon.visible = true
 	else:
 		anim_player.flip_h = true
-		p1_icon.visible = true
-	state_machine.init(self)
+		if p1_icon:
+			p1_icon.visible = true
+	state_machine.init()
 	
 	refresh_dead_areas(_dead_areas)
 
@@ -162,10 +196,13 @@ func reset_frame():
 	frame = 0
 
 func play_anim(animation_name: String):
-	if percentage > 80:
-		anim_player.play(("blue_" if player_num else "purple_") + "injured_" + animation_name)
+	if beanbag: # beanbag only
+		anim_player.play(animation_name)
 	else:
-		anim_player.play(("blue_" if player_num else "purple_") + animation_name)
+		if percentage > 40:
+			anim_player.play(("blue_" if player_num else "purple_") + "injured_" + animation_name)
+		else:
+			anim_player.play(("blue_" if player_num else "purple_") + animation_name)
 
 
 func play_audio(audio_type: AudioType):
@@ -193,6 +230,22 @@ func play_audio(audio_type: AudioType):
 
 	$SoundEffectPlayer.play()
 
+func blood_splatter(
+	spread: float = 45, 
+	amount: int = percentage,
+	location: Vector2 = self.global_position, 
+	direction: Vector3 = Vector3(0,0,0), 
+	vel: Vector2 = Vector2(200,500)):
+		
+	var splatter = physics_blood.instantiate()
+	splatter.amount = amount*2 + 25
+	splatter.global_position = location
+	splatter.process_material.direction = direction
+	splatter.process_material.spread = spread
+	splatter.process_material.initial_velocity_min = vel.x
+	splatter.process_material.initial_velocity_max = vel.y
+	
+	get_parent().add_child(splatter)
 
 func get_input(input_name: String):
 	if NetworkManager.is_host:
@@ -241,6 +294,7 @@ func update_attack(attack_name: String):
 				hitbox_stats.y_offset,
 				attack.damage,
 				attack.knockback_scale,
+				(1.0 if anim_player.flip_h else -1.0) * attack.knockback_x_offset,
 				attack.knockback_y_offset
 			)
 	for i in range(len(curr_hitboxes)):
@@ -256,6 +310,17 @@ func end_attack():
 	curr_hitboxes_ends = []
 
 
+func air_movement(delta):
+	velocity.y += get_grav() * delta
+	velocity.y = minf(velocity.y, terminal_vel)
+	var direction = Input.get_axis(
+		get_input("left"), get_input("right")
+	)
+	if direction:
+		velocity.x += direction * air_accel * delta
+		velocity.x = clamp(velocity.x, air_speed_lower_bound, air_speed_upper_bound)
+
+
 func _on_dead_area_entered(body: Node2D):
 	if body == self:
 		acknowledge_death()
@@ -268,6 +333,7 @@ func acknowledge_hit(player_num: int, hit_info: Dictionary):
 	kb_angle = hit_info["kb_angle"]
 	global_position.y += hit_info["kb_y_offset"]
 	play_audio(AudioType.HIT)
+	
 
 func acknowledge_death():
 	var hit_direction = \
@@ -320,8 +386,8 @@ func acknowledge_death():
 			Globals.cutscene_player_video_path = _ending_video
 			Globals.audio_stream_to_play_during_cutscene = _ending_video_audiostream
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
-	else:
-		play_audio(AudioType.DEATH)
+	play_audio(AudioType.DEATH)
+	blood_splatter(30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
 
 func _physics_process(delta: float):
 	# if we are the server setup, we need to tell InputManager which player to get inputs for

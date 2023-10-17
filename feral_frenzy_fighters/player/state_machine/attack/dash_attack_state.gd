@@ -4,21 +4,20 @@ extends AttackState
 
 func enter():
 	super()
-	if character.velocity.x > 0:
+	if direction == "right":
 		character.velocity.x = character.dash_attack_speed
-	elif character.velocity.x < 0:
+	elif direction == "left":
 		character.velocity.x = -character.dash_attack_speed
 	else:
-		if direction == "left":
-			character.velocity.x = -character.dash_attack_speed
-		elif direction == "right":
+		if character.anim_player.flip_h:
 			character.velocity.x = character.dash_attack_speed
+		else:
+			character.velocity.x = -character.dash_attack_speed
 	attack = character.attacks["dash_attack"]
 	character.play_anim("dash_attack")
 
 
 func update(delta):
-	#print(character.velocity.x)
 	if character.frame >= attack.frames:
 		return Globals.States.IDLE
 	if not character.is_on_floor():

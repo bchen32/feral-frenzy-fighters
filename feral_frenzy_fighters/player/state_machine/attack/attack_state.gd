@@ -6,11 +6,11 @@ var attack: Dictionary = {}
 
 
 func enter():
-	var left_right = InputManager.get_axis(
-		character.get_input("left"), character.get_input("right")
+	var left_right = Input.get_axis(
+		character.get_input("right"), character.get_input("left")
 	)
-	var up_down = InputManager.get_axis(
-		character.get_input("up"), character.get_input("down")
+	var up_down = Input.get_axis(
+		character.get_input("down"), character.get_input("up")
 	)
 	# Note: the ordering of these if statements implicitly defines the priority of attacks
 	# when multiple directions are held down at the same time
@@ -24,7 +24,6 @@ func enter():
 		direction = "down"
 	else:
 		direction = "neutral"
-	direction = "neutral"  # just for game jam since only neutral is implemented
 	character.play_audio(character.AudioType.ATTACK)
 
 

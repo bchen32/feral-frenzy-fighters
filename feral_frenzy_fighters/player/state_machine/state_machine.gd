@@ -35,9 +35,7 @@ func init(character_to_set: PlayerCharacter):
 func update(delta):
 	if character.hit:
 		transition(Globals.States.HIT)
-	#if character.player_num == 0:
-		#print(character.velocity.x)
-	
+	var next_state = states[curr_state].update(delta)
 	# If transition, update new state instead
 	# note: this implies that if a state is going to transition
 	# it should return before it performs any updates

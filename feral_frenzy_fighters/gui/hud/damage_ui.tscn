@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cqwih0alupqsb"]
+[gd_scene load_steps=15 format=3 uid="uid://cqwih0alupqsb"]
 
 [ext_resource type="Script" path="res://gui/hud/damage_ui.gd" id="1_kd0hw"]
 [ext_resource type="Texture2D" uid="uid://djyfonhy27vtl" path="res://gui/hud/sprites/stats_paw_prints/player_stats_purple.png" id="2_jus1w"]
@@ -7,10 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dtjxj17aqw5vn" path="res://gui/hud/sprites/stats_paw_prints/icons/heart_icon.png" id="6_6l4le"]
 [ext_resource type="Texture2D" uid="uid://dtmxypm8hko4g" path="res://gui/hud/sprites/stats_paw_prints/player_stats_blue.png" id="6_xgw5i"]
 [ext_resource type="Texture2D" uid="uid://elwjbvsp7q46" path="res://gui/hud/sprites/stats_paw_prints/icons/knife.png" id="7_6quto"]
-[ext_resource type="Texture2D" uid="uid://b0jyk2ikrx2l7" path="res://gui/hud/sprites/head_icons/cat_head_icon_purple.png" id="7_d4swm"]
 [ext_resource type="PackedScene" uid="uid://c76e6fhbc8jb2" path="res://gui/chat_popup.tscn" id="8_7swuq"]
 [ext_resource type="PackedScene" uid="uid://dj261m0egiehk" path="res://gui/chat_particles.tscn" id="9_hfx12"]
-[ext_resource type="Texture2D" uid="uid://82eu6fdyfbt7" path="res://gui/hud/sprites/head_icons/cat_head_icon_blue.png" id="11_0a8ss"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xhf4j"]
 font = ExtResource("3_ekkdo")
@@ -109,6 +107,24 @@ label_settings = SubResource("LabelSettings_58gvk")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SwordTexture" type="TextureRect" parent="P1"]
+visible = false
+layout_mode = 0
+offset_left = 241.0
+offset_top = 38.0
+offset_right = 418.0
+offset_bottom = 233.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_6quto")
+
+[node name="TextureRect" type="TextureRect" parent="P1"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -12.0
+offset_right = 182.0
+offset_bottom = 166.0
+scale = Vector2(0.5, 0.5)
+
 [node name="ProgressBar" type="ProgressBar" parent="P1"]
 visible = false
 layout_mode = 0
@@ -132,25 +148,6 @@ theme = ExtResource("5_cn1rk")
 theme_override_styles/background = SubResource("StyleBoxFlat_fif64")
 max_value = 1000.0
 show_percentage = false
-
-[node name="SwordTexture" type="TextureRect" parent="P1"]
-visible = false
-layout_mode = 0
-offset_left = 241.0
-offset_top = 38.0
-offset_right = 418.0
-offset_bottom = 233.0
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("7_6quto")
-
-[node name="TextureRect" type="TextureRect" parent="P1"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = -12.0
-offset_right = 182.0
-offset_bottom = 166.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_d4swm")
 
 [node name="ChatPopup" parent="P1" instance=ExtResource("8_7swuq")]
 layout_mode = 1
@@ -252,7 +249,7 @@ offset_top = -12.0
 offset_right = 182.0
 offset_bottom = 166.0
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("11_0a8ss")
+stretch_mode = 2
 
 [node name="ProgressBar3" type="ProgressBar" parent="P2"]
 visible = false

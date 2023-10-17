@@ -1,78 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxwjcbvvl31df"]
+[gd_scene load_steps=9 format=3 uid="uid://xwiop7ddea54"]
 
 [ext_resource type="Script" path="res://levels/cat_tree/destructible_cat_tree.gd" id="1_4nqk4"]
-[ext_resource type="Texture2D" uid="uid://1k3thips7gk0" path="res://levels/cat_tree/sprites/interactables/525x750 cat tree.png" id="1_l4tpq"]
+[ext_resource type="Texture2D" uid="uid://jw6ur2gldrht" path="res://levels/cat_tree/sprites/interactables/375x750 cat tree.png" id="1_gjgp4"]
 
-[sub_resource type="Animation" id="Animation_2an5l"]
-resource_name = "Falling"
-length = 7.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3.5, 3.9, 4.3, 4.7, 5.1, 5.5, 7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(12, 0), Vector2(18, 0), Vector2(-12, 0), Vector2(-85, 0), Vector2(-158, 25), Vector2(-226, 57), Vector2(-286, 106), Vector2(-335, 166), Vector2(-472, 1296)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3.5, 5.5, 7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0349066, 0.0523599, -0.0349066, -1.0472, -1.39626]
-}
-
-[sub_resource type="Animation" id="Animation_hlp2f"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:self_modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_ya0x8"]
+[sub_resource type="Animation" id="Animation_5mrj6"]
 resource_name = "Damage"
 length = 0.2
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -86,37 +20,105 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 0.588235, 0.588235, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_sx3pt"]
-_data = {
-"Damage": SubResource("Animation_ya0x8"),
-"Falling": SubResource("Animation_2an5l"),
-"RESET": SubResource("Animation_hlp2f")
+[sub_resource type="Animation" id="Animation_ucosu"]
+resource_name = "Falling"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(80, 1436)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, 0.610865, 0.872665]
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehljl"]
-size = Vector2(524, 74)
+[sub_resource type="Animation" id="Animation_w40cn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2pead"]
-size = Vector2(53, 673)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q2uom"]
+_data = {
+"Damage": SubResource("Animation_5mrj6"),
+"Falling": SubResource("Animation_ucosu"),
+"RESET": SubResource("Animation_w40cn")
+}
 
-[node name="cat_tree_middle" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8t837"]
+size = Vector2(375, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axvhf"]
+size = Vector2(53, 675)
+
+[node name="CatTreeMiddle" type="Node2D"]
 script = ExtResource("1_4nqk4")
-starting_health = 120
+starting_health = 160
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_l4tpq")
+texture = ExtResource("1_gjgp4")
+offset = Vector2(-2, -375)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_sx3pt")
+"": SubResource("AnimationLibrary_q2uom")
 }
 
 [node name="Physical" type="StaticBody2D" parent="."]
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Physical"]
-position = Vector2(0, -337)
-shape = SubResource("RectangleShape2D_ehljl")
+position = Vector2(0, -713)
+shape = SubResource("RectangleShape2D_8t837")
 one_way_collision = true
 metadata/_edit_lock_ = true
 
@@ -126,6 +128,6 @@ collision_mask = 0
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0.5, 37.5)
-shape = SubResource("RectangleShape2D_2pead")
+position = Vector2(-2.5, -339)
+shape = SubResource("RectangleShape2D_axvhf")
 metadata/_edit_lock_ = true

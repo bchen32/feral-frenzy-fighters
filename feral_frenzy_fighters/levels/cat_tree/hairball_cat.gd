@@ -3,6 +3,7 @@ extends Node2D
 var x_positions = [250, 1670]
 var facing_left = false
 var shoot = false
+var speed = 1000
 
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @onready var sprite = self.get_child(0)
@@ -32,7 +33,6 @@ func _ready():
 	
 	anim.play("coming_in")
 	
-	# Once animation finishes, randomly wait between range of seconds, then shoot hairball
 	await anim.animation_finished
 	await get_tree().create_timer(randi_range(1, 5)).timeout
 	
@@ -41,7 +41,7 @@ func _ready():
 func _physics_process(delta):
 	if shoot == true and not NetworkManager.is_connected:
 		hairball.visible = true
-		hairball.position = hairball.position.move_toward(aim.position, 400 * delta) # move hairball towards the aim point in the amount of seconds
+		hairball.position = hairball.position.move_toward(aim.position, speed * delta) # move hairball towards the aim point in the amount of seconds
 		hairball.rotate(6 * delta)
 
 func _shoot_hairball():
@@ -52,17 +52,16 @@ func _shoot_hairball():
 	if facing_left == true: # flip angle if facing left
 		angle *= -1
 	
-	mouth.rotation_degrees = angle # rotate mouth node according to angle
+	mouth.rotation_degrees = angle
 	
-	await anim.animation_finished # after aiming, activate the hairball to shoot and create hitbox for it
+	await anim.animation_finished
 	anim.play("shooting_hairball")
 	
 	# Create a new hitbox
 	var hairball_hitbox = hitbox_scene.instantiate()
 	hairball.add_child(hairball_hitbox)
 	
-	# (width, height, x_offset, y_offset, damage, knockback_scale, knockback_y_offset)
-	hairball_hitbox.setup(70, 70, 0, 0, 10, 1.5, 0)
+	hairball_hitbox.setup(70, 70, 0, 0, 10, 1.5, 0, 0)
 	
 	shoot = true
 	cat_sfx.set_pitch_scale(randf_range(1,1.5))
@@ -70,7 +69,6 @@ func _shoot_hairball():
 	hairball_sfx.play()
 	
 	await anim.animation_finished
-	await get_tree().create_timer(5).timeout
-	anim.play_backwards("coming_in") # leave from view
+	anim.play_backwards("coming_in")
 	await anim.animation_finished
-	queue_free() # deletes itself
+	queue_free()

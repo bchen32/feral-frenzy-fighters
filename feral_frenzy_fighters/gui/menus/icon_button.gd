@@ -25,14 +25,17 @@ func refresh_button_apperance():
 		
 		$IconButtonClick/Icon.show()
 		$IconButtonClick/Label.hide()
-	
+		
+		
 	if is_blue_button:
 		$IconButtonClick.texture_normal = preload("res://gui/menus/sprites/buttons/button_icon_blue.png")
 		$IconButtonClick.texture_hover = preload("res://gui/menus/sprites/buttons/button_icon_blue_highlight.png")
+		$IconButtonClick.texture_focused = preload("res://gui/menus/sprites/buttons/button_icon_blue_highlight.png")
 		$IconButtonClick.texture_pressed = preload("res://gui/menus/sprites/buttons/button_icon_blue_pressed.png")
 	else:
 		$IconButtonClick.texture_normal = preload("res://gui/menus/sprites/buttons/button_icon.png")
 		$IconButtonClick.texture_hover = preload("res://gui/menus/sprites/buttons/button_icon_highlight.png")
+		$IconButtonClick.texture_focused = preload("res://gui/menus/sprites/buttons/button_icon_highlight.png")
 		$IconButtonClick.texture_pressed = preload("res://gui/menus/sprites/buttons/button_icon_pressed.png")
 	
 

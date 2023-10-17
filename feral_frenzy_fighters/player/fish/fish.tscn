@@ -1,0 +1,930 @@
+[gd_scene load_steps=176 format=3 uid="uid://dqiurpsdch4o6"]
+
+[ext_resource type="Texture2D" uid="uid://d1ne2xw1bmx63" path="res://player/fish/sprites/air_attack_neutral/blue/fish_aerial_attack_blue_3.png" id="1_is3u1"]
+[ext_resource type="Texture2D" uid="uid://vwwk337f6yk3" path="res://player/fish/sprites/air_attack_neutral/blue/fish_aerial_attack_blue_4.png" id="2_c817b"]
+[ext_resource type="Texture2D" uid="uid://b4u3u82ljnf10" path="res://player/fish/sprites/air_attack_neutral/blue/fish_aerial_attack_blue_5.png" id="3_ify5l"]
+[ext_resource type="Texture2D" uid="uid://dsecbshhr0m7h" path="res://player/fish/sprites/air_attack_neutral/blue/fish_aerial_attack_blue_6.png" id="4_6xmjo"]
+[ext_resource type="Texture2D" uid="uid://ffije3u0wtlm" path="res://player/fish/sprites/air_attack_neutral/blue/fish_aerial_attack_blue_7.png" id="5_dryj8"]
+[ext_resource type="Texture2D" uid="uid://bq7d1wmnxeq8s" path="res://player/fish/sprites/air_attack_neutral/blue/fish_aerial_attack_blue_8.png" id="6_ai2pn"]
+[ext_resource type="Texture2D" uid="uid://dbad5xhjdfq31" path="res://player/fish/sprites/attack_neutral/blue/fish_attack_blue_1.png" id="7_o3w24"]
+[ext_resource type="Texture2D" uid="uid://bq3pilh2t0iuj" path="res://player/fish/sprites/attack_neutral/blue/fish_attack_blue_2.png" id="8_v1q8m"]
+[ext_resource type="Texture2D" uid="uid://blankeyhyg1yg" path="res://player/fish/sprites/attack_neutral/blue/fish_attack_blue_3.png" id="9_dty3l"]
+[ext_resource type="Texture2D" uid="uid://k7hqthrahv50" path="res://player/fish/sprites/attack_neutral/blue/fish_attack_blue_4.png" id="10_td3jk"]
+[ext_resource type="Texture2D" uid="uid://cqs5lp0fc2pe" path="res://player/fish/sprites/attack_neutral/blue/fish_attack_blue_5.png" id="11_yvqmf"]
+[ext_resource type="Texture2D" uid="uid://dmpw7t7lhmd7p" path="res://player/fish/sprites/attack_neutral/blue/fish_attack_blue_6.png" id="12_mf1ns"]
+[ext_resource type="Texture2D" uid="uid://bcs8ebcuh25c4" path="res://player/fish/sprites/attack_neutral/blue/fish_attack_blue_7.png" id="13_77fl7"]
+[ext_resource type="Texture2D" uid="uid://bo4ubrf33v7pg" path="res://player/fish/sprites/run/blue/fish_run_blue_1.png" id="14_ch5je"]
+[ext_resource type="Texture2D" uid="uid://bacip6430g4wo" path="res://player/fish/sprites/run/blue/fish_run_blue_2.png" id="15_jcsri"]
+[ext_resource type="Texture2D" uid="uid://kxwqifs2u8ae" path="res://player/fish/sprites/run/blue/fish_run_blue_3.png" id="16_ta8i0"]
+[ext_resource type="Texture2D" uid="uid://bx24pbjb270wb" path="res://player/fish/sprites/run/blue/fish_run_blue_4.png" id="17_gv042"]
+[ext_resource type="Texture2D" uid="uid://c26lntxfc32ig" path="res://player/fish/sprites/run/blue/fish_run_blue_5.png" id="18_bclxn"]
+[ext_resource type="Texture2D" uid="uid://k0i1javsgmgu" path="res://player/fish/sprites/run/blue/fish_run_blue_6.png" id="19_t01l4"]
+[ext_resource type="Texture2D" uid="uid://dclrarqjt2qo6" path="res://player/fish/sprites/dash_attack/blue/fish_dash_attack_blue_1.png" id="20_qgt6b"]
+[ext_resource type="Texture2D" uid="uid://dvhm8ihj26b4g" path="res://player/fish/sprites/dash_attack/blue/fish_dash_attack_blue_2.png" id="21_q4o7s"]
+[ext_resource type="Texture2D" uid="uid://c8oo0s8jbld01" path="res://player/fish/sprites/dash_attack/blue/fish_dash_attack_blue_3.png" id="22_de8t0"]
+[ext_resource type="Texture2D" uid="uid://dalabu22q17i3" path="res://player/fish/sprites/dash_attack/blue/fish_dash_attack_blue_4.png" id="23_w4lbw"]
+[ext_resource type="Texture2D" uid="uid://d23imby5k577v" path="res://player/fish/sprites/dash_attack/blue/fish_dash_attack_blue_5.png" id="24_mkdkf"]
+[ext_resource type="Texture2D" uid="uid://c6opecqtakd63" path="res://player/fish/sprites/dash_attack/blue/fish_dash_attack_blue_6.png" id="25_j651x"]
+[ext_resource type="Texture2D" uid="uid://bwv71bquqq5b0" path="res://player/fish/sprites/dash_attack/blue/fish_dash_attack_blue_7.png" id="26_tbxjs"]
+[ext_resource type="Texture2D" uid="uid://d3wfnqww3l65o" path="res://player/fish/sprites/jump/blue/fish_jump_blue_6.png" id="27_s53ph"]
+[ext_resource type="Texture2D" uid="uid://cjlhk0emjcu3i" path="res://player/fish/sprites/hit_graphic/blue/fish_graphic_damage_blue_2.png" id="28_nuoy3"]
+[ext_resource type="Texture2D" uid="uid://jianlyspp8e" path="res://player/fish/sprites/hit_graphic/blue/fish_graphic_damage_blue_3.png" id="29_gpdod"]
+[ext_resource type="Texture2D" uid="uid://tp80qaypyjrq" path="res://player/fish/sprites/hit_graphic/blue/fish_graphic_damage_blue_4.png" id="30_s85vk"]
+[ext_resource type="Texture2D" uid="uid://c3fh676yfhi4s" path="res://player/fish/sprites/hit_graphic/blue/fish_graphic_damage_blue_5.png" id="31_l5hdc"]
+[ext_resource type="Texture2D" uid="uid://dcr4qw73lijr" path="res://player/fish/sprites/idle/blue/fish_idle_blue_1.png" id="32_fa72d"]
+[ext_resource type="Texture2D" uid="uid://dcogjk2kpb6ja" path="res://player/fish/sprites/idle/blue/fish_idle_blue_2.png" id="33_eym0f"]
+[ext_resource type="Texture2D" uid="uid://d22pm8ed7ur4e" path="res://player/fish/sprites/idle/blue/fish_idle_blue_3.png" id="34_dc34g"]
+[ext_resource type="Texture2D" uid="uid://c7ycb4skwr6jp" path="res://player/fish/sprites/idle/blue/fish_idle_blue_4.png" id="35_i7gxk"]
+[ext_resource type="Texture2D" uid="uid://d2jh0h0yycoyi" path="res://player/fish/sprites/air_attack_neutral/blue/injured/fish_aerial_attack_blue_injured_3.png" id="36_ergfy"]
+[ext_resource type="Texture2D" uid="uid://cf0rngpibtmfp" path="res://player/fish/sprites/air_attack_neutral/blue/injured/fish_aerial_attack_blue_injured_4.png" id="37_kpe61"]
+[ext_resource type="Texture2D" uid="uid://5qt4soshpy37" path="res://player/fish/sprites/air_attack_neutral/blue/injured/fish_aerial_attack_blue_injured_5.png" id="38_yp8qw"]
+[ext_resource type="Texture2D" uid="uid://c2fvuxxpukamy" path="res://player/fish/sprites/air_attack_neutral/blue/injured/fish_aerial_attack_blue_injured_6.png" id="39_pdddt"]
+[ext_resource type="Texture2D" uid="uid://dblluec2vu362" path="res://player/fish/sprites/air_attack_neutral/blue/injured/fish_aerial_attack_blue_injured_7.png" id="40_87i3p"]
+[ext_resource type="Texture2D" uid="uid://djovheguato4k" path="res://player/fish/sprites/attack_neutral/blue/injured/fish_attack_blue_injured_1.png" id="41_4alil"]
+[ext_resource type="Texture2D" uid="uid://40ap84xpsrvh" path="res://player/fish/sprites/attack_neutral/blue/injured/fish_attack_blue_injured_2.png" id="42_814ld"]
+[ext_resource type="Texture2D" uid="uid://upx2rpagbcpy" path="res://player/fish/sprites/attack_neutral/blue/injured/fish_attack_blue_injured_3.png" id="43_a157a"]
+[ext_resource type="Texture2D" uid="uid://bwn47xajtfvcy" path="res://player/fish/sprites/attack_neutral/blue/injured/fish_attack_blue_injured_4.png" id="44_y7x45"]
+[ext_resource type="Texture2D" uid="uid://bbngles7vv28f" path="res://player/fish/sprites/attack_neutral/blue/injured/fish_attack_blue_injured_5.png" id="45_8ixg2"]
+[ext_resource type="Texture2D" uid="uid://3f4wjooei31n" path="res://player/fish/sprites/attack_neutral/blue/injured/fish_attack_blue_injured_6.png" id="46_ndgf3"]
+[ext_resource type="Texture2D" uid="uid://bgjw1dx7hjhe" path="res://player/fish/sprites/run/blue/injured/fish_run_injured_blue_1.png" id="47_l0dr2"]
+[ext_resource type="Texture2D" uid="uid://bwtgm51waomy0" path="res://player/fish/sprites/run/blue/injured/fish_run_injured_blue_2.png" id="48_v0sk6"]
+[ext_resource type="Texture2D" uid="uid://b0s87la3l7wop" path="res://player/fish/sprites/run/blue/injured/fish_run_injured_blue_3.png" id="49_uue6g"]
+[ext_resource type="Texture2D" uid="uid://bl2xcavdkx1hi" path="res://player/fish/sprites/run/blue/injured/fish_run_injured_blue_4.png" id="50_j104p"]
+[ext_resource type="Texture2D" uid="uid://djvtg8lckwsrp" path="res://player/fish/sprites/run/blue/injured/fish_run_injured_blue_5.png" id="51_xd3jj"]
+[ext_resource type="Texture2D" uid="uid://csoem3cyw18qc" path="res://player/fish/sprites/run/blue/injured/fish_run_injured_blue_6.png" id="52_efewx"]
+[ext_resource type="Texture2D" uid="uid://rt1mvolj0e8p" path="res://player/fish/sprites/dash_attack/blue/injured/fish_dash_attack_blue_injured_1.png" id="53_7ilmo"]
+[ext_resource type="Texture2D" uid="uid://b4at8l6xphbyg" path="res://player/fish/sprites/dash_attack/blue/injured/fish_dash_attack_blue_injured_2.png" id="54_4ofky"]
+[ext_resource type="Texture2D" uid="uid://bancr7e5lsxej" path="res://player/fish/sprites/dash_attack/blue/injured/fish_dash_attack_blue_injured_3.png" id="55_h0kpc"]
+[ext_resource type="Texture2D" uid="uid://bwb07oacfovcd" path="res://player/fish/sprites/dash_attack/blue/injured/fish_dash_attack_blue_injured_4.png" id="56_5jnj6"]
+[ext_resource type="Texture2D" uid="uid://iog1kynl8l26" path="res://player/fish/sprites/dash_attack/blue/injured/fish_dash_attack_blue_injured_5.png" id="57_suaju"]
+[ext_resource type="Texture2D" uid="uid://cffvwuf55u07a" path="res://player/fish/sprites/dash_attack/blue/injured/fish_dash_attack_blue_injured_6.png" id="58_jels5"]
+[ext_resource type="Texture2D" uid="uid://dbyyiva2cjv7w" path="res://player/fish/sprites/dash_attack/blue/injured/fish_dash_attack_blue_injured_7.png" id="59_t12e0"]
+[ext_resource type="Texture2D" uid="uid://bd7chrqvi670" path="res://player/fish/sprites/jump/blue/injured/fish_jump_injured_blue_6.png" id="60_7fa17"]
+[ext_resource type="Texture2D" uid="uid://c25uenmurlcxx" path="res://player/fish/sprites/idle/blue/injured/fish_idle_injured_blue_1.png" id="61_o7kyd"]
+[ext_resource type="Texture2D" uid="uid://cpaxmuhxdr8ic" path="res://player/fish/sprites/idle/blue/injured/fish_idle_injured_blue_2.png" id="62_wakbx"]
+[ext_resource type="Texture2D" uid="uid://thkdlnsy06uo" path="res://player/fish/sprites/idle/blue/injured/fish_idle_injured_blue_3.png" id="63_n4b3f"]
+[ext_resource type="Texture2D" uid="uid://rofj5onwusy1" path="res://player/fish/sprites/idle/blue/injured/fish_idle_injured_blue_4.png" id="64_40hdi"]
+[ext_resource type="Texture2D" uid="uid://cp0yy4me37t8e" path="res://player/fish/sprites/jump/blue/injured/fish_jump_injured_blue_1.png" id="65_1k24q"]
+[ext_resource type="Texture2D" uid="uid://bqpghvwhxf7b" path="res://player/fish/sprites/jump/blue/injured/fish_jump_injured_blue_2.png" id="66_7xh4h"]
+[ext_resource type="Texture2D" uid="uid://dccgraj5gjd25" path="res://player/fish/sprites/jump/blue/injured/fish_jump_injured_blue_3.png" id="67_bkrrw"]
+[ext_resource type="Texture2D" uid="uid://d0yq53plcpspk" path="res://player/fish/sprites/jump/blue/injured/fish_jump_injured_blue_4.png" id="68_r7dw1"]
+[ext_resource type="Texture2D" uid="uid://bm1wklp84snk0" path="res://player/fish/sprites/jump/blue/injured/fish_jump_injured_blue_5.png" id="69_ioart"]
+[ext_resource type="Texture2D" uid="uid://b5hike03h8jo8" path="res://player/fish/sprites/walk/blue/injured/fish_walk_injured_blue_1.png" id="70_6p3af"]
+[ext_resource type="Texture2D" uid="uid://cwbf4bfymsk31" path="res://player/fish/sprites/walk/blue/injured/fish_walk_injured_blue_2.png" id="71_1jhsm"]
+[ext_resource type="Texture2D" uid="uid://dis3j7eblmae2" path="res://player/fish/sprites/walk/blue/injured/fish_walk_injured_blue_3.png" id="72_0oyi1"]
+[ext_resource type="Texture2D" uid="uid://bn2t2b3tby6a6" path="res://player/fish/sprites/walk/blue/injured/fish_walk_injured_blue_4.png" id="73_g1m8h"]
+[ext_resource type="Texture2D" uid="uid://b22k3h7ovdx3u" path="res://player/fish/sprites/walk/blue/injured/fish_walk_injured_blue_5.png" id="74_8x5jk"]
+[ext_resource type="Texture2D" uid="uid://d084f7wxiniuf" path="res://player/fish/sprites/walk/blue/injured/fish_walk_injured_blue_6.png" id="75_2mf6y"]
+[ext_resource type="Texture2D" uid="uid://cmwtonfn4a8cp" path="res://player/fish/sprites/jump/blue/fish_jump_blue_1.png" id="76_7miye"]
+[ext_resource type="Texture2D" uid="uid://1pfr4g02ss0l" path="res://player/fish/sprites/walk/blue/fish_walk_blue_1.png" id="76_sga0w"]
+[ext_resource type="Texture2D" uid="uid://clbvpjk82vcke" path="res://player/fish/sprites/walk/blue/fish_walk_blue_2.png" id="77_e3eph"]
+[ext_resource type="Texture2D" uid="uid://q0xbbiukkart" path="res://player/fish/sprites/jump/blue/fish_jump_blue_2.png" id="77_tv4o8"]
+[ext_resource type="Texture2D" uid="uid://vvbf2mfc30ab" path="res://player/fish/sprites/walk/blue/fish_walk_blue_3.png" id="78_u07ni"]
+[ext_resource type="Texture2D" uid="uid://ck4v72dd78i81" path="res://player/fish/sprites/jump/blue/fish_jump_blue_3.png" id="78_ug1mg"]
+[ext_resource type="Texture2D" uid="uid://csvpccqub3vm1" path="res://player/fish/sprites/walk/blue/fish_walk_blue_4.png" id="79_4vvjo"]
+[ext_resource type="Texture2D" uid="uid://d26ngrh3gused" path="res://player/fish/sprites/jump/blue/fish_jump_blue_4.png" id="79_31wc2"]
+[ext_resource type="Texture2D" uid="uid://chcwxysv13d1j" path="res://player/fish/sprites/walk/blue/fish_walk_blue_5.png" id="80_16lb1"]
+[ext_resource type="Texture2D" uid="uid://dgagrc1obn24w" path="res://player/fish/sprites/jump/blue/fish_jump_blue_5.png" id="80_v7kyi"]
+[ext_resource type="Texture2D" uid="uid://bn4kj3loxwx3s" path="res://player/fish/sprites/walk/blue/fish_walk_blue_6.png" id="81_tl6rv"]
+[ext_resource type="Texture2D" uid="uid://wdc6ijky4bqd" path="res://player/fish/sprites/air_attack_neutral/purple/fish_aerial_attack_3.png" id="82_2ac87"]
+[ext_resource type="Texture2D" uid="uid://b02p8yweq16xb" path="res://player/fish/sprites/air_attack_neutral/purple/fish_aerial_attack_4.png" id="83_yiy2p"]
+[ext_resource type="Texture2D" uid="uid://b88g6s07wxwa7" path="res://player/fish/sprites/air_attack_neutral/purple/fish_aerial_attack_5.png" id="84_mksxi"]
+[ext_resource type="Texture2D" uid="uid://da63pfa2feqph" path="res://player/fish/sprites/air_attack_neutral/purple/fish_aerial_attack_6.png" id="85_iqkd3"]
+[ext_resource type="Texture2D" uid="uid://qsf5xx6ok0e6" path="res://player/fish/sprites/air_attack_neutral/purple/fish_aerial_attack_7.png" id="86_48ld5"]
+[ext_resource type="Texture2D" uid="uid://nmjfs1sbhjr0" path="res://player/fish/sprites/air_attack_neutral/purple/fish_aerial_attack_8.png" id="87_qvin8"]
+[ext_resource type="Texture2D" uid="uid://c2lcibmgu5rrf" path="res://player/fish/sprites/attack_neutral/purple/fish_attack_purple_1.png" id="88_qolit"]
+[ext_resource type="Texture2D" uid="uid://bivfnnmqlp4qa" path="res://player/fish/sprites/attack_neutral/purple/fish_attack_purple_2.png" id="89_qnjw7"]
+[ext_resource type="Texture2D" uid="uid://cto17s2l1fyce" path="res://player/fish/sprites/attack_neutral/purple/fish_attack_purple_3.png" id="90_xbsyh"]
+[ext_resource type="Texture2D" uid="uid://b3cf7i3namdw6" path="res://player/fish/sprites/attack_neutral/purple/fish_attack_purple_4.png" id="91_jhbu8"]
+[ext_resource type="Texture2D" uid="uid://b0fevu7sjl622" path="res://player/fish/sprites/attack_neutral/purple/fish_attack_purple_5.png" id="92_qcwa5"]
+[ext_resource type="Texture2D" uid="uid://ccv46o6j0orpj" path="res://player/fish/sprites/attack_neutral/purple/fish_attack_purple_6.png" id="93_r8tf5"]
+[ext_resource type="Texture2D" uid="uid://dbwnwt6fv3e5x" path="res://player/fish/sprites/attack_neutral/purple/fish_attack_purple_7.png" id="94_o81o3"]
+[ext_resource type="Texture2D" uid="uid://dnqr3brka75rk" path="res://player/fish/sprites/run/purple/fish_run_purple_1.png" id="95_ce51o"]
+[ext_resource type="Texture2D" uid="uid://byo45p5vyl6j2" path="res://player/fish/sprites/run/purple/fish_run_purple_2.png" id="96_ksw4w"]
+[ext_resource type="Texture2D" uid="uid://cx3dgswsldbbk" path="res://player/fish/sprites/run/purple/fish_run_purple_3.png" id="97_le22k"]
+[ext_resource type="Texture2D" uid="uid://d3gdguk7fcupg" path="res://player/fish/sprites/run/purple/fish_run_purple_4.png" id="98_dlhim"]
+[ext_resource type="Texture2D" uid="uid://cbjk54eke6dxq" path="res://player/fish/sprites/run/purple/fish_run_purple_5.png" id="99_g0gvq"]
+[ext_resource type="Texture2D" uid="uid://djiv7g150sr5v" path="res://player/fish/sprites/run/purple/fish_run_purple_6.png" id="100_tp5j7"]
+[ext_resource type="Texture2D" uid="uid://bc4ndbff0opj4" path="res://player/fish/sprites/dash_attack/purple/fish_dash_attack_purple_1.png" id="101_stxod"]
+[ext_resource type="Texture2D" uid="uid://q40csbl54q8y" path="res://player/fish/sprites/dash_attack/purple/fish_dash_attack_purple_2.png" id="102_lreod"]
+[ext_resource type="Texture2D" uid="uid://0ihrq2qdv4xi" path="res://player/fish/sprites/dash_attack/purple/fish_dash_attack_purple_3.png" id="103_11rd4"]
+[ext_resource type="Texture2D" uid="uid://wfjh2u2xkg4b" path="res://player/fish/sprites/dash_attack/purple/fish_dash_attack_purple_4.png" id="104_2m0ap"]
+[ext_resource type="Texture2D" uid="uid://4ihcg7k1cd45" path="res://player/fish/sprites/dash_attack/purple/fish_dash_attack_purple_5.png" id="105_tst8b"]
+[ext_resource type="Texture2D" uid="uid://dor5v5io464bd" path="res://player/fish/sprites/dash_attack/purple/fish_dash_attack_purple_6.png" id="106_knho8"]
+[ext_resource type="Texture2D" uid="uid://d0v1mxg0ufbdy" path="res://player/fish/sprites/dash_attack/purple/fish_dash_attack_purple_7.png" id="107_l6xdt"]
+[ext_resource type="Texture2D" uid="uid://b46u1ymsry6pd" path="res://player/fish/sprites/jump/purple/fish_jump_purple_6.png" id="108_h4ohg"]
+[ext_resource type="Texture2D" uid="uid://5bwsdtngarov" path="res://player/fish/sprites/hit_graphic/purple/fish_graphic_damage_purple_2.png" id="109_43i52"]
+[ext_resource type="Texture2D" uid="uid://cov6waf6k1nxm" path="res://player/fish/sprites/hit_graphic/purple/fish_graphic_damage_purple_3.png" id="110_4di2i"]
+[ext_resource type="Texture2D" uid="uid://cy57uqwvrossp" path="res://player/fish/sprites/hit_graphic/purple/fish_graphic_damage_purple_4.png" id="111_jmw74"]
+[ext_resource type="Texture2D" uid="uid://cuc7uiup83xh0" path="res://player/fish/sprites/hit_graphic/purple/fish_graphic_damage_purple_5.png" id="112_sqrf6"]
+[ext_resource type="Texture2D" uid="uid://bhd1gvdshvwsi" path="res://player/fish/sprites/idle/purple/fish_idle_purple_1.png" id="113_mpyit"]
+[ext_resource type="Texture2D" uid="uid://tkk8wej120f4" path="res://player/fish/sprites/idle/purple/fish_idle_purple_2.png" id="114_a1rqe"]
+[ext_resource type="Texture2D" uid="uid://ia54imr55mrf" path="res://player/fish/sprites/idle/purple/fish_idle_purple_3.png" id="115_o05qi"]
+[ext_resource type="Texture2D" uid="uid://yvgalrqk7sw5" path="res://player/fish/sprites/idle/purple/fish_idle_purple_4.png" id="116_dhvfe"]
+[ext_resource type="Texture2D" uid="uid://cot4juy1e4x4v" path="res://player/fish/sprites/air_attack_neutral/purple/injured/fish_aerial_attack_purple_injured_3.png" id="117_1gl6l"]
+[ext_resource type="Texture2D" uid="uid://da3v6vn3exsqe" path="res://player/fish/sprites/air_attack_neutral/purple/injured/fish_aerial_attack_purple_injured_4.png" id="118_3ya62"]
+[ext_resource type="Texture2D" uid="uid://oc6vfkwmtif" path="res://player/fish/sprites/air_attack_neutral/purple/injured/fish_aerial_attack_purple_injured_5.png" id="119_nna7o"]
+[ext_resource type="Texture2D" uid="uid://bthe4i7c41una" path="res://player/fish/sprites/air_attack_neutral/purple/injured/fish_aerial_attack_purple_injured_6.png" id="120_0lcwm"]
+[ext_resource type="Texture2D" uid="uid://dcnhfjdgyg01v" path="res://player/fish/sprites/air_attack_neutral/purple/injured/fish_aerial_attack_purple_injured_7.png" id="121_67mjy"]
+[ext_resource type="Texture2D" uid="uid://gswk0i5o3l0a" path="res://player/fish/sprites/attack_neutral/purple/injured/fish_attack_purple_injured_1.png" id="122_u7flj"]
+[ext_resource type="Texture2D" uid="uid://c3kaaprxpnp2v" path="res://player/fish/sprites/attack_neutral/purple/injured/fish_attack_purple_injured_2.png" id="123_43khi"]
+[ext_resource type="Texture2D" uid="uid://b8cv4k0nwvicf" path="res://player/fish/sprites/attack_neutral/purple/injured/fish_attack_purple_injured_3.png" id="124_rlme2"]
+[ext_resource type="Texture2D" uid="uid://c2ma6gjmmmven" path="res://player/fish/sprites/attack_neutral/purple/injured/fish_attack_purple_injured_4.png" id="125_df732"]
+[ext_resource type="Texture2D" uid="uid://ctay8cke0v3yc" path="res://player/fish/sprites/attack_neutral/purple/injured/fish_attack_purple_injured_5.png" id="126_bah08"]
+[ext_resource type="Texture2D" uid="uid://d1osdggun61wj" path="res://player/fish/sprites/attack_neutral/purple/injured/fish_attack_purple_injured_6.png" id="127_osowk"]
+[ext_resource type="Texture2D" uid="uid://cntvn6dw7s6es" path="res://player/fish/sprites/run/purple/injured/fish_run_injured_purple_1.png" id="128_sf26y"]
+[ext_resource type="Texture2D" uid="uid://4f7n7y8lhm0i" path="res://player/fish/sprites/run/purple/injured/fish_run_injured_purple_2.png" id="129_j58d4"]
+[ext_resource type="Texture2D" uid="uid://bcd4vc27jr1uk" path="res://player/fish/sprites/run/purple/injured/fish_run_injured_purple_3.png" id="130_sdxxk"]
+[ext_resource type="Texture2D" uid="uid://dg2h3nsdcwlsa" path="res://player/fish/sprites/run/purple/injured/fish_run_injured_purple_4.png" id="131_nfmy6"]
+[ext_resource type="Texture2D" uid="uid://dswjf1schwqwh" path="res://player/fish/sprites/run/purple/injured/fish_run_injured_purple_5.png" id="132_iepty"]
+[ext_resource type="Texture2D" uid="uid://5wi35m18hfvs" path="res://player/fish/sprites/run/purple/injured/fish_run_injured_purple_6.png" id="133_2aihm"]
+[ext_resource type="Texture2D" uid="uid://cwlpvjfvhc1pc" path="res://player/fish/sprites/dash_attack/purple/injured/fish_dash_attack_purple_injured_1.png" id="134_mxrqe"]
+[ext_resource type="Texture2D" uid="uid://bc5n0getk1ytc" path="res://player/fish/sprites/dash_attack/purple/injured/fish_dash_attack_purple_injured_2.png" id="135_hd6ds"]
+[ext_resource type="Texture2D" uid="uid://cxjpml8lf5c4c" path="res://player/fish/sprites/dash_attack/purple/injured/fish_dash_attack_purple_injured_3.png" id="136_3obp1"]
+[ext_resource type="Texture2D" uid="uid://dj543k666ew7e" path="res://player/fish/sprites/dash_attack/purple/injured/fish_dash_attack_purple_injured_4.png" id="137_sxtsf"]
+[ext_resource type="Texture2D" uid="uid://ci65ej7ksecqw" path="res://player/fish/sprites/dash_attack/purple/injured/fish_dash_attack_purple_injured_5.png" id="138_mk47q"]
+[ext_resource type="Texture2D" uid="uid://lv6emajsu7dx" path="res://player/fish/sprites/dash_attack/purple/injured/fish_dash_attack_purple_injured_6.png" id="139_frgnm"]
+[ext_resource type="Texture2D" uid="uid://pqd5saq7bsud" path="res://player/fish/sprites/dash_attack/purple/injured/fish_dash_attack_purple_injured_7.png" id="140_b7le2"]
+[ext_resource type="Texture2D" uid="uid://c25a4b06h3rk7" path="res://player/fish/sprites/jump/purple/injured/fish_jump_injured_purple_6.png" id="141_tgdj1"]
+[ext_resource type="Texture2D" uid="uid://1066dok6yyrb" path="res://player/fish/sprites/idle/purple/injured/fish_idle_injured_purple_1.png" id="142_22rkh"]
+[ext_resource type="Texture2D" uid="uid://dhq28d07halds" path="res://player/fish/sprites/idle/purple/injured/fish_idle_injured_purple_2.png" id="143_ah7j0"]
+[ext_resource type="Texture2D" uid="uid://ckkvm5gqw7pdv" path="res://player/fish/sprites/idle/purple/injured/fish_idle_injured_purple_3.png" id="144_wdmm0"]
+[ext_resource type="Texture2D" uid="uid://cp746ked2b2lp" path="res://player/fish/sprites/idle/purple/injured/fish_idle_injured_purple_4.png" id="145_1bek6"]
+[ext_resource type="Texture2D" uid="uid://c8j7r618nfv54" path="res://player/fish/sprites/jump/purple/injured/fish_jump_injured_purple_1.png" id="146_htx8c"]
+[ext_resource type="Texture2D" uid="uid://cry4hk0wpgof5" path="res://player/fish/sprites/jump/purple/injured/fish_jump_injured_purple_2.png" id="147_kl36c"]
+[ext_resource type="Texture2D" uid="uid://clhqmub15uno8" path="res://player/fish/sprites/jump/purple/injured/fish_jump_injured_purple_3.png" id="148_14ybl"]
+[ext_resource type="Texture2D" uid="uid://cbc3dnlhr3hlg" path="res://player/fish/sprites/jump/purple/injured/fish_jump_injured_purple_4.png" id="149_qfjyy"]
+[ext_resource type="Texture2D" uid="uid://cebeuqbkvaaek" path="res://player/fish/sprites/jump/purple/injured/fish_jump_injured_purple_5.png" id="150_1c5b4"]
+[ext_resource type="Texture2D" uid="uid://bilb1kh0352ci" path="res://player/fish/sprites/walk/purple/injured/fish_walk_injured_purple_1.png" id="151_53kyu"]
+[ext_resource type="Texture2D" uid="uid://bavjaxd5evfm3" path="res://player/fish/sprites/walk/purple/injured/fish_walk_injured_purple_2.png" id="152_ld40f"]
+[ext_resource type="Texture2D" uid="uid://co0xshh42iyhl" path="res://player/fish/sprites/walk/purple/injured/fish_walk_injured_purple_3.png" id="153_qqxmy"]
+[ext_resource type="Texture2D" uid="uid://suegp465m8r7" path="res://player/fish/sprites/walk/purple/injured/fish_walk_injured_purple_4.png" id="154_wolaj"]
+[ext_resource type="Texture2D" uid="uid://b33fcng83byrk" path="res://player/fish/sprites/walk/purple/injured/fish_walk_injured_purple_5.png" id="155_ogybf"]
+[ext_resource type="Texture2D" uid="uid://bkmmwwhu85ght" path="res://player/fish/sprites/walk/purple/injured/fish_walk_injured_purple_6.png" id="156_kxve7"]
+[ext_resource type="Texture2D" uid="uid://dnurd1ms0f41i" path="res://player/fish/sprites/jump/purple/fish_jump_purple_1.png" id="157_vc63t"]
+[ext_resource type="Texture2D" uid="uid://bqpyfttv5ldxv" path="res://player/fish/sprites/jump/purple/fish_jump_purple_2.png" id="158_cu8rm"]
+[ext_resource type="Texture2D" uid="uid://ywffg11l06bt" path="res://player/fish/sprites/jump/purple/fish_jump_purple_3.png" id="159_3vetf"]
+[ext_resource type="Texture2D" uid="uid://bafh0u431vwni" path="res://player/fish/sprites/jump/purple/fish_jump_purple_4.png" id="160_pd78b"]
+[ext_resource type="Texture2D" uid="uid://cxy83nfb05ixj" path="res://player/fish/sprites/jump/purple/fish_jump_purple_5.png" id="161_x8pfh"]
+[ext_resource type="Texture2D" uid="uid://cmxbyc7qox6x3" path="res://player/fish/sprites/walk/purple/fish_walk_purple_1.png" id="162_6l3nv"]
+[ext_resource type="Texture2D" uid="uid://nn05vhjf580g" path="res://player/fish/sprites/walk/purple/fish_walk_purple_2.png" id="163_gojgd"]
+[ext_resource type="Texture2D" uid="uid://d3ppu5y7b6js2" path="res://player/fish/sprites/walk/purple/fish_walk_purple_3.png" id="164_vwbvj"]
+[ext_resource type="Texture2D" uid="uid://cvgtfhxvd4idm" path="res://player/fish/sprites/walk/purple/fish_walk_purple_4.png" id="165_h6b3k"]
+[ext_resource type="Texture2D" uid="uid://bklwi2ubmla71" path="res://player/fish/sprites/walk/purple/fish_walk_purple_5.png" id="166_avm4x"]
+[ext_resource type="Texture2D" uid="uid://nf6m4oiv71rw" path="res://player/fish/sprites/walk/purple/fish_walk_purple_6.png" id="167_n6pi4"]
+[ext_resource type="Texture2D" uid="uid://bj6kje07hc5yq" path="res://gui/hud/sprites/stats_paw_prints/fish_tail_purple.png" id="181_2jfxv"]
+[ext_resource type="Texture2D" uid="uid://blm862dcd5r3n" path="res://gui/hud/sprites/stats_paw_prints/fish_tail_blue.png" id="182_cl3b8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5vp6i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_is3u1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_c817b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ify5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6xmjo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dryj8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ai2pn")
+}],
+"loop": false,
+"name": &"blue_air_attack_neutral",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_o3w24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_v1q8m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dty3l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_td3jk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_yvqmf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mf1ns")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_77fl7")
+}],
+"loop": false,
+"name": &"blue_attack_neutral",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_ch5je")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_jcsri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ta8i0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_gv042")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_bclxn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_t01l4")
+}],
+"loop": true,
+"name": &"blue_dash",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_qgt6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_q4o7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_de8t0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_w4lbw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_mkdkf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_j651x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_tbxjs")
+}],
+"loop": false,
+"name": &"blue_dash_attack",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_s53ph")
+}],
+"loop": false,
+"name": &"blue_fall",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_nuoy3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_gpdod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_s85vk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_l5hdc")
+}],
+"loop": false,
+"name": &"blue_hit",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("32_fa72d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_eym0f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_dc34g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_i7gxk")
+}],
+"loop": true,
+"name": &"blue_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("36_ergfy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_kpe61")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_yp8qw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_pdddt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_87i3p")
+}],
+"loop": false,
+"name": &"blue_injured_air_attack_neutral",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("41_4alil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_814ld")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_a157a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_y7x45")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_8ixg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_ndgf3")
+}],
+"loop": false,
+"name": &"blue_injured_attack_neutral",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("47_l0dr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_v0sk6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_uue6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_j104p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_xd3jj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_efewx")
+}],
+"loop": true,
+"name": &"blue_injured_dash",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("53_7ilmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_4ofky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_h0kpc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_5jnj6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_suaju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_jels5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_t12e0")
+}],
+"loop": false,
+"name": &"blue_injured_dash_attack",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("60_7fa17")
+}],
+"loop": false,
+"name": &"blue_injured_fall",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_nuoy3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_gpdod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_s85vk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_l5hdc")
+}],
+"loop": false,
+"name": &"blue_injured_hit",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("61_o7kyd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_wakbx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_n4b3f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_40hdi")
+}],
+"loop": true,
+"name": &"blue_injured_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("65_1k24q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_7xh4h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_bkrrw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_r7dw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_ioart")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_7fa17")
+}],
+"loop": false,
+"name": &"blue_injured_jump",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("70_6p3af")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_1jhsm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_0oyi1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_g1m8h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_8x5jk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_2mf6y")
+}],
+"loop": true,
+"name": &"blue_injured_walk",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("76_7miye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_tv4o8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_ug1mg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_31wc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_v7kyi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_s53ph")
+}],
+"loop": false,
+"name": &"blue_jump",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("76_sga0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_e3eph")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_u07ni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_4vvjo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_16lb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_tl6rv")
+}],
+"loop": true,
+"name": &"blue_walk",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("82_2ac87")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_yiy2p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_mksxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_iqkd3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_48ld5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_qvin8")
+}],
+"loop": false,
+"name": &"purple_air_attack_neutral",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("88_qolit")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_qnjw7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_xbsyh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_jhbu8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_qcwa5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_r8tf5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_o81o3")
+}],
+"loop": false,
+"name": &"purple_attack_neutral",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("95_ce51o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_ksw4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_le22k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_dlhim")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_g0gvq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_tp5j7")
+}],
+"loop": true,
+"name": &"purple_dash",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("101_stxod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_lreod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_11rd4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_2m0ap")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_tst8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_knho8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_l6xdt")
+}],
+"loop": false,
+"name": &"purple_dash_attack",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("108_h4ohg")
+}],
+"loop": false,
+"name": &"purple_fall",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("109_43i52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_4di2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_jmw74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_sqrf6")
+}],
+"loop": false,
+"name": &"purple_hit",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("113_mpyit")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_a1rqe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_o05qi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_dhvfe")
+}],
+"loop": true,
+"name": &"purple_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("117_1gl6l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_3ya62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_nna7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_0lcwm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_67mjy")
+}],
+"loop": false,
+"name": &"purple_injured_air_attack_neutral",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("122_u7flj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_43khi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_rlme2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_df732")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_bah08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_osowk")
+}],
+"loop": false,
+"name": &"purple_injured_attack_neutral",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("128_sf26y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_j58d4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_sdxxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("131_nfmy6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("132_iepty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("133_2aihm")
+}],
+"loop": true,
+"name": &"purple_injured_dash",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("134_mxrqe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("135_hd6ds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("136_3obp1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("137_sxtsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("138_mk47q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("139_frgnm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("140_b7le2")
+}],
+"loop": false,
+"name": &"purple_injured_dash_attack",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("141_tgdj1")
+}],
+"loop": false,
+"name": &"purple_injured_fall",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("109_43i52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_4di2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_jmw74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_sqrf6")
+}],
+"loop": false,
+"name": &"purple_injured_hit",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("142_22rkh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("143_ah7j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("144_wdmm0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("145_1bek6")
+}],
+"loop": true,
+"name": &"purple_injured_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("146_htx8c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("147_kl36c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_14ybl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_qfjyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_1c5b4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("141_tgdj1")
+}],
+"loop": false,
+"name": &"purple_injured_jump",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("151_53kyu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_ld40f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_qqxmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("154_wolaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("155_ogybf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("156_kxve7")
+}],
+"loop": true,
+"name": &"purple_injured_walk",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("157_vc63t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("158_cu8rm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("159_3vetf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("160_pd78b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("161_x8pfh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_h4ohg")
+}],
+"loop": false,
+"name": &"purple_jump",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("162_6l3nv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_gojgd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_vwbvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_h6b3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_avm4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_n6pi4")
+}],
+"loop": true,
+"name": &"purple_walk",
+"speed": 15.0
+}]
+
+[node name="Fish" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_5vp6i")
+animation = &"purple_jump"
+
+[node name="Player1Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -64)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("181_2jfxv")
+
+[node name="Player2Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -64)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("182_cl3b8")

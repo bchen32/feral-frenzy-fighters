@@ -1,26 +1,28 @@
 extends Node2D
 
-@onready var event_array = [preload("res://levels/cat_tree/falling_mouse.tscn"), preload("res://levels/cat_tree/hairball_cat.tscn")]
+@export var event_array: Array[PackedScene]
 
-var start_new_random_event = false
-@export var set_camera_overview = false # this is referenced BY the camera, not to the camera
-@onready var plasma_ball = $"../../Interactables/PlasmaBall"
+var start_new_random_event = false # used to trigger new event once
+var set_camera_overview = false # this is referenced BY the camera, not to the camera
+var current_event_happening = false
+
+var longest_event_rate = 20.0
+var shortest_event_rate = 1.0
+var current_event_rate: float
+var progression_rate = 0.05 # percentage of how much event rate will progress each time an event concludes
 
 func _ready():
 	if NetworkManager.is_connected:
-		await get_tree().create_timer(1).timeout
+		current_event_rate = longest_event_rate
+		await get_tree().create_timer(current_event_rate).timeout
 		start_new_random_event = true
 
 func _process(_delta):
 	if start_new_random_event == true:
 		_choose_events()
-		set_camera_overview = true
+		change_set_overview(true)
+		current_event_happening = true
 		start_new_random_event = false
-	
-	if plasma_ball.unstable == true:
-		set_camera_overview = true
-	elif plasma_ball.unstable == false && get_child_count() < 1:
-		set_camera_overview = false
 
 func _choose_events():
 	var chosen_event = event_array.pick_random()
@@ -28,8 +30,18 @@ func _choose_events():
 	var current_event = chosen_event.instantiate()
 	add_child(current_event)
 
-func _on_child_exiting_tree(_node): # when a child exits the tree (meaning an spawned event has concluded)
-	set_camera_overview = false
-	await get_tree().create_timer(randi_range(3, 8)).timeout
+func _on_child_exiting_tree(_node): # when a child exits the tree (meaning a spawned event has concluded)
+	change_set_overview(false)
+	current_event_happening = false
+	
+	if current_event_rate > shortest_event_rate:
+		var rate_difference = ((longest_event_rate - shortest_event_rate) * progression_rate)
+		print("event_spawner: Event Rate changed from: ", current_event_rate, " to ", current_event_rate - rate_difference)
+		current_event_rate -= rate_difference
+	
+	await get_tree().create_timer(current_event_rate).timeout
 	start_new_random_event = true
 	pass
+
+func change_set_overview(_change: bool):
+	set_camera_overview = _change

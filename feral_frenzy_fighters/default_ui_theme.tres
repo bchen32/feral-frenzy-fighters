@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://ciapr50n3vxqt"]
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://ciapr50n3vxqt"]
 
 [ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="1_vdsbf"]
 [ext_resource type="Texture2D" uid="uid://gs5n0glm0abr" path="res://gui/menus/sprites/buttons/button_blue_highlight.png" id="2_ay50d"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://b6by1x438qmlp" path="res://gui/menus/sprites/buttons/button.png" id="4_w6hdk"]
 [ext_resource type="Texture2D" uid="uid://bar3a8okfu77w" path="res://gui/menus/sprites/buttons/button_highlight.png" id="5_4eadx"]
 [ext_resource type="Texture2D" uid="uid://b78lcin2gbd03" path="res://gui/menus/sprites/buttons/button_pressed.png" id="5_hpnnv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_em2md"]
+texture = ExtResource("2_ay50d")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xhk56"]
 texture = ExtResource("2_ay50d")
@@ -30,10 +33,12 @@ texture = ExtResource("5_hpnnv")
 bg_color = Color(1, 0, 0, 1)
 
 [resource]
+default_font_size = 0
 BigButton/base_type = &"Button"
 BigButton/colors/font_color = Color(1, 1, 1, 1)
 BigButton/font_sizes/font_size = 104
 BigButton/fonts/font = ExtResource("1_vdsbf")
+BigButton/styles/focus = SubResource("StyleBoxTexture_em2md")
 BigButton/styles/hover = SubResource("StyleBoxTexture_xhk56")
 BigButton/styles/normal = SubResource("StyleBoxTexture_hrser")
 BigButton/styles/pressed = SubResource("StyleBoxTexture_yaiaq")
@@ -41,6 +46,7 @@ Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/font_sizes/font_size = 70
 Button/fonts/font = ExtResource("1_vdsbf")
+Button/styles/focus = null
 Button/styles/hover = SubResource("StyleBoxTexture_3hk4f")
 Button/styles/normal = SubResource("StyleBoxTexture_lcve7")
 Button/styles/pressed = SubResource("StyleBoxTexture_y3pie")

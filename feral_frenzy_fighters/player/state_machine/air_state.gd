@@ -15,10 +15,9 @@ func exit():
 
 func update(delta):
 	if character.is_on_floor():
-		character.jumps_left = 1
+		character.jumps_left = 3
 		return Globals.States.IDLE
-	elif InputManager.is_action_just_pressed(character.get_input("jump")) and character.jumps_left > 0:
-		character.jumps_left -= 1
+	elif Input.is_action_just_pressed(character.get_input("jump")) and character.jumps_left > 0:
 		return Globals.States.AIR_JUMP
 	elif InputManager.is_action_pressed(character.get_input(("attack"))):
 		return Globals.States.AIR_ATTACK
@@ -26,12 +25,5 @@ func update(delta):
 		if character.velocity.y > 0 and play_anim:	
 			character.play_anim("fall")
 			play_anim = false
-		character.velocity.y += character.get_grav() * delta
-		character.velocity.y = minf(character.velocity.y, character.terminal_vel)
-		var direction = InputManager.get_axis(
-			character.get_input("left"), character.get_input("right")
-		)
-		if direction:
-			character.velocity.x += direction * character.air_accel * delta
-			character.velocity.x = clamp(character.velocity.x, character.air_speed_lower_bound, character.air_speed_upper_bound)
+		character.air_movement(delta)
 		return Globals.States.AIR

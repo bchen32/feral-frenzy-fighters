@@ -1,5 +1,7 @@
 extends Control
 
+@export var tutorial_mode: bool = false
+
 class_name DamageUI
 
 func _ready():
@@ -15,6 +17,9 @@ func _ready():
 	else:
 		$P1/ChatPopup.hide()
 		$P2/ChatPopup.hide()
+	
+	if tutorial_mode:
+		$P1/KOLabel.text = "∞"
 
 func set_player_damage(player_num: int, player_knockback_percentage: int):
 	var text_string: String = str(player_knockback_percentage)
@@ -24,12 +29,16 @@ func set_player_damage(player_num: int, player_knockback_percentage: int):
 			$P1/DamageLabel.text = text_string
 		1:
 			$P2/DamageLabel.text = text_string
+		2:
+			$P2/DamageLabel.text = text_string
+			$P2/TextureRect.texture = preload("res://player/beanbag/sprites/idle/beanbag-head.png")
 
 func set_player_death_count(player_num: int, death_count: int):
 	match player_num:
 		0:
-			$P1/KOLabel.text = str(death_count)
-		1:
+			if not tutorial_mode:
+				$P1/KOLabel.text = str(death_count)
+		1, 2:
 			$P2/KOLabel.text = str(death_count)
 
 
