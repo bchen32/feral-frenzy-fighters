@@ -3,12 +3,10 @@ extends Node2D
 enum Volcano_States {DORMANT, ACTIVE, ERUPTING}
 var volcano_state = Volcano_States.DORMANT
 
-var active_max_delay = 1
-var active_min_delay = 0
-var active_delay: float
-var erupt_max_delay = 3
-var erupt_min_delay = 2
-var erupt_delay: float
+var active_max_delay = 30
+var active_min_delay = 20
+var erupt_max_delay = 30
+var erupt_min_delay = 20
 
 var pebble_amount = 70
 var spawn_area_width = 1550
@@ -28,12 +26,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#if event_spawner.current_event_happening == false:
-	#	timer.paused = false
-	#else:
-	#	timer.paused = true
-	#print(timer.time_left)
-	pass
+	if event_spawner.current_event_happening == false:
+		timer.paused = false
+	else:
+		timer.paused = true
 
 func _volcano_process():
 	match volcano_state:
