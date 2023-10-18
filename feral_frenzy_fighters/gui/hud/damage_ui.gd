@@ -26,10 +26,19 @@ func set_player_damage(player_num: int, player_knockback_percentage: int):
 		0:
 			$P1/DamageLabel.text = text_string
 		1:
-			$P2/DamageLabel.text = text_string
+			$P2/DamageLabel_Two.text = text_string
 		2:
-			$P2/DamageLabel.text = text_string
+			$P2/DamageLabel_Two.text = text_string
 			$P2/TextureRect.texture = preload("res://player/beanbag/sprites/idle/beanbag-head.png")
+	if ($P1/DamageLabel.text == "50%"):
+		$P1/DamageLabel.label_settings.font_color = Color("d85244")
+	if ($P1/DamageLabel.text == "0%"):
+		$P1/DamageLabel.label_settings.font_color = Color.WHITE
+	if ($P2/DamageLabel_Two.text == "50%"):
+		$P2/DamageLabel_Two.label_settings.font_color = Color("d85244")
+	if ($P2/DamageLabel_Two.text == "0%"):
+		$P2/DamageLabel_Two.label_settings.font_color = Color.WHITE
+
 
 func set_player_death_count(player_num: int, death_count: int):
 	match player_num:
@@ -38,6 +47,29 @@ func set_player_death_count(player_num: int, death_count: int):
 				$P1/KOLabel.text = str(death_count)
 		1, 2:
 			$P2/KOLabel.text = str(death_count)
+
+	if ($P2/KOLabel.text == "5"):
+		$P2/BloodSplatTwo.hide()
+		$P2/BloodSplatOne.hide()
+		$P2/BloodyCorner.hide()
+	if ($P2/KOLabel.text == "3"):
+		$P2/BloodSplatTwo.show()
+	if ($P2/KOLabel.text == "2"):
+		$P2/BloodSplatOne.show()
+	if ($P2/KOLabel.text == "1"):
+		$P2/BloodyCorner.show()
+
+	if ($P1/KOLabel.text == "5"):
+		$P1/BloodSplatTwo2.hide()
+		$P1/BloodSplatOne2.hide()
+		$P1/BloodyCorner2.hide()
+	if ($P1/KOLabel.text == "3"):
+		$P1/BloodSplatTwo2.show()
+	if ($P1/KOLabel.text == "2"):
+		$P1/BloodSplatOne2.show()
+	if ($P1/KOLabel.text == "1"):
+		$P1/BloodyCorner2.show()
+
 
 
 func acknowledge_chat(player_num: int, chat_emoji: NetworkManager.ChatEmoji):

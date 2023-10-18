@@ -141,7 +141,10 @@ func _ready():
 		else:
 			player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_purple.png")
 	elif "fish" in sprites.get_scene_file_path():
-		player_head.texture = load("res://gui/hud/sprites/head_icons/fish_head_icon.png")
+		if player_num:
+			player_head.texture = load("res://gui/hud/sprites/head_icons/fish_head_icon_blue.png")
+		else:
+			player_head.texture = load("res://gui/hud/sprites/head_icons/fish_head_icon_purple.png")
 	elif "beanbag" in sprites.get_scene_file_path():
 		beanbag = true
 	anim_player = sprites.get_node("AnimatedSprite2D")
