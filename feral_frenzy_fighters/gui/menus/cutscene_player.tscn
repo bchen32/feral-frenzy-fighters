@@ -1,6 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://sjcnk7j4e0i4"]
+[gd_scene load_steps=8 format=3 uid="uid://sjcnk7j4e0i4"]
 
 [ext_resource type="Script" path="res://gui/menus/cutscene_player.gd" id="1_w1rcn"]
+[ext_resource type="Texture2D" uid="uid://cjdwrx85ltdgh" path="res://levels/tutorial/UI/frames/skip/right_bumper-1.png" id="2_svh3y"]
+[ext_resource type="Texture2D" uid="uid://c8iob8v6at1lp" path="res://levels/tutorial/UI/frames/skip/right_bumper-2.png" id="3_exogg"]
+[ext_resource type="Texture2D" uid="uid://csfw0i44hrjp3" path="res://levels/tutorial/UI/frames/skip/keyboard_ENTER-1.png" id="4_xj16s"]
+[ext_resource type="Texture2D" uid="uid://bdnq05l7ri03b" path="res://levels/tutorial/UI/frames/skip/keyboard_ENTER-2.png" id="5_ltxo2"]
+[ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="6_gc1yg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ns4u7"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Nothing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_svh3y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_exogg")
+}],
+"loop": true,
+"name": &"Skip_Controller",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_xj16s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ltxo2")
+}],
+"loop": true,
+"name": &"Skip_Keyboard",
+"speed": 5.0
+}]
 
 [node name="CutscenePlayer" type="Control" node_paths=PackedStringArray("audio_stream_player")]
 layout_mode = 3
@@ -24,4 +59,52 @@ expand = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Music"
 
+[node name="skip_controller" type="AnimatedSprite2D" parent="."]
+position = Vector2(1742, 147)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_ns4u7")
+animation = &"Skip_Controller"
+
+[node name="Skip1" type="RichTextLabel" parent="skip_controller"]
+offset_left = 96.0
+offset_top = 5.33333
+offset_right = 225.0
+offset_bottom = 57.3333
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("6_gc1yg")
+theme_override_font_sizes/normal_font_size = 50
+text = "SKIP"
+tab_size = 7
+
+[node name="skip_keyboard" type="AnimatedSprite2D" parent="."]
+position = Vector2(1748, 263.75)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_ns4u7")
+animation = &"Nothing"
+
+[node name="Skip2" type="RichTextLabel" parent="skip_keyboard"]
+offset_left = 89.3333
+offset_top = -8.0
+offset_right = 218.333
+offset_bottom = 44.0
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("6_gc1yg")
+theme_override_font_sizes/normal_font_size = 50
+text = "SKIP"
+tab_size = 7
+
+[node name="RichTextLabel" type="RichTextLabel" parent="skip_keyboard"]
+offset_left = 1696.0
+offset_top = 120.0
+offset_right = 1825.0
+offset_bottom = 172.0
+theme_override_fonts/normal_font = ExtResource("6_gc1yg")
+theme_override_font_sizes/normal_font_size = 50
+text = "SKIP"
+tab_size = 7
+
 [connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[connection signal="ready" from="skip_controller" to="." method="_on_skip_controller_ready"]
+[connection signal="animation_looped" from="skip_keyboard" to="." method="_on_skip_keyboard_animation_looped"]
+[connection signal="hidden" from="skip_keyboard" to="." method="_on_skip_keyboard_hidden"]
+[connection signal="ready" from="skip_keyboard" to="." method="_on_skip_keyboard_ready"]

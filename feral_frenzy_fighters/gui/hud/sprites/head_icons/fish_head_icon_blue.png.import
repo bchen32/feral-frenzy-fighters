@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr367qkqlcbj7"
-path="res://.godot/imported/cat_head_icon_purple.png-724cb2ede111161f1d633ef652848d92.ctex"
+uid="uid://chthskf2t1m40"
+path="res://.godot/imported/fish_head_icon_blue.png-6fba7b961c0faa27e62d1ea20b43f480.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/hud/sprites/head_icons/cat_head_icon_purple.png"
-dest_files=["res://.godot/imported/cat_head_icon_purple.png-724cb2ede111161f1d633ef652848d92.ctex"]
+source_file="res://gui/hud/sprites/head_icons/fish_head_icon_blue.png"
+dest_files=["res://.godot/imported/fish_head_icon_blue.png-6fba7b961c0faa27e62d1ea20b43f480.ctex"]
 
 [params]
 

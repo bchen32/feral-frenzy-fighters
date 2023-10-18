@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://c2sy06qgow26p" path="res://levels/fish_tank/sprites/interactables/boulder.png" id="13_tfp88"]
 [ext_resource type="Texture2D" uid="uid://1yn0d3vivecv" path="res://levels/fish_tank/sprites/interactables/osha_toy.png" id="14_btqcf"]
 [ext_resource type="Script" path="res://levels/camera.gd" id="16_70p13"]
-[ext_resource type="PackedScene" uid="uid://bsv627o3y2xj5" path="res://player/cat/cat.tscn" id="16_x4wuj"]
+[ext_resource type="PackedScene" path="res://player/cat/cat.tscn" id="16_x4wuj"]
 [ext_resource type="PackedScene" uid="uid://cqwih0alupqsb" path="res://gui/hud/damage_ui.tscn" id="17_gim06"]
 [ext_resource type="AudioStream" uid="uid://0jlnqn0e0dnf" path="res://levels/fish_tank/fishfight.wav" id="20_gt66t"]
 

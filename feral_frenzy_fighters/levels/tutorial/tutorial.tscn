@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://2g6vl7paf0fg" path="res://levels/cat_tree/cat_tree_left.tscn" id="2_04luf"]
 [ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="3_og5f5"]
 [ext_resource type="Texture2D" uid="uid://uk8l6kbu2oih" path="res://levels/cat_tree/tilesets/wallpaper_complete.png" id="4_vgnqx"]
-[ext_resource type="PackedScene" uid="uid://bsv627o3y2xj5" path="res://player/cat/cat.tscn" id="6_37toa"]
+[ext_resource type="PackedScene" path="res://player/cat/cat.tscn" id="6_37toa"]
 [ext_resource type="Script" path="res://levels/tutorial/arrow_direction.gd" id="6_k2hb0"]
 [ext_resource type="PackedScene" uid="uid://bj67e35cxlvj7" path="res://levels/tutorial/goal_area.tscn" id="7_b57ej"]
 [ext_resource type="Texture2D" uid="uid://tlykuvqt8y0n" path="res://levels/tutorial/UI/arrow_purple.png" id="7_j86gc"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr367qkqlcbj7"
-path="res://.godot/imported/cat_head_icon_purple.png-724cb2ede111161f1d633ef652848d92.ctex"
+uid="uid://csfw0i44hrjp3"
+path="res://.godot/imported/keyboard_ENTER-1.png-177b9b12a20c2e6d81950baadb88f542.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/hud/sprites/head_icons/cat_head_icon_purple.png"
-dest_files=["res://.godot/imported/cat_head_icon_purple.png-724cb2ede111161f1d633ef652848d92.ctex"]
+source_file="res://levels/tutorial/UI/frames/skip/keyboard_ENTER-1.png"
+dest_files=["res://.godot/imported/keyboard_ENTER-1.png-177b9b12a20c2e6d81950baadb88f542.ctex"]
 
 [params]
 
