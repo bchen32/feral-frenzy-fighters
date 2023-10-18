@@ -23,7 +23,7 @@ extends CharacterBody2D
 @export var stocks: int = 3
 @export var _damage_label: Control
 @export var _dead_areas: Node2D
-@export var _ending_video = "res://gui/menus/cutscenes/cat_v_cat_win_cutscene.ogv"
+@export var _ending_video: String
 @export var _ending_video_audiostream: AudioStream
 @export var _is_lobby: bool = false
 
@@ -112,9 +112,30 @@ func _ready():
 	var p2_icon
 	if character_type != "beanbag":
 		color = "blue" if player_num else "purple"
-		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
+#		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
 		p1_icon = sprites.get_node("Player1Icon")
 		p2_icon = sprites.get_node("Player2Icon")
+		var states = {
+			Globals.States.AIR: AirState.new(),
+			Globals.States.AIR_ATTACK: AirAttackState.new(),
+			Globals.States.AIR_JUMP: AirJumpState.new(),
+			Globals.States.DASH: DashState.new(),
+			Globals.States.DASH_ATTACK: DashAttackState.new(),
+			Globals.States.DASH_JUMP: DashJumpState.new(),
+			Globals.States.GROUND_ATTACK: GroundAttackState.new(),
+			Globals.States.HIT: HitState.new(),
+			Globals.States.IDLE: IdleState.new(),
+			Globals.States.WALK: WalkState.new(),
+			Globals.States.WALK_JUMP: WalkJumpState.new()
+		}
+		state_machine.init(self, states, Globals.States.IDLE)
+	else:
+		var states = {
+			Globals.States.AIR: BeanbagAirState.new(),
+			Globals.States.HIT: HitState.new(),
+			Globals.States.IDLE: BeanbagIdleState.new()
+		}
+		state_machine.init(self, states, Globals.States.IDLE)
 	if _damage_label:
 		_damage_label.set_player_death_count(player_num, stocks)
 
@@ -131,7 +152,6 @@ func _ready():
 		anim_player.flip_h = true
 		if p1_icon:
 			p1_icon.visible = true
-	state_machine.init()
 
 
 func load_stats(file_name: String):
@@ -155,7 +175,9 @@ func reset_frame():
 
 
 func play_anim(animation_name: String):
-	if percentage > 40 and character_type != "beanbag":
+	if character_type == "beanbag":
+		anim_player.play(animation_name)
+	elif percentage > 40:
 		anim_player.play("_".join([color, "injured", animation_name]))
 	else:
 		anim_player.play("_".join([color, animation_name]))
@@ -348,14 +370,15 @@ func _physics_process(delta: float):
 
 
 func _process(_delta: float):
-	if anim_player.flip_h:
-		anim_player.position.x = -12
-	else:
-		anim_player.position.x = 12
-	if "jump" in anim_player.animation or "fall" in anim_player.animation:
-		anim_player.position.y = 8
-	else:
-		anim_player.position.y = -8
+	if character_type == "cat":
+		if anim_player.flip_h:
+			anim_player.position.x = -12
+		else:
+			anim_player.position.x = 12
+		if "jump" in anim_player.animation or "fall" in anim_player.animation:
+			anim_player.position.y = 8
+		else:
+			anim_player.position.y = -8
 	if _damage_label:
 		_damage_label.set_player_damage(player_num, percentage)
 	

@@ -28,7 +28,7 @@ func _ready():
 func _process(delta):
 	var position_delta: Vector2 = target_area.global_position - _player.global_position
 	
-	if target_area == null or target_area.is_player_in_area or position_delta.length() < 100:
+	if target_area == null or target_area.is_player_in_area or position_delta.length() < 300:
 		hide()
 		return
 	else:

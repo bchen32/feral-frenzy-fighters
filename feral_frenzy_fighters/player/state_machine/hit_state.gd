@@ -25,6 +25,7 @@ func exit():
 	character.kb = 0.0
 	character.kb_angle = 0.0
 	hitstun = 0
+	character.play_anim("fall") # in case player is hit into air, otherwise this'll get overriden
 
 
 func update(delta):

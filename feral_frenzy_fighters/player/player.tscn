@@ -17,9 +17,8 @@ physics_blood = ExtResource("3_x78ow")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g467b")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("character")]
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource("10_s8jpq")
-character = NodePath("..")
 
 [node name="SoundEffectPlayer" type="AudioStreamPlayer2D" parent="."]
 attenuation = 0.0
