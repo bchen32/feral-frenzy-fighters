@@ -9,6 +9,9 @@ shader = ExtResource("2_l8eu7")
 shader_parameter/line_color = Color(1, 1, 1, 0)
 shader_parameter/line_thickness = 1.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0fntf"]
+polygon = PackedVector2Array(-187.5, -36, -187.5, 37, 187.5, 37, 187.5, -36)
+
 [sub_resource type="Animation" id="Animation_3hwj3"]
 resource_name = "Damage"
 length = 0.2
@@ -234,6 +237,10 @@ starting_health = 100
 material = SubResource("ShaderMaterial_3yojg")
 use_parent_material = true
 texture = ExtResource("2_1aar2")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+position = Vector2(0.5, -113)
+occluder = SubResource("OccluderPolygon2D_0fntf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

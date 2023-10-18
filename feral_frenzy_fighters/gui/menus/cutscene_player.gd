@@ -83,3 +83,20 @@ func _on_video_stream_player_finished():
 	else:
 		get_tree().change_scene_to_file("res://levels/main.tscn")
 
+
+
+func _on_skip_keyboard_ready():
+	get_node("skip_keyboard").play("Skip_Keyboard")
+
+
+func _on_skip_controller_ready():
+	get_node("skip_controller").play("Skip_Controller")
+
+
+func _on_skip_keyboard_animation_looped():
+	await get_tree().create_timer(3).timeout
+	get_node("skip_keyboard").hide()
+	get_node("skip_controller").hide()
+
+
+

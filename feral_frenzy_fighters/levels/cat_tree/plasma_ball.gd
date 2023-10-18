@@ -12,6 +12,7 @@ var min_destination_distance = 1000
 
 #hitbox settings: line 90
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+@export var particles: PackedScene
 @onready var sprite = self.get_node("PlasmaBallSprite")
 @onready var anim = self.get_node("AnimationPlayer")
 @onready var event_spawner = $"../../Events/EventSpawner"
@@ -44,12 +45,15 @@ func _process(delta):
 func _change_health(health_change: float):
 	if unstable == false:
 		self.health += health_change
-		
 		if anim.is_playing():
 			anim.stop()
 		
 		if self.health > 0:
 			anim.play("Damage")
+			var sparks = particles.instantiate()
+			sparks.global_position = global_position
+			get_parent().add_child(sparks)
+			sparks.emitting = true
 			await anim.animation_finished
 			if !hitbox.get_overlapping_bodies().is_empty():
 				anim.play("Indication")

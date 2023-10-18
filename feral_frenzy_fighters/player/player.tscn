@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bty60wgry21nu"]
+[gd_scene load_steps=9 format=3 uid="uid://bty60wgry21nu"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ewoqh"]
 [ext_resource type="AudioStream" uid="uid://2pedg4faj0li" path="res://gui/menus/music/triumphant.wav" id="2_qwj5k"]
 [ext_resource type="PackedScene" uid="uid://duxeguxel7e8u" path="res://player/physics_blood.tscn" id="3_x78ow"]
+[ext_resource type="PackedScene" uid="uid://5oq2ogn3k12r" path="res://player/physics_gore.tscn" id="4_cclux"]
+[ext_resource type="PackedScene" uid="uid://mlj11vypfixg" path="res://player/dash_particles.tscn" id="4_g1p0g"]
+[ext_resource type="PackedScene" uid="uid://doefg2yc2gcvd" path="res://player/physics_eyes.tscn" id="5_jwg7h"]
 [ext_resource type="Script" path="res://player/state_machine/state_machine.gd" id="10_s8jpq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g467b"]
@@ -11,18 +14,16 @@ size = Vector2(36, 76)
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 30
 script = ExtResource("1_ewoqh")
+stocks = 5
 _ending_video_audiostream = ExtResource("2_qwj5k")
-physics_blood = ExtResource("3_x78ow")
+physics_blood = Array[PackedScene]([ExtResource("3_x78ow"), ExtResource("4_cclux"), ExtResource("5_jwg7h")])
+dash_particles = Array[PackedScene]([ExtResource("4_g1p0g")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g467b")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("10_s8jpq")
-
-[node name="SoundEffectPlayer" type="AudioStreamPlayer2D" parent="."]
-attenuation = 0.0
-bus = &"SFX"
 
 [node name="BloodExplosion" type="CPUParticles2D" parent="."]
 visible = false

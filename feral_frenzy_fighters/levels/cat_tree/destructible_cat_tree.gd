@@ -31,6 +31,7 @@ func _change_health(health_change: float):
 		await anim.animation_finished
 		if !hitbox.get_overlapping_bodies().is_empty():
 			anim.play("Indication")
+		Globals.shake(self,5,.01)
 
 func _destroy_self():
 	physical_collision.get_child(0).set_deferred("disabled", true)

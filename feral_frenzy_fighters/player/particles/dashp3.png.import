@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cynvtw43wt6xq"
-path="res://.godot/imported/dog_head_icon.png-2da6d2392668d6396645970c24c3430f.ctex"
+uid="uid://cy5xwr58vot7j"
+path="res://.godot/imported/dashp3.png-0f3c04c1f130ff1c6f0b91da1beae6c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/hud/sprites/head_icons/dog_head_icon.png"
-dest_files=["res://.godot/imported/dog_head_icon.png-2da6d2392668d6396645970c24c3430f.ctex"]
+source_file="res://player/particles/dashp3.png"
+dest_files=["res://.godot/imported/dashp3.png-0f3c04c1f130ff1c6f0b91da1beae6c0.ctex"]
 
 [params]
 

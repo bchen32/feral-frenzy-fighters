@@ -77,7 +77,7 @@ func _process(delta):
 				p1_selection[p1_character].texture_normal = purplebox
 				on_character1_change()
 				
-		if Input.is_action_just_pressed("p1_jump"):
+		if Input.is_action_just_pressed("p1_accept"):
 			p1_locked = true
 			$Background/Player1Text/P1Ready.show()
 			on_locked_in()
@@ -107,7 +107,7 @@ func _process(delta):
 				p2_selection[p2_character].texture_normal = bluebox
 				on_character2_change()
 
-		if Input.is_action_just_pressed("p2_jump"):
+		if Input.is_action_just_pressed("p2_accept"):
 			p2_locked = true
 			$Background/Player2Text/P2Ready.show()
 			on_locked_in()

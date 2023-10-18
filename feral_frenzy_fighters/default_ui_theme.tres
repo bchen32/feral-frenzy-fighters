@@ -33,6 +33,7 @@ texture = ExtResource("5_hpnnv")
 bg_color = Color(1, 0, 0, 1)
 
 [resource]
+default_font = ExtResource("1_vdsbf")
 default_font_size = 0
 BigButton/base_type = &"Button"
 BigButton/colors/font_color = Color(1, 1, 1, 1)

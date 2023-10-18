@@ -6,13 +6,38 @@ var hitstun: int
 
 func enter():
 	character.play_anim("hit")
-	character.blood_splatter(180)
 	hitstun = floor(character.kb * character.stats.kb_hitstun_scale)
+	character.play_particles(
+	character.physics_blood,
+	0,
+	180,
+	10 * character.percentage)
+	
+	character.play_particles(
+	character.physics_blood,
+	1,
+	180,
+	10)
+	
+	character.set_physics_process(false)
+	
+	Globals.shake(
+	character.anim_player,
+	5 * character.percentage/10,
+	.005 + character.percentage/10000,
+	5 + character.percentage/10,
+	Time.get_unix_time_from_system(),
+	true) 
+	
+	await Globals.shake_completed
+	
+	character.set_physics_process(true)
 	character.velocity.x = cos(character.kb_angle) * character.kb
 	character.velocity.y = sin(character.kb_angle) * character.kb
 	if character.velocity.y > 0: # Make spikes less punishing
 		character.velocity.y *= character.stats.spike_mult
 	character.hit = false
+	
 
 
 func exit():

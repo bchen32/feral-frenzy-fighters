@@ -28,10 +28,14 @@ extends CharacterBody2D
 @export var _is_lobby: bool = false
 
 @onready var state_machine: Node = $StateMachine
+@onready var CS = $CollisionShape2D
+@onready var gamepad = Globals.player_gamepad[player_num]
 
-@export var physics_blood: PackedScene
+@export var physics_blood:Array[PackedScene]
+@export var dash_particles:Array[PackedScene]
 
 var color: String = ""
+var bloodied: bool = false
 var anim_player: AnimatedSprite2D
 var stats: Dictionary
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
@@ -100,19 +104,12 @@ func _ready():
 	var sprites = load(character_data[character_type].sprite_scene).instantiate()
 	add_child(sprites)
 	var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
-	if character_type == "cat":
-		if player_num:
-			player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_blue.png")
-		else:
-			player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_purple.png")
-	elif character_type == "fish":
-		player_head.texture = load("res://gui/hud/sprites/head_icons/fish_head_icon.png")
 	anim_player = sprites.get_node("AnimatedSprite2D")
 	var p1_icon
 	var p2_icon
 	if character_type != "beanbag":
 		color = "blue" if player_num else "purple"
-#		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
 		p1_icon = sprites.get_node("Player1Icon")
 		p2_icon = sprites.get_node("Player2Icon")
 		var states = {
@@ -130,6 +127,7 @@ func _ready():
 		}
 		state_machine.init(self, states, Globals.States.IDLE)
 	else:
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + ".png")
 		var states = {
 			Globals.States.AIR: BeanbagAirState.new(),
 			Globals.States.HIT: HitState.new(),
@@ -179,16 +177,22 @@ func play_anim(animation_name: String):
 		anim_player.play(animation_name)
 	elif percentage > 40:
 		anim_player.play("_".join([color, "injured", animation_name]))
+		if !bloodied:
+			bloodied = true
+			play_particles(
+			physics_blood,
+			2,
+			180,
+			1)
 	else:
 		anim_player.play("_".join([color, animation_name]))
 
 
 func play_audio(audio_type: AudioType):
-	if $SoundEffectPlayer.playing:
-		$SoundEffectPlayer.stop()
 
 	var audio_stream: AudioStream
-
+	var audio_player = preload("res://player/playerSFX.tscn").instantiate()
+	
 	match audio_type:
 		AudioType.ATTACK:
 			audio_stream = _attack_sfx[randi_range(0, _attack_sfx.size() - 1)]
@@ -203,27 +207,40 @@ func play_audio(audio_type: AudioType):
 		AudioType.JUMP: 
 			audio_stream = _jump_sfx[randi_range(0, _jump_sfx.size() - 1)]
 		
+	add_child(audio_player)
+	audio_player.stream = audio_stream
+	audio_player.play()
 
-	$SoundEffectPlayer.stream = audio_stream
-
-	$SoundEffectPlayer.play()
-
-func blood_splatter(
+func play_particles(
+	list: Array,
+	index: int = 0,
 	spread: float = 45, 
-	amount: int = percentage,
+	amount: int = 1,
 	location: Vector2 = self.global_position, 
 	direction: Vector3 = Vector3(0,0,0), 
 	vel: Vector2 = Vector2(200,500)):
+
+	var splatter = list[index].instantiate()
+	
+	if splatter.get_class() == "GPUParticles2D":
+		splatter.amount = amount
+		splatter.global_position = location
+		splatter.process_material.direction = direction
+		splatter.process_material.spread = spread
+		splatter.process_material.initial_velocity_min = vel.x
+		splatter.process_material.initial_velocity_max = vel.y
 		
-	var splatter = physics_blood.instantiate()
-	splatter.amount = amount*2 + 25
-	splatter.global_position = location
-	splatter.process_material.direction = direction
-	splatter.process_material.spread = spread
-	splatter.process_material.initial_velocity_min = vel.x
-	splatter.process_material.initial_velocity_max = vel.y
+	elif splatter.get_class() == "CPUParticles2D":
+		splatter.amount = amount
+		splatter.global_position = location
+		splatter.direction = Vector2(direction.x,direction.y)
+		splatter.spread = spread
+		splatter.initial_velocity_min = vel.x
+		splatter.initial_velocity_max = vel.y
 	
 	get_parent().add_child(splatter)
+	splatter.emitting = true
+
 
 func get_input(input_name: String):
 	if NetworkManager.is_connected:
@@ -311,8 +328,7 @@ func acknowledge_hit(player_num: int, hit_info: Dictionary):
 	kb = hit_info["kb"]
 	kb_angle = hit_info["kb_angle"]
 	global_position.y += hit_info["kb_y_offset"]
-	play_audio(AudioType.HIT)
-	
+
 
 func acknowledge_death():
 	var hit_direction = \
@@ -347,6 +363,7 @@ func acknowledge_death():
 	position = _initial_player_position # needs to reload state machine (hit stun carries over)
 	velocity = Vector2(0, 0)
 	percentage = 0
+	bloodied = false
 	
 	if not NetworkManager.is_connected and not _is_lobby:
 		stocks -= 1
@@ -360,14 +377,13 @@ func acknowledge_death():
 			Globals.audio_stream_to_play_during_cutscene = _ending_video_audiostream
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
 	play_audio(AudioType.DEATH)
-	blood_splatter(30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
+	play_particles(physics_blood,0, 30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
 
 func _physics_process(delta: float):
 	set_collision_mask_value(4, not Input.is_action_pressed(get_input("down")))  # drop through platforms while down is held
 	frame += 1
-	state_machine.update(delta)
 	move_and_slide()
-
+	state_machine.update(delta)
 
 func _process(_delta: float):
 	if character_type == "cat":

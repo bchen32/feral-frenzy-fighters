@@ -4,6 +4,15 @@ extends GroundMoveState
 
 func enter():
 	character.play_anim("dash")
+	await Globals.get_tree().create_timer(0.01).timeout #this is a ridiculous workaround
+	character.play_particles(
+		character.dash_particles,
+		0,
+		45,
+		int(25), #Lmfao vvvvvvv
+		character.position + Vector2(character.CS.get_shape().get_rect().size.x/2 * sign(character.velocity.x), character.CS.get_shape().get_rect().size.y/2 ),
+		-Vector3(1*sign(character.velocity.x),1,0),
+		Vector2(50,200))
 
 
 func exit():
@@ -12,7 +21,7 @@ func exit():
 
 
 func update(delta):
-	if not Input.is_action_pressed(character.get_input("dash")):
+	if not Input.is_action_pressed(character.get_input("dash")) && abs(Input.get_axis(character.get_input("left"), character.get_input("right"))) < .1:
 		return Globals.States.WALK
 	return super(delta)
 
