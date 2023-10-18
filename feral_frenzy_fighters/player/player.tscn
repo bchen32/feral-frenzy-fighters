@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bty60wgry21nu"]
+[gd_scene load_steps=7 format=3 uid="uid://bty60wgry21nu"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ewoqh"]
 [ext_resource type="AudioStream" uid="uid://2pedg4faj0li" path="res://gui/menus/music/triumphant.wav" id="2_qwj5k"]
@@ -97,7 +97,7 @@ properties/21/path = NodePath(".:position")
 properties/21/spawn = true
 properties/21/sync = true
 properties/21/watch = false
-properties/22/path = NodePath("AnimatedSprite2D:flip_h")
+properties/22/path = NodePath(".:chosen_attack")
 properties/22/spawn = true
 properties/22/sync = true
 properties/22/watch = false

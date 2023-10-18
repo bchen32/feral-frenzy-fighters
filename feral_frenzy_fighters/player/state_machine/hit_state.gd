@@ -6,7 +6,9 @@ var hitstun: int
 
 func enter():
 	character.play_anim("hit")
-	character.blood_splatter(180)
+	
+	if not NetworkManager.is_host and not NetworkManager.is_connected:
+		character.blood_splatter(180)
 	hitstun = floor(character.kb * character.kb_hitstun_scale)
 	character.velocity.x = cos(character.kb_angle) * character.kb
 	character.velocity.y = sin(character.kb_angle) * character.kb

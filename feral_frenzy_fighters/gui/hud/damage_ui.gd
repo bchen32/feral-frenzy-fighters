@@ -1,8 +1,8 @@
 extends Control
 
-@export var tutorial_mode: bool = false
-
 class_name DamageUI
+
+@export var tutorial_mode: bool = false
 
 func _ready():
 	if NetworkManager.is_connected:

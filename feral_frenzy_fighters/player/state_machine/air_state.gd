@@ -17,7 +17,7 @@ func update(delta):
 	if character.is_on_floor():
 		character.jumps_left = 3
 		return Globals.States.IDLE
-	elif Input.is_action_just_pressed(character.get_input("jump")) and character.jumps_left > 0:
+	elif InputManager.is_action_just_pressed(character.get_input("jump")) and character.jumps_left > 0:
 		return Globals.States.AIR_JUMP
 	elif InputManager.is_action_pressed(character.get_input(("attack"))):
 		return Globals.States.AIR_ATTACK

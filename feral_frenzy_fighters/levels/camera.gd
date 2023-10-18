@@ -19,7 +19,7 @@ func _ready():
 	target_zoom = zoom.x
 
 func _process(_delta):
-	if event_spawner.set_camera_overview or len(players) == 1:
+	if (event_spawner != null and event_spawner.set_camera_overview) or len(players) == 1:
 		target_pos = initial_pos
 		target_zoom = 1.0
 	else:

@@ -14,9 +14,9 @@ func exit():
 func update(_delta):
 	if not character.is_on_floor():
 		return Globals.States.AIR
-	if Input.is_action_pressed(character.get_input("jump")):
+	if InputManager.is_action_pressed(character.get_input("jump")):
 		return Globals.States.WALK_JUMP
-	if Input.is_action_just_pressed(character.get_input("attack")):
+	if InputManager.is_action_just_pressed(character.get_input("attack")):
 		return Globals.States.GROUND_ATTACK
 	var direction = InputManager.get_axis(
 		character.get_input("left"), character.get_input("right")

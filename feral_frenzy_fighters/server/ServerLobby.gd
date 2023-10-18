@@ -119,6 +119,11 @@ func add_player(player_id: int):
 		
 		_players[player_id].refresh_dead_areas(_waiting_lobby_scene.get_node("DeadAreas"))
 		
+		var camera_node = _waiting_lobby_scene.get_node("Camera2D")
+		
+		camera_node.players.clear()
+		camera_node.players.append(_players[player_id])
+		
 		_waiting_lobby_scene.add_child(_players[player_id])
 		_network_manager.game_state_change.rpc_id(player_id, _lobby_game_state, 
 												  _players[player_id].display_name)

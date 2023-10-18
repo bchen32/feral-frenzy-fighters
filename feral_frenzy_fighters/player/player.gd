@@ -77,7 +77,7 @@ var curr_hitboxes: Array[Node]
 var curr_hitboxes_ends: Array[int]
 
 # networking stuff
-var chosen_attack: Dictionary
+@export var chosen_attack: Dictionary
 var display_name: String
 var player_state_type: Globals.States
 var stock: int
@@ -125,35 +125,47 @@ var _jump_sfx = [
 	preload("res://player/cat/sfx/jump/single_jump.wav")
 ]
 
+var _multiplayer_sync = MultiplayerSynchronizer.new()
+var _sprites_scene_instance: Node
+
 # Dash right now for the game jam is unused
 enum AudioType { ATTACK, DASH, DEATH, HIT, WALK, JUMP }
-
 
 func _ready():
 	randomize()
 	refresh_damage_label(_damage_label)
 	
-	
 	if Globals.player_sprites.size() > player_num:
 		sprite_scene = Globals.player_sprites[player_num]
-	var sprites = sprite_scene.instantiate()
-	add_child(sprites)
-	var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
-	if "cat" in sprites.get_scene_file_path():
-		if player_num:
-			player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_blue.png")
-		else:
-			player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_purple.png")
-	elif "fish" in sprites.get_scene_file_path():
-		player_head.texture = load("res://gui/hud/sprites/head_icons/fish_head_icon.png")
-	elif "beanbag" in sprites.get_scene_file_path():
-		beanbag = true
-	anim_player = sprites.get_node("AnimatedSprite2D")
+	
+	_sprites_scene_instance = sprite_scene.instantiate()
+	
+	add_child(_sprites_scene_instance)
+	
+	var sprite_node_path = NodePath(_sprites_scene_instance.name + "/AnimatedSprite2D:flip_h")
+	
+	_multiplayer_sync.replication_config.add_property(sprite_node_path)
+	_multiplayer_sync.replication_config.property_set_spawn(sprite_node_path, true)
+	_multiplayer_sync.replication_config.property_set_sync(sprite_node_path, true)
+	_multiplayer_sync.replication_config.property_set_watch(sprite_node_path, false)
+	
+	if _damage_label:
+		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
+		if "cat" in _sprites_scene_instance.get_scene_file_path():
+			if player_num:
+				player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_blue.png")
+			else:
+				player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_purple.png")
+		elif "fish" in _sprites_scene_instance.get_scene_file_path():
+			player_head.texture = load("res://gui/hud/sprites/head_icons/fish_head_icon.png")
+		elif "beanbag" in _sprites_scene_instance.get_scene_file_path():
+			beanbag = true
+	anim_player = _sprites_scene_instance.get_node("AnimatedSprite2D")
 	var p1_icon
 	var p2_icon
 	if not beanbag:
-		p1_icon = sprites.get_node("Player1Icon")
-		p2_icon = sprites.get_node("Player2Icon")
+		p1_icon = _sprites_scene_instance.get_node("Player1Icon")
+		p2_icon = _sprites_scene_instance.get_node("Player2Icon")
 	if _damage_label:
 		_damage_label.set_player_death_count(player_num, stocks)
 
@@ -170,7 +182,7 @@ func _ready():
 		anim_player.flip_h = true
 		if p1_icon:
 			p1_icon.visible = true
-	state_machine.init()
+	state_machine.init(self)
 	
 	refresh_dead_areas(_dead_areas)
 
@@ -225,9 +237,7 @@ func play_audio(audio_type: AudioType):
 		AudioType.JUMP: 
 			audio_stream = _jump_sfx[randi_range(0, _jump_sfx.size() - 1)]
 		
-
 	$SoundEffectPlayer.stream = audio_stream
-
 	$SoundEffectPlayer.play()
 
 func blood_splatter(
@@ -280,8 +290,7 @@ func get_grav():
 
 
 func update_attack(attack_name: String):
-	var attack = attacks[attack_name]
-	for hitbox_stats in attack.hitboxes:
+	for hitbox_stats in chosen_attack.hitboxes:
 		if frame == hitbox_stats.start_frame:
 			var hitbox = hitbox_scene.instantiate()
 			add_child(hitbox)
@@ -292,10 +301,10 @@ func update_attack(attack_name: String):
 				hitbox_stats.height,
 				(1.0 if anim_player.flip_h else -1.0) * hitbox_stats.x_offset,  # handles if sprite is facing other direction
 				hitbox_stats.y_offset,
-				attack.damage,
-				attack.knockback_scale,
-				(1.0 if anim_player.flip_h else -1.0) * attack.knockback_x_offset,
-				attack.knockback_y_offset
+				chosen_attack.damage,
+				chosen_attack.knockback_scale,
+				(1.0 if anim_player.flip_h else -1.0) * chosen_attack.knockback_x_offset,
+				chosen_attack.knockback_y_offset
 			)
 	for i in range(len(curr_hitboxes)):
 		if frame == curr_hitboxes_ends[i]:
@@ -308,12 +317,14 @@ func end_attack():
 			child.queue_free()
 	curr_hitboxes = []
 	curr_hitboxes_ends = []
+	
+	chosen_attack = {}
 
 
 func air_movement(delta):
 	velocity.y += get_grav() * delta
 	velocity.y = minf(velocity.y, terminal_vel)
-	var direction = Input.get_axis(
+	var direction = InputManager.get_axis(
 		get_input("left"), get_input("right")
 	)
 	if direction:
@@ -387,7 +398,9 @@ func acknowledge_death():
 			Globals.audio_stream_to_play_during_cutscene = _ending_video_audiostream
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
 	play_audio(AudioType.DEATH)
-	blood_splatter(30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
+	
+	if not NetworkManager.is_connected and not NetworkManager.is_host:
+		blood_splatter(30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
 
 func _physics_process(delta: float):
 	# if we are the server setup, we need to tell InputManager which player to get inputs for
@@ -428,11 +441,11 @@ func _enter_tree():
 	remove_child(old_multiplayer_sync)
 	old_multiplayer_sync.queue_free()
 	
-	var multiplayer_sync = MultiplayerSynchronizer.new()
+	_multiplayer_sync = MultiplayerSynchronizer.new()
 	
-	multiplayer_sync.name = NodePath("MultiplayerSynchronizer")
-	multiplayer_sync.replication_config = multiplayer_replication_config
-	multiplayer_sync.root_path = root_path
+	_multiplayer_sync.name = NodePath("MultiplayerSynchronizer")
+	_multiplayer_sync.replication_config = multiplayer_replication_config
+	_multiplayer_sync.root_path = root_path
 	
-	call_deferred("add_child", multiplayer_sync)
+	call_deferred("add_child", _multiplayer_sync)
 

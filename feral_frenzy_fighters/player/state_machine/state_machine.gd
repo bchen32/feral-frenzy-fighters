@@ -52,8 +52,6 @@ func update(delta):
 		else:
 			states[curr_state].update(delta)
 	else:
-		var next_state = states[curr_state].update(delta)
-		
 		while next_state != curr_state:
 			transition(next_state)
 			next_state = states[curr_state].update(delta)

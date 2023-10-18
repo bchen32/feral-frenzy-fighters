@@ -14,7 +14,7 @@ func _ready():
 	ui = Globals.menu.new($MainMenu/Title)
 
 func _process(delta):
-	if Input.is_action_pressed("ui_back"):
+	if InputManager.is_action_pressed("ui_back"):
 		if len(ui._queue) > 1:
 			$SFX.stream = preload("res://gui/menus/sfx/unbutton.wav")
 			$SFX.play()
@@ -48,12 +48,11 @@ func _on_settings_button_button_pressed():
 	pass # Replace with function body.
 
 func _on_play_dialog_on_online_button_pressed():
-	pass
-	#Globals.cutscene_player_video_path = beginning_cutscene_path
-	#Globals.cutscene_player_end_game = false
-	#Globals.audio_stream_to_play_during_cutscene = preload("res://levels/cat_tree/music/catfight.wav")
+	Globals.cutscene_player_video_path = beginning_cutscene_path
+	Globals.cutscene_player_end_game = false
+	Globals.audio_stream_to_play_during_cutscene = preload("res://levels/cat_tree/music/catfight.wav")
 	
-	#NetworkManager.establish_connection()
+	NetworkManager.establish_connection()
 
 func _on_play_dialog_on_local_button_pressed():
 	Globals.cutscene_player_video_path = beginning_cutscene_path

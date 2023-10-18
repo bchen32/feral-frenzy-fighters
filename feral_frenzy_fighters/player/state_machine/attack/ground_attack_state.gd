@@ -13,7 +13,7 @@ func enter():
 
 
 func update(delta):
-	if character.frame >= attack.frames:
+	if character.frame >= character.chosen_attack.frames:
 		return Globals.States.IDLE
 	if not character.is_on_floor():
 		return Globals.States.AIR

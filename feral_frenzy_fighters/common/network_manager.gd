@@ -58,7 +58,10 @@ func _ready():
 
 func become_host():
 	if not SERVER_BUILD:
-		pass
+		return
+	
+	for i in range(0, 2):
+		Globals.player_sprites.append(preload("res://player/cat/cat.tscn"))
 	
 	multiplayer.peer_connected.connect(self._peer_connected)
 	multiplayer.peer_disconnected.connect(self._peer_disconnected)
@@ -111,6 +114,9 @@ func establish_connection():
 	if not is_host:
 		multiplayer.multiplayer_peer = null
 		var server_address = "ws://" + SERVER_IP + ":" + str(SERVER_PORT)
+		
+		for i in range(0, 2):
+			Globals.player_sprites.append(preload("res://player/cat/cat.tscn"))
 		
 		multiplayer_peer.create_client(server_address)
 		multiplayer.multiplayer_peer = multiplayer_peer
