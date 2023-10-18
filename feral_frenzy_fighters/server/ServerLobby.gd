@@ -25,11 +25,6 @@ func _ready():
 	_level_scene = preload("res://levels/main.tscn").instantiate()
 	_waiting_lobby_scene = preload("res://levels/lobby.tscn").instantiate()
 	
-	if _level_scene.has_node("Player"):
-		_level_scene.remove_child(_level_scene.get_node("Player"))
-	if _level_scene.has_node("Player2"):
-		_level_scene.remove_child(_level_scene.get_node("Player2"))
-	
 	get_window().call_deferred("add_child", _level_scene)
 	get_window().call_deferred("add_child", _waiting_lobby_scene)
 
@@ -97,13 +92,17 @@ func add_player(player_id: int):
 			
 			get_window().call_deferred("remove_child", _waiting_lobby_scene)
 			
-			if _level_scene.has_node(NodePath(player.name)):
-				_level_scene.remove_child(_level_scene.get_node(NodePath(player.name)))
+			var player_name = player.name
 			
-			player.refresh_dead_areas(_level_scene.get_node("DeadAreas"))
-			player.refresh_damage_label(_level_scene.get_node("Camera2D/CanvasLayer/DamageUI"))
+			if _level_scene.has_node(NodePath("CatTreeLevel/" + player_name)):
+				var child = _level_scene.get_node(NodePath("CatTreeLevel/" + player_name))
+				
+				_level_scene.get_node("CatTreeLevel").remove_child(child)
 			
-			_level_scene.add_child(player)
+			player.refresh_dead_areas(_level_scene.get_node("CatTreeLevel/DeadAreas"))
+			player.refresh_damage_label(_level_scene.get_node("CatTreeLevel/Camera2D/CanvasLayer/DamageUI"))
+			
+			_level_scene.get_node("CatTreeLevel").add_child(player)
 			
 			player._is_lobby = false
 			
