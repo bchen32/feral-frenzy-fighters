@@ -105,7 +105,11 @@ func _peer_disconnected(id):
 	_players_in_which_lobbies[id].remove_player(id)
 	
 	if _players_in_which_lobbies[id].is_lobby_dead():
-		_lobbies.erase(_players_in_which_lobbies[id])
+		var dead_lobby = _players_in_which_lobbies[id]
+		
+		_lobbies.erase(dead_lobby)
+		
+		dead_lobby.queue_free()
 	
 	_players_in_which_lobbies.erase(id)
 	print("erased")

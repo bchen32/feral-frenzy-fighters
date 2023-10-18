@@ -14,6 +14,10 @@ var _ready_to_battle: Dictionary = {}
 var _level_scene: Node2D
 var _waiting_lobby_scene: Node2D
 
+func _exit_tree():
+	_level_scene.queue_free()
+	_waiting_lobby_scene.queue_free()
+
 func _init(network_manager: NetworkManager):
 	_network_manager = network_manager
 
@@ -101,6 +105,8 @@ func add_player(player_id: int):
 			
 			_level_scene.add_child(player)
 			
+			player._is_lobby = false
+			
 			_network_manager.initial_game_information.rpc_id(player.player_id, 
 															 player.player_num,
 															 display_names,
@@ -112,6 +118,8 @@ func add_player(player_id: int):
 				_players[player_id].position = Vector2(464, 247)
 			1:
 				_players[player_id].position = Vector2(880, 247)
+		
+		_players[player_id]._is_lobby = true
 		
 		if _waiting_lobby_scene.has_node(String(_players[player_id].name)):
 			_waiting_lobby_scene.remove_child(
