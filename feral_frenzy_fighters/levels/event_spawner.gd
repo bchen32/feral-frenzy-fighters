@@ -17,7 +17,7 @@ func _ready():
 	start_new_random_event = true
 
 func _process(_delta):
-	if start_new_random_event == true and len(event_array) > 0:
+	if start_new_random_event == true:
 		_choose_events()
 		change_set_overview(true)
 		current_event_happening = true

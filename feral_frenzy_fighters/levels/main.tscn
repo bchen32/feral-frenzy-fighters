@@ -1,7 +1,93 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpqtgmb2u4uo0"]
+[gd_scene load_steps=10 format=3 uid="uid://cpqtgmb2u4uo0"]
 
 [ext_resource type="Script" path="res://levels/main.gd" id="1_ghdqb"]
+[ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="1_ynwnh"]
+[ext_resource type="PackedScene" uid="uid://ju3ra5auyqg8" path="res://levels/cat_tree/cat_tree_level.tscn" id="2_mcce5"]
+[ext_resource type="PackedScene" uid="uid://cqwih0alupqsb" path="res://gui/hud/damage_ui.tscn" id="2_tb6xb"]
+[ext_resource type="PackedScene" uid="uid://bsv627o3y2xj5" path="res://player/cat/cat.tscn" id="4_ir4y4"]
+[ext_resource type="AudioStream" uid="uid://gv5krwja5mbt" path="res://levels/cat_tree/music/catfight.wav" id="5_7efgp"]
+[ext_resource type="PackedScene" uid="uid://cmvf4h60u8y1p" path="res://levels/camera.tscn" id="5_lovfr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lo5pr"]
+size = Vector2(156, 1913.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ew3br"]
+size = Vector2(3746.5, 285.5)
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("_players")]
 script = ExtResource("1_ghdqb")
-_players = [null, null]
+_players = [NodePath("Player"), NodePath("Player2")]
+
+[node name="CatTreeLevel" parent="." instance=ExtResource("2_mcce5")]
+
+[node name="Player" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("1_ynwnh")]
+position = Vector2(407, 711)
+sprite_scene = ExtResource("4_ir4y4")
+_damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
+_dead_areas = NodePath("../DeadAreas")
+_ending_video = "res://gui/menus/cutscenes/cat_v_cat_player_two_wins.ogv"
+
+[node name="Player2" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("1_ynwnh")]
+position = Vector2(1546, 708)
+sprite_scene = ExtResource("4_ir4y4")
+player_num = 1
+_damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
+_dead_areas = NodePath("../DeadAreas")
+_ending_video = "res://gui/menus/cutscenes/cat_v_cat_player_one_wins.ogv"
+
+[node name="DeadAreas" type="Node2D" parent="."]
+position = Vector2(-3, 557)
+
+[node name="DeadArea" type="Area2D" parent="DeadAreas"]
+position = Vector2(-732, -708)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadAreas/DeadArea"]
+position = Vector2(457, 587)
+shape = SubResource("RectangleShape2D_lo5pr")
+
+[node name="DeadArea2" type="Area2D" parent="DeadAreas"]
+position = Vector2(-732, -708)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadAreas/DeadArea2"]
+position = Vector2(2936, 562)
+shape = SubResource("RectangleShape2D_lo5pr")
+
+[node name="DeadArea3" type="Area2D" parent="DeadAreas"]
+collision_layer = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DeadAreas/DeadArea3"]
+position = Vector2(955, -1046)
+shape = SubResource("RectangleShape2D_ew3br")
+
+[node name="DeadArea4" type="Area2D" parent="DeadAreas"]
+collision_layer = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DeadAreas/DeadArea4"]
+position = Vector2(528, 900)
+shape = SubResource("RectangleShape2D_ew3br")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7efgp")
+volume_db = 1.0
+autoplay = true
+bus = &"Music"
+
+[node name="Camera2D" parent="." node_paths=PackedStringArray("players", "level") instance=ExtResource("5_lovfr")]
+position = Vector2(960, 538)
+players = [NodePath("../Player"), NodePath("../Player2")]
+level = NodePath("../CatTreeLevel")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="DamageUI" parent="Camera2D/CanvasLayer" instance=ExtResource("2_tb6xb")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -539.0
+offset_top = -145.0
+offset_right = 613.0
+offset_bottom = -145.0
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
