@@ -1,63 +1,26 @@
 class_name PlayerCharacter
 extends CharacterBody2D
 
-@export var sprite_scene: PackedScene
-@export var player_num: int = 0
-@export var stocks: int = 3
-@export var walk_accel: float = 6000.0
-@export var dash_accel: float = 9000.0
-@export var tilt_attack_accel: float = 1200.0
-@export var dash_attack_accel: float = 1500.0
-@export var air_accel: float = 3600.0
-@export var walk_jump_accel: float = 800.0 # jump accels not scaled by delta
-@export var dash_jump_accel: float = 1200.0
-@export var air_jump_accel: float = 600.0
-@export var walk_speed: float = 400.0
-@export var dash_speed: float = 600.0
-@export var dash_attack_speed: float = 750.0
-@export var air_jump_speed: float = 400.0
-@export var jump_speed: float = -1000.0
-@export var terminal_vel: float = 1000.0
-@export var fall_grav_scale: float = 1.8
-@export var kb_base: float = 500.0
-@export var kb_hitstun_scale: float = 0.015
-@export var kb_decay: float = 2000.0
-@export var inverse_weight: float = 10.0
-@export var spike_mult: float = 0.5
-@export var hit_grav: float = 1500.0
-@export var bounce_thresh: float = 100.0
-@export var bounce_decay: float = 0.6
-@export var attacks: Dictionary = {
-	"neutral":
+@export var character_type: String
+@export var character_data: Dictionary = {
+	"cat":
 	{
-		"frames": 30,
-		"damage": 10,
-		"knockback_scale": 1.0,
-		"knockback_x_offset": 20.0,
-		"knockback_y_offset": -20.0,
-		"hitboxes": [{"start_frame": 8, "end_frame": 16, "width": 28, "height": 10, "x_offset": 12, "y_offset": 0}]
+		"sprite_scene": "res://player/cat/cat.tscn",
+		"stats": "res://player/cat/cat.json"
 	},
-	"air_neutral":
+	"fish":
 	{
-		"frames": 20,
-		"damage": 10,
-		"knockback_scale": 1.0,
-		"knockback_x_offset": 0.0,
-		"knockback_y_offset": 0.0,
-		"hitboxes": [{"start_frame": 4, "end_frame": 20, "width": 40, "height": 40, "x_offset": 0, "y_offset": 0}]
+		"sprite_scene": "res://player/fish/fish.tscn",
+		"stats": "res://player/fish/fish.json"
 	},
-	"dash_attack":
+	"beanbag":
 	{
-		"frames": 45,
-		"damage": 15,
-		"knockback_scale": 1.0,
-		"knockback_x_offset": 20.0,
-		"knockback_y_offset": -5.0,
-		"hitboxes": [
-			{"start_frame": 4, "end_frame": 24, "width": 20, "height": 40, "x_offset": 30, "y_offset": 0}
-		]
+		"sprite_scene": "res://player/beanbag/beanbag.tscn",
+		"stats": "res://player/cat/cat.json"
 	}
 }
+@export var player_num: int = 0
+@export var stocks: int = 3
 @export var _damage_label: Control
 @export var _dead_areas: Node2D
 @export var _ending_video = "res://gui/menus/cutscenes/cat_v_cat_win_cutscene.ogv"
@@ -68,12 +31,14 @@ extends CharacterBody2D
 
 @export var physics_blood: PackedScene
 
+var color: String = ""
 var anim_player: AnimatedSprite2D
+var stats: Dictionary
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 var frame: int = 0
 var percentage: float = 0.0
-var air_speed_upper_bound: float = walk_speed
-var air_speed_lower_bound: float = -walk_speed
+var air_speed_upper_bound: float
+var air_speed_lower_bound: float
 var jumps_left: int = 3
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Be careful not to desync curr_hitboxes_ends from curr_hitboxes (sadly no tuples in GDScript)
@@ -87,7 +52,6 @@ var kb_angle: float = 0.0
 var flip_h: bool = false
 
 var _initial_player_position: Vector2
-var beanbag: bool = false
 
 var _attack_sfx = [
 	preload("res://player/cat/sfx/attack/attack_1.wav"),
@@ -128,25 +92,27 @@ enum AudioType { ATTACK, DASH, DEATH, HIT, WALK, JUMP }
 
 func _ready():
 	randomize()
-	
 	if Globals.player_sprites.size() > player_num:
-		sprite_scene = Globals.player_sprites[player_num]
-	var sprites = sprite_scene.instantiate()
+		character_type = Globals.player_sprites[player_num]
+	stats = load_stats(character_data[character_type].stats)
+	air_speed_lower_bound = -stats.walk_speed
+	air_speed_upper_bound = stats.walk_speed
+	var sprites = load(character_data[character_type].sprite_scene).instantiate()
 	add_child(sprites)
 	var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
-	if "cat" in sprites.get_scene_file_path():
+	if character_type == "cat":
 		if player_num:
 			player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_blue.png")
 		else:
 			player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_purple.png")
-	elif "fish" in sprites.get_scene_file_path():
+	elif character_type == "fish":
 		player_head.texture = load("res://gui/hud/sprites/head_icons/fish_head_icon.png")
-	elif "beanbag" in sprites.get_scene_file_path():
-		beanbag = true
 	anim_player = sprites.get_node("AnimatedSprite2D")
 	var p1_icon
 	var p2_icon
-	if not beanbag:
+	if character_type != "beanbag":
+		color = "blue" if player_num else "purple"
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
 		p1_icon = sprites.get_node("Player1Icon")
 		p2_icon = sprites.get_node("Player2Icon")
 	if _damage_label:
@@ -168,18 +134,31 @@ func _ready():
 	state_machine.init()
 
 
+func load_stats(file_name: String):
+	var file = FileAccess.open(file_name, FileAccess.READ)
+	var json_string = file.get_as_text()
+	var json = JSON.new()
+	var error = json.parse(file.get_as_text())
+	if error == OK:
+		var data_received = json.data
+		if typeof(data_received) == TYPE_DICTIONARY:
+			return data_received
+		else:
+			print("Unexpected data in JSON Parse")
+	else:
+		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+	return {}
+
+
 func reset_frame():
 	frame = 0
 
 
 func play_anim(animation_name: String):
-	if beanbag: # beanbag only
-		anim_player.play(animation_name)
+	if percentage > 40 and character_type != "beanbag":
+		anim_player.play("_".join([color, "injured", animation_name]))
 	else:
-		if percentage > 40:
-			anim_player.play(("blue_" if player_num else "purple_") + "injured_" + animation_name)
-		else:
-			anim_player.play(("blue_" if player_num else "purple_") + animation_name)
+		anim_player.play("_".join([color, animation_name]))
 
 
 func play_audio(audio_type: AudioType):
@@ -250,18 +229,18 @@ func get_grav():
 	return (
 		gravity
 		if velocity.y < 0
-		else gravity * fall_grav_scale
+		else gravity * stats.fall_grav_scale
 	)
 
 
 func update_attack(attack_name: String):
-	var attack = attacks[attack_name]
+	var attack = stats.attacks[attack_name]
 	for hitbox_stats in attack.hitboxes:
 		if frame == hitbox_stats.start_frame:
 			var hitbox = hitbox_scene.instantiate()
 			add_child(hitbox)
 			curr_hitboxes.append(hitbox)
-			curr_hitboxes_ends.append(hitbox_stats.end_frame)
+			curr_hitboxes_ends.append(int(hitbox_stats.end_frame))
 			hitbox.setup(
 				hitbox_stats.width,
 				hitbox_stats.height,
@@ -287,12 +266,12 @@ func end_attack():
 
 func air_movement(delta):
 	velocity.y += get_grav() * delta
-	velocity.y = minf(velocity.y, terminal_vel)
+	velocity.y = minf(velocity.y, stats.terminal_vel)
 	var direction = Input.get_axis(
 		get_input("left"), get_input("right")
 	)
 	if direction:
-		velocity.x += direction * air_accel * delta
+		velocity.x += direction * stats.air_accel * delta
 		velocity.x = clamp(velocity.x, air_speed_lower_bound, air_speed_upper_bound)
 
 

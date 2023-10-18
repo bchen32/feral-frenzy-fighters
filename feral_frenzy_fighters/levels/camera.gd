@@ -41,7 +41,7 @@ func _process(delta):
 		var fall_speed_mult = 1.0
 		if is_falling:
 			var fall_speed = max(players[0].velocity.y, players[1].velocity.y)
-			var terminal = min(players[0].terminal_vel, players[1].terminal_vel)
+			var terminal = min(players[0].stats.terminal_vel, players[1].stats.terminal_vel)
 			fall_speed_mult = (fall_speed / terminal) + 1.0			
 		var zoom_dist = zoom.distance_to(target_zoom_vect)
 		var zoom_speed = min((zoom_in_speed_scale if target_zoom >= zoom.x else zoom_out_speed_scale) * zoom_dist, max_zoom_speed)
