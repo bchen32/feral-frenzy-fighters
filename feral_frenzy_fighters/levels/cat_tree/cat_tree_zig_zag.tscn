@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dgpssjrw24mr0" path="res://levels/cat_tree/sprites/interactables/375x300 cat tree.png" id="2_1aar2"]
 [ext_resource type="Shader" path="res://levels/cat_tree/cat_tree_zig_zag.gdshader" id="2_l8eu7"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0fntf"]
+polygon = PackedVector2Array(-187.5, -36, -187.5, 37, 187.5, 37, 187.5, -36)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3yojg"]
 shader = ExtResource("2_l8eu7")
 shader_parameter/line_color = Color(1, 1, 1, 0)
@@ -234,6 +237,10 @@ starting_health = 100
 material = SubResource("ShaderMaterial_3yojg")
 use_parent_material = true
 texture = ExtResource("2_1aar2")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+position = Vector2(0.5, -113)
+occluder = SubResource("OccluderPolygon2D_0fntf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

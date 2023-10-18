@@ -1,6 +1,8 @@
 class_name PlayerCharacter
 extends CharacterBody2D
 
+var bloodied = false
+
 @export var sprite_scene: PackedScene
 @export var player_num: int = 0
 @export var stocks: int = 3
@@ -23,11 +25,15 @@ extends CharacterBody2D
 @export var kb_hitstun_scale: float = 0.015
 @export var kb_decay: float = 2000.0
 @export var inverse_weight: float = 10.0
+@onready var CS = $CollisionShape2D
+@onready var gamepad = Globals.player_gamepad[player_num]
 @export var spike_mult: float = 0.5
 @export var hit_grav: float = 1500.0
 @export var bounce_thresh: float = 100.0
 @export var bounce_decay: float = 0.6
 @export var attacks: Dictionary = {
+
+
 	"neutral":
 	{
 		"frames": 30,
@@ -66,7 +72,8 @@ extends CharacterBody2D
 
 @onready var state_machine: Node = $StateMachine
 
-@export var physics_blood: PackedScene
+@export var physics_blood:Array[PackedScene]
+@export var dash_particles:Array[PackedScene]
 
 var anim_player: AnimatedSprite2D
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
@@ -217,16 +224,23 @@ func play_anim(animation_name: String):
 	else:
 		if percentage > 40:
 			anim_player.play(("blue_" if player_num else "purple_") + "injured_" + animation_name)
+			if !bloodied:
+				bloodied = true
+				play_particles(
+				physics_blood,
+				2,
+				180,
+				1)
+			
 		else:
 			anim_player.play(("blue_" if player_num else "purple_") + animation_name)
 
 
 func play_audio(audio_type: AudioType):
-	if $SoundEffectPlayer.playing:
-		$SoundEffectPlayer.stop()
 
 	var audio_stream: AudioStream
-
+	var audio_player = preload("res://player/playerSFX.tscn").instantiate()
+	
 	match audio_type:
 		AudioType.ATTACK:
 			audio_stream = _attack_sfx[randi_range(0, _attack_sfx.size() - 1)]
@@ -241,25 +255,40 @@ func play_audio(audio_type: AudioType):
 		AudioType.JUMP: 
 			audio_stream = _jump_sfx[randi_range(0, _jump_sfx.size() - 1)]
 		
-	$SoundEffectPlayer.stream = audio_stream
-	$SoundEffectPlayer.play()
+	add_child(audio_player)
+	audio_player.stream = audio_stream
+	audio_player.play()
 
-func blood_splatter(
+func play_particles(
+	list: Array,
+	index: int = 0,
 	spread: float = 45, 
-	amount: int = percentage,
+	amount: int = 1,
 	location: Vector2 = self.global_position, 
 	direction: Vector3 = Vector3(0,0,0), 
 	vel: Vector2 = Vector2(200,500)):
+
+	var splatter = list[index].instantiate()
+	
+	if splatter.get_class() == "GPUParticles2D":
+		splatter.amount = amount
+		splatter.global_position = location
+		splatter.process_material.direction = direction
+		splatter.process_material.spread = spread
+		splatter.process_material.initial_velocity_min = vel.x
+		splatter.process_material.initial_velocity_max = vel.y
 		
-	var splatter = physics_blood.instantiate()
-	splatter.amount = amount*2 + 25
-	splatter.global_position = location
-	splatter.process_material.direction = direction
-	splatter.process_material.spread = spread
-	splatter.process_material.initial_velocity_min = vel.x
-	splatter.process_material.initial_velocity_max = vel.y
+	elif splatter.get_class() == "CPUParticles2D":
+		splatter.amount = amount
+		splatter.global_position = location
+		splatter.direction = Vector2(direction.x,direction.y)
+		splatter.spread = spread
+		splatter.initial_velocity_min = vel.x
+		splatter.initial_velocity_max = vel.y
 	
 	get_parent().add_child(splatter)
+	splatter.emitting = true
+
 
 func get_input(input_name: String):
 	if NetworkManager.is_host:
@@ -347,8 +376,7 @@ func acknowledge_hit(player_num: int, hit_info: Dictionary):
 	kb = hit_info["kb"]
 	kb_angle = hit_info["kb_angle"]
 	global_position.y += hit_info["kb_y_offset"]
-	play_audio(AudioType.HIT)
-	
+
 
 func acknowledge_death():
 	var hit_direction = \
@@ -383,6 +411,7 @@ func acknowledge_death():
 	position = _initial_player_position # needs to reload state machine (hit stun carries over)
 	velocity = Vector2(0, 0)
 	percentage = 0
+	bloodied = false
 	
 	if not NetworkManager.is_connected and not _is_lobby:
 		stocks -= 1
@@ -402,9 +431,8 @@ func acknowledge_death():
 			Globals.audio_stream_to_play_during_cutscene = _ending_video_audiostream
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
 	play_audio(AudioType.DEATH)
-	
 	if not NetworkManager.is_connected and not NetworkManager.is_host:
-		blood_splatter(30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
+		play_particles(physics_blood,0, 30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
 
 func _physics_process(delta: float):
 	# if we are the server setup, we need to tell InputManager which player to get inputs for
@@ -414,10 +442,11 @@ func _physics_process(delta: float):
 	
 	set_collision_mask_value(4, not InputManager.is_action_pressed(get_input("down")))  # drop through platforms while down is held
 	frame += 1
-	state_machine.update(delta)
 	move_and_slide()
+	state_machine.update(delta)
 
 func _process(_delta: float):
+	
 	if anim_player.flip_h:
 		anim_player.position.x = -12
 	else:

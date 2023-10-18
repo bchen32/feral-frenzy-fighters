@@ -142,7 +142,7 @@ texture = ExtResource("3_khrie")
 
 [node name="MouseSFX" type="AudioStreamPlayer2D" parent="MouseParent"]
 stream = ExtResource("5_48n66")
-volume_db = -0.4
+volume_db = -10.0
 bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
