@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bufmqkog5wh05"
-path="res://.godot/imported/punching bag stats example 1 life.png-9222c653c0687750f8933b0f8e0a22ec.ctex"
+uid="uid://esf0grru0q0h"
+path="res://.godot/imported/beanbag_head_icon.png-c9497f1a224a9a5183d05efc12190c4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/tutorial/ui/punching bag stats example 1 life.png"
-dest_files=["res://.godot/imported/punching bag stats example 1 life.png-9222c653c0687750f8933b0f8e0a22ec.ctex"]
+source_file="res://gui/hud/sprites/head_icons/beanbag_head_icon.png"
+dest_files=["res://.godot/imported/beanbag_head_icon.png-c9497f1a224a9a5183d05efc12190c4c.ctex"]
 
 [params]
 

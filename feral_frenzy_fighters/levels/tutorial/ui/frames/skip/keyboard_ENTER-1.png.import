@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://csfw0i44hrjp3"
-path="res://.godot/imported/keyboard_ENTER-1.png-177b9b12a20c2e6d81950baadb88f542.ctex"
+path="res://.godot/imported/keyboard_ENTER-1.png-9e7d136e848340ddeaaa7a35e31b97f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/tutorial/UI/frames/skip/keyboard_ENTER-1.png"
-dest_files=["res://.godot/imported/keyboard_ENTER-1.png-177b9b12a20c2e6d81950baadb88f542.ctex"]
+source_file="res://levels/tutorial/ui/frames/skip/keyboard_ENTER-1.png"
+dest_files=["res://.godot/imported/keyboard_ENTER-1.png-9e7d136e848340ddeaaa7a35e31b97f8.ctex"]
 
 [params]
 

@@ -127,7 +127,7 @@ func _ready():
 		}
 		state_machine.init(self, states, Globals.States.IDLE)
 	else:
-		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + ".png")
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
 		var states = {
 			Globals.States.AIR: BeanbagAirState.new(),
 			Globals.States.HIT: HitState.new(),
@@ -219,7 +219,8 @@ func play_particles(
 	location: Vector2 = self.global_position, 
 	direction: Vector3 = Vector3(0,0,0), 
 	vel: Vector2 = Vector2(200,500)):
-
+	if amount < 1: # hotfix
+		amount = 1
 	var splatter = list[index].instantiate()
 	
 	if splatter.get_class() == "GPUParticles2D":
