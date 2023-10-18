@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cadamwrackyxx"]
+
+[ext_resource type="Script" path="res://levels/fish_tank/tiki_head.gd" id="1_fnuo1"]
+[ext_resource type="Texture2D" uid="uid://cm5orikkk4au6" path="res://levels/fish_tank/sprites/decor/tiki_cat_head.png" id="2_3o8b3"]
+
+[node name="TikiHead" type="Node2D"]
+script = ExtResource("1_fnuo1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3o8b3")

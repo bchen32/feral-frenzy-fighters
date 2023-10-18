@@ -140,12 +140,12 @@ size = Vector2(373, 74)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhfje"]
 size = Vector2(247, 240)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hrrr5"]
-polygon = PackedVector2Array(678, 827, 679, 899, 1196, 899, 1197, 827)
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v3l2i"]
 resource_local_to_scene = true
 polygon = PackedVector2Array(75, 226, 74, 300, 449, 299, 450, 226)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hrrr5"]
+polygon = PackedVector2Array(678, 827, 679, 899, 1196, 899, 1197, 827)
 
 [node name="CatTreeLevel" type="Node2D"]
 
@@ -207,20 +207,6 @@ position = Vector2(6.5, 1)
 shape = SubResource("RectangleShape2D_h36ni")
 one_way_collision = true
 metadata/_edit_lock_ = true
-
-[node name="DestructibleCatTrees" type="Node2D" parent="Environment"]
-
-[node name="CatTreeZigZag" parent="Environment/DestructibleCatTrees" instance=ExtResource("6_gw84o")]
-z_index = -1
-position = Vector2(640, 604)
-
-[node name="CatTreeLeft" parent="Environment/DestructibleCatTrees" instance=ExtResource("4_h4nvx")]
-z_index = -1
-position = Vector2(262, 751)
-
-[node name="CatTreeMiddle" parent="Environment/DestructibleCatTrees" instance=ExtResource("5_jeqww")]
-z_index = -1
-position = Vector2(1090, 888)
 
 [node name="Decorations" type="Node2D" parent="Environment"]
 
@@ -318,31 +304,44 @@ metadata/_edit_lock_ = true
 [node name="Interactables" type="Node2D" parent="DynamicObjects/MultiplayerSpawner"]
 metadata/_edit_lock_ = true
 
+[node name="DestructibleCatTrees" type="Node2D" parent="DynamicObjects/MultiplayerSpawner/Interactables"]
+
+[node name="CatTreeLeft" parent="DynamicObjects/MultiplayerSpawner/Interactables/DestructibleCatTrees" instance=ExtResource("4_h4nvx")]
+z_index = -1
+position = Vector2(262, 751)
+starting_health = 60
+respawn_time = 10.0
+
+[node name="CatTreeZigZag" parent="DynamicObjects/MultiplayerSpawner/Interactables/DestructibleCatTrees" instance=ExtResource("6_gw84o")]
+z_index = -1
+position = Vector2(640, 604)
+starting_health = 40
+respawn_time = 5.0
+
+[node name="CatTreeMiddle" parent="DynamicObjects/MultiplayerSpawner/Interactables/DestructibleCatTrees" instance=ExtResource("5_jeqww")]
+z_index = -1
+position = Vector2(1090, 888)
+starting_health = 80
+respawn_time = 15.0
+
 [node name="PlasmaBall" parent="DynamicObjects/MultiplayerSpawner/Interactables" instance=ExtResource("14_7tkul")]
 position = Vector2(1539, 629)
 metadata/_edit_lock_ = true
 
 [node name="LightOccluders" type="Node2D" parent="."]
 
-[node name="BigLO" type="LightOccluder2D" parent="LightOccluders"]
-occluder = SubResource("OccluderPolygon2D_hrrr5")
-
 [node name="LO1" type="LightOccluder2D" parent="LightOccluders"]
-occluder = SubResource("OccluderPolygon2D_v3l2i")
-
-[node name="LO2" type="LightOccluder2D" parent="LightOccluders"]
-position = Vector2(378, 228)
-occluder = SubResource("OccluderPolygon2D_v3l2i")
-
-[node name="LO3" type="LightOccluder2D" parent="LightOccluders"]
 position = Vector2(77, 525)
 occluder = SubResource("OccluderPolygon2D_v3l2i")
 
-[node name="LO5" type="LightOccluder2D" parent="LightOccluders"]
+[node name="LO2" type="LightOccluder2D" parent="LightOccluders"]
+occluder = SubResource("OccluderPolygon2D_hrrr5")
+
+[node name="LO3" type="LightOccluder2D" parent="LightOccluders"]
 position = Vector2(1275, 525)
 occluder = SubResource("OccluderPolygon2D_v3l2i")
 
-[node name="LO6" type="LightOccluder2D" parent="LightOccluders"]
+[node name="LO4" type="LightOccluder2D" parent="LightOccluders"]
 position = Vector2(1275, 223)
 occluder = SubResource("OccluderPolygon2D_v3l2i")
 

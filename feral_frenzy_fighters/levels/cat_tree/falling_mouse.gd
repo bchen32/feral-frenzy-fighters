@@ -1,5 +1,6 @@
 extends Node2D
 
+#hitbox settings: line 25
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @onready var anim = get_node("AnimationPlayer")
 @onready var mouse_sprite = get_node("MouseParent/Mouse")
@@ -20,6 +21,7 @@ func _ready():
 	var mouse_hitbox = hitbox_scene.instantiate()
 	mouse_sprite.add_child(mouse_hitbox)
 	
+	#width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
 	mouse_hitbox.setup(110, 50, -60, 40, 5, 1.25, 0, 0)
 	
 	mouse_sprite.visible = false
