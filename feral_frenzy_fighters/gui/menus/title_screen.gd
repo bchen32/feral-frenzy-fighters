@@ -1,13 +1,19 @@
 extends Control
 
 @export var beginning_cutscene_path: String
+
+@onready var music_slider = $MainMenu/AudioSliders/VBoxContainer/MusicSlider
+@onready var sfx_slider = $MainMenu/AudioSliders/VBoxContainer/SfxSlider
+
 var ui
 
 func _ready():
 	if NetworkManager.SERVER_BUILD:
 		$HostButton.show()
-	$"MainMenu/AudioSliders/VBoxContainer/MusicSlider".value = 50 if Globals.music_val == -1 else Globals.music_val
-	$"MainMenu/AudioSliders/VBoxContainer/SfxSlider".value = 100 if Globals.sfx_val == -1 else Globals.sfx_val
+	music_slider.value = 50 if Globals.music_val == -1 else Globals.music_val
+	sfx_slider.value = 100 if Globals.sfx_val == -1 else Globals.sfx_val
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(music_slider.value / music_slider.max_value))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(sfx_slider.value / sfx_slider.max_value))
 	$"MainMenu/Title/ButtonsVBox/Play/PlayButton".grab_focus()
 	Globals.setup_controls()
 	
@@ -82,14 +88,12 @@ func _on_host_button_pressed():
 	NetworkManager.become_host()
 
 func _on_music_slider_value_changed(value):
-	var music_max = $"MainMenu/AudioSliders/VBoxContainer/MusicSlider".max_value
 	Globals.music_val = value
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(value / music_max))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(value / music_slider.max_value))
 
 func _on_sfx_slider_value_changed(value):
-	var sfx_max = $"MainMenu/AudioSliders/VBoxContainer/SfxSlider".max_value
 	Globals.sfx_val = value
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(value / sfx_max))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(value / sfx_slider.max_value))
 
 func _on_button_entered():
 	$SFX.stream = preload("res://gui/menus/sfx/button.wav")

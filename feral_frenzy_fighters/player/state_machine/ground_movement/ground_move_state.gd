@@ -17,24 +17,20 @@ func update(delta):
 	if direction:
 		character.anim_player.flip_h = direction > 0
 		if character.velocity.x * direction < 0:  # vel and direction are opposite
-			deccel(delta)
+			character.velocity.x = move_toward(character.velocity.x, 0.0, get_accel() * delta)
 		else:
-			character.velocity.x += direction * get_accel() * delta
-			character.velocity.x = clamp(character.velocity.x, -get_speed(), get_speed())
+			if abs(character.velocity.x) < get_speed():
+				character.velocity.x += direction * get_accel() * delta
+			# Soft clamp for when character is knocked back and sliding
+			if character.velocity.x > get_speed():
+				character.velocity.x = move_toward(character.velocity.x, get_speed(), get_accel() * delta)
+			elif character.velocity.x < -get_speed():
+				character.velocity.x = move_toward(character.velocity.x, -get_speed(), get_accel() * delta)
 	else:  # nothing held down
-		deccel(delta)
+		character.velocity.x = move_toward(character.velocity.x, 0.0, get_accel() * delta)
 		if character.velocity.x == 0:
 			return Globals.States.IDLE
 	return get_state()
-
-
-func deccel(delta):
-	if character.velocity.x > 0:
-		character.velocity.x -= get_accel() * delta
-		character.velocity.x = maxf(character.velocity.x, 0.0)
-	else:
-		character.velocity.x += get_accel() * delta
-		character.velocity.x = minf(character.velocity.x, 0.0)
 
 
 func play_audio():
