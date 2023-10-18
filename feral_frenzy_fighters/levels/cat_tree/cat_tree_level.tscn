@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-[gd_scene load_steps=35 format=3 uid="uid://ju3ra5auyqg8"]
-=======
 [gd_scene load_steps=29 format=3 uid="uid://ju3ra5auyqg8"]
->>>>>>> parent of c44ee5c (Fish level)
 
 [ext_resource type="Texture2D" uid="uid://uk8l6kbu2oih" path="res://levels/cat_tree/tilesets/wallpaper_complete.png" id="1_a55mx"]
 [ext_resource type="Texture2D" uid="uid://t8uj7yrrto1f" path="res://levels/cat_tree/sprites/decor/science_board.png" id="2_xvjod"]
@@ -24,13 +20,6 @@
 [ext_resource type="Script" path="res://levels/event_spawner.gd" id="14_vvqsy"]
 [ext_resource type="PackedScene" uid="uid://bqcbmaknrbcpc" path="res://levels/cat_tree/falling_mouse.tscn" id="16_c30hf"]
 [ext_resource type="PackedScene" uid="uid://chqh43xknejst" path="res://levels/cat_tree/hairball_cat.tscn" id="17_p8xfc"]
-<<<<<<< HEAD
-[ext_resource type="Script" path="res://levels/camera.gd" id="21_7a5pk"]
-[ext_resource type="PackedScene" uid="uid://cqwih0alupqsb" path="res://gui/hud/damage_ui.tscn" id="22_cq7kp"]
-[ext_resource type="AudioStream" uid="uid://gv5krwja5mbt" path="res://levels/cat_tree/music/catfight.wav" id="23_u6vlx"]
-[ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="24_07l4o"]
-=======
->>>>>>> parent of c44ee5c (Fish level)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wslx1"]
 texture = ExtResource("3_30urg")
@@ -151,26 +140,12 @@ size = Vector2(373, 74)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhfje"]
 size = Vector2(247, 240)
 
-<<<<<<< HEAD
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vf3hi"]
-size = Vector2(156, 1913.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrrl8"]
-size = Vector2(3746.5, 285.5)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7iddv"]
-polygon = PackedVector2Array(151, 750, 151, 824, 523, 824, 523, 750)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sqgf8"]
-polygon = PackedVector2Array(676, 825, 676, 900, 1199, 901, 1199, 825)
-=======
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hrrr5"]
 polygon = PackedVector2Array(678, 827, 679, 899, 1196, 899, 1197, 827)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v3l2i"]
 resource_local_to_scene = true
 polygon = PackedVector2Array(75, 226, 74, 300, 449, 299, 450, 226)
->>>>>>> parent of c44ee5c (Fish level)
 
 [node name="CatTreeLevel" type="Node2D"]
 
