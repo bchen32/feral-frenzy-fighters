@@ -57,6 +57,7 @@ class menu:
 				return 
 
 func _ready():
+	
 	for action in InputMap.get_actions():
 		if "p1" in action:
 			p1_inputs.append(InputMap.action_get_events(action))
@@ -80,8 +81,11 @@ func setup_controls():
 	for stuff in Input.get_connected_joypads():
 		print(Input.get_joy_name(stuff))
 		print(Input.get_joy_guid(stuff))
-		
-	if len(Input.get_connected_joypads()) >= 2:
+	
+	if len(Input.get_connected_joypads()) <= 0:
+		player_gamepad[0] = false
+		player_gamepad[1] = false
+	elif len(Input.get_connected_joypads()) >= 2:
 		rebind_p1(0)
 		rebind_p2(1)
 		player_gamepad[0] = true
@@ -125,7 +129,7 @@ func shake(node, amount: float = 5, duration: float = .01, count: int = 10, pass
 			emit_signal("shake_completed", passwords[node])
 	else:
 		node.global_position = og_pos
-		
+
 
 
 
