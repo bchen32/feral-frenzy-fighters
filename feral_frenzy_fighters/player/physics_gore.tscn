@@ -1,6 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://duxeguxel7e8u"]
+[gd_scene load_steps=7 format=3 uid="uid://5oq2ogn3k12r"]
 
-[ext_resource type="Script" path="res://player/gpu_particles.gd" id="1_yriw3"]
+[ext_resource type="Texture2D" uid="uid://b623a2g6dkkva" path="res://player/particles/sheet.png" id="1_wptsl"]
+[ext_resource type="Script" path="res://player/gpu_particles.gd" id="2_pdaww"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_22iff"]
+particles_animation = true
+particles_anim_h_frames = 9
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="Gradient" id="Gradient_sq8o5"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -18,22 +25,23 @@ initial_velocity_max = 500.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 0.1
-scale_max = 5.0
-color = Color(0.847059, 0.321569, 0.266667, 1)
 color_ramp = SubResource("GradientTexture1D_4qga8")
+anim_offset_max = 1.0
 collision_mode = 1
 collision_friction = 0.2
 collision_bounce = 0.1
 collision_use_scale = true
 
 [node name="PhysicsBlood" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_22iff")
 emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_xecpy")
+texture = ExtResource("1_wptsl")
 lifetime = 10.0
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 144
-collision_base_size = 0.5
+collision_base_size = 0.1
 visibility_rect = Rect2(-960, -540, 1920, 1080)
-script = ExtResource("1_yriw3")
+script = ExtResource("2_pdaww")

@@ -1,6 +1,8 @@
 class_name PlayerCharacter
 extends CharacterBody2D
 
+var bloodied = false
+
 @export var sprite_scene: PackedScene
 @export var player_num: int = 0
 @export var stocks: int = 3
@@ -179,6 +181,14 @@ func play_anim(animation_name: String):
 	else:
 		if percentage > 40:
 			anim_player.play(("blue_" if player_num else "purple_") + "injured_" + animation_name)
+			if !bloodied:
+				bloodied = true
+				play_particles(
+				physics_blood,
+				2,
+				180,
+				1)
+			
 		else:
 			anim_player.play(("blue_" if player_num else "purple_") + animation_name)
 
@@ -358,6 +368,7 @@ func acknowledge_death():
 	position = _initial_player_position
 	velocity = Vector2(0, 0)
 	percentage = 0
+	bloodied = false
 	
 	if not NetworkManager.is_connected and not _is_lobby:
 		stocks -= 1

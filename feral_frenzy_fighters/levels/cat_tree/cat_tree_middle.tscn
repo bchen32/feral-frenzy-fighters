@@ -1,7 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://xwiop7ddea54"]
+[gd_scene load_steps=10 format=3 uid="uid://xwiop7ddea54"]
 
 [ext_resource type="Script" path="res://levels/cat_tree/destructible_cat_tree.gd" id="1_4nqk4"]
 [ext_resource type="Texture2D" uid="uid://jw6ur2gldrht" path="res://levels/cat_tree/sprites/interactables/375x750 cat tree.png" id="1_gjgp4"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ct7md"]
+polygon = PackedVector2Array(-187, -37, -187, 37, 187, 37, 187, -37)
 
 [sub_resource type="Animation" id="Animation_5mrj6"]
 resource_name = "Damage"
@@ -107,6 +110,10 @@ starting_health = 160
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_gjgp4")
 offset = Vector2(-2, -375)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(0, -713)
+occluder = SubResource("OccluderPolygon2D_ct7md")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

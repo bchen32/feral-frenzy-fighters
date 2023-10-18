@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://mlj11vypfixg"]
+[gd_scene load_steps=5 format=3 uid="uid://mlj11vypfixg"]
 
 [ext_resource type="Texture2D" uid="uid://crj3adooyssbe" path="res://player/particles/dashes.png" id="1_4x0h2"]
+[ext_resource type="Script" path="res://player/cpu_particles.gd" id="2_dtatp"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ifs31"]
 particles_animation = true
@@ -36,3 +37,4 @@ scale_amount_min = 0.1
 scale_amount_max = 2.0
 color_ramp = SubResource("Gradient_hlt30")
 anim_offset_max = 1.0
+script = ExtResource("2_dtatp")

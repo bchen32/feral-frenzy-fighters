@@ -4,4 +4,4 @@
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("_players")]
 script = ExtResource("1_ghdqb")
-_players = [NodePath(""), NodePath("")]
+_players = [null, null]

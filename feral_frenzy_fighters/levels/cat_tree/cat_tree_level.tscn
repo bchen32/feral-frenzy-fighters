@@ -145,18 +145,17 @@ size = Vector2(373, 74)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhfje"]
 size = Vector2(247, 240)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hrrr5"]
-polygon = PackedVector2Array(678, 827, 679, 899, 1196, 899, 1197, 827)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v3l2i"]
-resource_local_to_scene = true
-polygon = PackedVector2Array(75, 226, 74, 300, 449, 299, 450, 226)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vf3hi"]
 size = Vector2(156, 1913.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrrl8"]
 size = Vector2(3746.5, 285.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7iddv"]
+polygon = PackedVector2Array(151, 750, 151, 824, 523, 824, 523, 750)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sqgf8"]
+polygon = PackedVector2Array(676, 825, 676, 900, 1199, 901, 1199, 825)
 
 [node name="CatTreeLevel" type="Node2D"]
 
@@ -328,34 +327,6 @@ metadata/_edit_lock_ = true
 position = Vector2(1539, 629)
 metadata/_edit_lock_ = true
 
-[node name="LightOccluders" type="Node2D" parent="."]
-
-[node name="BigLO" type="LightOccluder2D" parent="LightOccluders"]
-occluder = SubResource("OccluderPolygon2D_hrrr5")
-
-[node name="LO1" type="LightOccluder2D" parent="LightOccluders"]
-occluder = SubResource("OccluderPolygon2D_v3l2i")
-
-[node name="LO2" type="LightOccluder2D" parent="LightOccluders"]
-position = Vector2(378, 228)
-occluder = SubResource("OccluderPolygon2D_v3l2i")
-
-[node name="LO3" type="LightOccluder2D" parent="LightOccluders"]
-position = Vector2(77, 525)
-occluder = SubResource("OccluderPolygon2D_v3l2i")
-
-[node name="LO5" type="LightOccluder2D" parent="LightOccluders"]
-position = Vector2(1275, 525)
-occluder = SubResource("OccluderPolygon2D_v3l2i")
-
-[node name="LO6" type="LightOccluder2D" parent="LightOccluders"]
-position = Vector2(1275, 223)
-occluder = SubResource("OccluderPolygon2D_v3l2i")
-
-[node name="LO7" type="LightOccluder2D" parent="LightOccluders"]
-position = Vector2(827, -88)
-occluder = SubResource("OccluderPolygon2D_v3l2i")
-
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("players", "level")]
 position = Vector2(960, 538)
 limit_left = -200
@@ -412,12 +383,6 @@ collision_layer = 2
 position = Vector2(528, 900)
 shape = SubResource("RectangleShape2D_jrrl8")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("23_u6vlx")
-volume_db = 1.0
-autoplay = true
-bus = &"Music"
-
 [node name="Player" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("24_07l4o")]
 position = Vector2(407, 711)
 sprite_scene = ExtResource("25_4qo0b")
@@ -432,5 +397,27 @@ player_num = 1
 _damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
 _dead_areas = NodePath("../DeadAreas")
 _ending_video = "res://gui/menus/cutscenes/cat_v_cat_player_one_wins.ogv"
+
+[node name="LightOccluders" type="Node2D" parent="."]
+
+[node name="LO1" type="LightOccluder2D" parent="LightOccluders"]
+occluder = SubResource("OccluderPolygon2D_7iddv")
+
+[node name="LO2" type="LightOccluder2D" parent="LightOccluders"]
+position = Vector2(1200, 1)
+occluder = SubResource("OccluderPolygon2D_7iddv")
+
+[node name="LO3" type="LightOccluder2D" parent="LightOccluders"]
+position = Vector2(1200, -301)
+occluder = SubResource("OccluderPolygon2D_7iddv")
+
+[node name="BLO1" type="LightOccluder2D" parent="LightOccluders"]
+occluder = SubResource("OccluderPolygon2D_sqgf8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_u6vlx")
+volume_db = 1.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="child_exiting_tree" from="Events/EventSpawner" to="Events/EventSpawner" method="_on_child_exiting_tree"]
