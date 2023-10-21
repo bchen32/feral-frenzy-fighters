@@ -24,8 +24,8 @@ func _cycle():
 	_cycle()
 
 func _on_area_2d_body_entered(body):
-	reset_fall_grav_scale = body.fall_grav_scale
-	body.fall_grav_scale = -7.0
+	reset_fall_grav_scale = body.stats.fall_grav_scale
+	body.stats.fall_grav_scale = -7.0
 
 func _on_area_2d_body_exited(body):
-	body.fall_grav_scale = reset_fall_grav_scale
+	body.stats.fall_grav_scale = reset_fall_grav_scale

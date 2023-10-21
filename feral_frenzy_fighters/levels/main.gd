@@ -2,6 +2,8 @@ extends Node2D
 
 @export var _players: Array[PlayerCharacter] 
 
+@onready var camera = $Camera2D
+
 func _game_information(player_datas: Dictionary):
 	for player_num in player_datas:
 		var player = _players[player_num]
@@ -35,9 +37,20 @@ func _ack_hit(player_num: int, hit_info: Dictionary):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var level
+	match Globals.stage:
+		0:
+			level = load("res://levels/cat_tree/cat_tree_level.tscn").instantiate()
+			add_child(level)
+		1:
+			level = load("res://levels/fish_tank/fish_tank_level.tscn").instantiate()
+			add_child(level)
+	move_child(level, 0)
+	camera.event_spawner = level.get_node("Events/EventSpawner")
 	NetworkManager.recieved_player_data.connect(_game_information)
 	NetworkManager.death_acked.connect(_ack_death)
 	NetworkManager.hit_acked.connect(_ack_hit)
+	Globals.setup_controls()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

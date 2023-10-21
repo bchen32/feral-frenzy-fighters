@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg3kghx52c4y5"]
+
+[ext_resource type="Texture2D" uid="uid://clh0w6w7mn0rg" path="res://player/spark.png" id="1_yuext"]
+[ext_resource type="Script" path="res://player/cpu_particles.gd" id="2_ht1mf"]
+
+[sub_resource type="Gradient" id="Gradient_hlt30"]
+offsets = PackedFloat32Array(0, 0.81457)
+colors = PackedColorArray(0.996078, 0.996078, 0, 1, 1, 1, 1, 1)
+
+[node name="plasma" type="CPUParticles2D"]
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+texture = ExtResource("1_yuext")
+direction = Vector2(1, -1000)
+spread = 180.0
+gravity = Vector2(0, 490)
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.1
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_hlt30")
+script = ExtResource("2_ht1mf")

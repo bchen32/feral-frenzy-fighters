@@ -84,7 +84,7 @@ func _process(delta):
 				p1_selection[p1_stage].texture_normal = purplebox
 				on_stage1_change()
 				
-		if Input.is_action_just_pressed("p1_jump"):
+		if Input.is_action_just_pressed("p1_accept"):
 			p1_locked = true
 			p1_selection[p1_stage].modulate.a = 1
 			actual_selection.append(p1_stage)
@@ -115,7 +115,7 @@ func _process(delta):
 				p2_selection[p2_stage].texture_normal = bluebox
 				on_stage2_change()
 				
-		if Input.is_action_just_pressed("p2_jump"):
+		if Input.is_action_just_pressed("p2_accept"):
 			p2_locked = true
 			p2_selection[p2_stage].modulate.a = 1
 			actual_selection.append(p2_stage)
@@ -174,15 +174,8 @@ func animate_selection(icon):
 	go_to_stage()
 	
 func go_to_stage():
-	match final_selection:
-		0:
-			get_tree().change_scene_to_file("res://levels/main.tscn")
-		1:
-			get_tree().change_scene_to_file("res://levels/fish_tank/fish_tank_level.tscn")
-			#get_tree().change_scene("fish level")
-		2:
-			pass
-			#get_tree().change_scene("turtle level")
+	Globals.stage = final_selection
+	get_tree().change_scene_to_file("res://levels/main.tscn")
 
 func _on_button_mouse_entered(extra_arg_0):
 	if !p1_locked:
