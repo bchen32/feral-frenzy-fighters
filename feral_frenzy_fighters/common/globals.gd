@@ -6,6 +6,7 @@ var cutscene_player_video_path: String = "res://gui/menus/cutscenes/intro_cutsce
 var cutscene_player_end_game: bool = false
 var player1_won: bool = false
 var player_sprites: Array[String] = []
+var stage: int
 
 var audio_stream_to_play_during_cutscene: AudioStream
 var sfx_val = -1

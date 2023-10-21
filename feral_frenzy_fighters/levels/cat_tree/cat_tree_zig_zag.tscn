@@ -267,8 +267,5 @@ rotation = 0.514113
 shape = SubResource("RectangleShape2D_kwyq8")
 metadata/_edit_lock_ = true
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource("OccluderPolygon2D_kln3s")
-
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

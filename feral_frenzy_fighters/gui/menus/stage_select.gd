@@ -174,15 +174,8 @@ func animate_selection(icon):
 	go_to_stage()
 	
 func go_to_stage():
-	match final_selection:
-		0:
-			get_tree().change_scene_to_file("res://levels/main.tscn")
-		1:
-			get_tree().change_scene_to_file("res://levels/fish_tank/fish_tank_level.tscn")
-			#get_tree().change_scene("fish level")
-		2:
-			pass
-			#get_tree().change_scene("turtle level")
+	Globals.stage = final_selection
+	get_tree().change_scene_to_file("res://levels/main.tscn")
 
 func _on_button_mouse_entered(extra_arg_0):
 	if !p1_locked:

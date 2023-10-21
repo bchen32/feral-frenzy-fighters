@@ -22,7 +22,7 @@ func _ready():
 func _process(delta):
 	if !players_caught.is_empty():
 		for p in players_caught:
-			players_caught[p].global_position = trapped_pos.global_position
+			p.global_position = trapped_pos.global_position
 
 func _on_area_2d_body_entered(body):
 	players_caught.append(body)

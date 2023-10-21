@@ -1,7 +1,6 @@
 extends Camera2D
 
 @export var players: Array[Node] = []
-@export var level: Node
 @export var pos_speed_scale: float = 4.0
 @export var zoom_in_speed_scale: float = 0.5
 @export var zoom_out_speed_scale: float = 1.5
@@ -14,14 +13,13 @@ extends Camera2D
 @export var margin: Vector2 = Vector2(400.0, 400.0)
 @export var limit_margins: Vector2 = Vector2(200.0, 100.0)
 
-var event_spawner: Node
+var event_spawner: Node # set by main.gd
 var viewport_rect: Rect2
 var initial_pos: Vector2
 var old_target_zoom: float
 
 
 func _ready():
-	event_spawner = level.get_node("Events/EventSpawner")
 	viewport_rect = get_viewport().get_visible_rect()
 	initial_pos = position
 	old_target_zoom = zoom.x
