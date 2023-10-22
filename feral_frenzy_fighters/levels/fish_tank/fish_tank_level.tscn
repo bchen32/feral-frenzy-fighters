@@ -13,11 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://cadamwrackyxx" path="res://levels/fish_tank/tiki_head.tscn" id="10_hjvma"]
 [ext_resource type="PackedScene" uid="uid://ch0a3pyvecm4r" path="res://levels/fish_tank/pipeline.tscn" id="11_ibf3h"]
 [ext_resource type="PackedScene" uid="uid://blblpyd2p40xn" path="res://levels/fish_tank/volcano.tscn" id="13_d5umk"]
-[ext_resource type="Texture2D" uid="uid://c2sy06qgow26p" path="res://levels/fish_tank/sprites/interactables/boulder.png" id="13_tfp88"]
 [ext_resource type="Script" path="res://levels/event_spawner.gd" id="13_xyfhw"]
 [ext_resource type="Texture2D" uid="uid://1yn0d3vivecv" path="res://levels/fish_tank/sprites/interactables/osha_toy.png" id="14_btqcf"]
 [ext_resource type="PackedScene" uid="uid://pak8t28sflvo" path="res://levels/fish_tank/fish_net.tscn" id="14_hfays"]
 [ext_resource type="PackedScene" uid="uid://dhva4w7eajg41" path="res://levels/fish_tank/gravel_cleaner.tscn" id="16_flavb"]
+[ext_resource type="PackedScene" uid="uid://beu31y03n3dpm" path="res://levels/fish_tank/boulder.tscn" id="18_ng4qv"]
 [ext_resource type="Shader" path="res://levels/fish_tank/fish_tank_level.gdshader" id="19_hcjn7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_25un7"]
@@ -410,17 +410,13 @@ position = Vector2(944, 565)
 
 [node name="Interactables" type="Node2D" parent="."]
 
-[node name="Boulder" type="Sprite2D" parent="Interactables"]
-z_index = -1
-position = Vector2(958, 769)
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("13_tfp88")
-metadata/_edit_lock_ = true
-
 [node name="OshaToy" type="Sprite2D" parent="Interactables"]
 position = Vector2(419, 311)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("14_btqcf")
+
+[node name="Boulder" parent="Interactables" instance=ExtResource("18_ng4qv")]
+position = Vector2(955, 759)
 
 [node name="FullscreenShader" type="ColorRect" parent="."]
 z_index = 3
