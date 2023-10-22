@@ -20,7 +20,7 @@ func _ready():
 	self.add_child(pebble_hitbox)
 	
 	# width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-	pebble_hitbox.setup(20, 20, 0, 0, 1, 1, 0, 0)
+	pebble_hitbox.setup(20, 20, 0, 0, 2, 1.5, 0, 0)
 
 func _process(delta):
 	if linear_velocity.y <= 0.1:
