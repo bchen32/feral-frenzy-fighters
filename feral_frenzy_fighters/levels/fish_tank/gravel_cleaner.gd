@@ -23,8 +23,8 @@ func _process(delta):
 func _physics_process(delta):
 	if !players_caught.is_empty():
 		for p in players_caught:
-			players_caught[p].global_position.x = self.global_position.x
-			players_caught[p].global_position.y += delta
+			p.global_position.x = self.global_position.x
+			p.global_position.y += delta
 
 func _on_area_2d_body_entered(body):
 	players_caught.append(body)

@@ -23,8 +23,15 @@ func _process(delta):
 
 func _change_health(health_change: float):
 	self.health += health_change
-	anim.play("Damage")
-	Globals.shake(self,5,.01)
+	if anim.is_playing():
+		anim.stop()
+	
+	if self.health > 0:
+		anim.play("Damage")
+		await anim.animation_finished
+		if !hitbox.get_overlapping_bodies().is_empty():
+			anim.play("Indication")
+		Globals.shake(self,5,.01)
 
 func _destroy_self():
 	physical_collision.get_child(0).set_deferred("disabled", true)

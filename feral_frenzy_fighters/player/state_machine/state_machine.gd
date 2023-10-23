@@ -2,32 +2,15 @@ extends Node
 
 class_name StateMachine
 
-@export var character: PlayerCharacter
-@export var curr_state: Globals.States
+var character: PlayerCharacter
+var states: Dictionary
+var curr_state: Globals.States
 
-var past_state: Globals.States
-var states: Array[State]
-
-func init(character_to_set: PlayerCharacter):
-	states = [
-		AirState.new(),
-		AirAttackState.new(),
-		AirJumpState.new(),
-		DashState.new(),
-		DashAttackState.new(),
-		DashJumpState.new(),
-		GroundAttackState.new(),
-		HitState.new(),
-		IdleState.new(),
-		WalkState.new(),
-		WalkJumpState.new()
-	]  # must be in same order as States enum in Globals.gd
-	
-	if character_to_set != null:
-		character = character_to_set
-	
+func init(p_character, p_states, p_curr_state):
+	character = p_character
+	states = p_states	
 	for state in states:
-		state.character = character
+		states[state].character = character
 	states[curr_state].enter()
 	
 	past_state = curr_state

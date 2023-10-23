@@ -172,19 +172,6 @@ theme = ExtResource("3_0h4m0")
 theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
 text = "Credits"
 
-[node name="Options" type="Control" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="OptionsButton" type="Button" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox/Options" groups=["TitleButtons"]]
-layout_mode = 0
-offset_right = 324.0
-offset_bottom = 162.0
-theme = ExtResource("3_0h4m0")
-theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
-text = "Options"
-
 [node name="Tutorial" type="Control" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
@@ -198,6 +185,19 @@ theme = ExtResource("3_0h4m0")
 theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
 text = "Tutorial"
+
+[node name="Options" type="Control" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionsButton" type="Button" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox/Options" groups=["TitleButtons"]]
+layout_mode = 0
+offset_right = 324.0
+offset_bottom = 162.0
+theme = ExtResource("3_0h4m0")
+theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
+text = "Options"
 
 [node name="Extras" type="Control" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox"]
 visible = false
@@ -735,10 +735,10 @@ text = "host"
 [connection signal="pressed" from="MainMenu/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Credits/CreditsButton" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Credits/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Options/OptionsButton" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Options/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Tutorial/TutorialButton" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Tutorial/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Options/OptionsButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Options/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Quit/QuitButton" to="." method="_on_button_entered"]

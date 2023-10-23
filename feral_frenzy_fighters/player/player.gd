@@ -32,55 +32,65 @@ var bloodied = false
 @export var bounce_thresh: float = 100.0
 @export var bounce_decay: float = 0.6
 @export var attacks: Dictionary = {
-
-
 	"neutral":
 	{
-		"frames": 30,
-		"damage": 10,
-		"knockback_scale": 1.0,
-		"knockback_x_offset": 20.0,
-		"knockback_y_offset": -20.0,
-		"hitboxes": [{"start_frame": 8, "end_frame": 16, "width": 28, "height": 10, "x_offset": 12, "y_offset": 0}]
+		"sprite_scene": "res://player/cat/cat.tscn",
+		"stats": "res://player/cat/cat.json"
 	},
-	"air_neutral":
+	"fish":
 	{
-		"frames": 20,
-		"damage": 10,
-		"knockback_scale": 1.0,
-		"knockback_x_offset": 0.0,
-		"knockback_y_offset": 0.0,
-		"hitboxes": [{"start_frame": 4, "end_frame": 20, "width": 40, "height": 40, "x_offset": 0, "y_offset": 0}]
+		"sprite_scene": "res://player/fish/fish.tscn",
+		"stats": "res://player/fish/fish.json"
 	},
-	"dash_attack":
+	"beanbag":
 	{
-		"frames": 45,
-		"damage": 15,
-		"knockback_scale": 1.0,
-		"knockback_x_offset": 20.0,
-		"knockback_y_offset": -5.0,
-		"hitboxes": [
-			{"start_frame": 4, "end_frame": 24, "width": 20, "height": 40, "x_offset": 30, "y_offset": 0}
-		]
+		"sprite_scene": "res://player/beanbag/beanbag.tscn",
+		"stats": "res://player/cat/cat.json"
 	}
 }
+
+@export var character_type: String
+@export var character_data: Dictionary = {
+	"cat":
+	{
+		"sprite_scene": "res://player/cat/cat.tscn",
+		"stats": "res://player/cat/cat.json"
+	},
+	"fish":
+	{
+		"sprite_scene": "res://player/fish/fish.tscn",
+		"stats": "res://player/fish/fish.json"
+	},
+	"beanbag":
+	{
+		"sprite_scene": "res://player/beanbag/beanbag.tscn",
+		"stats": "res://player/cat/cat.json"
+	}
+}
+@export var player_num: int = 0
+@export var stocks: int = 3
 @export var _damage_label: Control
 @export var _dead_areas: Node2D
-@export var _ending_video = "res://gui/menus/cutscenes/cat_v_cat_win_cutscene.ogv"
+@export var _ending_video: String
 @export var _ending_video_audiostream: AudioStream
 @export var _is_lobby: bool = false
 
 @onready var state_machine: Node = $StateMachine
+@onready var CS = $CollisionShape2D
+@onready var gamepad = Globals.player_gamepad[player_num]
 
 @export var physics_blood:Array[PackedScene]
 @export var dash_particles:Array[PackedScene]
 
+var color: String = ""
+var bloodied: bool = false
 var anim_player: AnimatedSprite2D
+var stats: Dictionary
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 var frame: int = 0
 var percentage: float = 0.0
-var air_speed_upper_bound: float = walk_speed
-var air_speed_lower_bound: float = -walk_speed
+var air_speed_upper_bound: float
+var air_speed_lower_bound: float
 var jumps_left: int = 3
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Be careful not to desync curr_hitboxes_ends from curr_hitboxes (sadly no tuples in GDScript)
@@ -101,7 +111,6 @@ var kb_angle: float = 0.0
 var flip_h: bool = false
 
 var _initial_player_position: Vector2
-var beanbag: bool = false
 
 var _attack_sfx = [
 	preload("res://player/cat/sfx/attack/attack_1.wav"),
@@ -147,36 +156,49 @@ func _ready():
 	refresh_damage_label(_damage_label)
 	
 	if Globals.player_sprites.size() > player_num:
-		sprite_scene = Globals.player_sprites[player_num]
-	
-	_sprites_scene_instance = sprite_scene.instantiate()
-	
+		character_type = Globals.player_sprites[player_num]
+	stats = load_stats(character_data[character_type].stats)
+	air_speed_lower_bound = -stats.walk_speed
+	air_speed_upper_bound = stats.walk_speed
+	_sprites_scene_instance = load(character_data[character_type].sprite_scene).instantiate()
 	add_child(_sprites_scene_instance)
-	
+	var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
+	anim_player = _sprites_scene_instance.get_node("AnimatedSprite2D")
 	var sprite_node_path = NodePath(_sprites_scene_instance.name + "/AnimatedSprite2D:flip_h")
 	
 	_multiplayer_sync.replication_config.add_property(sprite_node_path)
-	_multiplayer_sync.replication_config.property_set_spawn(sprite_node_path, true)
 	_multiplayer_sync.replication_config.property_set_sync(sprite_node_path, true)
+	_multiplayer_sync.replication_config.property_set_spawn(sprite_node_path, true)
 	_multiplayer_sync.replication_config.property_set_watch(sprite_node_path, false)
-	
-	if _damage_label:
-		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
-		if "cat" in _sprites_scene_instance.get_scene_file_path():
-			if player_num:
-				player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_blue.png")
-			else:
-				player_head.texture = load("res://gui/hud/sprites/head_icons/cat_head_icon_purple.png")
-		elif "fish" in _sprites_scene_instance.get_scene_file_path():
-			player_head.texture = load("res://gui/hud/sprites/head_icons/fish_head_icon.png")
-		elif "beanbag" in _sprites_scene_instance.get_scene_file_path():
-			beanbag = true
-	anim_player = _sprites_scene_instance.get_node("AnimatedSprite2D")
 	var p1_icon
 	var p2_icon
-	if not beanbag:
+	if character_type != "beanbag":
+		color = "blue" if player_num else "purple"
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
 		p1_icon = _sprites_scene_instance.get_node("Player1Icon")
 		p2_icon = _sprites_scene_instance.get_node("Player2Icon")
+		var states = {
+			Globals.States.AIR: AirState.new(),
+			Globals.States.AIR_ATTACK: AirAttackState.new(),
+			Globals.States.AIR_JUMP: AirJumpState.new(),
+			Globals.States.DASH: DashState.new(),
+			Globals.States.DASH_ATTACK: DashAttackState.new(),
+			Globals.States.DASH_JUMP: DashJumpState.new(),
+			Globals.States.GROUND_ATTACK: GroundAttackState.new(),
+			Globals.States.HIT: HitState.new(),
+			Globals.States.IDLE: IdleState.new(),
+			Globals.States.WALK: WalkState.new(),
+			Globals.States.WALK_JUMP: WalkJumpState.new()
+		}
+		state_machine.init(self, states, Globals.States.IDLE)
+	else:
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
+		var states = {
+			Globals.States.AIR: BeanbagAirState.new(),
+			Globals.States.HIT: HitState.new(),
+			Globals.States.IDLE: BeanbagIdleState.new()
+		}
+		state_machine.init(self, states, Globals.States.IDLE)
 	if _damage_label:
 		_damage_label.set_player_death_count(player_num, stocks)
 
@@ -193,8 +215,6 @@ func _ready():
 		anim_player.flip_h = true
 		if p1_icon:
 			p1_icon.visible = true
-	state_machine.init(self)
-	
 	refresh_dead_areas(_dead_areas)
 
 func refresh_dead_areas(new_dead_areas: Node2D):
@@ -209,6 +229,22 @@ func refresh_dead_areas(new_dead_areas: Node2D):
 		for dead_area in _dead_areas.get_children():
 			dead_area.body_entered.connect(_on_dead_area_entered)
 
+func load_stats(file_name: String):
+	var file = FileAccess.open(file_name, FileAccess.READ)
+	var json_string = file.get_as_text()
+	var json = JSON.new()
+	var error = json.parse(file.get_as_text())
+	if error == OK:
+		var data_received = json.data
+		if typeof(data_received) == TYPE_DICTIONARY:
+			return data_received
+		else:
+			print("Unexpected data in JSON Parse")
+	else:
+		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+	return {}
+
+
 func refresh_damage_label(new_damage_label: Control):
 	_damage_label = new_damage_label
 	
@@ -219,21 +255,19 @@ func reset_frame():
 	frame = 0
 
 func play_anim(animation_name: String):
-	if beanbag: # beanbag only
+	if character_type == "beanbag":
 		anim_player.play(animation_name)
+	elif percentage > 40:
+		anim_player.play("_".join([color, "injured", animation_name]))
+		if !bloodied:
+			bloodied = true
+			play_particles(
+			physics_blood,
+			2,
+			180,
+			1)
 	else:
-		if percentage > 40:
-			anim_player.play(("blue_" if player_num else "purple_") + "injured_" + animation_name)
-			if !bloodied:
-				bloodied = true
-				play_particles(
-				physics_blood,
-				2,
-				180,
-				1)
-			
-		else:
-			anim_player.play(("blue_" if player_num else "purple_") + animation_name)
+		anim_player.play("_".join([color, animation_name]))
 
 
 func play_audio(audio_type: AudioType):
@@ -267,7 +301,8 @@ func play_particles(
 	location: Vector2 = self.global_position, 
 	direction: Vector3 = Vector3(0,0,0), 
 	vel: Vector2 = Vector2(200,500)):
-
+	if amount < 1: # hotfix
+		amount = 1
 	var splatter = list[index].instantiate()
 	
 	if splatter.get_class() == "GPUParticles2D":
@@ -318,17 +353,18 @@ func get_grav():
 	return (
 		gravity
 		if velocity.y < 0
-		else gravity * fall_grav_scale
+		else gravity * stats.fall_grav_scale
 	)
 
 
 func update_attack(attack_name: String):
-	for hitbox_stats in chosen_attack.hitboxes:
+	var attack = stats.attacks[attack_name]
+	for hitbox_stats in attack.hitboxes:
 		if frame == hitbox_stats.start_frame:
 			var hitbox = hitbox_scene.instantiate()
 			add_child(hitbox)
 			curr_hitboxes.append(hitbox)
-			curr_hitboxes_ends.append(hitbox_stats.end_frame)
+			curr_hitboxes_ends.append(int(hitbox_stats.end_frame))
 			hitbox.setup(
 				hitbox_stats.width,
 				hitbox_stats.height,
@@ -356,12 +392,12 @@ func end_attack():
 
 func air_movement(delta):
 	velocity.y += get_grav() * delta
-	velocity.y = minf(velocity.y, terminal_vel)
-	var direction = InputManager.get_axis(
+	velocity.y = minf(velocity.y, stats.terminal_vel)
+	var direction = Input.get_axis(
 		get_input("left"), get_input("right")
 	)
 	if direction:
-		velocity.x += direction * air_accel * delta
+		velocity.x += direction * stats.air_accel * delta
 		velocity.x = clamp(velocity.x, air_speed_lower_bound, air_speed_upper_bound)
 
 
@@ -446,15 +482,15 @@ func _physics_process(delta: float):
 	state_machine.update(delta)
 
 func _process(_delta: float):
-	
-	if anim_player.flip_h:
-		anim_player.position.x = -12
-	else:
-		anim_player.position.x = 12
-	if "jump" in anim_player.animation or "fall" in anim_player.animation:
-		anim_player.position.y = 8
-	else:
-		anim_player.position.y = -8
+	if character_type == "cat":
+		if anim_player.flip_h:
+			anim_player.position.x = -12
+		else:
+			anim_player.position.x = 12
+		if "jump" in anim_player.animation or "fall" in anim_player.animation:
+			anim_player.position.y = 8
+		else:
+			anim_player.position.y = -8
 	if _damage_label and NetworkManager.is_host:
 		_damage_label.set_player_damage(player_num, percentage)
 	

@@ -53,10 +53,10 @@ func get_kb(body: PlayerCharacter):
 		(
 			(
 				((body.percentage / 10.0) + (body.percentage * dmg / 20.0))
-				* body.inverse_weight
+				* body.stats.inverse_weight
 				* 1.4
 			)
-			+ body.kb_base
+			+ body.stats.kb_base
 		)
 		* kb_scale
 	)

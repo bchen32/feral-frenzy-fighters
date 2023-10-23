@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cqwih0alupqsb"]
+[gd_scene load_steps=19 format=3 uid="uid://cqwih0alupqsb"]
 
 [ext_resource type="Script" path="res://gui/hud/damage_ui.gd" id="1_kd0hw"]
 [ext_resource type="Texture2D" uid="uid://djyfonhy27vtl" path="res://gui/hud/sprites/stats_paw_prints/player_stats_purple.png" id="2_jus1w"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://elwjbvsp7q46" path="res://gui/hud/sprites/stats_paw_prints/icons/knife.png" id="7_6quto"]
 [ext_resource type="PackedScene" uid="uid://c76e6fhbc8jb2" path="res://gui/chat_popup.tscn" id="8_7swuq"]
 [ext_resource type="PackedScene" uid="uid://dj261m0egiehk" path="res://gui/chat_particles.tscn" id="9_hfx12"]
+[ext_resource type="Texture2D" uid="uid://dclv8jmg2tr7f" path="res://gui/menus/sprites/screens/icons/bloody_corner.png" id="10_cj7fl"]
+[ext_resource type="Texture2D" uid="uid://ddsx8fpmm8fun" path="res://gui/menus/sprites/screens/icons/blood_splat_two.png" id="12_hamgx"]
+[ext_resource type="Texture2D" uid="uid://dxb5rblyg4hxs" path="res://gui/menus/sprites/screens/icons/blood_splat_one.png" id="13_ev2dw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xhf4j"]
 font = ExtResource("3_ekkdo")
@@ -27,6 +30,10 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fif64"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_niwoh"]
+font = ExtResource("3_ekkdo")
+font_size = 40
 
 [node name="DamageUI" type="Control"]
 layout_mode = 3
@@ -89,18 +96,18 @@ vertical_alignment = 1
 
 [node name="KOIcon" type="TextureRect" parent="P1"]
 layout_mode = 0
-offset_left = 111.0
-offset_top = 88.0
-offset_right = 184.0
-offset_bottom = 152.0
+offset_left = 134.0
+offset_top = 85.0
+offset_right = 207.0
+offset_bottom = 149.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_6l4le")
 
 [node name="KOLabel" type="Label" parent="P1"]
 layout_mode = 0
-offset_left = 152.0
+offset_left = 134.0
 offset_top = 84.0
-offset_right = 283.0
+offset_right = 265.0
 offset_bottom = 126.0
 text = "1000"
 label_settings = SubResource("LabelSettings_58gvk")
@@ -117,13 +124,31 @@ offset_bottom = 233.0
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("7_6quto")
 
+[node name="BloodyCorner2" type="Sprite2D" parent="P1"]
+visible = false
+position = Vector2(151, 36.5)
+scale = Vector2(0.165, 0.165)
+texture = ExtResource("10_cj7fl")
+
 [node name="TextureRect" type="TextureRect" parent="P1"]
 layout_mode = 0
-offset_left = 20.0
-offset_top = -12.0
-offset_right = 182.0
-offset_bottom = 166.0
+offset_left = 15.0
+offset_top = 2.0
+offset_right = 187.0
+offset_bottom = 149.0
 scale = Vector2(0.5, 0.5)
+
+[node name="BloodSplatTwo2" type="Sprite2D" parent="P1"]
+visible = false
+position = Vector2(93, 85.5)
+scale = Vector2(0.163, 0.163)
+texture = ExtResource("12_hamgx")
+
+[node name="BloodSplatOne2" type="Sprite2D" parent="P1"]
+visible = false
+position = Vector2(264, 72.5)
+scale = Vector2(0.162, 0.162)
+texture = ExtResource("13_ev2dw")
 
 [node name="ProgressBar" type="ProgressBar" parent="P1"]
 visible = false
@@ -189,7 +214,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_xgw5i")
 stretch_mode = 2
 
-[node name="DamageLabel" type="Label" parent="P2"]
+[node name="DamageLabel_Two" type="Label" parent="P2"]
 layout_mode = 0
 offset_left = 103.0
 offset_top = 30.0
@@ -214,18 +239,18 @@ vertical_alignment = 1
 
 [node name="KOIcon" type="TextureRect" parent="P2"]
 layout_mode = 0
-offset_left = 111.0
-offset_top = 88.0
-offset_right = 184.0
-offset_bottom = 152.0
+offset_left = 134.0
+offset_top = 85.0
+offset_right = 207.0
+offset_bottom = 149.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_6l4le")
 
 [node name="KOLabel" type="Label" parent="P2"]
 layout_mode = 0
-offset_left = 152.0
+offset_left = 134.0
 offset_top = 84.0
-offset_right = 283.0
+offset_right = 265.0
 offset_bottom = 126.0
 text = "1000"
 label_settings = SubResource("LabelSettings_58gvk")
@@ -242,14 +267,31 @@ offset_bottom = 233.0
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("7_6quto")
 
+[node name="BloodyCorner" type="Sprite2D" parent="P2"]
+visible = false
+position = Vector2(150.949, 36)
+scale = Vector2(0.165025, 0.165025)
+texture = ExtResource("10_cj7fl")
+
 [node name="TextureRect" type="TextureRect" parent="P2"]
 layout_mode = 0
-offset_left = 20.0
-offset_top = -12.0
-offset_right = 182.0
-offset_bottom = 166.0
+offset_left = 16.0
+offset_top = 2.0
+offset_right = 186.0
+offset_bottom = 149.0
 scale = Vector2(0.5, 0.5)
-stretch_mode = 2
+
+[node name="BloodSplatTwo" type="Sprite2D" parent="P2"]
+visible = false
+position = Vector2(95, 84.5)
+scale = Vector2(0.163462, 0.163462)
+texture = ExtResource("12_hamgx")
+
+[node name="BloodSplatOne" type="Sprite2D" parent="P2"]
+visible = false
+position = Vector2(262, 73.5)
+scale = Vector2(0.162069, 0.162069)
+texture = ExtResource("13_ev2dw")
 
 [node name="ProgressBar3" type="ProgressBar" parent="P2"]
 visible = false
@@ -286,6 +328,10 @@ _is_blue_popup = true
 
 [node name="ChatParticles" parent="P2" instance=ExtResource("9_hfx12")]
 position = Vector2(143, -105)
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+bus = &"SFX"
 
 [connection signal="chat_sent" from="P1/ChatPopup" to="." method="_on_p1_chat_sent"]
 [connection signal="chat_sent" from="P2/ChatPopup" to="." method="_on_p2_chat_sent"]

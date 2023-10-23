@@ -45,12 +45,18 @@ func _process(delta):
 func _change_health(health_change: float):
 	if unstable == false:
 		self.health += health_change
-		anim.play("Damage")
+		if anim.is_playing():
+			anim.stop()
 		
-		var sparks = particles.instantiate()
-		sparks.global_position = global_position
-		get_parent().add_child(sparks)
-		sparks.emitting = true
+		if self.health > 0:
+			anim.play("Damage")
+			var sparks = particles.instantiate()
+			sparks.global_position = global_position
+			get_parent().add_child(sparks)
+			sparks.emitting = true
+			await anim.animation_finished
+			if !hitbox.get_overlapping_bodies().is_empty():
+				anim.play("Indication")
 
 func _stability_change(turning_unstable: bool):
 	if turning_unstable == true:

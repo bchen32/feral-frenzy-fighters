@@ -5,7 +5,8 @@ enum States { AIR, AIR_ATTACK, AIR_JUMP, DASH, DASH_ATTACK, DASH_JUMP, GROUND_AT
 var cutscene_player_video_path: String = "res://gui/menus/cutscenes/intro_cutscene.ogv"
 var cutscene_player_end_game: bool = false
 var player1_won: bool = false
-var player_sprites: Array[PackedScene] = []
+var player_sprites: Array[String] = []
+var stage: int
 
 var audio_stream_to_play_during_cutscene: AudioStream
 var sfx_val = -1
@@ -16,8 +17,6 @@ var p2_inputs = []
 
 var p1_gamepad = []
 var p2_gamepad = []
-
-var selected_stage: PackedScene
 
 var player_gamepad = {
 	0 : false,

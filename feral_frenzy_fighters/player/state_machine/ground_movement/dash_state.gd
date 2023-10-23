@@ -16,8 +16,8 @@ func enter():
 
 
 func exit():
-	character.air_speed_upper_bound = character.dash_speed
-	character.air_speed_lower_bound = -character.dash_speed
+	character.air_speed_upper_bound = character.stats.dash_speed
+	character.air_speed_lower_bound = -character.stats.dash_speed
 
 
 func update(delta):
@@ -44,8 +44,8 @@ func get_attack_state():
 
 
 func get_accel():
-	return character.dash_accel
+	return character.stats.dash_accel
 
 
 func get_speed():
-	return character.dash_speed
+	return character.stats.dash_speed

@@ -1,17 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://cebbdj1i22bos"]
+[gd_scene load_steps=16 format=3 uid="uid://cebbdj1i22bos"]
 
 [ext_resource type="Script" path="res://levels/tutorial/tutorial.gd" id="1_f82af"]
 [ext_resource type="Texture2D" uid="uid://u713f0nhv05n" path="res://levels/tutorial/tilesets/75x75_tutorial_waiting_stage_tileset.png" id="1_tq22i"]
 [ext_resource type="PackedScene" uid="uid://2g6vl7paf0fg" path="res://levels/cat_tree/cat_tree_left.tscn" id="2_04luf"]
 [ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="3_og5f5"]
 [ext_resource type="Texture2D" uid="uid://uk8l6kbu2oih" path="res://levels/cat_tree/tilesets/wallpaper_complete.png" id="4_vgnqx"]
-[ext_resource type="PackedScene" uid="uid://bsv627o3y2xj5" path="res://player/cat/cat.tscn" id="6_37toa"]
 [ext_resource type="Script" path="res://levels/tutorial/arrow_direction.gd" id="6_k2hb0"]
+[ext_resource type="Texture2D" uid="uid://tlykuvqt8y0n" path="res://levels/tutorial/UI/arrow_purple.png" id="7_5hakw"]
 [ext_resource type="PackedScene" uid="uid://bj67e35cxlvj7" path="res://levels/tutorial/goal_area.tscn" id="7_b57ej"]
-[ext_resource type="Texture2D" uid="uid://tlykuvqt8y0n" path="res://levels/tutorial/UI/arrow_purple.png" id="7_j86gc"]
 [ext_resource type="PackedScene" uid="uid://caorfjy1fvecb" path="res://levels/tutorial/tutorial_billboard.tscn" id="9_754rh"]
-[ext_resource type="PackedScene" uid="uid://dt3ng036hrmki" path="res://player/beanbag/beanbag.tscn" id="9_q8syt"]
-[ext_resource type="Texture2D" uid="uid://b705gvrh4dpob" path="res://levels/tutorial/UI/tutorial_title_ui.png" id="10_mfhbq"]
+[ext_resource type="Texture2D" uid="uid://b705gvrh4dpob" path="res://levels/tutorial/ui/tutorial_title_ui.png" id="10_47t8y"]
 [ext_resource type="PackedScene" uid="uid://cqwih0alupqsb" path="res://gui/hud/damage_ui.tscn" id="11_rw5lg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yt8op"]
@@ -64,19 +62,19 @@ layer_0/tile_data = PackedInt32Array(720908, 65536, 0, 720907, 65536, 0, 720906,
 [node name="CatTreeLeft" parent="Environment" instance=ExtResource("2_04luf")]
 position = Vector2(937, 825)
 scale = Vector2(1, 0.9)
+starting_health = 20
 
 [node name="Player2" parent="." node_paths=PackedStringArray("_damage_label") instance=ExtResource("3_og5f5")]
 visible = false
 position = Vector2(1122, 766)
 scale = Vector2(1.5, 1.5)
-sprite_scene = ExtResource("9_q8syt")
+character_type = "beanbag"
 player_num = 1
 stocks = 1
 _damage_label = NodePath("../Player/DamageUI")
 
 [node name="Player2GoalArea" parent="Player2" instance=ExtResource("7_b57ej")]
 z_index = 1
-position = Vector2(-11.3333, -14.6667)
 scale = Vector2(0.57, 0.4)
 external_trigger_area = true
 
@@ -95,7 +93,7 @@ position = Vector2(945, 238)
 [node name="Player" parent="." node_paths=PackedStringArray("_damage_label") instance=ExtResource("3_og5f5")]
 z_index = 1
 position = Vector2(567, 751)
-sprite_scene = ExtResource("6_37toa")
+character_type = "cat"
 _damage_label = NodePath("DamageUI")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -107,7 +105,7 @@ offset_top = -87.0
 offset_right = 423.0
 offset_bottom = 113.0
 scale = Vector2(0.45, 0.45)
-texture = ExtResource("7_j86gc")
+texture = ExtResource("7_5hakw")
 script = ExtResource("6_k2hb0")
 target_area = NodePath("../../../RightGoalArea")
 
@@ -124,7 +122,7 @@ offset_top = -261.0
 offset_right = 481.0
 offset_bottom = -99.0
 scale = Vector2(0.45, 0.45)
-texture = ExtResource("10_mfhbq")
+texture = ExtResource("10_47t8y")
 
 [node name="DamageUI" parent="Player" instance=ExtResource("11_rw5lg")]
 visible = false

@@ -116,9 +116,8 @@ dash_particles = Array[PackedScene]([ExtResource("4_g1p0g")])
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g467b")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("character")]
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource("10_s8jpq")
-character = NodePath("..")
 
 [node name="BloodExplosion" type="CPUParticles2D" parent="."]
 visible = false

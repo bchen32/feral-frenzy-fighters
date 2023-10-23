@@ -12,12 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://bi4tgihcsasu7" path="res://levels/fish_tank/sprites/decor/tiki hut.png" id="10_ehe4q"]
 [ext_resource type="PackedScene" path="res://levels/fish_tank/tiki_head.tscn" id="10_hjvma"]
 [ext_resource type="PackedScene" uid="uid://ch0a3pyvecm4r" path="res://levels/fish_tank/pipeline.tscn" id="11_ibf3h"]
-[ext_resource type="PackedScene" path="res://levels/fish_tank/volcano.tscn" id="13_d5umk"]
+[ext_resource type="PackedScene" uid="uid://blblpyd2p40xn" path="res://levels/fish_tank/volcano.tscn" id="13_d5umk"]
 [ext_resource type="Texture2D" uid="uid://c2sy06qgow26p" path="res://levels/fish_tank/sprites/interactables/boulder.png" id="13_tfp88"]
 [ext_resource type="Script" path="res://levels/event_spawner.gd" id="13_xyfhw"]
 [ext_resource type="Texture2D" uid="uid://1yn0d3vivecv" path="res://levels/fish_tank/sprites/interactables/osha_toy.png" id="14_btqcf"]
-[ext_resource type="PackedScene" path="res://levels/fish_tank/fish_net.tscn" id="14_hfays"]
-[ext_resource type="PackedScene" path="res://levels/fish_tank/gravel_cleaner.tscn" id="16_flavb"]
+[ext_resource type="PackedScene" uid="uid://pak8t28sflvo" path="res://levels/fish_tank/fish_net.tscn" id="14_hfays"]
+[ext_resource type="PackedScene" uid="uid://dhva4w7eajg41" path="res://levels/fish_tank/gravel_cleaner.tscn" id="16_flavb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_25un7"]
 texture = ExtResource("3_3pu7q")
@@ -395,7 +395,6 @@ connecting_pipe = NodePath("../PipelineLeft")
 [node name="Events" type="Node2D" parent="."]
 
 [node name="EventSpawner" type="Node2D" parent="Events"]
-position = Vector2(0, -2)
 script = ExtResource("13_xyfhw")
 event_array = Array[PackedScene]([ExtResource("14_hfays"), ExtResource("16_flavb")])
 metadata/_edit_lock_ = true

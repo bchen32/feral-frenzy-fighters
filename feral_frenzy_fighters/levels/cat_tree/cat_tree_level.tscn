@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://ju3ra5auyqg8"]
+[gd_scene load_steps=29 format=3 uid="uid://ju3ra5auyqg8"]
 
 [ext_resource type="Texture2D" uid="uid://uk8l6kbu2oih" path="res://levels/cat_tree/tilesets/wallpaper_complete.png" id="1_a55mx"]
 [ext_resource type="Texture2D" uid="uid://t8uj7yrrto1f" path="res://levels/cat_tree/sprites/decor/science_board.png" id="2_xvjod"]
@@ -20,11 +20,6 @@
 [ext_resource type="Script" path="res://levels/event_spawner.gd" id="14_vvqsy"]
 [ext_resource type="PackedScene" uid="uid://bqcbmaknrbcpc" path="res://levels/cat_tree/falling_mouse.tscn" id="16_c30hf"]
 [ext_resource type="PackedScene" uid="uid://chqh43xknejst" path="res://levels/cat_tree/hairball_cat.tscn" id="17_p8xfc"]
-[ext_resource type="Script" path="res://levels/camera.gd" id="21_7a5pk"]
-[ext_resource type="PackedScene" uid="uid://cqwih0alupqsb" path="res://gui/hud/damage_ui.tscn" id="22_cq7kp"]
-[ext_resource type="AudioStream" uid="uid://gv5krwja5mbt" path="res://levels/cat_tree/music/catfight.wav" id="23_u6vlx"]
-[ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="24_07l4o"]
-[ext_resource type="PackedScene" uid="uid://bsv627o3y2xj5" path="res://player/cat/cat.tscn" id="25_4qo0b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wslx1"]
 texture = ExtResource("3_30urg")
@@ -145,21 +140,12 @@ size = Vector2(373, 74)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhfje"]
 size = Vector2(247, 240)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vf3hi"]
-size = Vector2(156, 1913.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrrl8"]
-size = Vector2(3746.5, 285.5)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7iddv"]
-polygon = PackedVector2Array(151, 750, 151, 824, 523, 824, 523, 750)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sqgf8"]
-polygon = PackedVector2Array(676, 825, 676, 900, 1199, 901, 1199, 825)
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v3l2i"]
 resource_local_to_scene = true
 polygon = PackedVector2Array(75, 226, 74, 300, 449, 299, 450, 226)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hrrr5"]
+polygon = PackedVector2Array(678, 827, 679, 899, 1196, 899, 1197, 827)
 
 [node name="CatTreeLevel" type="Node2D"]
 
@@ -342,105 +328,21 @@ respawn_time = 15.0
 position = Vector2(1539, 629)
 metadata/_edit_lock_ = true
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("players", "level")]
-position = Vector2(960, 538)
-limit_left = -200
-limit_top = -100
-limit_right = 2120
-limit_bottom = 1180
-editor_draw_limits = true
-script = ExtResource("21_7a5pk")
-players = [NodePath("../Player"), NodePath("../Player2")]
-level = NodePath("..")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
-
-[node name="DamageUI" parent="Camera2D/CanvasLayer" instance=ExtResource("22_cq7kp")]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -539.0
-offset_top = -145.0
-offset_right = 613.0
-offset_bottom = -145.0
-metadata/_edit_use_anchors_ = true
-
-[node name="DeadAreas" type="Node2D" parent="."]
-position = Vector2(-3, 557)
-
-[node name="DeadArea" type="Area2D" parent="DeadAreas"]
-position = Vector2(-732, -708)
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadAreas/DeadArea"]
-position = Vector2(399, 595)
-shape = SubResource("RectangleShape2D_vf3hi")
-
-[node name="DeadArea2" type="Area2D" parent="DeadAreas"]
-position = Vector2(-732, -708)
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadAreas/DeadArea2"]
-position = Vector2(2955, 567)
-shape = SubResource("RectangleShape2D_vf3hi")
-
-[node name="DeadArea3" type="Area2D" parent="DeadAreas"]
-collision_layer = 2
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="DeadAreas/DeadArea3"]
-position = Vector2(955, -1046)
-shape = SubResource("RectangleShape2D_jrrl8")
-
-[node name="DeadArea4" type="Area2D" parent="DeadAreas"]
-collision_layer = 2
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="DeadAreas/DeadArea4"]
-position = Vector2(528, 900)
-shape = SubResource("RectangleShape2D_jrrl8")
-
-[node name="Player" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("24_07l4o")]
-position = Vector2(407, 711)
-sprite_scene = ExtResource("25_4qo0b")
-_damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
-_dead_areas = NodePath("../DeadAreas")
-_ending_video = "res://gui/menus/cutscenes/cat_v_cat_player_two_wins.ogv"
-
-[node name="Player2" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("24_07l4o")]
-position = Vector2(1546, 708)
-sprite_scene = ExtResource("25_4qo0b")
-player_num = 1
-_damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
-_dead_areas = NodePath("../DeadAreas")
-_ending_video = "res://gui/menus/cutscenes/cat_v_cat_player_one_wins.ogv"
-
 [node name="LightOccluders" type="Node2D" parent="."]
 
 [node name="LO1" type="LightOccluder2D" parent="LightOccluders"]
-occluder = SubResource("OccluderPolygon2D_7iddv")
+position = Vector2(77, 525)
+occluder = SubResource("OccluderPolygon2D_v3l2i")
 
 [node name="LO2" type="LightOccluder2D" parent="LightOccluders"]
-position = Vector2(1200, 1)
-occluder = SubResource("OccluderPolygon2D_7iddv")
+occluder = SubResource("OccluderPolygon2D_hrrr5")
 
 [node name="LO3" type="LightOccluder2D" parent="LightOccluders"]
-position = Vector2(1200, -301)
-occluder = SubResource("OccluderPolygon2D_7iddv")
-
-[node name="BLO1" type="LightOccluder2D" parent="LightOccluders"]
-occluder = SubResource("OccluderPolygon2D_sqgf8")
+position = Vector2(1275, 525)
+occluder = SubResource("OccluderPolygon2D_v3l2i")
 
 [node name="LO4" type="LightOccluder2D" parent="LightOccluders"]
 position = Vector2(1275, 223)
 occluder = SubResource("OccluderPolygon2D_v3l2i")
 
-[node name="LO7" type="LightOccluder2D" parent="LightOccluders"]
-position = Vector2(827, -88)
-occluder = SubResource("OccluderPolygon2D_v3l2i")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("23_u6vlx")
-volume_db = 1.0
-autoplay = true
-bus = &"Music"
-
-[connection signal="child_exiting_tree" from="DynamicObjects/MultiplayerSpawner/Events/EventSpawner" to="DynamicObjects/MultiplayerSpawner/Events/EventSpawner" method="_on_child_exiting_tree"]
+[connection signal="child_exiting_tree" from="Events/EventSpawner" to="Events/EventSpawner" method="_on_child_exiting_tree"]
