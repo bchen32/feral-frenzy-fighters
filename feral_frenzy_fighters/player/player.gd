@@ -153,12 +153,14 @@ func _ready():
 	
 	if Globals.player_sprites.size() > player_num:
 		character_type = Globals.player_sprites[player_num]
+	elif NetworkManager.is_connected or NetworkManager.is_host:
+		character_type = "cat"
+	
 	stats = load_stats(character_data[character_type].stats)
 	air_speed_lower_bound = -stats.walk_speed
 	air_speed_upper_bound = stats.walk_speed
 	_sprites_scene_instance = load(character_data[character_type].sprite_scene).instantiate()
 	add_child(_sprites_scene_instance)
-	var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
 	anim_player = _sprites_scene_instance.get_node("AnimatedSprite2D")
 	var sprite_node_path = NodePath(_sprites_scene_instance.name + "/AnimatedSprite2D:flip_h")
 	
@@ -168,9 +170,19 @@ func _ready():
 	_multiplayer_sync.replication_config.property_set_watch(sprite_node_path, false)
 	var p1_icon
 	var p2_icon
+	
+	if _damage_label:
+		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
+		if character_type != "beanbag":
+			color = "blue" if player_num else "purple"
+			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
+		else:
+			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
+		
+		_damage_label.set_player_death_count(player_num, stocks)
+	
 	if character_type != "beanbag":
 		color = "blue" if player_num else "purple"
-		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
 		p1_icon = _sprites_scene_instance.get_node("Player1Icon")
 		p2_icon = _sprites_scene_instance.get_node("Player2Icon")
 		var states = {
@@ -188,15 +200,12 @@ func _ready():
 		}
 		state_machine.init(self, states, Globals.States.IDLE)
 	else:
-		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
 		var states = {
 			Globals.States.AIR: BeanbagAirState.new(),
 			Globals.States.HIT: HitState.new(),
 			Globals.States.IDLE: BeanbagIdleState.new()
 		}
 		state_machine.init(self, states, Globals.States.IDLE)
-	if _damage_label:
-		_damage_label.set_player_death_count(player_num, stocks)
 
 	if _dead_areas:
 		for dead_area in _dead_areas.get_children():
@@ -475,9 +484,13 @@ func _physics_process(delta: float):
 	set_collision_mask_value(4, not InputManager.is_action_pressed(get_input("down")))  # drop through platforms while down is held
 	frame += 1
 	move_and_slide()
+	
 	state_machine.update(delta)
 
 func _process(_delta: float):
+	if stats.size() == 0:
+		stats = load_stats(character_data[character_type].stats)
+	
 	if character_type == "cat":
 		if anim_player.flip_h:
 			anim_player.position.x = -12

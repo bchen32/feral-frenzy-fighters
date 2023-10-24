@@ -122,7 +122,7 @@ func establish_connection():
 		var server_address = "ws://" + SERVER_IP + ":" + str(SERVER_PORT)
 		
 		for i in range(0, 2):
-			Globals.player_sprites.append(preload("res://player/cat/cat.tscn"))
+			Globals.player_sprites.append("cat")
 		
 		Globals.stage = 0
 		

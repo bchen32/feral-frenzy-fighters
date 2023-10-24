@@ -52,6 +52,10 @@ func _ready():
 	NetworkManager.hit_acked.connect(_ack_hit)
 	NetworkManager.damage_label = $Camera2D/CanvasLayer/DamageUI
 	
+	if NetworkManager.is_host:
+		call_deferred("remove_child", $Player)
+		call_deferred("remove_child", $Player2)
+	
 	Globals.setup_controls()
 
 

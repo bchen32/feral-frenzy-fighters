@@ -10,7 +10,7 @@ var past_state: Globals.States
 
 func init(p_character, p_states, p_curr_state):
 	character = p_character
-	states = p_states	
+	states = p_states
 	for state in states:
 		states[state].character = character
 	states[curr_state].enter()
