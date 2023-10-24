@@ -102,7 +102,7 @@ func add_player(player_id: int):
 			player.refresh_dead_areas(_level_scene.get_node("CatTreeLevel/DeadAreas"))
 			player.refresh_damage_label(_level_scene.get_node("CatTreeLevel/Camera2D/CanvasLayer/DamageUI"))
 			
-			_level_scene.get_node("CatTreeLevel").add_child(player)
+			_level_scene.add_child(player)
 			
 			player._is_lobby = false
 			
