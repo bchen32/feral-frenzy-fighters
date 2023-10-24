@@ -99,7 +99,7 @@ func add_player(player_id: int):
 				
 				_level_scene.get_node("CatTreeLevel").remove_child(child)
 			
-			player.refresh_dead_areas(_level_scene.get_node("CatTreeLevel/DeadAreas"))
+			player.refresh_dead_areas(_level_scene.get_node("DeadAreas"))
 			player.refresh_damage_label(_level_scene.get_node("CatTreeLevel/Camera2D/CanvasLayer/DamageUI"))
 			
 			_level_scene.add_child(player)
