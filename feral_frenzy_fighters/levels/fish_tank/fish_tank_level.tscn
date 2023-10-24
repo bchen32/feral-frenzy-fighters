@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bsova147i2vec"]
+[gd_scene load_steps=24 format=3 uid="uid://bsova147i2vec"]
 
 [ext_resource type="Texture2D" uid="uid://bh65jpfqqtp5k" path="res://levels/fish_tank/sprites/decor/fish_level_wallpaper.png" id="1_rxrr6"]
 [ext_resource type="Texture2D" uid="uid://bhglr8sk5bivy" path="res://levels/fish_tank/sprites/decor/table.png" id="2_818kr"]
@@ -13,11 +13,12 @@
 [ext_resource type="PackedScene" path="res://levels/fish_tank/tiki_head.tscn" id="10_hjvma"]
 [ext_resource type="PackedScene" uid="uid://ch0a3pyvecm4r" path="res://levels/fish_tank/pipeline.tscn" id="11_ibf3h"]
 [ext_resource type="PackedScene" uid="uid://blblpyd2p40xn" path="res://levels/fish_tank/volcano.tscn" id="13_d5umk"]
-[ext_resource type="Texture2D" uid="uid://c2sy06qgow26p" path="res://levels/fish_tank/sprites/interactables/boulder.png" id="13_tfp88"]
 [ext_resource type="Script" path="res://levels/event_spawner.gd" id="13_xyfhw"]
 [ext_resource type="Texture2D" uid="uid://1yn0d3vivecv" path="res://levels/fish_tank/sprites/interactables/osha_toy.png" id="14_btqcf"]
 [ext_resource type="PackedScene" uid="uid://pak8t28sflvo" path="res://levels/fish_tank/fish_net.tscn" id="14_hfays"]
 [ext_resource type="PackedScene" uid="uid://dhva4w7eajg41" path="res://levels/fish_tank/gravel_cleaner.tscn" id="16_flavb"]
+[ext_resource type="PackedScene" uid="uid://beu31y03n3dpm" path="res://levels/fish_tank/boulder.tscn" id="18_ng4qv"]
+[ext_resource type="Shader" path="res://levels/fish_tank/fish_tank_level.gdshader" id="19_hcjn7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_25un7"]
 texture = ExtResource("3_3pu7q")
@@ -252,6 +253,10 @@ sources/0 = SubResource("TileSetAtlasSource_25un7")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cqywv"]
 size = Vector2(285, 94.9999)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e4h3l"]
+shader = ExtResource("19_hcjn7")
+shader_parameter/tint = Vector4(0, 0, 0, -1)
+
 [node name="FishTankLevel" type="Node2D"]
 
 [node name="Environment" type="Node2D" parent="."]
@@ -405,16 +410,19 @@ position = Vector2(944, 565)
 
 [node name="Interactables" type="Node2D" parent="."]
 
-[node name="Boulder" type="Sprite2D" parent="Interactables"]
-z_index = -1
-position = Vector2(958, 769)
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("13_tfp88")
-metadata/_edit_lock_ = true
-
 [node name="OshaToy" type="Sprite2D" parent="Interactables"]
 position = Vector2(419, 311)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("14_btqcf")
+
+[node name="Boulder" parent="Interactables" instance=ExtResource("18_ng4qv")]
+position = Vector2(955, 759)
+
+[node name="FullscreenShader" type="ColorRect" parent="."]
+z_index = 3
+material = SubResource("ShaderMaterial_e4h3l")
+offset_left = -55.0
+offset_right = 1993.0
+offset_bottom = 1085.0
 
 [connection signal="child_exiting_tree" from="Events/EventSpawner" to="Events/EventSpawner" method="_on_child_exiting_tree"]

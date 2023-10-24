@@ -23,6 +23,9 @@ func _process(delta):
 	if !players_caught.is_empty():
 		for p in players_caught:
 			p.global_position = trapped_pos.global_position
+			
+			if trapped_pos.global_position.y <= -345:
+				players_caught.clear()
 
 func _on_area_2d_body_entered(body):
 	players_caught.append(body)
