@@ -4,7 +4,7 @@ extends AttackState
 
 func enter():
 	super()
-	var attacks = character.attacks
+	var attacks = character.stats.attacks
 	
 	character.chosen_attack = attacks[direction]
 	attack = character.chosen_attack
@@ -23,5 +23,7 @@ func update(delta):
 	else:
 		character.velocity.x += character.stats.tilt_attack_accel * delta
 		character.velocity.x = minf(character.velocity.x, 0.0)
-	character.update_attack(direction)
+	
+	if direction != "":
+		character.update_attack(direction)
 	return Globals.States.GROUND_ATTACK

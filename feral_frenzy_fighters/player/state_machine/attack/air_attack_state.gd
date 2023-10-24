@@ -5,7 +5,7 @@ extends AttackState
 func enter():
 	super()
 	direction = "neutral"
-	attack = character.attacks["air_" + direction]
+	attack = character.stats.attacks["air_" + direction]
 	character.chosen_attack = attack
 	character.play_anim("air_attack_%s" % direction)
 

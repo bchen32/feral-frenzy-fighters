@@ -31,23 +31,6 @@ var bloodied = false
 @export var hit_grav: float = 1500.0
 @export var bounce_thresh: float = 100.0
 @export var bounce_decay: float = 0.6
-@export var attacks: Dictionary = {
-	"neutral":
-	{
-		"sprite_scene": "res://player/cat/cat.tscn",
-		"stats": "res://player/cat/cat.json"
-	},
-	"fish":
-	{
-		"sprite_scene": "res://player/fish/fish.tscn",
-		"stats": "res://player/fish/fish.json"
-	},
-	"beanbag":
-	{
-		"sprite_scene": "res://player/beanbag/beanbag.tscn",
-		"stats": "res://player/cat/cat.json"
-	}
-}
 
 @export var character_type: String
 @export var character_data: Dictionary = {
