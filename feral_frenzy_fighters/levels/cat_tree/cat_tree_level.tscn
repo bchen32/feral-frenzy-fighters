@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://t8uj7yrrto1f" path="res://levels/cat_tree/sprites/decor/science_board.png" id="2_xvjod"]
 [ext_resource type="Texture2D" uid="uid://da5424ghhrd6d" path="res://levels/cat_tree/tilesets/cat_level_tilemap_75x75.png" id="3_30urg"]
 [ext_resource type="Texture2D" uid="uid://bx1h66g51a2d2" path="res://levels/cat_tree/sprites/decor/cat_bed.png" id="4_2qkl3"]
-[ext_resource type="PackedScene" uid="uid://2g6vl7paf0fg" path="res://levels/cat_tree/cat_tree_left.tscn" id="4_h4nvx"]
-[ext_resource type="PackedScene" uid="uid://xwiop7ddea54" path="res://levels/cat_tree/cat_tree_middle.tscn" id="5_jeqww"]
+[ext_resource type="PackedScene" uid="uid://bm5pvsos0iw02" path="res://levels/cat_tree/cat_tree_left.tscn" id="4_h4nvx"]
+[ext_resource type="PackedScene" uid="uid://bxwjcbvvl31df" path="res://levels/cat_tree/cat_tree_middle.tscn" id="5_jeqww"]
 [ext_resource type="Texture2D" uid="uid://386h2w2jqnmm" path="res://levels/cat_tree/sprites/decor/book_thick.png" id="5_lys1b"]
 [ext_resource type="PackedScene" uid="uid://b5gf3jsh1kt8x" path="res://levels/cat_tree/cat_tree_zig_zag.tscn" id="6_gw84o"]
 [ext_resource type="Texture2D" uid="uid://bkvumebdleqtd" path="res://levels/cat_tree/sprites/decor/book_thin.png" id="6_txay8"]
@@ -344,5 +344,3 @@ occluder = SubResource("OccluderPolygon2D_v3l2i")
 [node name="LO4" type="LightOccluder2D" parent="LightOccluders"]
 position = Vector2(1275, 223)
 occluder = SubResource("OccluderPolygon2D_v3l2i")
-
-[connection signal="child_exiting_tree" from="Events/EventSpawner" to="Events/EventSpawner" method="_on_child_exiting_tree"]

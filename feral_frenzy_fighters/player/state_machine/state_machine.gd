@@ -5,6 +5,8 @@ class_name StateMachine
 var character: PlayerCharacter
 var states: Dictionary
 var curr_state: Globals.States
+var past_state: Globals.States
+
 
 func init(p_character, p_states, p_curr_state):
 	character = p_character

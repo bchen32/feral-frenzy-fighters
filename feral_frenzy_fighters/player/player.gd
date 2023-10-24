@@ -67,8 +67,7 @@ var bloodied = false
 		"stats": "res://player/cat/cat.json"
 	}
 }
-@export var player_num: int = 0
-@export var stocks: int = 3
+
 @export var _damage_label: Control
 @export var _dead_areas: Node2D
 @export var _ending_video: String
@@ -76,14 +75,11 @@ var bloodied = false
 @export var _is_lobby: bool = false
 
 @onready var state_machine: Node = $StateMachine
-@onready var CS = $CollisionShape2D
-@onready var gamepad = Globals.player_gamepad[player_num]
 
 @export var physics_blood:Array[PackedScene]
 @export var dash_particles:Array[PackedScene]
 
 var color: String = ""
-var bloodied: bool = false
 var anim_player: AnimatedSprite2D
 var stats: Dictionary
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")

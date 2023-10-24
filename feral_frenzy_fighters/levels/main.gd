@@ -52,8 +52,6 @@ func _ready():
 	NetworkManager.hit_acked.connect(_ack_hit)
 	NetworkManager.damage_label = $Camera2D/CanvasLayer/DamageUI
 	
-	stage = Globals.selected_stage.instantiate()
-	add_child(stage)
 	Globals.setup_controls()
 
 

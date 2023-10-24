@@ -27,7 +27,7 @@ enum ChatEmoji {
 }
 
 var display_names: Array
-var damage_label: DamageUI
+var damage_label
 var my_player_num: int
 var initial_stock: int
 var initial_percentage: int
@@ -63,7 +63,7 @@ func become_host():
 	for i in range(0, 2):
 		Globals.player_sprites.append(preload("res://player/cat/cat.tscn"))
 	
-	Globals.selected_stage = preload("res://levels/cat_tree/cat_tree_level.tscn")
+	Globals.stage = 0
 	
 	multiplayer.peer_connected.connect(self._peer_connected)
 	multiplayer.peer_disconnected.connect(self._peer_disconnected)
@@ -124,7 +124,7 @@ func establish_connection():
 		for i in range(0, 2):
 			Globals.player_sprites.append(preload("res://player/cat/cat.tscn"))
 		
-		Globals.selected_stage = preload("res://levels/cat_tree/cat_tree_level.tscn")
+		Globals.stage = 0
 		
 		multiplayer_peer.create_client(server_address)
 		multiplayer.multiplayer_peer = multiplayer_peer
