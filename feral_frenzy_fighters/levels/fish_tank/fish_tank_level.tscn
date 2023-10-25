@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bsova147i2vec"]
+[gd_scene load_steps=27 format=3 uid="uid://bsova147i2vec"]
 
 [ext_resource type="Texture2D" uid="uid://bh65jpfqqtp5k" path="res://levels/fish_tank/sprites/decor/fish_level_wallpaper.png" id="1_rxrr6"]
 [ext_resource type="Texture2D" uid="uid://bhglr8sk5bivy" path="res://levels/fish_tank/sprites/decor/table.png" id="2_818kr"]
@@ -10,15 +10,18 @@
 [ext_resource type="Texture2D" uid="uid://bkvumebdleqtd" path="res://levels/cat_tree/sprites/decor/book_thin.png" id="8_w02iu"]
 [ext_resource type="PackedScene" uid="uid://c6wndhaby67a4" path="res://levels/fish_tank/treasure_chest.tscn" id="9_akjcm"]
 [ext_resource type="Texture2D" uid="uid://bi4tgihcsasu7" path="res://levels/fish_tank/sprites/decor/tiki hut.png" id="10_ehe4q"]
-[ext_resource type="PackedScene" path="res://levels/fish_tank/tiki_head.tscn" id="10_hjvma"]
+[ext_resource type="PackedScene" uid="uid://cadamwrackyxx" path="res://levels/fish_tank/tiki_head.tscn" id="10_hjvma"]
 [ext_resource type="PackedScene" uid="uid://ch0a3pyvecm4r" path="res://levels/fish_tank/pipeline.tscn" id="11_ibf3h"]
+[ext_resource type="AudioStream" uid="uid://d53mvtb51hr4" path="res://levels/fish_tank/sfx/Bubbles.wav" id="12_phbuq"]
 [ext_resource type="PackedScene" uid="uid://blblpyd2p40xn" path="res://levels/fish_tank/volcano.tscn" id="13_d5umk"]
 [ext_resource type="Script" path="res://levels/event_spawner.gd" id="13_xyfhw"]
 [ext_resource type="Texture2D" uid="uid://1yn0d3vivecv" path="res://levels/fish_tank/sprites/interactables/osha_toy.png" id="14_btqcf"]
 [ext_resource type="PackedScene" uid="uid://pak8t28sflvo" path="res://levels/fish_tank/fish_net.tscn" id="14_hfays"]
+[ext_resource type="AudioStream" uid="uid://00r0taggdql5" path="res://levels/fish_tank/sfx/Bubbles 2.wav" id="14_pu5ry"]
 [ext_resource type="PackedScene" uid="uid://dhva4w7eajg41" path="res://levels/fish_tank/gravel_cleaner.tscn" id="16_flavb"]
 [ext_resource type="PackedScene" uid="uid://beu31y03n3dpm" path="res://levels/fish_tank/boulder.tscn" id="18_ng4qv"]
 [ext_resource type="Shader" path="res://levels/fish_tank/fish_tank_level.gdshader" id="19_hcjn7"]
+[ext_resource type="AudioStream" uid="uid://bxmj51vtou6kc" path="res://levels/fish_tank/sfx/Bubble Rumble.wav" id="19_jl3y4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_25un7"]
 texture = ExtResource("3_3pu7q")
@@ -385,10 +388,20 @@ p1_tiki = false
 [node name="TreasureChest" parent="Environment/ActiveEnvironment" instance=ExtResource("9_akjcm")]
 position = Vector2(383, 717)
 
+[node name="TreasureBubbles" type="AudioStreamPlayer2D" parent="Environment/ActiveEnvironment/TreasureChest"]
+stream = ExtResource("12_phbuq")
+bus = &"SFX"
+
 [node name="PipelineLeft" parent="Environment/ActiveEnvironment" node_paths=PackedStringArray("connecting_pipe") instance=ExtResource("11_ibf3h")]
 z_index = 1
 position = Vector2(192, 500)
 connecting_pipe = NodePath("../PipelineRight")
+
+[node name="LeftPipeBubbles" type="AudioStreamPlayer2D" parent="Environment/ActiveEnvironment/PipelineLeft"]
+stream = ExtResource("14_pu5ry")
+volume_db = 5.0
+autoplay = true
+bus = &"SFX"
 
 [node name="PipelineRight" parent="Environment/ActiveEnvironment" node_paths=PackedStringArray("connecting_pipe") instance=ExtResource("11_ibf3h")]
 z_index = 1
@@ -396,6 +409,13 @@ position = Vector2(1728, 500)
 scale = Vector2(-1, -1)
 entry_pipe = false
 connecting_pipe = NodePath("../PipelineLeft")
+
+[node name="RightPipeBubbles" type="AudioStreamPlayer2D" parent="Environment/ActiveEnvironment/PipelineRight"]
+rotation = 3.14159
+stream = ExtResource("14_pu5ry")
+volume_db = 5.0
+autoplay = true
+bus = &"SFX"
 
 [node name="Events" type="Node2D" parent="."]
 
@@ -407,6 +427,13 @@ metadata/_edit_lock_ = true
 [node name="Volcano" parent="Events" instance=ExtResource("13_d5umk")]
 z_index = -2
 position = Vector2(944, 565)
+
+[node name="VolcanoBubbles" type="AudioStreamPlayer2D" parent="Events/Volcano"]
+position = Vector2(-34.4444, -175.556)
+scale = Vector2(1.11111, 1.11111)
+stream = ExtResource("19_jl3y4")
+volume_db = -6.0
+bus = &"SFX"
 
 [node name="Interactables" type="Node2D" parent="."]
 

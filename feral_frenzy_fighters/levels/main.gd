@@ -41,10 +41,15 @@ func _ready():
 	match Globals.stage:
 		0:
 			level = load("res://levels/cat_tree/cat_tree_level.tscn").instantiate()
+			$AudioStreamPlayer.stream = preload("res://levels/cat_tree/music/catfight.wav")
 			add_child(level)
 		1:
 			level = load("res://levels/fish_tank/fish_tank_level.tscn").instantiate()
+			$AudioStreamPlayer.stream = preload("res://levels/fish_tank/sfx/fishfight.wav")
 			add_child(level)
+			
+	$AudioStreamPlayer.play()
+	
 	move_child(level, 0)
 	camera.event_spawner = level.get_node("Events/EventSpawner")
 	NetworkManager.recieved_player_data.connect(_game_information)
