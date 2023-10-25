@@ -155,6 +155,26 @@ func on_locked_in():
 	
 	$MenuSound.play()
 	if p1_locked and p2_locked:
+		# setting up the beginning cutscene
+		match p1_character:
+			0:
+				if p1_character == p2_character:
+					Globals.cutscene_player_video_path = \
+						"res://gui/menus/cutscenes/pre_battle/cat_v_cat_pre_battle.ogv"
+				else:
+					Globals.cutscene_player_video_path = \
+						"res://gui/menus/cutscenes/pre_battle/p1_cat_v_p2_fish_pre_battle.ogv"
+			1:
+				if p1_character == p2_character:
+					Globals.cutscene_player_video_path = \
+						"res://gui/menus/cutscenes/pre_battle/fish_v_fish_pre_battle.ogv"
+				else:
+					Globals.cutscene_player_video_path = \
+						"res://gui/menus/cutscenes/pre_battle/p1_fish_v_p2_cat_pre_battle.ogv"
+			2:
+				# turtle! need to impl!
+				pass
+		
 		var stage_select = preload("res://gui/menus/stage_select.tscn").instantiate()
 		stage_select.position.x = get_viewport().size.x
 		add_child(stage_select)

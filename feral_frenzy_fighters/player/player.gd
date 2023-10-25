@@ -483,7 +483,7 @@ func _process(_delta: float):
 			anim_player.position.y = 8
 		else:
 			anim_player.position.y = -8
-	if _damage_label and NetworkManager.is_host:
+	if _damage_label and (NetworkManager.is_host or not NetworkManager.is_connected):
 		_damage_label.set_player_damage(player_num, percentage)
 	
 	if NetworkManager.is_connected and (_is_lobby or player_num == NetworkManager.my_player_num):

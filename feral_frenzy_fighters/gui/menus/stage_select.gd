@@ -147,7 +147,7 @@ func on_locked_in():
 				new_icon = $Background/StageIconsContainer/StageIconsTop/CatStageIcon.duplicate()
 				final_selection = 0
 				animate_selection(new_icon)
-
+				
 			1:
 				new_icon = $Background/StageIconsContainer/StageIconsTop/FishStageIcon.duplicate()
 				final_selection = 1
@@ -175,7 +175,7 @@ func animate_selection(icon):
 	
 func go_to_stage():
 	Globals.stage = final_selection
-	get_tree().change_scene_to_file("res://levels/main.tscn")
+	get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
 
 func _on_button_mouse_entered(extra_arg_0):
 	if !p1_locked:
