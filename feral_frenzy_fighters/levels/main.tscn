@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cqwih0alupqsb" path="res://gui/hud/damage_ui.tscn" id="2_tb6xb"]
 [ext_resource type="AudioStream" uid="uid://2pedg4faj0li" path="res://gui/menus/music/triumphant.wav" id="3_yody1"]
 [ext_resource type="AudioStream" uid="uid://gv5krwja5mbt" path="res://levels/cat_tree/music/catfight.wav" id="5_7efgp"]
-[ext_resource type="PackedScene" uid="uid://cmvf4h60u8y1p" path="res://levels/camera.tscn" id="5_lovfr"]
+[ext_resource type="PackedScene" path="res://levels/camera.tscn" id="5_lovfr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lo5pr"]
 size = Vector2(156, 1913.5)

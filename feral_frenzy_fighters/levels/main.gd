@@ -70,8 +70,8 @@ func _ready():
 		else:
 			prefix_path += "fish_arena_outcomes/"
 		
-		$Player.ending_video = "%sp1_win/%s" % [prefix_path, suffix_path]
-		$Player2.ending_video = "%sp2_win/%s" % [prefix_path, suffix_path]
+		$Player.ending_video = "%sp2_win/%s" % [prefix_path, suffix_path]
+		$Player2.ending_video = "%sp1_win/%s" % [prefix_path, suffix_path]
 	
 	Globals.setup_controls()
 
