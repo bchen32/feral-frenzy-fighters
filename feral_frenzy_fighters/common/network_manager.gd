@@ -1,9 +1,9 @@
 extends Node
 
-var multiplayer_peer = WebSocketMultiplayerPeer.new()
+var multiplayer_peer = ENetMultiplayerPeer.new()
 
 const SERVER_IP = "127.0.0.1"
-const SERVER_PORT = 8080
+const SERVER_PORT = 11111
 const SERVER_BUILD = true
 
 signal network_game_state_changed
@@ -49,7 +49,8 @@ func get_current_network_game_state() -> NetworkGameState:
 	return _network_game_state
 
 func _init():
-	multiplayer_peer.supported_protocols = ["fff_network"]
+	#multiplayer_peer.supported_protocols = ["fff_network"]
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -61,17 +62,19 @@ func become_host():
 		return
 	
 	for i in range(0, 2):
-		Globals.player_sprites.append(preload("res://player/cat/cat.tscn"))
+		Globals.player_sprites.append("cat")
 	
 	Globals.stage = 0
 	
 	multiplayer.peer_connected.connect(self._peer_connected)
 	multiplayer.peer_disconnected.connect(self._peer_disconnected)
 	
-	var web_address = "ws://%s:%s" % ["127.0.0.1", SERVER_PORT]
+	#var web_address = "ws://%s:%s" % ["127.0.0.1", SERVER_PORT]
 	
 	multiplayer_peer.create_server(SERVER_PORT)
 	multiplayer.multiplayer_peer = multiplayer_peer
+	
+	#multiplayer_peer.set_bind_ip(SERVER_IP)
 	
 	is_host = true
 	
@@ -119,14 +122,14 @@ func _peer_disconnected(id):
 func establish_connection():
 	if not is_host:
 		multiplayer.multiplayer_peer = null
-		var server_address = "ws://" + SERVER_IP + ":" + str(SERVER_PORT)
+		#var server_address = "ws://" + SERVER_IP + ":" + str(SERVER_PORT)
 		
 		for i in range(0, 2):
 			Globals.player_sprites.append("cat")
 		
 		Globals.stage = 0
 		
-		multiplayer_peer.create_client(server_address)
+		multiplayer_peer.create_client(SERVER_IP, SERVER_PORT)
 		multiplayer.multiplayer_peer = multiplayer_peer
 
 func _disconnected():

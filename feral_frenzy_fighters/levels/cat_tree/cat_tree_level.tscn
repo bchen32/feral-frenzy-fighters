@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ju3ra5auyqg8"]
+[gd_scene load_steps=30 format=3 uid="uid://ju3ra5auyqg8"]
 
 [ext_resource type="Texture2D" uid="uid://uk8l6kbu2oih" path="res://levels/cat_tree/tilesets/wallpaper_complete.png" id="1_a55mx"]
 [ext_resource type="Texture2D" uid="uid://t8uj7yrrto1f" path="res://levels/cat_tree/sprites/decor/science_board.png" id="2_xvjod"]
@@ -139,6 +139,12 @@ size = Vector2(373, 74)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhfje"]
 size = Vector2(247, 240)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_aah8l"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v3l2i"]
 resource_local_to_scene = true
@@ -327,6 +333,9 @@ respawn_time = 15.0
 [node name="PlasmaBall" parent="DynamicObjects/MultiplayerSpawner/Interactables" instance=ExtResource("14_7tkul")]
 position = Vector2(1539, 629)
 metadata/_edit_lock_ = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="DynamicObjects/MultiplayerSpawner/Interactables/PlasmaBall"]
+replication_config = SubResource("SceneReplicationConfig_aah8l")
 
 [node name="LightOccluders" type="Node2D" parent="."]
 
