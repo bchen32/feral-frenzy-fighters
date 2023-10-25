@@ -4,7 +4,7 @@ var multiplayer_peer = ENetMultiplayerPeer.new()
 
 const SERVER_IP = "127.0.0.1"
 const SERVER_PORT = 11111
-const SERVER_BUILD = true
+const SERVER_BUILD = false
 
 signal network_game_state_changed
 signal recieved_player_data

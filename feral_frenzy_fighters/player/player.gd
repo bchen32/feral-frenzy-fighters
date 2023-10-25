@@ -53,8 +53,8 @@ var bloodied = false
 
 @export var _damage_label: Control
 @export var _dead_areas: Node2D
-@export var _ending_video: String
-@export var _ending_video_audiostream: AudioStream
+@export var ending_video: String
+@export var ending_video_audiostream: AudioStream
 @export var _is_lobby: bool = false
 
 @onready var state_machine: Node = $StateMachine
@@ -451,8 +451,8 @@ func acknowledge_death():
 			
 			Globals.player1_won = player_num != 0
 			Globals.cutscene_player_end_game = true
-			Globals.cutscene_player_video_path = _ending_video
-			Globals.audio_stream_to_play_during_cutscene = _ending_video_audiostream
+			Globals.cutscene_player_video_path = ending_video
+			Globals.audio_stream_to_play_during_cutscene = ending_video_audiostream
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
 	play_audio(AudioType.DEATH)
 	if not NetworkManager.is_connected and not NetworkManager.is_host:
