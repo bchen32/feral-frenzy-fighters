@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://00r0taggdql5"
+path="res://.godot/imported/Bubbles 2.wav-111483d552b5769ef9a77b3086a78bf8.sample"
+
+[deps]
+
+source_file="res://levels/fish_tank/sfx/Bubbles 2.wav"
+dest_files=["res://.godot/imported/Bubbles 2.wav-111483d552b5769ef9a77b3086a78bf8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

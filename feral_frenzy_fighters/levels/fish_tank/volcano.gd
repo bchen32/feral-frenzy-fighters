@@ -40,6 +40,7 @@ func _process(delta):
 func _volcano_process():
 	match volcano_state:
 		Volcano_States.DORMANT:
+			$VolcanoBubbles.playing = false
 			print("Volcano is DORMANT.")
 			new_shader_tint = Vector4(0, 0, 0, -1)
 			anim.play("RESET")
@@ -48,12 +49,14 @@ func _volcano_process():
 			volcano_state = Volcano_States.ACTIVE
 			_volcano_process()
 		Volcano_States.ACTIVE:
+			$VolcanoBubbles.playing = true
 			print("Volcano is ACTIVE.")
 			anim.play("Active")
 			await get_tree().create_timer(randi_range(erupt_min_delay, erupt_max_delay)).timeout
 			
 			event_spawner._external_event(false) # tell event_spawner volcano event wants to start next time
 		Volcano_States.ERUPTING:
+			$VolcanoBubbles.playing = true
 			print("Volcano is ERUPTING.")
 			new_shader_tint = Vector4(2, 0, 0, 0)
 			await get_tree().create_timer(1).timeout

@@ -239,7 +239,7 @@ libraries = {
 
 [node name="Ambient" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_uhv84")
-volume_db = -50.0
+volume_db = -20.0
 autoplay = true
 bus = &"SFX"
 
