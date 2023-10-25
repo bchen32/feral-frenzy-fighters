@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bkvumebdleqtd" path="res://levels/cat_tree/sprites/decor/book_thin.png" id="8_w02iu"]
 [ext_resource type="PackedScene" uid="uid://c6wndhaby67a4" path="res://levels/fish_tank/treasure_chest.tscn" id="9_akjcm"]
 [ext_resource type="Texture2D" uid="uid://bi4tgihcsasu7" path="res://levels/fish_tank/sprites/decor/tiki hut.png" id="10_ehe4q"]
-[ext_resource type="PackedScene" path="res://levels/fish_tank/tiki_head.tscn" id="10_hjvma"]
+[ext_resource type="PackedScene" uid="uid://cadamwrackyxx" path="res://levels/fish_tank/tiki_head.tscn" id="10_hjvma"]
 [ext_resource type="PackedScene" uid="uid://ch0a3pyvecm4r" path="res://levels/fish_tank/pipeline.tscn" id="11_ibf3h"]
 [ext_resource type="PackedScene" uid="uid://blblpyd2p40xn" path="res://levels/fish_tank/volcano.tscn" id="13_d5umk"]
 [ext_resource type="Script" path="res://levels/event_spawner.gd" id="13_xyfhw"]
