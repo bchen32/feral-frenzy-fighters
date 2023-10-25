@@ -290,11 +290,14 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("29_gpdod")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("30_s85vk")
 }, {
 "duration": 1.0,
 "texture": ExtResource("31_l5hdc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_o7kyd")
 }],
 "loop": false,
 "name": &"blue_hit",
@@ -424,11 +427,14 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("29_gpdod")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("30_s85vk")
 }, {
 "duration": 1.0,
 "texture": ExtResource("31_l5hdc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_o7kyd")
 }],
 "loop": false,
 "name": &"blue_injured_hit",
@@ -915,7 +921,7 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_5vp6i")
-animation = &"purple_jump"
+animation = &"blue_hit"
 
 [node name="Player1Icon" type="Sprite2D" parent="."]
 visible = false
