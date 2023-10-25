@@ -33,7 +33,7 @@ func _ready():
 	destination = Vector2(0, 0) # just to set variable to be a vector2
 	speed = 2000
 	reset_speed = speed
-	self.self_modulate = Color.WHITE
+	self.self_modulate = Color.WHITE	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
