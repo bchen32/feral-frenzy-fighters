@@ -1,0 +1,65 @@
+[gd_scene load_steps=14 format=3 uid="uid://c6jc0p7471cr8"]
+
+[ext_resource type="Texture2D" uid="uid://blmjiyxh7u1rn" path="res://player/fish/sprites/attack_neutral/pufferfishbomb/Pufferfish_Bomb-1.png" id="1_e7rri"]
+[ext_resource type="Texture2D" uid="uid://7i0xoo0flt4k" path="res://player/fish/sprites/attack_neutral/pufferfishbomb/Pufferfish_Bomb-2.png" id="2_myppc"]
+[ext_resource type="Texture2D" uid="uid://djm2jpfvs1w8l" path="res://player/fish/sprites/attack_neutral/pufferfishbomb/Pufferfish_Bomb-3.png" id="3_cvh2g"]
+[ext_resource type="Texture2D" uid="uid://cvreb1c5rs3y0" path="res://player/fish/sprites/attack_neutral/pufferfishbomb/Pufferfish_Bomb-4.png" id="4_gv5w4"]
+[ext_resource type="Texture2D" uid="uid://hyy6qhhh5pvy" path="res://player/fish/sprites/attack_neutral/pufferfishbomb/Pufferfish_Bomb-5.png" id="5_o4cj1"]
+[ext_resource type="Texture2D" uid="uid://cx2eew6vd1gx6" path="res://player/fish/sprites/attack_neutral/pufferfishbomb/Pufferfish_Bomb-6.png" id="6_i16ol"]
+[ext_resource type="Texture2D" uid="uid://2dd55ons07u7" path="res://player/fish/sprites/attack_neutral/pufferfishbomb/Pufferfish_Bomb-7.png" id="7_2ym0a"]
+[ext_resource type="Texture2D" uid="uid://m2t2k0s0ohfh" path="res://player/fish/sprites/attack_neutral/pufferfishbomb/Pufferfish_Bomb-8.png" id="8_hhomx"]
+[ext_resource type="Texture2D" uid="uid://dhxgirld3pd8o" path="res://player/fish/sprites/attack_neutral/pufferfishbomb/Pufferfish_Bomb-9.png" id="9_jirgy"]
+[ext_resource type="Texture2D" uid="uid://1jvttfp612ii" path="res://player/fish/sprites/attack_neutral/pufferfishbomb/Pufferfish_Bomb-10.png" id="10_up08a"]
+[ext_resource type="Texture2D" uid="uid://bxrldbn3rdkgm" path="res://player/fish/sprites/attack_neutral/pufferfishbomb/Pufferfish_Bomb-11.png" id="11_3bx4g"]
+[ext_resource type="Texture2D" uid="uid://c05yqf74buf87" path="res://player/fish/sprites/attack_neutral/pufferfishbomb/Pufferfish_Bomb-12.png" id="12_ft70i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wtxl2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_e7rri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_myppc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cvh2g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gv5w4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o4cj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_i16ol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2ym0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hhomx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jirgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_up08a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3bx4g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ft70i")
+}],
+"loop": true,
+"name": &"explode",
+"speed": 12.0
+}]
+
+[node name="PufferfishBomb" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wtxl2")
+animation = &"explode"
+frame_progress = 0.801572
