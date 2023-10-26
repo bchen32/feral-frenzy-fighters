@@ -114,7 +114,7 @@ func shake(node, amount: float = 5, duration: float = .01, count: int = 10, pass
 		for i in count:
 				randomize()
 				var tween := create_tween()
-				tween.tween_promperty(
+				tween.tween_property(
 				node, 
 				"global_position", 
 				Vector2(randf_range(node.global_position.x + -amount,node.global_position.x + amount), randf_range(node.global_position.y + -amount, node.global_position.y + amount)), 

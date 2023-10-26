@@ -10,11 +10,9 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#if !Globals.player_sprites.is_empty():
-		#var p1_chr = Globals.player_sprites[0]
-		#var p2_chr = Globals.player_sprites[1]
-		var p1_chr = "res://player/cat/cat.tscn" # temporary for testing
-		var p2_chr = "res://player/fish/fish.tscn"
+	if !Globals.player_sprites.is_empty():
+		var p1_chr = Globals.player_sprites[0]
+		var p2_chr = Globals.player_sprites[1]
 		
 		if p1_tiki == true:
 			match (p1_chr):

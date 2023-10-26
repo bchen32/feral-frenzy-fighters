@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2sy06qgow26p"
-path="res://.godot/imported/boulder.png-488b04f68052c7d5c012d64eea5276dc.ctex"
+path="res://.godot/imported/boulder.png-49760efba6085ef194a26d3ff248f9e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/fish_tank/sprites/interactables/boulder.png"
-dest_files=["res://.godot/imported/boulder.png-488b04f68052c7d5c012d64eea5276dc.ctex"]
+source_file="res://levels/fish_tank/sprites/decor/boulder.png"
+dest_files=["res://.godot/imported/boulder.png-49760efba6085ef194a26d3ff248f9e5.ctex"]
 
 [params]
 
