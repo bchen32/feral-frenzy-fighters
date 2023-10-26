@@ -107,27 +107,28 @@ func rebind_p2(device_number: int):
 		event.set_device(device_number)
 		
 func shake(node, amount: float = 5, duration: float = .01, count: int = 10, password = 0, player = false):
-	passwords[node] = password
-	print("first ", passwords[node])
-	var og_pos = node.global_position
-	for i in count:
-			randomize()
-			var tween := create_tween()
-			tween.tween_property(
-			node, 
-			"global_position", 
-			Vector2(randf_range(node.global_position.x + -amount,node.global_position.x + amount), randf_range(node.global_position.y + -amount, node.global_position.y + amount)), 
-			duration)
-			await get_tree().create_timer(duration).timeout
-			amount/=1.2
-			
-	if player == true:
-		if passwords[node] == password:
+	if node:
+		passwords[node] = password
+		print("first ", passwords[node])
+		var og_pos = node.global_position
+		for i in count:
+				randomize()
+				var tween := create_tween()
+				tween.tween_promperty(
+				node, 
+				"global_position", 
+				Vector2(randf_range(node.global_position.x + -amount,node.global_position.x + amount), randf_range(node.global_position.y + -amount, node.global_position.y + amount)), 
+				duration)
+				await get_tree().create_timer(duration).timeout
+				amount/=1.2
+				
+		if player == true:
+			if passwords[node] == password:
+				node.global_position = og_pos
+				print("last ", passwords[node])
+				emit_signal("shake_completed", passwords[node])
+		else:
 			node.global_position = og_pos
-			print("last ", passwords[node])
-			emit_signal("shake_completed", passwords[node])
-	else:
-		node.global_position = og_pos
 
 
 
