@@ -267,8 +267,7 @@ shader_parameter/tint = Vector4(0, 0, 0, -1)
 [node name="FishLevelWallpaper" type="Sprite2D" parent="Environment"]
 self_modulate = Color(0.823529, 0.823529, 0.823529, 1)
 z_index = -5
-position = Vector2(960.5, 540)
-scale = Vector2(1.00052, 1)
+position = Vector2(960, 540)
 texture = ExtResource("1_rxrr6")
 metadata/_edit_lock_ = true
 

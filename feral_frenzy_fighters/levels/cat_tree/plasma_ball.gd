@@ -10,7 +10,7 @@ var speed
 var reset_speed
 var min_destination_distance = 1000
 
-#hitbox settings: line 90
+#hitbox settings: search "plasma_hitbox"
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @export var particles: PackedScene
 @onready var sprite = self.get_node("PlasmaBallSprite")
