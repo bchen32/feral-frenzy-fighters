@@ -1,21 +1,113 @@
 [gd_scene load_steps=9 format=3 uid="uid://bty60wgry21nu"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ewoqh"]
-[ext_resource type="AudioStream" uid="uid://2pedg4faj0li" path="res://gui/menus/music/triumphant.wav" id="2_qwj5k"]
-[ext_resource type="PackedScene" uid="uid://duxeguxel7e8u" path="res://player/physics_blood.tscn" id="3_x78ow"]
-[ext_resource type="PackedScene" uid="uid://5oq2ogn3k12r" path="res://player/physics_gore.tscn" id="4_cclux"]
-[ext_resource type="PackedScene" uid="uid://mlj11vypfixg" path="res://player/dash_particles.tscn" id="4_g1p0g"]
-[ext_resource type="PackedScene" uid="uid://doefg2yc2gcvd" path="res://player/physics_eyes.tscn" id="5_jwg7h"]
+[ext_resource type="PackedScene" path="res://player/physics_blood.tscn" id="3_x78ow"]
+[ext_resource type="PackedScene" path="res://player/physics_gore.tscn" id="4_cclux"]
+[ext_resource type="PackedScene" path="res://player/dash_particles.tscn" id="4_g1p0g"]
+[ext_resource type="PackedScene" path="res://player/physics_eyes.tscn" id="5_jwg7h"]
 [ext_resource type="Script" path="res://player/state_machine/state_machine.gd" id="10_s8jpq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g467b"]
 size = Vector2(36, 76)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_05747"]
+properties/0/path = NodePath("StateMachine:curr_state")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:player_num")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath(".:stocks")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+properties/3/path = NodePath(".:walk_accel")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
+properties/4/path = NodePath(".:dash_accel")
+properties/4/spawn = true
+properties/4/sync = true
+properties/4/watch = false
+properties/5/path = NodePath(".:dash_attack_accel")
+properties/5/spawn = true
+properties/5/sync = true
+properties/5/watch = false
+properties/6/path = NodePath(".:air_accel")
+properties/6/spawn = true
+properties/6/sync = true
+properties/6/watch = false
+properties/7/path = NodePath(".:walk_jump_accel")
+properties/7/spawn = true
+properties/7/sync = true
+properties/7/watch = false
+properties/8/path = NodePath(".:dash_jump_accel")
+properties/8/spawn = true
+properties/8/sync = true
+properties/8/watch = false
+properties/9/path = NodePath(".:air_jump_accel")
+properties/9/spawn = true
+properties/9/sync = true
+properties/9/watch = false
+properties/10/path = NodePath(".:walk_speed")
+properties/10/spawn = true
+properties/10/sync = true
+properties/10/watch = false
+properties/11/path = NodePath(".:dash_speed")
+properties/11/spawn = true
+properties/11/sync = true
+properties/11/watch = false
+properties/12/path = NodePath(".:dash_attack_speed")
+properties/12/spawn = true
+properties/12/sync = true
+properties/12/watch = false
+properties/13/path = NodePath(".:air_jump_speed")
+properties/13/spawn = true
+properties/13/sync = true
+properties/13/watch = false
+properties/14/path = NodePath(".:jump_speed")
+properties/14/spawn = true
+properties/14/sync = true
+properties/14/watch = false
+properties/15/path = NodePath(".:terminal_vel")
+properties/15/spawn = true
+properties/15/sync = true
+properties/15/watch = false
+properties/16/path = NodePath(".:fall_grav_scale")
+properties/16/spawn = true
+properties/16/sync = true
+properties/16/watch = false
+properties/17/path = NodePath(".:kb_base")
+properties/17/spawn = true
+properties/17/sync = true
+properties/17/watch = false
+properties/18/path = NodePath(".:kb_hitstun_scale")
+properties/18/spawn = true
+properties/18/sync = true
+properties/18/watch = false
+properties/19/path = NodePath(".:kb_decay")
+properties/19/spawn = true
+properties/19/sync = true
+properties/19/watch = false
+properties/20/path = NodePath(".:inverse_weight")
+properties/20/spawn = true
+properties/20/sync = true
+properties/20/watch = false
+properties/21/path = NodePath(".:position")
+properties/21/spawn = true
+properties/21/sync = true
+properties/21/watch = false
+properties/22/path = NodePath(".:chosen_attack")
+properties/22/spawn = true
+properties/22/sync = true
+properties/22/watch = false
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 30
 script = ExtResource("1_ewoqh")
 stocks = 5
-_ending_video_audiostream = ExtResource("2_qwj5k")
 physics_blood = Array[PackedScene]([ExtResource("3_x78ow"), ExtResource("4_cclux"), ExtResource("5_jwg7h")])
 dash_particles = Array[PackedScene]([ExtResource("4_g1p0g")])
 
@@ -35,3 +127,6 @@ initial_velocity_min = 100.0
 initial_velocity_max = 300.0
 scale_amount_max = 5.0
 color = Color(0.871094, 0, 0, 1)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_05747")

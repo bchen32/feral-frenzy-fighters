@@ -14,12 +14,14 @@ func _cycle():
 	await get_tree().create_timer(randi_range(min_time_between, max_time_between)).timeout
 	
 	anim.play("Opening")
+	$TreasureBubbles.play()
 	await anim.animation_finished
 	
 	await get_tree().create_timer(bubble_time).timeout
 	
 	anim.play("Closing")
 	await anim.animation_finished
+	$TreasureBubbles.stop()
 	
 	_cycle()
 

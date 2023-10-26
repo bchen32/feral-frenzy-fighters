@@ -17,6 +17,12 @@ var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @onready var anim = self.get_node("AnimationPlayer")
 @onready var event_spawner = $"../../Events/EventSpawner"
 @onready var hitbox = self.get_node("Hitbox")
+@onready var samples = [
+	preload("res://levels/cat_tree/sfx/events/Zap1.wav"),
+	preload("res://levels/cat_tree/sfx/events/Zap2.wav"),
+	preload("res://levels/cat_tree/sfx/events/Zap3.wav")
+]
+@onready var start_vol = $Ambient.volume_db
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,7 +33,7 @@ func _ready():
 	destination = Vector2(0, 0) # just to set variable to be a vector2
 	speed = 2000
 	reset_speed = speed
-	self.self_modulate = Color.WHITE
+	self.self_modulate = Color.WHITE	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -49,6 +55,11 @@ func _change_health(health_change: float):
 			anim.stop()
 		
 		if self.health > 0:
+			var audio_player = preload("res://player/playerSFX.tscn").instantiate()
+			add_child(audio_player)
+			audio_player.volume_db = -12
+			audio_player.stream = samples[randi() % samples.size()]
+			audio_player.play()
 			anim.play("Damage")
 			var sparks = particles.instantiate()
 			sparks.global_position = global_position
@@ -60,11 +71,18 @@ func _change_health(health_change: float):
 
 func _stability_change(turning_unstable: bool):
 	if turning_unstable == true:
+		$Ambient.volume_db = -15
 		anim.play("StabilityChange")
+		var audio_player = preload("res://player/playerSFX.tscn").instantiate()
+		add_child(audio_player)
+		audio_player.volume_db = start_vol
+		audio_player.stream = samples[randi() % samples.size()]
+		audio_player.play()
 		await anim.animation_finished
 		
 		_choose_random_point()
 	elif turning_unstable == false:
+		$Ambient.volume_db = start_vol
 		sprite.get_child(0).queue_free()
 		anim.play_backwards("StabilityChange")
 		await anim.animation_finished

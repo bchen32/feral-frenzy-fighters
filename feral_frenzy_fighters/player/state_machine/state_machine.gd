@@ -5,13 +5,17 @@ class_name StateMachine
 var character: PlayerCharacter
 var states: Dictionary
 var curr_state: Globals.States
+var past_state: Globals.States
+
 
 func init(p_character, p_states, p_curr_state):
 	character = p_character
-	states = p_states	
+	states = p_states
 	for state in states:
 		states[state].character = character
 	states[curr_state].enter()
+	
+	past_state = curr_state
 
 func update(delta):
 	if character.hit:
@@ -21,9 +25,21 @@ func update(delta):
 	# note: this implies that if a state is going to transition
 	# it should return before it performs any updates
 	# so that only one state is actually run per frame
-	while next_state != curr_state:
-		transition(next_state)
-		next_state = states[curr_state].update(delta)
+	# State transitions in online games are handled by 
+	# the server and are reflected in curr_state != past_state.
+	# State transitions locally are otherwise handled via the 
+	# next_state system.
+	
+	if NetworkManager.is_connected:
+		if past_state != curr_state:
+			transition(curr_state)
+			past_state = curr_state
+		else:
+			states[curr_state].update(delta)
+	else:
+		while next_state != curr_state:
+			transition(next_state)
+			next_state = states[curr_state].update(delta)
 
 
 func transition(next_state: Globals.States):

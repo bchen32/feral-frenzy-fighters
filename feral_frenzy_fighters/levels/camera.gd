@@ -25,7 +25,7 @@ func _ready():
 	old_target_zoom = zoom.x
 
 func _process(delta):
-	if event_spawner.set_camera_overview or len(players) == 1:
+	if (event_spawner != null and event_spawner.set_camera_overview) or len(players) == 1:
 		var tween = create_tween().set_parallel(true)
 		tween.tween_property(self, "position", initial_pos, event_duration)
 		tween.tween_property(self, "zoom", Vector2(1.0, 1.0), event_duration)

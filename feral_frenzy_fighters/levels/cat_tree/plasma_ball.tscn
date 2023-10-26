@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://b1f2oo7wb5qj1"]
+[gd_scene load_steps=14 format=3 uid="uid://b1f2oo7wb5qj1"]
 
 [ext_resource type="Script" path="res://levels/cat_tree/plasma_ball.gd" id="1_qx6an"]
 [ext_resource type="PackedScene" uid="uid://cg3kghx52c4y5" path="res://player/plasma_particles.tscn" id="2_6q83d"]
 [ext_resource type="Texture2D" uid="uid://cxqs4h0wsi5b6" path="res://levels/cat_tree/sprites/interactables/plasma_ball.png" id="2_45kkx"]
 [ext_resource type="Shader" path="res://levels/cat_tree/plasma_ball.gdshader" id="2_v10cl"]
 [ext_resource type="Texture2D" uid="uid://babwoy0cfjc44" path="res://levels/cat_tree/sprites/interactables/plasma_ball_unstable.png" id="3_u4efl"]
+[ext_resource type="AudioStream" uid="uid://cpwq06ek0i3p7" path="res://levels/cat_tree/sfx/events/Electric.wav" id="6_uhv84"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8qjnu"]
 shader = ExtResource("2_v10cl")
@@ -40,6 +41,46 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_c35vw"]
+resource_name = "Indication"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlasmaBallSprite:material:shader_parameter/line_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlasmaBallSprite:material:shader_parameter/line_thickness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 6.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlasmaBallSprite:use_parent_material")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_3vlgb"]
@@ -169,46 +210,6 @@ tracks/3/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_c35vw"]
-resource_name = "Indication"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlasmaBallSprite:material:shader_parameter/line_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlasmaBallSprite:material:shader_parameter/line_thickness")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [1.0, 6.0, 1.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PlasmaBallSprite:use_parent_material")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fk0lo"]
 _data = {
 "Damage": SubResource("Animation_56nrq"),
@@ -235,6 +236,12 @@ shape = SubResource("CircleShape2D_v2qdu")
 libraries = {
 "": SubResource("AnimationLibrary_fk0lo")
 }
+
+[node name="Ambient" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_uhv84")
+volume_db = -25.0
+autoplay = true
+bus = &"SFX"
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

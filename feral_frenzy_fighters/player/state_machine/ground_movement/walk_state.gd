@@ -24,7 +24,7 @@ func exit():
 func update(delta):
 	
 	if character.gamepad == true:
-		var direction = Input.get_axis(character.get_input("left"), character.get_input("right"))
+		var direction = InputManager.get_axis(character.get_input("left"), character.get_input("right"))
 		var last_stick = stick_change
 	
 		stick_change = direction
@@ -32,12 +32,12 @@ func update(delta):
 		if abs(last_stick - stick_change) > .50:
 			flick_dash = true
 			
-		if Input.is_action_pressed(character.get_input("dash")) || flick_dash == true:
+		if InputManager.is_action_pressed(character.get_input("dash")) || flick_dash == true:
 			flick_dash = false
 			return Globals.States.DASH
 				
 	else:
-		if Input.is_action_pressed(character.get_input("dash")):
+		if InputManager.is_action_pressed(character.get_input("dash")):
 			return Globals.States.DASH
 		
 	

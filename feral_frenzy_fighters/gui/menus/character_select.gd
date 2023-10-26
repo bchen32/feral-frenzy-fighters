@@ -46,14 +46,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("ui_back"):
+	if InputManager.is_action_just_pressed("ui_back"):
 		if len(ui._queue) > 1:
 			$SFX.stream = preload("res://gui/menus/sfx/unbutton.wav")
 			$SFX.play()
 		else:
 			become_inactive()
 	if !p1_locked:
-		if Input.is_action_just_pressed("p1_left"):
+		if InputManager.is_action_just_pressed("p1_left"):
 			if p1_character <= 0:
 				p1_selection[p1_character].texture_normal = graybox
 				p1_selection[len(p1_selection)-1].texture_normal = purplebox
@@ -65,7 +65,7 @@ func _process(delta):
 				p1_selection[p1_character].texture_normal = purplebox
 				on_character1_change()
 				
-		if Input.is_action_just_pressed("p1_right"):
+		if InputManager.is_action_just_pressed("p1_right"):
 			if p1_character >= len(p1_selection)-1:
 				p1_selection[p1_character].texture_normal = graybox
 				p1_selection[0].texture_normal = purplebox
@@ -83,7 +83,7 @@ func _process(delta):
 			on_locked_in()
 	
 	if !p2_locked:
-		if Input.is_action_just_pressed("p2_left"):
+		if InputManager.is_action_just_pressed("p2_left"):
 			if p2_character <= 0:
 				p2_selection[p2_character].texture_normal = graybox
 				p2_selection[len(p2_selection)-1].texture_normal = bluebox
@@ -95,7 +95,7 @@ func _process(delta):
 				p2_selection[p2_character].texture_normal = bluebox
 				on_character2_change()
 
-		if Input.is_action_just_pressed("p2_right"):
+		if InputManager.is_action_just_pressed("p2_right"):
 			if p2_character >= len(p2_selection)-1:
 				p2_selection[p2_character].texture_normal = graybox
 				p2_selection[0].texture_normal = bluebox
@@ -155,6 +155,26 @@ func on_locked_in():
 	
 	$MenuSound.play()
 	if p1_locked and p2_locked:
+		# setting up the beginning cutscene
+		match p1_character:
+			0:
+				if p1_character == p2_character:
+					Globals.cutscene_player_video_path = \
+						"res://gui/menus/cutscenes/pre_battle/cat_v_cat_pre_battle.ogv"
+				else:
+					Globals.cutscene_player_video_path = \
+						"res://gui/menus/cutscenes/pre_battle/p1_cat_v_p2_fish_pre_battle.ogv"
+			1:
+				if p1_character == p2_character:
+					Globals.cutscene_player_video_path = \
+						"res://gui/menus/cutscenes/pre_battle/fish_v_fish_pre_battle.ogv"
+				else:
+					Globals.cutscene_player_video_path = \
+						"res://gui/menus/cutscenes/pre_battle/p1_fish_v_p2_cat_pre_battle.ogv"
+			2:
+				# turtle! need to impl!
+				pass
+		
 		var stage_select = preload("res://gui/menus/stage_select.tscn").instantiate()
 		stage_select.position.x = get_viewport().size.x
 		add_child(stage_select)

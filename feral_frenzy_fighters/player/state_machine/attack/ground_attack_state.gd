@@ -4,13 +4,15 @@ extends AttackState
 
 func enter():
 	super()
+	var attacks = character.stats.attacks
 	direction = "neutral"
-	attack = character.stats.attacks[direction]
+	character.chosen_attack = attacks[direction]
+	attack = character.chosen_attack
 	character.play_anim("attack_%s" % direction)
 
 
 func update(delta):
-	if character.frame >= attack.frames:
+	if character.frame >= character.chosen_attack.frames:
 		return Globals.States.IDLE
 	if not character.is_on_floor():
 		return Globals.States.AIR
@@ -20,5 +22,7 @@ func update(delta):
 	else:
 		character.velocity.x += character.stats.tilt_attack_accel * delta
 		character.velocity.x = minf(character.velocity.x, 0.0)
-	character.update_attack(direction)
+	
+	if direction != "":
+		character.update_attack(direction)
 	return Globals.States.GROUND_ATTACK

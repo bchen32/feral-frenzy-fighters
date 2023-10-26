@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqcbmaknrbcpc"]
+[gd_scene load_steps=12 format=3 uid="uid://bqcbmaknrbcpc"]
 
 [ext_resource type="Script" path="res://levels/cat_tree/falling_mouse.gd" id="1_vae8e"]
 [ext_resource type="Texture2D" uid="uid://bt75go4w73poq" path="res://levels/cat_tree/sprites/events/vent.png" id="2_wpyag"]
@@ -97,6 +97,28 @@ _data = {
 "vent_falling": SubResource("Animation_8lg1r")
 }
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hip5m"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath("FallingMouse:mouse_is_falling")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath("MouseParent/Mouse:position")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+properties/3/path = NodePath("MouseParent/Mouse:rotation")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
+properties/4/path = NodePath("MouseParent/Mouse:visible")
+properties/4/spawn = true
+properties/4/sync = true
+properties/4/watch = false
+
 [node name="FallingMouse" type="Node2D"]
 script = ExtResource("1_vae8e")
 
@@ -127,3 +149,6 @@ bus = &"SFX"
 libraries = {
 "": SubResource("AnimationLibrary_bwnyf")
 }
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_hip5m")

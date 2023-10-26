@@ -720,6 +720,15 @@ bus = &"SFX"
 stream = ExtResource("4_n3vdy")
 bus = &"Music"
 
+[node name="HostButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 78.0
+offset_top = 171.0
+offset_right = 241.0
+offset_bottom = 304.0
+text = "host"
+
 [connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_button_entered"]
 [connection signal="mouse_entered" from="MainMenu/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="mouse_exited" from="MainMenu/Title/ButtonsVBox/Play/PlayButton" to="." method="_on_play_button_mouse_exited"]
@@ -752,3 +761,4 @@ bus = &"Music"
 [connection signal="focus_entered" from="MainMenu/PlayDialog/DialogBackground/CloseButton/IconButtonClick" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/PlayDialog/DialogBackground/CloseButton/IconButtonClick" to="MainMenu/PlayDialog/DialogBackground/CloseButton" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]

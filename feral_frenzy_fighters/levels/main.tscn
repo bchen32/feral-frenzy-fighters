@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpqtgmb2u4uo0"]
+[gd_scene load_steps=9 format=3 uid="uid://cpqtgmb2u4uo0"]
 
 [ext_resource type="Script" path="res://levels/main.gd" id="1_ghdqb"]
 [ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="1_ynwnh"]
 [ext_resource type="PackedScene" uid="uid://cqwih0alupqsb" path="res://gui/hud/damage_ui.tscn" id="2_tb6xb"]
+[ext_resource type="AudioStream" uid="uid://2pedg4faj0li" path="res://gui/menus/music/triumphant.wav" id="3_yody1"]
 [ext_resource type="AudioStream" uid="uid://gv5krwja5mbt" path="res://levels/cat_tree/music/catfight.wav" id="5_7efgp"]
-[ext_resource type="PackedScene" uid="uid://cmvf4h60u8y1p" path="res://levels/camera.tscn" id="5_lovfr"]
+[ext_resource type="PackedScene" path="res://levels/camera.tscn" id="5_lovfr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lo5pr"]
 size = Vector2(156, 1913.5)
@@ -20,14 +21,14 @@ _players = [NodePath("Player"), NodePath("Player2")]
 position = Vector2(407, 711)
 _damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
 _dead_areas = NodePath("../DeadAreas")
-_ending_video = "res://gui/menus/cutscenes/cat_v_cat_player_two_wins.ogv"
+ending_video_audiostream = ExtResource("3_yody1")
 
 [node name="Player2" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("1_ynwnh")]
 position = Vector2(1546, 708)
 player_num = 1
 _damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
 _dead_areas = NodePath("../DeadAreas")
-_ending_video = "res://gui/menus/cutscenes/cat_v_cat_player_one_wins.ogv"
+ending_video_audiostream = ExtResource("3_yody1")
 
 [node name="DeadAreas" type="Node2D" parent="."]
 position = Vector2(-3, 557)
@@ -65,7 +66,6 @@ shape = SubResource("RectangleShape2D_ew3br")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_7efgp")
 volume_db = 1.0
-autoplay = true
 bus = &"Music"
 
 [node name="Camera2D" parent="." node_paths=PackedStringArray("players") instance=ExtResource("5_lovfr")]

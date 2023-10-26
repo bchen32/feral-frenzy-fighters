@@ -52,7 +52,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("ui_back"):
+	if InputManager.is_action_just_pressed("ui_back"):
 		if len(ui._queue) > 1:
 			$SFX.stream = preload("res://gui/menus/sfx/unbutton.wav")
 			$SFX.play()
@@ -60,7 +60,7 @@ func _process(delta):
 			become_inactive()
 			
 	if !p1_locked:
-		if Input.is_action_just_pressed("p1_left"):
+		if InputManager.is_action_just_pressed("p1_left"):
 			if p1_stage <= 0:
 				p1_selection[p1_stage].texture_normal = graybox
 				p1_selection[len(p1_selection)-1].texture_normal = purplebox
@@ -72,7 +72,7 @@ func _process(delta):
 				p1_selection[p1_stage].texture_normal = purplebox
 				on_stage1_change()
 				
-		if Input.is_action_just_pressed("p1_right"):
+		if InputManager.is_action_just_pressed("p1_right"):
 			if p1_stage >= len(p1_selection)-1:
 				p1_selection[p1_stage].texture_normal = graybox
 				p1_selection[0].texture_normal = purplebox
@@ -91,7 +91,7 @@ func _process(delta):
 			on_locked_in()
 				
 	if !p2_locked:
-		if Input.is_action_just_pressed("p2_left"):
+		if InputManager.is_action_just_pressed("p2_left"):
 			if p2_stage <= 0:
 				p2_selection[p2_stage].texture_normal = graybox
 				p2_selection[len(p2_selection)-1].texture_normal = bluebox
@@ -103,7 +103,7 @@ func _process(delta):
 				p2_selection[p2_stage].texture_normal = bluebox
 				on_stage2_change()
 				
-		if Input.is_action_just_pressed("p2_right"):
+		if InputManager.is_action_just_pressed("p2_right"):
 			if p2_stage >= len(p2_selection)-1:
 				p2_selection[p2_stage].texture_normal = graybox
 				p2_selection[0].texture_normal = bluebox
@@ -147,7 +147,7 @@ func on_locked_in():
 				new_icon = $Background/StageIconsContainer/StageIconsTop/CatStageIcon.duplicate()
 				final_selection = 0
 				animate_selection(new_icon)
-
+				
 			1:
 				new_icon = $Background/StageIconsContainer/StageIconsTop/FishStageIcon.duplicate()
 				final_selection = 1
@@ -175,7 +175,7 @@ func animate_selection(icon):
 	
 func go_to_stage():
 	Globals.stage = final_selection
-	get_tree().change_scene_to_file("res://levels/main.tscn")
+	get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
 
 func _on_button_mouse_entered(extra_arg_0):
 	if !p1_locked:

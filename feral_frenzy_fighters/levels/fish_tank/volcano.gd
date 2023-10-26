@@ -8,7 +8,7 @@ var active_min_delay = 20
 var erupt_max_delay = 30
 var erupt_min_delay = 20
 
-var pebble_amount = 80
+var pebble_amount = 100
 var spawn_area_width = 1550
 var spawn_area_height = -5000
 var spawn_area_y_offset = -1600
@@ -16,7 +16,11 @@ var spawn_area_y_offset = -1600
 @onready var anim = get_node("AnimationPlayer")
 @onready var pebble_spawn = get_node("PebbleSpawn")
 @onready var event_spawner = $"../EventSpawner"
+@onready var full_shader = $"../../FullscreenShader"
 var pebble = preload("res://levels/fish_tank/pebble.tscn")
+
+var shader_tint = Vector4(0, 0, 0, -1)
+var new_shader_tint = Vector4(0, 0, 0, -1)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,24 +32,34 @@ func _process(delta):
 		volcano_state = Volcano_States.ERUPTING
 		_volcano_process()
 		event_spawner.start_external_event = false
+	
+	if shader_tint.distance_to(new_shader_tint) >= 0.1:
+		shader_tint = lerp(shader_tint, new_shader_tint, delta)
+		full_shader.material.set_shader_parameter("tint", shader_tint)
 
 func _volcano_process():
 	match volcano_state:
 		Volcano_States.DORMANT:
+			$VolcanoBubbles.playing = false
 			print("Volcano is DORMANT.")
+			new_shader_tint = Vector4(0, 0, 0, -1)
 			anim.play("RESET")
 			await get_tree().create_timer(randi_range(active_min_delay, active_max_delay)).timeout
 			
 			volcano_state = Volcano_States.ACTIVE
 			_volcano_process()
 		Volcano_States.ACTIVE:
+			$VolcanoBubbles.playing = true
 			print("Volcano is ACTIVE.")
 			anim.play("Active")
 			await get_tree().create_timer(randi_range(erupt_min_delay, erupt_max_delay)).timeout
 			
 			event_spawner._external_event(false) # tell event_spawner volcano event wants to start next time
 		Volcano_States.ERUPTING:
+			$VolcanoBubbles.playing = true
 			print("Volcano is ERUPTING.")
+			new_shader_tint = Vector4(2, 0, 0, 0)
+			await get_tree().create_timer(1).timeout
 			anim.play("Eruption")
 			await get_tree().create_timer(0.5).timeout
 			

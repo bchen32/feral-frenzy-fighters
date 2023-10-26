@@ -56,18 +56,18 @@ func _process(delta):
 			$Timer.start(2)
 	
 	if not _is_blue_popup:
-		if Input.is_action_pressed("p1_thumbs_up"):
+		if InputManager.is_action_pressed("p1_thumbs_up"):
 			_send_chat_message(NetworkManager.ChatEmoji.THUMBS_UP)
-		elif Input.is_action_pressed("p1_thumbs_down"):
+		elif InputManager.is_action_pressed("p1_thumbs_down"):
 			_send_chat_message(NetworkManager.ChatEmoji.THUMBS_DOWN)
-		elif Input.is_action_pressed("p1_skull"):
+		elif InputManager.is_action_pressed("p1_skull"):
 			_send_chat_message(NetworkManager.ChatEmoji.SKULL)
 	elif not NetworkManager.is_connected:
-		if Input.is_action_pressed("p2_thumbs_up"):
+		if InputManager.is_action_pressed("p2_thumbs_up"):
 			_send_chat_message(NetworkManager.ChatEmoji.THUMBS_UP)
-		elif Input.is_action_pressed("p2_thumbs_down"):
+		elif InputManager.is_action_pressed("p2_thumbs_down"):
 			_send_chat_message(NetworkManager.ChatEmoji.THUMBS_DOWN)
-		elif Input.is_action_pressed("p2_skull"):
+		elif InputManager.is_action_pressed("p2_skull"):
 			_send_chat_message(NetworkManager.ChatEmoji.SKULL)
 
 func _on_timer_timeout():

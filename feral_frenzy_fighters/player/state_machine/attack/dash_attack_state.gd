@@ -14,6 +14,7 @@ func enter():
 		else:
 			character.velocity.x = -character.stats.dash_attack_speed
 	attack = character.stats.attacks["dash_attack"]
+	character.chosen_attack = attack
 	character.play_anim("dash_attack")
 
 
