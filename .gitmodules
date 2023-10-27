@@ -1,0 +1,10 @@
+[submodule "godot-cpp"]
+	path = godot-cpp
+	url = git@github.com:godotengine/godot-cpp.git
+[submodule "godot-cpp/"]
+	branch = 4.1
+[submodule "ggpo_module/ggpo"]
+	path = ggpo_module/ggpo
+	url = git@github.com:Shugyousha/ggpo.git
+[submodule "ggpo_module/ggpo/"]
+	branch = linuxpr
