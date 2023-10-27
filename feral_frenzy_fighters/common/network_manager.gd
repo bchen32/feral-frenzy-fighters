@@ -2,9 +2,9 @@ extends Node
 
 var multiplayer_peer = ENetMultiplayerPeer.new()
 
-const SERVER_IP = "127.0.0.1"
+const SERVER_IP = "192.168.184.136"
 const SERVER_PORT = 11111
-const SERVER_BUILD = false
+const SERVER_BUILD = true
 
 signal network_game_state_changed
 signal recieved_player_data
