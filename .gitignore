@@ -4,3 +4,13 @@
 *.zip
 *.x86_64
 *.pck
+
+*.so
+*.idea/
+*.os
+*.dylib
+*.dll
+*.lib
+*.a
+
+feral-frenzy-fighters/bin/*
