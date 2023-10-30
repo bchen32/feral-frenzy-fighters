@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://boomivtr7a6as"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yyn4a"]
+load_path = "res://.godot/imported/carnivorous_plant_tongue.png-9ac0e63cc9731d4b1abd5943dbecb93c.ctex"
+
+[node name="Chompy" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CompressedTexture2D_yyn4a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
