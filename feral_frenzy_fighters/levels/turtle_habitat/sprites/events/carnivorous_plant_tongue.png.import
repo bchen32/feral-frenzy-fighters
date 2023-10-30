@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drmgrwwfns6vy"
-path="res://.godot/imported/water_complete.png-d5c5574704fe235be6b483ae921b1fa0.ctex"
+uid="uid://bkrprt8wqljfa"
+path="res://.godot/imported/carnivorous_plant_tongue.png-9ac0e63cc9731d4b1abd5943dbecb93c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/turtle_habitat/sprites/events/water_complete.png"
-dest_files=["res://.godot/imported/water_complete.png-d5c5574704fe235be6b483ae921b1fa0.ctex"]
+source_file="res://levels/turtle_habitat/sprites/events/carnivorous_plant_tongue.png"
+dest_files=["res://.godot/imported/carnivorous_plant_tongue.png-9ac0e63cc9731d4b1abd5943dbecb93c.ctex"]
 
 [params]
 

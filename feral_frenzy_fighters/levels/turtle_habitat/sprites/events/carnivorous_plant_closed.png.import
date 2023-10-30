@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0ccecy0lrpp7"
-path="res://.godot/imported/water_complete_with_lilypads.png-9d4d8e4dc259e7c009aa49ed90cb8f56.ctex"
+uid="uid://5rxikndssedh"
+path="res://.godot/imported/carnivorous_plant_closed.png-cc9615c5086c0726e00cad3e3a50bedc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/turtle_habitat/sprites/events/water_complete_with_lilypads.png"
-dest_files=["res://.godot/imported/water_complete_with_lilypads.png-9d4d8e4dc259e7c009aa49ed90cb8f56.ctex"]
+source_file="res://levels/turtle_habitat/sprites/events/carnivorous_plant_closed.png"
+dest_files=["res://.godot/imported/carnivorous_plant_closed.png-cc9615c5086c0726e00cad3e3a50bedc.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cx0alms8abhh1"]
+[gd_scene load_steps=8 format=3 uid="uid://cx0alms8abhh1"]
 
 [ext_resource type="Script" path="res://levels/turtle_habitat/water_level.gd" id="1_crvb1"]
 [ext_resource type="Texture2D" uid="uid://dmmaph3hlmm3c" path="res://levels/turtle_habitat/sprites/events/water_complete_with_lilypads_flowers.png" id="1_l5qyu"]
@@ -35,10 +35,18 @@ tracks/0/keys = {
 "values": [Vector2(0, 920)]
 }
 
+[sub_resource type="Animation" id="Animation_geyx6"]
+resource_name = "HighTide"
+
+[sub_resource type="Animation" id="Animation_pmwds"]
+resource_name = "Transition"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_377hj"]
 _data = {
+"HighTide": SubResource("Animation_geyx6"),
 "LowTide": SubResource("Animation_dt6m4"),
-"RESET": SubResource("Animation_b7d7j")
+"RESET": SubResource("Animation_b7d7j"),
+"Transition": SubResource("Animation_pmwds")
 }
 
 [node name="WaterLevel" type="Node2D"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bitla0de7vemu"]
+[gd_scene load_steps=25 format=3 uid="uid://bitla0de7vemu"]
 
 [ext_resource type="Texture2D" uid="uid://dyt3gihhkorrt" path="res://levels/turtle_habitat/sprites/decor/earth_rocks_withmoss_background.png" id="1_n0v6x"]
 [ext_resource type="Texture2D" uid="uid://bycbiy1n7o04n" path="res://levels/turtle_habitat/tilesets/60x60_tileset_turtle.png" id="2_g3g5f"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://b65mqoc650282" path="res://levels/turtle_habitat/sprites/decor/moss_boulder_1.png" id="11_0r1mv"]
 [ext_resource type="Texture2D" uid="uid://cqerplcng8ur3" path="res://levels/turtle_habitat/sprites/decor/moss_boulder_2.png" id="12_x0gvh"]
 [ext_resource type="Texture2D" uid="uid://1rejncqm42bg" path="res://levels/turtle_habitat/sprites/interactables/lamp_on.png" id="13_0kokt"]
-[ext_resource type="PackedScene" uid="uid://boomivtr7a6as" path="res://levels/turtle_habitat/chompy.tscn" id="14_78y47"]
 [ext_resource type="Script" path="res://levels/event_spawner.gd" id="14_smr1g"]
 [ext_resource type="PackedScene" uid="uid://cx0alms8abhh1" path="res://levels/turtle_habitat/water_level.tscn" id="14_xquta"]
 
@@ -283,10 +282,6 @@ metadata/_edit_lock_ = true
 
 [node name="EventSpawner" type="Node2D" parent="Events"]
 script = ExtResource("14_smr1g")
-
-[node name="Chompy" parent="Events/EventSpawner" instance=ExtResource("14_78y47")]
-visible = false
-position = Vector2(861, 209)
 
 [node name="WaterLevel" parent="Events" instance=ExtResource("14_xquta")]
 
