@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bitla0de7vemu"]
+[gd_scene load_steps=26 format=3 uid="uid://bitla0de7vemu"]
 
 [ext_resource type="Texture2D" uid="uid://dyt3gihhkorrt" path="res://levels/turtle_habitat/sprites/decor/earth_rocks_withmoss_background.png" id="1_n0v6x"]
 [ext_resource type="Texture2D" uid="uid://bycbiy1n7o04n" path="res://levels/turtle_habitat/tilesets/60x60_tileset_turtle.png" id="2_g3g5f"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://1rejncqm42bg" path="res://levels/turtle_habitat/sprites/interactables/lamp_on.png" id="13_0kokt"]
 [ext_resource type="Script" path="res://levels/event_spawner.gd" id="14_smr1g"]
 [ext_resource type="PackedScene" uid="uid://cx0alms8abhh1" path="res://levels/turtle_habitat/water_level.tscn" id="14_xquta"]
+[ext_resource type="PackedScene" uid="uid://boomivtr7a6as" path="res://levels/turtle_habitat/chompy.tscn" id="15_cm0jy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s83h5"]
 texture = ExtResource("2_g3g5f")
@@ -250,7 +251,6 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Collisions/StaticBody2D4"]
 position = Vector2(-14.9431, -10.2322)
 rotation = 0.439254
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_gevwi")
 one_way_collision = true
 metadata/_edit_lock_ = true
@@ -282,6 +282,7 @@ metadata/_edit_lock_ = true
 
 [node name="EventSpawner" type="Node2D" parent="Events"]
 script = ExtResource("14_smr1g")
+event_array = Array[PackedScene]([ExtResource("15_cm0jy")])
 
 [node name="WaterLevel" parent="Events" instance=ExtResource("14_xquta")]
 

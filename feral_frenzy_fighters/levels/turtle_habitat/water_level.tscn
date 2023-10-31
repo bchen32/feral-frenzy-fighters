@@ -3,6 +3,23 @@
 [ext_resource type="Script" path="res://levels/turtle_habitat/water_level.gd" id="1_crvb1"]
 [ext_resource type="Texture2D" uid="uid://dmmaph3hlmm3c" path="res://levels/turtle_habitat/sprites/events/water_complete_with_lilypads_flowers.png" id="1_l5qyu"]
 
+[sub_resource type="Animation" id="Animation_geyx6"]
+resource_name = "HighTide"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(2, 0.5, 1),
+"update": 0,
+"values": [Vector2(0, 400), Vector2(0, 380), Vector2(0, 400)]
+}
+
 [sub_resource type="Animation" id="Animation_dt6m4"]
 resource_name = "LowTide"
 length = 4.0
@@ -35,11 +52,21 @@ tracks/0/keys = {
 "values": [Vector2(0, 920)]
 }
 
-[sub_resource type="Animation" id="Animation_geyx6"]
-resource_name = "HighTide"
-
 [sub_resource type="Animation" id="Animation_pmwds"]
 resource_name = "Transition"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 900), Vector2(0, 400)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_377hj"]
 _data = {
@@ -50,6 +77,8 @@ _data = {
 }
 
 [node name="WaterLevel" type="Node2D"]
+z_index = 5
+z_as_relative = false
 position = Vector2(0, 920)
 script = ExtResource("1_crvb1")
 
