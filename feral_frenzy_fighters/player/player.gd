@@ -108,7 +108,13 @@ func _ready():
 	var p1_icon
 	var p2_icon
 	if character_type != "beanbag":
-		color = "blue" if player_num else "purple"
+		if player_num:
+			if character_type == Globals.player_sprites[0]:
+				color = "alternate"
+			else:
+				color = "blue"
+		else:
+			color = "purple"
 		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
 		p1_icon = sprites.get_node("Player1Icon")
 		p2_icon = sprites.get_node("Player2Icon")
