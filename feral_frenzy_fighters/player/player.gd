@@ -254,6 +254,11 @@ func play_anim(animation_name: String):
 			2,
 			180,
 			1)
+			if _damage_label:
+				var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
+				if character_type != "beanbag":
+					color = "blue" if player_num else "purple"
+					player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_injured_icon_" + color + ".png")
 	else:
 		anim_player.play("_".join([color, animation_name]))
 
@@ -436,6 +441,13 @@ func acknowledge_death():
 	velocity = Vector2(0, 0)
 	percentage = 0
 	bloodied = false
+	if _damage_label:
+		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
+		if character_type != "beanbag":
+			color = "blue" if player_num else "purple"
+			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
+		else:
+			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
 	
 	if not NetworkManager.is_connected and not _is_lobby:
 		stocks -= 1
