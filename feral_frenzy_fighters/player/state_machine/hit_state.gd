@@ -20,19 +20,6 @@ func enter():
 		10)
 	
 	hitstun = floor(character.kb * character.kb_hitstun_scale)
-	character.set_physics_process(false)
-	
-	Globals.shake(
-	character.anim_player,
-	5 * character.percentage/10,
-	.005 + character.percentage/10000,
-	5 + character.percentage/10,
-	Time.get_unix_time_from_system(),
-	true) 
-	
-	await Globals.shake_completed
-	
-	character.set_physics_process(true)
 	character.velocity.x = cos(character.kb_angle) * character.kb
 	character.velocity.y = sin(character.kb_angle) * character.kb
 	if character.velocity.y > 0: # Make spikes less punishing

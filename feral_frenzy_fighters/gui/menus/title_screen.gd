@@ -17,7 +17,7 @@ func _ready():
 	$"MainMenu/Title/ButtonsVBox/Play/PlayButton".grab_focus()
 	Globals.setup_controls()
 	
-	ui = Globals.menu.new($MainMenu/Title)
+	ui = Menu.new($MainMenu/Title)
 
 func _process(delta):
 	if InputManager.is_action_pressed("ui_back"):
