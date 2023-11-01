@@ -464,7 +464,7 @@ func acknowledge_death():
 					color = "blue"
 			else:
 				color = "purple"
-			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_injured_icon_" + color + ".png")
+			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
 	
 	if not NetworkManager.is_connected and not _is_lobby:
 		stocks -= 1
@@ -472,8 +472,6 @@ func acknowledge_death():
 			_damage_label.set_player_death_count(player_num, stocks)
 		
 		if not _is_lobby and stocks <= 0:
-			if NetworkManager.is_host:
-				NetworkManager._players_in_which_lobbies[player_id].on_player_completely_dead(player_num)
 			
 			Globals.player1_won = player_num != 0
 			Globals.cutscene_player_end_game = true
