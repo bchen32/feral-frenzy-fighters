@@ -478,6 +478,8 @@ func _physics_process(delta: float):
 	
 	set_collision_mask_value(4, not InputManager.is_action_pressed(get_input("down")))  # drop through platforms while down is held
 	frame += 1
+	if position.y > Globals.water_level:
+		print("in water")
 	state_machine.update(delta)
 	move_and_slide()
 

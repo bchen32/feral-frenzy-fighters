@@ -43,10 +43,12 @@ func _ready():
 			level = load("res://levels/cat_tree/cat_tree_level.tscn").instantiate()
 			$AudioStreamPlayer.stream = preload("res://levels/cat_tree/music/catfight.wav")
 			add_child(level)
+			Globals.water_level = 10000
 		1:
 			level = load("res://levels/fish_tank/fish_tank_level.tscn").instantiate()
 			$AudioStreamPlayer.stream = preload("res://levels/fish_tank/sfx/fishfight.wav")
 			add_child(level)
+			Globals.water_level = 120
 			
 	$AudioStreamPlayer.play()
 	
