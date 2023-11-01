@@ -1,4 +1,5 @@
 {
+	"water_scale": 1.4,
 	"walk_accel": 6000,
 	"dash_accel": 9000,
 	"tilt_attack_accel": 1200,

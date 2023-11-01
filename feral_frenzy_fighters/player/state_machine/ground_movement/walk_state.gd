@@ -17,8 +17,8 @@ func enter():
 		Vector2(50,200))
 
 func exit():
-	character.air_speed_upper_bound = character.stats.walk_speed
-	character.air_speed_lower_bound = -character.stats.walk_speed
+	character.air_speed_upper_bound = character.get_scaled_stat("walk_speed")
+	character.air_speed_lower_bound = -character.get_scaled_stat("walk_speed")
 
 
 func update(delta):
@@ -66,4 +66,4 @@ func get_accel():
 
 
 func get_speed():
-	return character.stats.walk_speed
+	return character.get_scaled_stat("walk_speed")
