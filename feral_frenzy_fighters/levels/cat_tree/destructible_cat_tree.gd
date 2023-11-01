@@ -14,12 +14,18 @@ var destroyed = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.health = starting_health
+	
+	NetworkManager.env_hit_acked.connect(_on_env_hit_acked)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if self.health <= 0 && destroyed == false:
 		_destroy_self()
 		destroyed = true
+
+func _on_env_hit_acked(env_part: String, health_change: int):
+	if name == env_part:
+		_change_health(health_change)
 
 func _change_health(health_change: float):
 	self.health += health_change

@@ -136,7 +136,7 @@ func _ready():
 	
 	if Globals.player_sprites.size() > player_num:
 		character_type = Globals.player_sprites[player_num]
-	elif NetworkManager.is_connected or NetworkManager.is_host:
+	elif NetworkManager.is_connected:
 		character_type = "cat"
 	
 	stats = load_stats(character_data[character_type].stats)
@@ -147,25 +147,27 @@ func _ready():
 	anim_player = _sprites_scene_instance.get_node("AnimatedSprite2D")
 	var sprite_node_path = NodePath(_sprites_scene_instance.name + "/AnimatedSprite2D:flip_h")
 	
-	_multiplayer_sync.replication_config.add_property(sprite_node_path)
-	_multiplayer_sync.replication_config.property_set_sync(sprite_node_path, true)
-	_multiplayer_sync.replication_config.property_set_spawn(sprite_node_path, true)
-	_multiplayer_sync.replication_config.property_set_watch(sprite_node_path, false)
 	var p1_icon
 	var p2_icon
-	
-	if _damage_label:
-		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
-		if character_type != "beanbag":
-			color = "blue" if player_num else "purple"
-			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
-		else:
-			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
-		
-		_damage_label.set_player_death_count(player_num, stocks)
-	
+
+	var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
 	if character_type != "beanbag":
 		color = "blue" if player_num else "purple"
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
+	else:
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
+	
+	_damage_label.set_player_death_count(player_num, stocks)
+	
+	if character_type != "beanbag":
+		if player_num:
+			if character_type == Globals.player_sprites[0]:
+				color = "alternate"
+			else:
+				color = "blue"
+		else:
+			color = "purple"
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
 		p1_icon = _sprites_scene_instance.get_node("Player1Icon")
 		p2_icon = _sprites_scene_instance.get_node("Player2Icon")
 		var states = {
@@ -319,9 +321,7 @@ func play_particles(
 
 
 func get_input(input_name: String):
-	if NetworkManager.is_host:
-		return input_name
-	elif NetworkManager.is_connected:
+	if NetworkManager.is_connected:
 		if _is_lobby or player_num == NetworkManager.my_player_num:
 			return "p1_%s" % input_name
 		else:
@@ -400,7 +400,10 @@ func air_movement(delta):
 
 func _on_dead_area_entered(body: Node2D):
 	if body == self:
-		acknowledge_death()
+		if not _is_lobby and NetworkManager.is_connected:
+			NetworkManager.report_death.rpc(player_num)
+		else:
+			acknowledge_death()
 
 
 func acknowledge_hit(player_num: int, hit_info: Dictionary):
@@ -458,9 +461,6 @@ func acknowledge_death():
 		if _damage_label:
 			_damage_label.set_player_death_count(player_num, stocks)
 		
-		if NetworkManager.is_host:
-			NetworkManager.update_damage_label.rpc(player_num, 0, stocks)
-		
 		if not _is_lobby and stocks <= 0:
 			if NetworkManager.is_host:
 				NetworkManager._players_in_which_lobbies[player_id].on_player_completely_dead(player_num)
@@ -471,14 +471,10 @@ func acknowledge_death():
 			Globals.audio_stream_to_play_during_cutscene = ending_video_audiostream
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
 	play_audio(AudioType.DEATH)
-	if not NetworkManager.is_connected and not NetworkManager.is_host:
-		play_particles(physics_blood,0, 30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
+	play_particles(physics_blood,0, 30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
 
 func _physics_process(delta: float):
 	# if we are the server setup, we need to tell InputManager which player to get inputs for
-	
-	if NetworkManager.is_host:
-		InputManager.switch_player_id(player_id)
 	
 	set_collision_mask_value(4, not InputManager.is_action_pressed(get_input("down")))  # drop through platforms while down is held
 	frame += 1
@@ -488,7 +484,7 @@ func _physics_process(delta: float):
 func _process(_delta: float):
 	if stats.size() == 0:
 		stats = load_stats(character_data[character_type].stats)
-	
+
 	var anim_offset_match = false
 	for anim_name in stats.animation_offset:
 		if anim_name in anim_player.animation:
@@ -499,30 +495,9 @@ func _process(_delta: float):
 	if not anim_offset_match:
 		anim_player.position.x = (1 if anim_player.flip_h else -1) * stats.animation_offset.base.x
 		anim_player.position.y = stats.animation_offset.base.y
-	if _damage_label and (NetworkManager.is_host or not NetworkManager.is_connected):
+	if _damage_label:
 		_damage_label.set_player_damage(player_num, percentage)
 	
 	if NetworkManager.is_connected and (_is_lobby or player_num == NetworkManager.my_player_num):
-		var input_actions = InputManager.get_input_actions(self)
-		
-		if not input_actions.is_empty():
-			NetworkManager.send_network_input.rpc(input_actions)
-		#NetworkManager.update_game_information.rpc(position, state_machine.curr_state,
-		#										   anim_player.flip_h)
-
-func _enter_tree():
-	var multiplayer_replication_config: SceneReplicationConfig = $MultiplayerSynchronizer.replication_config
-	var old_multiplayer_sync: MultiplayerSynchronizer = $MultiplayerSynchronizer
-	var root_path: NodePath = $MultiplayerSynchronizer.root_path
-	
-	remove_child(old_multiplayer_sync)
-	old_multiplayer_sync.queue_free()
-	
-	_multiplayer_sync = MultiplayerSynchronizer.new()
-	
-	_multiplayer_sync.name = NodePath("MultiplayerSynchronizer")
-	_multiplayer_sync.replication_config = multiplayer_replication_config
-	_multiplayer_sync.root_path = root_path
-	
-	call_deferred("add_child", _multiplayer_sync)
-
+		NetworkManager.update_game_information.rpc(position, state_machine.curr_state,
+												   anim_player.flip_h)

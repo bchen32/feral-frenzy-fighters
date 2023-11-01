@@ -288,38 +288,40 @@ position = Vector2(1540, 725)
 texture = ExtResource("11_thvk6")
 metadata/_edit_lock_ = true
 
-[node name="Events" type="Node2D" parent="."]
+[node name="DynamicObjects" type="Node2D" parent="."]
+
+[node name="Events" type="Node2D" parent="DynamicObjects"]
 metadata/_edit_lock_ = true
 
-[node name="EventSpawner" type="Node2D" parent="Events"]
+[node name="EventSpawner" type="Node2D" parent="DynamicObjects/Events"]
 script = ExtResource("14_vvqsy")
 event_array = Array[PackedScene]([ExtResource("16_c30hf"), ExtResource("17_p8xfc")])
 metadata/_edit_lock_ = true
 
-[node name="Interactables" type="Node2D" parent="."]
+[node name="Interactables" type="Node2D" parent="DynamicObjects"]
 metadata/_edit_lock_ = true
 
-[node name="DestructibleCatTrees" type="Node2D" parent="Interactables"]
+[node name="DestructibleCatTrees" type="Node2D" parent="DynamicObjects/Interactables"]
 
-[node name="CatTreeLeft" parent="Interactables/DestructibleCatTrees" instance=ExtResource("4_h4nvx")]
+[node name="CatTreeLeft" parent="DynamicObjects/Interactables/DestructibleCatTrees" instance=ExtResource("4_h4nvx")]
 z_index = -1
 position = Vector2(262, 751)
 starting_health = 60
 respawn_time = 10.0
 
-[node name="CatTreeZigZag" parent="Interactables/DestructibleCatTrees" instance=ExtResource("6_gw84o")]
+[node name="CatTreeZigZag" parent="DynamicObjects/Interactables/DestructibleCatTrees" instance=ExtResource("6_gw84o")]
 z_index = -1
 position = Vector2(640, 604)
 starting_health = 40
 respawn_time = 5.0
 
-[node name="CatTreeMiddle" parent="Interactables/DestructibleCatTrees" instance=ExtResource("5_jeqww")]
+[node name="CatTreeMiddle" parent="DynamicObjects/Interactables/DestructibleCatTrees" instance=ExtResource("5_jeqww")]
 z_index = -1
 position = Vector2(1090, 888)
 starting_health = 80
 respawn_time = 15.0
 
-[node name="PlasmaBall" parent="Interactables" instance=ExtResource("14_7tkul")]
+[node name="PlasmaBall" parent="DynamicObjects/Interactables" instance=ExtResource("14_7tkul")]
 position = Vector2(1539, 629)
 metadata/_edit_lock_ = true
 

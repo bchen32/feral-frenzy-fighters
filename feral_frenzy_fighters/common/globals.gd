@@ -5,7 +5,7 @@ enum States { AIR, AIR_ATTACK, AIR_JUMP, DASH, DASH_ATTACK, DASH_JUMP, GROUND_AT
 var cutscene_player_video_path: String = "res://gui/menus/cutscenes/intro_cutscene.ogv"
 var cutscene_player_end_game: bool = false
 var player1_won: bool = false
-var player_sprites: Array[String] = []
+var player_sprites: Array[String] = ["cat", "cat"]
 var stage: int
 var water_level: int
 
@@ -78,3 +78,27 @@ func rebind_p1(device_number: int):
 func rebind_p2(device_number: int):
 	for event in p2_gamepad:
 		event.set_device(device_number)
+		
+func shake(node, amount: float = 5, duration: float = .01, count: int = 10, password = 0, player = false):
+	if node:
+		passwords[node] = password
+		print("first ", passwords[node])
+		var og_pos = node.global_position
+		for i in count:
+				randomize()
+				var tween := create_tween()
+				tween.tween_property(
+				node, 
+				"global_position", 
+				Vector2(randf_range(node.global_position.x + -amount,node.global_position.x + amount), randf_range(node.global_position.y + -amount, node.global_position.y + amount)), 
+				duration)
+				await get_tree().create_timer(duration).timeout
+				amount/=1.2
+				
+		if player == true:
+			if passwords[node] == password:
+				node.global_position = og_pos
+				print("last ", passwords[node])
+				emit_signal("shake_completed", passwords[node])
+		else:
+			node.global_position = og_pos
