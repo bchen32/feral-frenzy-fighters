@@ -10,7 +10,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g467b"]
 size = Vector2(36, 76)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["players"]]
 collision_mask = 30
 script = ExtResource("1_ewoqh")
 stocks = 5
