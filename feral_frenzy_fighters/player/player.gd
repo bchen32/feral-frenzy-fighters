@@ -485,15 +485,16 @@ func _process(_delta: float):
 	if stats.size() == 0:
 		stats = load_stats(character_data[character_type].stats)
 	
-	if character_type == "cat":
-		if anim_player.flip_h:
-			anim_player.position.x = -12
-		else:
-			anim_player.position.x = 12
-		if "jump" in anim_player.animation or "fall" in anim_player.animation:
-			anim_player.position.y = 8
-		else:
-			anim_player.position.y = -8
+	var anim_offset_match = false
+	for anim_name in stats.animation_offset:
+		if anim_name in anim_player.animation:
+			anim_player.position.x = (1 if anim_player.flip_h else -1) * stats.animation_offset[anim_name].x
+			anim_player.position.y = stats.animation_offset[anim_name].y
+			anim_offset_match = true
+			break
+	if not anim_offset_match:
+		anim_player.position.x = (1 if anim_player.flip_h else -1) * stats.animation_offset.base.x
+		anim_player.position.y = stats.animation_offset.base.y
 	if _damage_label and (NetworkManager.is_host or not NetworkManager.is_connected):
 		_damage_label.set_player_damage(player_num, percentage)
 	

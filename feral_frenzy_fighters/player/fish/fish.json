@@ -74,5 +74,19 @@
 				}
 			]
 		}
+	},
+	"animation_offset": {
+		"base": {
+			"x": 0,
+			"y": 0
+		},
+		"dash_attack": {
+			"x": 0,
+			"y": 6
+		},
+		"air_attack_neutral": {
+			"x": 10,
+			"y": 0
+		}
 	}
 }

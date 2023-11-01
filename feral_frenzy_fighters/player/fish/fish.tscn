@@ -1031,7 +1031,7 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_5vp6i")
-animation = &"purple_dash_attack"
+animation = &"blue_air_attack_neutral"
 
 [node name="Player1Icon" type="Sprite2D" parent="."]
 visible = false
