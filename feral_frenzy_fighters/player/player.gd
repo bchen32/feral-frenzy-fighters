@@ -257,6 +257,7 @@ func play_anim(animation_name: String):
 			180,
 			1)
 			if _damage_label:
+				_damage_label.get_node(("P2" if player_num else "P1") + "/DamageLabel").label_settings.font_color = Color("d85244")
 				var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
 				if character_type != "beanbag":
 					if player_num:
@@ -455,6 +456,7 @@ func acknowledge_death():
 	percentage = 0
 	bloodied = false
 	if _damage_label:
+		_damage_label.get_node(("P2" if player_num else "P1") + "/DamageLabel").label_settings.font_color = Color.WHITE
 		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
 		if character_type != "beanbag":
 			if player_num:

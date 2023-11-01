@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cqwih0alupqsb"]
+[gd_scene load_steps=19 format=3 uid="uid://cqwih0alupqsb"]
 
 [ext_resource type="Script" path="res://gui/hud/damage_ui.gd" id="1_kd0hw"]
 [ext_resource type="Texture2D" uid="uid://djyfonhy27vtl" path="res://gui/hud/sprites/stats_paw_prints/player_stats_purple.png" id="2_jus1w"]
@@ -30,6 +30,10 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fif64"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ytfcb"]
+font = ExtResource("3_ekkdo")
+font_size = 40
 
 [node name="DamageUI" type="Control"]
 layout_mode = 3
@@ -210,14 +214,14 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_xgw5i")
 stretch_mode = 2
 
-[node name="DamageLabel_Two" type="Label" parent="P2"]
+[node name="DamageLabel" type="Label" parent="P2"]
 layout_mode = 0
 offset_left = 103.0
 offset_top = 30.0
 offset_right = 283.0
 offset_bottom = 74.0
 text = "0%"
-label_settings = SubResource("LabelSettings_xhf4j")
+label_settings = SubResource("LabelSettings_ytfcb")
 horizontal_alignment = 1
 vertical_alignment = 1
 
