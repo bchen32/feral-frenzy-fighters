@@ -154,7 +154,8 @@ func on_locked_in():
 				animate_selection(new_icon)
 			2:
 				final_selection = 2
-				print("turtle")
+				print("turtle") # temp
+				go_to_stage() # temp
 
 func animate_selection(icon):
 
