@@ -31,10 +31,10 @@ func enter():
 func exit():
 	if character.velocity.x >= 0:
 		character.air_speed_upper_bound = character.velocity.x
-		character.air_speed_lower_bound = -character.stats.air_jump_speed
+		character.air_speed_lower_bound = -character.get_scaled_stat("air_jump_speed")
 	else:
 		character.air_speed_lower_bound = character.velocity.x
-		character.air_speed_upper_bound = character.stats.air_jump_speed
+		character.air_speed_upper_bound = character.get_scaled_stat("air_jump_speed")
 	character.kb = 0.0
 	character.kb_angle = 0.0
 	hitstun = 0
