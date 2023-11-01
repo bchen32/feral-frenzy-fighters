@@ -2,7 +2,9 @@
 #define BALL_H
 
 #include <cassert>
+#include <chrono>
 #include <memory>
+#include <thread>
 #include <string_view>
 #include <unordered_map>
 
@@ -30,9 +32,17 @@ private:
 
     static GGPOMultiplayer *current_ggpo_multiplayer;
 
+    // inputs
+    static constexpr uint32_t JUMP_CODE = 0x0000000F;
+    static constexpr uint32_t LEFT_CODE = 0x000000F0;
+    static constexpr uint32_t RIGHT_CODE = 0x00000F00;
+    static constexpr uint32_t CROUCH_CODE = 0x0000F000;
+
+    std::array<int, 2> m_current_inputs {{0, 0}};
     int m_frame_counter;
     std::unique_ptr<GGPOSession, GGPOSessionDeleter> m_ggpo_session;
     std::vector<GGPOPlayerHandle> m_ggpo_players;
+    int m_local_player_num;
     Array m_nodes_to_track;
 
     // GGPO callbacks
@@ -73,8 +83,11 @@ public:
     GGPOMultiplayer();
     ~GGPOMultiplayer();
 
-    void create_peer(uint32_t local_port, int num_of_players);
+    void create_peer(uint32_t local_port, int num_of_players, int local_player_num);
     void add_player(String player_ip, uint32_t port);
+
+    Array get_nodes_to_track() const;
+    void set_nodes_to_track(Array array);
 
     void _ready() override;
     void _process(double delta) override;

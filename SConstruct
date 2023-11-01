@@ -15,6 +15,8 @@ env = SConscript("godot-cpp/SConstruct")
 # tweak this if you want to use different folders, or more folders, to store your source code in.
 env.Append(CPPPATH=["ggpo_module/src/"])
 sources = Glob("ggpo_module/src/*.cpp")
+env.Append(LIBPATH=["ggpo_module"])
+env.Append(LIBS=["libGGPO"])
 
 if env["platform"] == "macos":
     library = env.SharedLibrary(

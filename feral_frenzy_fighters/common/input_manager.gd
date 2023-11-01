@@ -20,7 +20,7 @@ func get_axis(negative_input: String, positive_input: String) -> float:
 	
 	if NetworkManager.is_host and host_input_name in _current_input_sent:
 		return _current_input_sent[host_input_name]
-	elif NetworkManager.is_connected or NetworkManager.is_host:
+	elif NetworkManager.is_connected or NetworkManager.is_host or NetworkManager.ggpo_multiplayer != null:
 		return 0
 	else:
 		return Input.get_axis(negative_input, positive_input)
@@ -29,7 +29,7 @@ func is_action_just_pressed(input: String):
 	if NetworkManager.is_host and "just_press_actions" in _current_input_sent and \
 	   input in _current_input_sent["just_press_actions"]:
 		return true
-	elif NetworkManager.is_connected or NetworkManager.is_host:
+	elif NetworkManager.is_connected or NetworkManager.is_host  or NetworkManager.ggpo_multiplayer != null:
 		return false
 	else:
 		return Input.is_action_just_pressed(input)
@@ -38,7 +38,7 @@ func is_action_pressed(input: String) -> bool:
 	if NetworkManager.is_host and "press_actions" in _current_input_sent and \
 	   input in _current_input_sent["press_actions"]:
 		return true
-	elif NetworkManager.is_connected or NetworkManager.is_host:
+	elif NetworkManager.is_connected or NetworkManager.is_host or NetworkManager.ggpo_multiplayer != null:
 		return false
 	else:
 		return Input.is_action_pressed(input)

@@ -3,6 +3,7 @@
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/random_number_generator.hpp>
 #include <godot_cpp/classes/input.hpp>
+#include <godot_cpp/classes/input_event.hpp>
 #include <godot_cpp/classes/input_map.hpp>
 #include <godot_cpp/classes/node2d.hpp>
 
@@ -17,6 +18,7 @@ GGPOSessionCallbacks GGPOMultiplayer::GGPO_CALLBACKS {
     .advance_frame = &advance_frame,
     .on_event = &on_event
 };
+GGPOMultiplayer *GGPOMultiplayer::current_ggpo_multiplayer = nullptr;
 
 /*
  * Simple checksum function stolen from wikipedia:
@@ -51,24 +53,41 @@ GGPOMultiplayer::~GGPOMultiplayer() {
 }
 
 void GGPOMultiplayer::_bind_methods() {
-    ClassDB::bind_method(D_METHOD("create_peer", "local_port", "num_of_players"), &GGPOMultiplayer::create_peer);
+    ClassDB::bind_method(D_METHOD("create_peer", "local_port", "num_of_players", "local_player_num"),
+                         &GGPOMultiplayer::create_peer);
     ClassDB::bind_method(D_METHOD("add_player", "player_ip", "local_port"), &GGPOMultiplayer::add_player);
+
+    ClassDB::bind_method(D_METHOD("get_nodes_to_track"), &GGPOMultiplayer::get_nodes_to_track);
+    ClassDB::bind_method(D_METHOD("set_nodes_to_track", "nodes_to_track"), &GGPOMultiplayer::set_nodes_to_track);
+    ClassDB::add_property("GGPOMultiplayer", PropertyInfo(Variant::ARRAY, "nodes_to_track"),
+                          "set_nodes_to_track", "get_nodes_to_track");
 }
 
 GGPOMultiplayer::GGPOMultiplayer() {
 }
 
 void GGPOMultiplayer::_ready() {
+    current_ggpo_multiplayer = this;
 }
 
-void GGPOMultiplayer::create_peer(uint32_t local_port, int num_of_players) {
+Array GGPOMultiplayer::get_nodes_to_track() const {
+    return m_nodes_to_track;
+}
+
+void GGPOMultiplayer::set_nodes_to_track(Array array) {
+    m_nodes_to_track = array;
+}
+
+void GGPOMultiplayer::create_peer(uint32_t local_port, int num_of_players, int local_player_num) {
     GGPOSession *ggpo_session;
     GGPOPlayer ggpo_local_player {
         .size = sizeof(GGPOPlayer),
         .type = GGPO_PLAYERTYPE_LOCAL,
-        .player_num = 0
+        .player_num = local_player_num
     };
     int result;
+
+    m_local_player_num = local_player_num;
 
     result = ggpo_start_session(&ggpo_session, &GGPO_CALLBACKS, GGPO_APP_NAME.data(), num_of_players,
                                 sizeof(int), local_port);
@@ -85,6 +104,9 @@ void GGPOMultiplayer::create_peer(uint32_t local_port, int num_of_players) {
 
         if(result == 0) {
             m_ggpo_players.push_back(ggpo_player_handle);
+
+            UtilityFunctions::print("started ggpo peer on ", local_port, " with local player num ", local_player_num,
+                                    "!");
         } else {
             print_out_GGPO_error(result, "ggpo_add_player local player");
 
@@ -104,7 +126,7 @@ void GGPOMultiplayer::add_player(String player_ip, uint32_t port) {
     GGPOPlayer player {
         .size = sizeof(GGPOPlayer),
         .type = GGPO_PLAYERTYPE_REMOTE,
-        .player_num = m_ggpo_players.size(),
+        .player_num = m_local_player_num == 1 ? 2 : 1
     };
     GGPOPlayerHandle player_handle;
     int result;
@@ -117,6 +139,7 @@ void GGPOMultiplayer::add_player(String player_ip, uint32_t port) {
     result = ggpo_add_player(m_ggpo_session.get(), &player, &player_handle);
 
     if(result == 0) {
+        UtilityFunctions::print("Added GGPO player from ", player_ip, " on port ", port);
         m_ggpo_players.push_back(player_handle);
     } else {
         print_out_GGPO_error(result, "ggpo_add_player remote player");
@@ -124,7 +147,50 @@ void GGPOMultiplayer::add_player(String player_ip, uint32_t port) {
 }
 
 void GGPOMultiplayer::_process(double delta) {
-    ggpo_idle(m_ggpo_session.get(), 20);
+    if(!Engine::get_singleton()->is_editor_hint() && m_ggpo_session != nullptr) {
+        assert(!m_ggpo_players.empty());
+
+        if(m_ggpo_players.size() == 2) {
+            m_current_inputs[m_local_player_num - 1] = 0;
+
+            if(Input::get_singleton()->is_action_pressed("p1_left") || Input::get_singleton()->is_action_pressed("p2_left")) {
+                m_current_inputs[m_local_player_num - 1] |= LEFT_CODE;
+            } else if(Input::get_singleton()->is_action_pressed("p1_right") ||
+                      Input::get_singleton()->is_action_pressed("p2_right")) {
+                m_current_inputs[m_local_player_num - 1] |= RIGHT_CODE;
+            }
+
+            if(Input::get_singleton()->is_action_pressed("p1_jump") ||
+               Input::get_singleton()->is_action_pressed("p2_jump")) {
+                m_current_inputs[m_local_player_num - 1] |= JUMP_CODE;
+            } else if(Input::get_singleton()->is_action_pressed("p1_down") ||
+                      Input::get_singleton()->is_action_pressed("p2_down")) {
+                m_current_inputs[m_local_player_num - 1] |= CROUCH_CODE;
+            }
+
+            if(m_current_inputs[0] != 0 && m_current_inputs[1] != 0) {
+                UtilityFunctions::print("Input is non-null ", m_current_inputs[0], ", ", m_current_inputs[1]);
+            }
+
+            int result = ggpo_add_local_input(m_ggpo_session.get(), m_ggpo_players[0],
+                                              &m_current_inputs[m_local_player_num - 1], sizeof(uint32_t));
+
+            if(result != 0) {
+                print_out_GGPO_error(result, "ggpo_add_local_input");
+            }
+
+            advance_frame(0xdeadbeef);
+        } else {
+            //UtilityFunctions::print("don't have two players");
+        }
+
+        //UtilityFunctions::print("GGPO idle");
+
+        int result;
+        if((result = ggpo_idle(m_ggpo_session.get(), 2000)) != 0) {
+            print_out_GGPO_error(result, "ggpo_idle");
+        }
+    }
 }
 
 bool GGPOMultiplayer::begin_game(const char *game) {
@@ -194,14 +260,93 @@ void GGPOMultiplayer::free_buffer(void *buffer) {
 }
 
 bool GGPOMultiplayer::advance_frame(int flags) {
-    //ggpo_synchronize_input();
+    int disconnect_flags;
 
-    //ggpo_advance_frame();
+    int result = ggpo_synchronize_input(current_ggpo_multiplayer->m_ggpo_session.get(),
+                                        current_ggpo_multiplayer->m_current_inputs.data(), 2 * sizeof(uint32_t),
+                                        &disconnect_flags);
+
+    if(result != 0) {
+        current_ggpo_multiplayer->print_out_GGPO_error(result, "ggpo_synchronize_input");
+    }
+
+    for(int i = 0; 2 > i; ++i) {
+        int current_input = (i == current_ggpo_multiplayer->m_local_player_num - 1) ?
+                current_ggpo_multiplayer->m_current_inputs[0] : current_ggpo_multiplayer->m_current_inputs[1];
+
+        bool is_crouch = (current_input & CROUCH_CODE) != 0;
+        bool is_jump = (current_input & JUMP_CODE) != 0;
+        bool is_left = (current_input & LEFT_CODE) != 0;
+        bool is_right = (current_input & RIGHT_CODE) != 0;
+
+        auto *node = Object::cast_to<Node2D>(current_ggpo_multiplayer->m_nodes_to_track[i]);
+
+        Vector2 current_global_position = node->get_global_position();
+
+        if(is_jump) {
+            current_global_position.y += 10;
+        } else if(is_crouch) {
+            current_global_position.y -= 10;
+        }
+
+        if(is_left) {
+            current_global_position.x -= 10;
+        } else if(is_right) {
+            current_global_position.x += 10;
+        }
+
+        node->set_global_position(current_global_position);
+    }
+
+    if((result = ggpo_advance_frame(current_ggpo_multiplayer->m_ggpo_session.get())) != 0) {
+        current_ggpo_multiplayer->print_out_GGPO_error(result, "ggpo_advance_frame");
+    }
+
+    if(flags != 0xdeadbeef) {
+        UtilityFunctions::print("advanced ggpo frame");
+    }
+
     return true;
 }
 
 bool GGPOMultiplayer::on_event(GGPOEvent *info) {
-    // TODO(Bobby): impl this!
+    switch (info->code) {
+        case GGPO_EVENTCODE_CONNECTED_TO_PEER:
+            //ngs.SetConnectState(info->u.connected.player, Synchronizing);
+            UtilityFunctions::print("connected to peer");
+            break;
+        case GGPO_EVENTCODE_SYNCHRONIZING_WITH_PEER:
+            /*progress = 100 * info->u.synchronizing.count / info->u.synchronizing.total;
+            ngs.UpdateConnectProgress(info->u.synchronizing.player, progress);*/
+            UtilityFunctions::print("syncing with peer");
+            break;
+        case GGPO_EVENTCODE_SYNCHRONIZED_WITH_PEER:
+            //ngs.UpdateConnectProgress(info->u.synchronized.player, 100);
+            UtilityFunctions::print("synced with peer");
+            break;
+        case GGPO_EVENTCODE_RUNNING:
+            //ngs.SetConnectState(Running);
+            //renderer->SetStatusText("");
+            UtilityFunctions::print("running with peer");
+            break;
+        case GGPO_EVENTCODE_CONNECTION_INTERRUPTED:
+            /*ngs.SetDisconnectTimeout(info->u.connection_interrupted.player,
+                                     GetCurrentTimeMS(),
+                                     info->u.connection_interrupted.disconnect_timeout);*/
+            UtilityFunctions::print("connection interrupted");
+            break;
+        case GGPO_EVENTCODE_CONNECTION_RESUMED:
+            //ngs.SetConnectState(info->u.connection_resumed.player, Running);
+            UtilityFunctions::print("connection resumed");
+            break;
+        case GGPO_EVENTCODE_DISCONNECTED_FROM_PEER:
+            //ngs.SetConnectState(info->u.disconnected.player, Disconnected);
+            UtilityFunctions::print("disconnected from peer");
+            break;
+        case GGPO_EVENTCODE_TIMESYNC:
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000 * info->u.timesync.frames_ahead / 60));
+            break;
+    }
     return true;
 }
 
