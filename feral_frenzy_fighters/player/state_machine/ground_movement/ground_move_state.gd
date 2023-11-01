@@ -4,7 +4,7 @@ extends State
 var particle_timer = 0
 
 func update(delta):
-	play_audio()	
+	play_audio()
 	
 	if particle_timer <= 0:
 		character.play_particles(

@@ -43,35 +43,31 @@ func _ready():
 			level = load("res://levels/cat_tree/cat_tree_level.tscn").instantiate()
 			$AudioStreamPlayer.stream = preload("res://levels/cat_tree/music/catfight.wav")
 			add_child(level)
+			camera.event_spawner = level.get_node("DynamicObjects/MultiplayerSpawner/Events/EventSpawner")
 		1:
 			level = load("res://levels/fish_tank/fish_tank_level.tscn").instantiate()
 			$AudioStreamPlayer.stream = preload("res://levels/fish_tank/sfx/fishfight.wav")
 			add_child(level)
+			camera.event_spawner = level.get_node("Events/EventSpawner")
 			
 	$AudioStreamPlayer.play()
 	
 	move_child(level, 0)
-	camera.event_spawner = level.get_node("Events/EventSpawner")
 	NetworkManager.recieved_player_data.connect(_game_information)
 	NetworkManager.death_acked.connect(_ack_death)
 	NetworkManager.hit_acked.connect(_ack_hit)
-	NetworkManager.damage_label = $Camera2D/CanvasLayer/DamageUI
 	
-	if NetworkManager.is_host:
-		call_deferred("remove_child", $Player)
-		call_deferred("remove_child", $Player2)
+	# TODO(Bobby): impl this but for networking
+	var prefix_path: String = "res://gui/menus/cutscenes/"
+	var suffix_path: String = "%sp1_%sp2.ogv" % [Globals.player_sprites[0], Globals.player_sprites[1]]
+	
+	if Globals.stage == 0:
+		prefix_path += "cat_arena_outcomes/"
 	else:
-		# TODO(Bobby): impl this but for networking
-		var prefix_path: String = "res://gui/menus/cutscenes/"
-		var suffix_path: String = "%sp1_%sp2.ogv" % [Globals.player_sprites[0], Globals.player_sprites[1]]
-		
-		if Globals.stage == 0:
-			prefix_path += "cat_arena_outcomes/"
-		else:
-			prefix_path += "fish_arena_outcomes/"
-		
-		$Player.ending_video = "%sp2_win/%s" % [prefix_path, suffix_path]
-		$Player2.ending_video = "%sp1_win/%s" % [prefix_path, suffix_path]
+		prefix_path += "fish_arena_outcomes/"
+	
+	$Player.ending_video = "%sp2_win/%s" % [prefix_path, suffix_path]
+	$Player2.ending_video = "%sp1_win/%s" % [prefix_path, suffix_path]
 	
 	Globals.setup_controls()
 

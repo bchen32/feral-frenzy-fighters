@@ -37,7 +37,7 @@ func _ready():
 	$Background/Player2Text/P2Ready.hide()
 	
 	show()
-	ui = Globals.menu.new($Background)
+	ui = Menu.new($Background)
 	var tween := create_tween()
 	tween.tween_property($Background, "global_position", Vector2(0,0), .5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	set_process(true)   

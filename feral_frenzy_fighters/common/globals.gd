@@ -5,7 +5,7 @@ enum States { AIR, AIR_ATTACK, AIR_JUMP, DASH, DASH_ATTACK, DASH_JUMP, GROUND_AT
 var cutscene_player_video_path: String = "res://gui/menus/cutscenes/intro_cutscene.ogv"
 var cutscene_player_end_game: bool = false
 var player1_won: bool = false
-var player_sprites: Array[String] = []
+var player_sprites: Array[String] = ["cat", "cat"]
 var stage: int
 
 var audio_stream_to_play_during_cutscene: AudioStream
@@ -26,34 +26,6 @@ var player_gamepad = {
 signal shake_completed
 var passwords = {}
 
-class menu:
-	var _queue = []
-	
-	func _init(item):
-		_queue.append(item)
-		self._queue = _queue
-		#print("starting with", item)
-	
-	func next(item):
-		_queue.back().hide()
-		_queue.append(item)
-		item.show()
-		if item != null:
-			focus_button(item)
-		#print("appending", item)
-	
-	func back():
-		#print("popping", _queue.back())
-		if len(_queue) > 1:
-			_queue.pop_back().hide()
-			_queue.back().show()
-			focus_button(_queue.back())
-		
-	func focus_button(item):
-		for node in item.get_tree().get_nodes_in_group("TitleButtons"):
-			if node.is_visible_in_tree():
-				node.grab_focus()
-				return 
 
 func _ready():
 	
@@ -114,7 +86,7 @@ func shake(node, amount: float = 5, duration: float = .01, count: int = 10, pass
 		for i in count:
 				randomize()
 				var tween := create_tween()
-				tween.tween_promperty(
+				tween.tween_property(
 				node, 
 				"global_position", 
 				Vector2(randf_range(node.global_position.x + -amount,node.global_position.x + amount), randf_range(node.global_position.y + -amount, node.global_position.y + amount)), 
@@ -129,8 +101,3 @@ func shake(node, amount: float = 5, duration: float = .01, count: int = 10, pass
 				emit_signal("shake_completed", passwords[node])
 		else:
 			node.global_position = og_pos
-
-
-
-
-
