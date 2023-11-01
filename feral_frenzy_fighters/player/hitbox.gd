@@ -37,7 +37,6 @@ func _on_body_entered(body: Node2D):
 			
 			NetworkManager.report_hit.rpc(body.player_num, hit_info)
 		else:
-			body.state_machine.transition(Globals.States.HIT)
 			body.percentage += dmg
 			body.play_audio(PlayerCharacter.AudioType.HIT)
 			var kb = get_kb(body)

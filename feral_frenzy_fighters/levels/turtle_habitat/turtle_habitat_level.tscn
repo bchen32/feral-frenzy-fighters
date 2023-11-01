@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cfxku88qcj8p2" path="res://levels/turtle_habitat/sprites/decor/waterfall_rock_layer_back.png" id="4_omuv5"]
 [ext_resource type="Texture2D" uid="uid://edfniw8o3ipr" path="res://levels/turtle_habitat/sprites/decor/foliage_canopy.png" id="5_2xp1f"]
 [ext_resource type="Texture2D" uid="uid://c2satq1qdegeu" path="res://levels/turtle_habitat/sprites/decor/waterfall_particle.png" id="5_37fri"]
-[ext_resource type="Script" path="res://levels/turtle_habitat/WallPlantSprouter.gd" id="5_dx1l8"]
+[ext_resource type="Script" path="res://levels/turtle_habitat/wall_plant_sprouter.gd" id="5_dx1l8"]
 [ext_resource type="Texture2D" uid="uid://cakhnta1ihv5m" path="res://levels/turtle_habitat/sprites/decor/waterfall_water_layer.png" id="5_ycp50"]
 [ext_resource type="Texture2D" uid="uid://cfshk8rml88ii" path="res://levels/turtle_habitat/sprites/decor/log.png" id="6_fa50m"]
 [ext_resource type="PackedScene" uid="uid://crsxtmluv764j" path="res://levels/turtle_habitat/wall_plant.tscn" id="6_rs3yi"]
