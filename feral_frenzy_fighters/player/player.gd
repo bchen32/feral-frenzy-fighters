@@ -161,9 +161,16 @@ func _ready():
 		_damage_label.set_player_death_count(player_num, stocks)
 	
 	if character_type != "beanbag":
-		color = "blue" if player_num else "purple"
-		p1_icon = _sprites_scene_instance.get_node("Player1Icon")
-		p2_icon = _sprites_scene_instance.get_node("Player2Icon")
+		if player_num:
+			if character_type == Globals.player_sprites[0]:
+				color = "alternate"
+			else:
+				color = "blue"
+		else:
+			color = "purple"
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
+		p1_icon = sprites.get_node("Player1Icon")
+		p2_icon = sprites.get_node("Player2Icon")
 		var states = {
 			Globals.States.AIR: AirState.new(),
 			Globals.States.AIR_ATTACK: AirAttackState.new(),
