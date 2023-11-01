@@ -5,7 +5,7 @@ enum States { AIR, AIR_ATTACK, AIR_JUMP, DASH, DASH_ATTACK, DASH_JUMP, GROUND_AT
 var cutscene_player_video_path: String = "res://gui/menus/cutscenes/intro_cutscene.ogv"
 var cutscene_player_end_game: bool = false
 var player1_won: bool = false
-var player_sprites: Array[String] = []
+var player_sprites: Array[String] = ["cat", "cat"]
 var stage: int
 
 var audio_stream_to_play_during_cutscene: AudioStream
@@ -114,7 +114,7 @@ func shake(node, amount: float = 5, duration: float = .01, count: int = 10, pass
 		for i in count:
 				randomize()
 				var tween := create_tween()
-				tween.tween_promperty(
+				tween.tween_property(
 				node, 
 				"global_position", 
 				Vector2(randf_range(node.global_position.x + -amount,node.global_position.x + amount), randf_range(node.global_position.y + -amount, node.global_position.y + amount)), 

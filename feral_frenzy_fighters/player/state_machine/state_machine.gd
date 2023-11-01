@@ -25,21 +25,10 @@ func update(delta):
 	# note: this implies that if a state is going to transition
 	# it should return before it performs any updates
 	# so that only one state is actually run per frame
-	# State transitions in online games are handled by 
-	# the server and are reflected in curr_state != past_state.
-	# State transitions locally are otherwise handled via the 
-	# next_state system.
 	
-	if NetworkManager.is_connected:
-		if past_state != curr_state:
-			transition(curr_state)
-			past_state = curr_state
-		else:
-			states[curr_state].update(delta)
-	else:
-		while next_state != curr_state:
-			transition(next_state)
-			next_state = states[curr_state].update(delta)
+	while next_state != curr_state:
+		transition(next_state)
+		next_state = states[curr_state].update(delta)
 
 
 func transition(next_state: Globals.States):
