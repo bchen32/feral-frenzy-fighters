@@ -1,5 +1,5 @@
 {
-	"water_scale": 1.4,
+	"water_scale": 1.0,
 	"walk_accel": 6000,
 	"dash_accel": 9000,
 	"tilt_attack_accel": 1200,
@@ -81,13 +81,25 @@
 			"x": 0,
 			"y": 0
 		},
-		"dash_attack": {
-			"x": 0,
+		"fall": {
+			"x": -1,
+			"y": 9
+		},
+		"hit": {
+			"x": -1,
 			"y": 6
 		},
-		"air_attack_neutral": {
-			"x": 10,
-			"y": 0
+		"idle": {
+			"x": -1,
+			"y": -3
+		},
+		"jump": {
+			"x": -2,
+			"y": 11
+		},
+		"walk": {
+			"x": -1,
+			"y": -3
 		}
 	}
 }

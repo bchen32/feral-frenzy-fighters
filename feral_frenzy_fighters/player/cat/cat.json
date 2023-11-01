@@ -20,7 +20,7 @@
 	"kb_decay": 2000,
 	"inverse_weight": 10,
 	"spike_mult": 0.5,
-	"hit_grav": 1500,
+	"hit_grav": 3000,
 	"bounce_thresh": 100,
 	"bounce_decay": 0.6,
 	"attacks": {

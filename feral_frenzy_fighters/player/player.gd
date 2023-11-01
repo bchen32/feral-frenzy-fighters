@@ -44,6 +44,11 @@ var bloodied = false
 		"sprite_scene": "res://player/fish/fish.tscn",
 		"stats": "res://player/fish/fish.json"
 	},
+	"turtle":
+	{
+		"sprite_scene": "res://player/turtle/turtle.tscn",
+		"stats": "res://player/turtle/turtle.json"
+	},
 	"beanbag":
 	{
 		"sprite_scene": "res://player/beanbag/beanbag.tscn",
@@ -151,11 +156,6 @@ func _ready():
 	var p2_icon
 
 	var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
-	if character_type != "beanbag":
-		color = "blue" if player_num else "purple"
-		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
-	else:
-		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
 	
 	_damage_label.set_player_death_count(player_num, stocks)
 	
@@ -259,7 +259,13 @@ func play_anim(animation_name: String):
 			if _damage_label:
 				var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
 				if character_type != "beanbag":
-					color = "blue" if player_num else "purple"
+					if player_num:
+						if character_type == Globals.player_sprites[0]:
+							color = "alternate"
+						else:
+							color = "blue"
+					else:
+						color = "purple"
 					player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_injured_icon_" + color + ".png")
 	else:
 		anim_player.play("_".join([color, animation_name]))
@@ -451,10 +457,14 @@ func acknowledge_death():
 	if _damage_label:
 		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
 		if character_type != "beanbag":
-			color = "blue" if player_num else "purple"
-			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
-		else:
-			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
+			if player_num:
+				if character_type == Globals.player_sprites[0]:
+					color = "alternate"
+				else:
+					color = "blue"
+			else:
+				color = "purple"
+			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_injured_icon_" + color + ".png")
 	
 	if not NetworkManager.is_connected and not _is_lobby:
 		stocks -= 1
