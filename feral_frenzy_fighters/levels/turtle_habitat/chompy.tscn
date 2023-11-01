@@ -1,9 +1,49 @@
-[gd_scene load_steps=10 format=3 uid="uid://boomivtr7a6as"]
+[gd_scene load_steps=11 format=3 uid="uid://boomivtr7a6as"]
 
 [ext_resource type="Script" path="res://levels/turtle_habitat/chompy.gd" id="1_c2xwd"]
 [ext_resource type="Texture2D" uid="uid://hu8p0pet8hai" path="res://levels/turtle_habitat/sprites/events/carnivorous_plant_open.png" id="1_ol1lv"]
 [ext_resource type="Texture2D" uid="uid://bkrprt8wqljfa" path="res://levels/turtle_habitat/sprites/events/carnivorous_plant_tongue.png" id="2_hvca2"]
 [ext_resource type="Texture2D" uid="uid://5rxikndssedh" path="res://levels/turtle_habitat/sprites/events/carnivorous_plant_closed.png" id="4_ohdk5"]
+[ext_resource type="AudioStream" uid="uid://dysay3k3h2emo" path="res://levels/turtle_habitat/sfx/Chomp.mp3" id="5_vkkn7"]
+
+[sub_resource type="Animation" id="Animation_41i1m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_hvca2")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 420)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-150, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_g4val"]
 resource_name = "Seeking"
@@ -45,8 +85,9 @@ tracks/2/keys = {
 "values": [Vector2(-150, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_41i1m"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_672vb"]
+resource_name = "Snap"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -57,31 +98,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_hvca2")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 420)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-150, 0)]
+"values": [ExtResource("4_ohdk5")]
 }
 
 [sub_resource type="Animation" id="Animation_f7i54"]
@@ -112,22 +129,6 @@ tracks/1/keys = {
 "values": [Vector2(0, 420), Vector2(0, 290), Vector2(0, -420), Vector2(0, -350)]
 }
 
-[sub_resource type="Animation" id="Animation_672vb"]
-resource_name = "Snap"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_ohdk5")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ibe3f"]
 _data = {
 "RESET": SubResource("Animation_41i1m"),
@@ -153,3 +154,7 @@ speed_scale = 2.0
 libraries = {
 "": SubResource("AnimationLibrary_ibe3f")
 }
+
+[node name="ChompySFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_vkkn7")
+volume_db = 5.0
