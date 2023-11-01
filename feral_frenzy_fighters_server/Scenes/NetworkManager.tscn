@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtcknoteo1x0q"]
+
+[ext_resource type="Script" path="res://Scripts/NetworkManager.gd" id="1_5sjl4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nf0vu"]
+font_size = 25
+
+[node name="NetworkManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5sjl4")
+
+[node name="ServerLogBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.5
+offset_top = -217.0
+offset_right = 183.5
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.482353, 0.482353, 0.482353, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ServerLogBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LobbiesBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 247.0
+offset_top = -174.0
+offset_right = 492.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.482353, 0.482353, 0.482353, 1)
+metadata/_edit_group_ = true
+
+[node name="TitleLabel" type="Label" parent="LobbiesBackground"]
+layout_mode = 0
+offset_right = 245.0
+offset_bottom = 60.0
+text = "Lobbies"
+label_settings = SubResource("LabelSettings_nf0vu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContentLabel" type="Label" parent="LobbiesBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 63.0
+grow_horizontal = 2
+grow_vertical = 2
