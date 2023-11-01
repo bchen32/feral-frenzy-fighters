@@ -2,7 +2,7 @@ extends Control
 
 class_name NetworkManager
 
-const NETWORK_PORT = 8080
+const NETWORK_PORT = 11111
 
 var _web_socket_peer: WebSocketMultiplayerPeer = WebSocketMultiplayerPeer.new()
 
@@ -134,6 +134,14 @@ func report_hit(player_num: int, hit_data: Dictionary):
 	for player_key in lobby._players:
 		ack_hit.rpc_id(player_key, player_num, hit_data)
 
+#@rpc("any_peer", "reliable", "call_remote")
+#func report_env_hit(env_part: String, health_change: float):
+#	var sender_id = multiplayer.get_remote_sender_id()
+#	var lobby = _players_in_which_lobbies[sender_id]
+#	
+#	for player_key in lobby._players:
+#		ack_env_hit.rpc_id(player_key, env_part, health_change)
+
 # rpcs called on the client
 @rpc("authority", "reliable", "call_remote")
 func initial_game_information(player_num: int, display_names: Array, 
@@ -159,3 +167,7 @@ func ack_hit(player_num: int):
 @rpc("authority", "reliable", "call_remote")
 func ack_chat(player_num: int, emoji: Lobby.ChatEmoji):
 	pass
+
+#@rpc("authority", "reliable", "call_remote")
+#func ack_env_hit(env_part: String, health_change: float):
+#	pass

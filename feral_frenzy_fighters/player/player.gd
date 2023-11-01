@@ -149,16 +149,15 @@ func _ready():
 	
 	var p1_icon
 	var p2_icon
+
+	var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
+	if character_type != "beanbag":
+		color = "blue" if player_num else "purple"
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
+	else:
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
 	
-	if _damage_label:
-		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
-		if character_type != "beanbag":
-			color = "blue" if player_num else "purple"
-			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
-		else:
-			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
-		
-		_damage_label.set_player_death_count(player_num, stocks)
+	_damage_label.set_player_death_count(player_num, stocks)
 	
 	if character_type != "beanbag":
 		if player_num:
@@ -169,8 +168,8 @@ func _ready():
 		else:
 			color = "purple"
 		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
-		p1_icon = sprites.get_node("Player1Icon")
-		p2_icon = sprites.get_node("Player2Icon")
+		p1_icon = _sprites_scene_instance.get_node("Player1Icon")
+		p2_icon = _sprites_scene_instance.get_node("Player2Icon")
 		var states = {
 			Globals.States.AIR: AirState.new(),
 			Globals.States.AIR_ATTACK: AirAttackState.new(),

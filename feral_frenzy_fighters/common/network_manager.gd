@@ -10,6 +10,7 @@ signal recieved_player_data
 signal death_acked
 signal hit_acked
 signal chat_acked
+signal env_hit_acked
 
 enum NetworkGameState {
 	NOT_CONNECTED,
@@ -125,6 +126,10 @@ func ack_hit(player_num: int, hit_data: Dictionary):
 @rpc("authority", "reliable", "call_remote")
 func ack_chat(player_num: int, chat_emoji: ChatEmoji):
 	chat_acked.emit(player_num, chat_emoji)
+
+#@rpc("authority", "reliable", "call_remote")
+#func ack_env_hit(env_part: String, health_change: float):
+#	env_hit_acked.emit(env_part, health_change)
 
 # Code execed on server
 @rpc("any_peer", "unreliable", "call_remote")
