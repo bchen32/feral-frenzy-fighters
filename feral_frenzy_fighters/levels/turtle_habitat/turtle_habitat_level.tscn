@@ -1,59 +1,317 @@
-[gd_scene load_steps=4 format=3 uid="uid://bitla0de7vemu"]
+[gd_scene load_steps=26 format=3 uid="uid://bitla0de7vemu"]
 
-[ext_resource type="Texture2D" uid="uid://d2cl4nbvj4fyq" path="res://levels/whitebox_tileset.png" id="1_4e4q7"]
+[ext_resource type="Texture2D" uid="uid://dyt3gihhkorrt" path="res://levels/turtle_habitat/sprites/decor/earth_rocks_withmoss_background.png" id="1_n0v6x"]
+[ext_resource type="Texture2D" uid="uid://bycbiy1n7o04n" path="res://levels/turtle_habitat/tilesets/60x60_tileset_turtle.png" id="2_g3g5f"]
+[ext_resource type="Texture2D" uid="uid://bi6viu8wg8gds" path="res://levels/turtle_habitat/sprites/decor/dirt_slope.png" id="3_jk1r7"]
+[ext_resource type="Texture2D" uid="uid://cfxku88qcj8p2" path="res://levels/turtle_habitat/sprites/decor/waterfall_rock_layer_back.png" id="4_omuv5"]
+[ext_resource type="Texture2D" uid="uid://edfniw8o3ipr" path="res://levels/turtle_habitat/sprites/decor/foliage_canopy.png" id="5_2xp1f"]
+[ext_resource type="Texture2D" uid="uid://c2satq1qdegeu" path="res://levels/turtle_habitat/sprites/decor/waterfall_particle.png" id="5_37fri"]
+[ext_resource type="Script" path="res://levels/turtle_habitat/WallPlantSprouter.gd" id="5_dx1l8"]
+[ext_resource type="Texture2D" uid="uid://cakhnta1ihv5m" path="res://levels/turtle_habitat/sprites/decor/waterfall_water_layer.png" id="5_ycp50"]
+[ext_resource type="Texture2D" uid="uid://cfshk8rml88ii" path="res://levels/turtle_habitat/sprites/decor/log.png" id="6_fa50m"]
+[ext_resource type="PackedScene" uid="uid://crsxtmluv764j" path="res://levels/turtle_habitat/wall_plant.tscn" id="6_rs3yi"]
+[ext_resource type="Texture2D" uid="uid://c525iffqji6pj" path="res://levels/turtle_habitat/sprites/decor/waterfall_rock_layer_front.png" id="7_4b447"]
+[ext_resource type="Texture2D" uid="uid://dea63xhfm8ju" path="res://levels/turtle_habitat/sprites/decor/wooden_stick.png" id="8_80rgf"]
+[ext_resource type="Texture2D" uid="uid://b65mqoc650282" path="res://levels/turtle_habitat/sprites/decor/moss_boulder_1.png" id="11_0r1mv"]
+[ext_resource type="Texture2D" uid="uid://cqerplcng8ur3" path="res://levels/turtle_habitat/sprites/decor/moss_boulder_2.png" id="12_x0gvh"]
+[ext_resource type="Texture2D" uid="uid://1rejncqm42bg" path="res://levels/turtle_habitat/sprites/interactables/lamp_on.png" id="13_0kokt"]
+[ext_resource type="Script" path="res://levels/event_spawner.gd" id="14_smr1g"]
+[ext_resource type="PackedScene" uid="uid://cx0alms8abhh1" path="res://levels/turtle_habitat/water_level.tscn" id="14_xquta"]
+[ext_resource type="PackedScene" uid="uid://boomivtr7a6as" path="res://levels/turtle_habitat/chompy.tscn" id="15_cm0jy"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_og865"]
-texture = ExtResource("1_4e4q7")
-separation = Vector2i(15, 0)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s83h5"]
+texture = ExtResource("2_g3g5f")
 texture_region_size = Vector2i(60, 60)
 0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+0:0/0/physics_layer_0/polygon_0/one_way = true
 1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+1:0/0/physics_layer_0/polygon_0/one_way = true
 2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+2:0/0/physics_layer_0/polygon_0/one_way = true
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+0:3/0 = 0
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
+1:3/0 = 0
+1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_0/angular_velocity = 0.0
+2:3/0 = 0
+2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_0/angular_velocity = 0.0
 
-[sub_resource type="TileSet" id="TileSet_fic2y"]
+[sub_resource type="TileSet" id="TileSet_lp307"]
 tile_size = Vector2i(60, 60)
-sources/0 = SubResource("TileSetAtlasSource_og865")
+physics_layer_0/collision_layer = 8
+sources/0 = SubResource("TileSetAtlasSource_s83h5")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tsyac"]
+size = Vector2(840, 359)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05od8"]
+size = Vector2(1924, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gevwi"]
+size = Vector2(582.965, 32.724)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_myp5w"]
+size = Vector2(518.445, 26.5166)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a84rd"]
+size = Vector2(330, 149)
 
 [node name="TurtleHabitatLevel" type="Node2D"]
 
 [node name="Environment" type="Node2D" parent="."]
 
-[node name="Whitebox" type="TileMap" parent="Environment"]
-tile_set = SubResource("TileSet_fic2y")
+[node name="EarthRocksWithmossBackground" type="Sprite2D" parent="Environment"]
+z_index = -5
+position = Vector2(960, 540)
+texture = ExtResource("1_n0v6x")
+metadata/_edit_lock_ = true
+
+[node name="TileMap" type="TileMap" parent="Environment"]
+tile_set = SubResource("TileSet_lp307")
 cell_quadrant_size = 60
 format = 2
-layer_0/name = "Background"
-layer_0/modulate = Color(0.72549, 0.72549, 0.72549, 1)
-layer_0/tile_data = PackedInt32Array(0, 196608, 0, 65536, 196608, 0, 131072, 196608, 0, 65537, 196608, 0, 1, 196608, 0, 2, 196608, 0, 65538, 196608, 0, 3, 196608, 0, 4, 196608, 0, 5, 196608, 0, 6, 196608, 0, 65539, 196608, 0, 65540, 196608, 0, 131073, 196608, 0, 196608, 196608, 0, 31, 196608, 0, 65567, 196608, 0, 131103, 196608, 0, 65566, 196608, 0, 30, 196608, 0, 29, 196608, 0, 28, 196608, 0, 27, 196608, 0, 65565, 196608, 0, 26, 196608, 0, 25, 196608, 0, 24, 196608, 0, 23, 196608, 0, 22, 196608, 0, 21, 196608, 0, 20, 196608, 0, 19, 196608, 0, 18, 196608, 0, 17, 196608, 0, 16, 196608, 0, 15, 196608, 0, 14, 196608, 0, 13, 196608, 0, 12, 196608, 0, 11, 196608, 0, 10, 196608, 0, 9, 196608, 0, 8, 196608, 0, 7, 196608, 0, 196623, 196608, 0, 196624, 196608, 0, 196625, 196608, 0, 262158, 196608, 0, 262159, 196608, 0, 262160, 196608, 0, 262161, 196608, 0, 262162, 196608, 0, 786445, 196608, 0, 786446, 196608, 0, 720910, 196608, 0, 720909, 196608, 0, 655373, 196608, 0, 655374, 196608, 0, 589838, 196608, 0, 524302, 196608, 0, 458766, 196608, 0, 458765, 196608, 0, 524301, 196608, 0, 589837, 196608, 0, 393229, 196608, 0, 393230, 196608, 0, 327694, 196608, 0, 327693, 196608, 0, 327695, 196608, 0, 327696, 196608, 0, 327697, 196608, 0, 327698, 196608, 0, 327699, 196608, 0, 393235, 196608, 0, 393234, 196608, 0, 458770, 196608, 0, 524306, 196608, 0, 589842, 196608, 0, 655378, 196608, 0, 720914, 196608, 0, 524307, 196608, 0, 458771, 196608, 0)
-layer_1/name = "Foreground"
+layer_0/name = "Decor Background"
+layer_0/modulate = Color(0.431373, 0.45098, 0.333333, 1)
+layer_0/z_index = -4
+layer_0/tile_data = PackedInt32Array(262156, 0, 1, 327692, 0, 1, 393228, 0, 1, 458764, 0, 1, 524300, 0, 1, 589836, 0, 1, 655372, 0, 1, 720908, 0, 1, 786444, 0, 1, 851980, 0, 1, 917516, 0, 1, 983052, 0, 1, 1048588, 0, 1, 1048596, 131072, 1, 983060, 131072, 1, 917524, 131072, 1, 851988, 131072, 1, 786452, 131072, 1, 720916, 131072, 1, 655380, 131072, 1, 589844, 131072, 1, 524308, 131072, 1, 458772, 131072, 1, 393236, 131072, 1, 327700, 131072, 1, 262164, 131072, 1, 327693, 65536, 1, 393229, 65536, 1, 262157, 65536, 1, 458765, 65536, 1, 524301, 65536, 1, 589837, 65536, 1, 655373, 65536, 1, 720909, 65536, 1, 786445, 65536, 1, 851981, 65536, 1, 917517, 65536, 1, 983053, 65536, 1, 262158, 65536, 1, 327694, 65536, 1, 393230, 65536, 1, 458766, 65536, 1, 524302, 65536, 1, 589838, 65536, 1, 655374, 65536, 1, 720910, 65536, 1, 786446, 65536, 1, 851982, 65536, 1, 917518, 65536, 1, 983054, 65536, 1, 262159, 65536, 1, 327695, 65536, 1, 393231, 65536, 1, 458767, 65536, 1, 524303, 65536, 1, 589839, 65536, 1, 655375, 65536, 1, 720911, 65536, 1, 786447, 65536, 1, 851983, 65536, 1, 917519, 65536, 1, 983055, 65536, 1, 262160, 65536, 1, 327696, 65536, 1, 393232, 65536, 1, 458768, 65536, 1, 524304, 65536, 1, 589840, 65536, 1, 655376, 65536, 1, 720912, 65536, 1, 786448, 65536, 1, 851984, 65536, 1, 917520, 65536, 1, 983056, 65536, 1, 262161, 65536, 1, 327697, 65536, 1, 393233, 65536, 1, 458769, 65536, 1, 524305, 65536, 1, 589841, 65536, 1, 655377, 65536, 1, 720913, 65536, 1, 786449, 65536, 1, 851985, 65536, 1, 917521, 65536, 1, 983057, 65536, 1, 262162, 65536, 1, 327698, 65536, 1, 393234, 65536, 1, 458770, 65536, 1, 524306, 65536, 1, 589842, 65536, 1, 655378, 65536, 1, 720914, 65536, 1, 786450, 65536, 1, 851986, 65536, 1, 917522, 65536, 1, 983058, 65536, 1, 262163, 65536, 1, 327699, 65536, 1, 393235, 65536, 1, 458771, 65536, 1, 524307, 65536, 1, 589843, 65536, 1, 655379, 65536, 1, 720915, 65536, 1, 786451, 65536, 1, 851987, 65536, 1, 917523, 65536, 1, 983059, 65536, 1, 1048589, 65536, 1, 1048590, 65536, 1, 1048591, 65536, 1, 1048592, 65536, 1, 1048593, 65536, 1, 1048594, 65536, 1, 1048595, 65536, 1, 1114124, 0, 1, 1114132, 131072, 1, 1114131, 65536, 1, 1114130, 65536, 1, 1114129, 65536, 1, 1114128, 65536, 1, 1114127, 65536, 1, 1114126, 65536, 1, 1114125, 65536, 1, 196621, 65536, 1, 196622, 65536, 1, 196623, 65536, 1, 196624, 65536, 1, 196625, 65536, 1, 196626, 65536, 1, 196627, 65536, 1)
+layer_1/name = "Decor Mid"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(1245183, 65536, 0, 1179680, 65536, 0, -65504, 65536, 0, -1, 65536, 0, 1114112, 327680, 0, 1114113, 327680, 0, 1114114, 327680, 0, 1114115, 327680, 0, 1114116, 327680, 0, 1114117, 327680, 0, 1114118, 327680, 0, 1114119, 327680, 0, 1114120, 327680, 0, 1114121, 327680, 0, 1114122, 327680, 0, 1114123, 327680, 0, 1114124, 327680, 0, 1114125, 327680, 0, 1114126, 327680, 0, 1114127, 327680, 0, 1114128, 327680, 0, 1114129, 327680, 0, 1114130, 327680, 0, 1114131, 327680, 0, 1114132, 327680, 0, 1114133, 327680, 0, 1114134, 327680, 0, 1114135, 327680, 0, 1114136, 327680, 0, 1114137, 327680, 0, 1114138, 327680, 0, 1114139, 327680, 0, 1114140, 327680, 0, 1114141, 327680, 0, 1114142, 327680, 0, 1114143, 327680, 0, 720916, 327680, 0, 786451, 327680, 0, 786450, 327680, 0, 786449, 327680, 0, 851985, 327680, 0, 851984, 327680, 0, 917519, 327680, 0, 983054, 327680, 0, 983053, 327680, 0, 1048588, 327680, 0, 1048589, 327680, 0, 1048590, 327680, 0, 1048591, 327680, 0, 1048592, 327680, 0, 983056, 327680, 0, 983057, 327680, 0, 983058, 327680, 0, 983059, 131072, 0, 983060, 131072, 0, 983061, 131072, 0, 983062, 131072, 0, 983063, 131072, 0, 1048599, 131072, 0, 1048600, 131072, 0, 1048601, 131072, 0, 1048602, 131072, 0, 1048598, 131072, 0, 1048597, 327680, 0, 1048596, 327680, 0, 1048595, 131072, 0, 1048594, 131072, 0, 1048593, 131072, 0, 1048603, 131072, 0, 1048604, 131072, 0, 1048605, 327680, 0, 1048606, 327680, 0, 1048607, 327680, 0, 983071, 327680, 0, 917535, 327680, 0, 851999, 327680, 0, 786463, 327680, 0, 720927, 327680, 0, 720926, 327680, 0, 720925, 327680, 0, 720924, 327680, 0, 720923, 327680, 0, 720922, 327680, 0, 720921, 327680, 0, 720920, 327680, 0, 720919, 327680, 0, 786455, 327680, 0, 786454, 327680, 0, 786453, 327680, 0, 786452, 327680, 0, 851987, 327680, 0, 851986, 327680, 0, 917521, 327680, 0, 917520, 327680, 0, 983055, 327680, 0, 720917, 327680, 0, 720918, 327680, 0, 851990, 327680, 0, 851989, 327680, 0, 917524, 327680, 0, 917523, 327680, 0, 917522, 327680, 0, 851988, 327680, 0, 983064, 131072, 0, 983065, 131072, 0, 983068, 131072, 0, 983069, 131072, 0, 983070, 327680, 0, 917534, 327680, 0, 851998, 327680, 0, 786462, 327680, 0, 786461, 327680, 0, 786460, 327680, 0, 786459, 327680, 0, 786458, 327680, 0, 786457, 327680, 0, 786456, 327680, 0, 851991, 327680, 0, 983066, 131072, 0, 983067, 131072, 0, 917533, 327680, 0, 851997, 327680, 0, 851996, 327680, 0, 851995, 327680, 0, 851994, 327680, 0, 851993, 262144, 0, 851992, 327680, 0, 1048579, 327680, 0, 983043, 327680, 0, 917507, 327680, 0, 851971, 327680, 0, 983044, 327680, 0, 1048580, 327680, 0, 1048581, 327680, 0, 983045, 327680, 0, 917509, 327680, 0, 851973, 327680, 0, 851972, 327680, 0, 917508, 327680, 0, 786437, 327680, 0, 786436, 262144, 0, 786435, 327680, 0, 720899, 327680, 0, 720900, 327680, 0, 720901, 327680, 0, 720915, 327680, 0, 851983, 327680, 0, 917518, 327680, 0, 983052, 327680, 0, 1048587, 327680, 0, 720902, 327680, 0, 786438, 327680, 0, 851974, 327680, 0, 917510, 327680, 0, 983046, 327680, 0, 1048582, 327680, 0, 589830, 131072, 0, 589831, 131072, 0, 655368, 131072, 0, 720905, 131072, 0, 720906, 131072, 0, 917517, 327680, 0, 720907, 131072, 0, 786444, 131072, 0, 851981, 131072, 0, 851982, 131072, 0, 655366, 327680, 0, 655365, 327680, 0, 655364, 327680, 0, 655363, 327680, 0, 524294, 131072, 0, 589845, 131072, 0, 655381, 131072, 0, 655382, 131072, 0, 655380, 131072, 0, 589844, 131072, 0, 589846, 131072, 0, 524311, 262144, 0, 589843, 131072, 0, 655379, 131072, 0, 917525, 327680, 0, 917526, 327680, 0, 917527, 327680, 0, 917528, 327680, 0, 917529, 327680, 0, 917530, 327680, 0, 917531, 327680, 0, 917532, 327680, 0, 524298, 262144, 0, 655376, 262144, 0, 65545, 262144, 0, 65546, 262144, 0, 65547, 262144, 0, 131083, 262144, 0, 131082, 262144, 0, 131081, 262144, 0, 65558, 262144, 0, 131094, 262144, 0, 131095, 262144, 0, 131096, 262144, 0, 65560, 262144, 0, 65559, 262144, 0, 262147, 262144, 0, 262173, 262144, 0)
-layer_2/name = "Foreground 2"
+layer_1/tile_data = PackedInt32Array(917508, 65536, 1, 983044, 65536, 1, 1048580, 65536, 1, 655363, 65536, 1, 720899, 65536, 1, 786435, 65536, 1, 851971, 65536, 1)
+layer_2/name = "Decor Foreground"
 layer_2/enabled = true
-layer_2/modulate = Color(0.784314, 0.784314, 0.784314, 1)
+layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array(1048577, 327680, 0, 983041, 327680, 0, 917505, 327680, 0, 917506, 327680, 0, 917507, 327680, 0, 983043, 327680, 0, 1048579, 327680, 0, 1048578, 327680, 0, 983042, 327680, 0, 917508, 327680, 0, 983044, 327680, 0, 1048580, 327680, 0, 851970, 327680, 0, 786434, 327680, 0, 720898, 327680, 0, 655362, 327680, 0, 589826, 327680, 0, 524290, 327680, 0, 458754, 327680, 0, 393218, 327680, 0, 393220, 327680, 0, 458756, 327680, 0, 524292, 327680, 0, 589828, 327680, 0, 589827, 327680, 0, 524291, 327680, 0, 458755, 327680, 0, 393219, 327680, 0, 458767, 327680, 0, 524303, 327680, 0, 589839, 327680, 0, 655375, 327680, 0, 720911, 327680, 0, 786447, 327680, 0, 720912, 327680, 0, 720913, 327680, 0, 655377, 327680, 0, 589841, 327680, 0, 524305, 327680, 0, 458769, 327680, 0, 393233, 327680, 0, 393232, 327680, 0, 458768, 327680, 0, 524304, 327680, 0, 589840, 327680, 0, 655376, 327680, 0, 655388, 327680, 0, 655389, 327680, 0, 655390, 327680, 0, 589854, 327680, 0, 524318, 327680, 0, 458782, 327680, 0, 393246, 327680, 0, 393244, 327680, 0, 458780, 327680, 0, 524316, 327680, 0, 589852, 327680, 0, 589853, 327680, 0, 524317, 327680, 0, 458781, 327680, 0, 393245, 327680, 0, 393231, 327680, 0, 786448, 327680, 0)
-layer_3/name = "Water"
+layer_2/tile_data = PackedInt32Array(458754, 0, 1, 524290, 0, 1, 589826, 0, 1, 655362, 0, 1, 720898, 0, 1, 786434, 0, 1, 851970, 0, 1, 720899, 0, 1, 786435, 0, 1, 851971, 0, 1, 720900, 65536, 1, 786436, 65536, 1, 851972, 65536, 1, 720901, 65536, 1, 786437, 65536, 1, 851973, 65536, 1, 917509, 65536, 1, 983045, 65536, 1, 1048581, 65536, 1, 1048582, 131072, 1, 983046, 131072, 1, 917510, 131072, 1, 851974, 131072, 1, 786438, 131072, 1, 720902, 131072, 1, 589828, 131072, 1, 524292, 131072, 1, 458756, 131072, 1, 458755, 65536, 1, 524291, 65536, 1, 589827, 65536, 1, 983042, 65536, 1, 983043, 65536, 1, 1048579, 65536, 1, 1048578, 65536, 1, 983041, 0, 1, 1048577, 0, 1, 983044, 131072, 1, 1048580, 131072, 1, 458767, 0, 1, 524303, 0, 1, 589839, 0, 1, 655375, 0, 1, 720911, 0, 1, 786447, 0, 1, 720912, 65536, 1, 786448, 65536, 1, 589840, 65536, 1, 655376, 65536, 1, 524304, 65536, 1, 458768, 65536, 1, 720913, 131072, 1, 655377, 131072, 1, 589841, 131072, 1, 524305, 131072, 1, 458769, 131072, 1, 655388, 0, 1, 589852, 0, 1, 524316, 0, 1, 458780, 0, 1, 655389, 65536, 1, 589853, 65536, 1, 524317, 65536, 1, 458781, 65536, 1, 655390, 131072, 1, 589854, 131072, 1, 524318, 131072, 1, 458782, 131072, 1, 851983, 0, 1, 851984, 65536, 1, 851985, 131072, 1, 786449, 131072, 1)
+layer_3/name = "Fall-Through"
 layer_3/enabled = true
-layer_3/modulate = Color(1, 1, 1, 0.145098)
+layer_3/modulate = Color(1, 1, 1, 1)
 layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = 0
-layer_3/tile_data = PackedInt32Array(917504, 131072, 0, 917505, 131072, 0, 917506, 131072, 0, 917507, 131072, 0, 917508, 131072, 0, 917509, 131072, 0, 917510, 131072, 0, 917511, 131072, 0, 917512, 131072, 0, 917513, 131072, 0, 917514, 131072, 0, 917515, 131072, 0, 917516, 131072, 0, 917517, 131072, 0, 917518, 131072, 0, 917519, 131072, 0, 917520, 131072, 0, 917521, 131072, 0, 917522, 131072, 0, 917523, 131072, 0, 917524, 131072, 0, 917525, 131072, 0, 917526, 131072, 0, 917527, 131072, 0, 917528, 131072, 0, 917529, 131072, 0, 917530, 131072, 0, 917531, 131072, 0, 917532, 131072, 0, 917533, 131072, 0, 917534, 131072, 0, 917535, 131072, 0, 983071, 131072, 0, 1048607, 131072, 0, 1048606, 131072, 0, 983070, 131072, 0, 983069, 131072, 0, 983068, 131072, 0, 983067, 131072, 0, 1048603, 131072, 0, 1048602, 131072, 0, 1048601, 131072, 0, 1048600, 131072, 0, 983064, 131072, 0, 983063, 131072, 0, 983062, 131072, 0, 983061, 131072, 0, 983060, 131072, 0, 983059, 131072, 0, 983058, 131072, 0, 983057, 131072, 0, 983056, 131072, 0, 983055, 131072, 0, 983054, 131072, 0, 983053, 131072, 0, 983052, 131072, 0, 983051, 131072, 0, 983050, 131072, 0, 983049, 131072, 0, 983048, 131072, 0, 983047, 131072, 0, 983046, 131072, 0, 983045, 131072, 0, 983044, 131072, 0, 983043, 131072, 0, 983042, 131072, 0, 983041, 131072, 0, 983040, 131072, 0, 1048576, 131072, 0, 1048577, 131072, 0, 1048578, 131072, 0, 1048579, 131072, 0, 1048580, 131072, 0, 1048581, 131072, 0, 1048582, 131072, 0, 1048583, 131072, 0, 1048584, 131072, 0, 1048585, 131072, 0, 1048586, 131072, 0, 1048587, 131072, 0, 1048588, 131072, 0, 1048589, 131072, 0, 1048590, 131072, 0, 1048591, 131072, 0, 1048592, 131072, 0, 1048593, 131072, 0, 1048594, 131072, 0, 1048595, 131072, 0, 1048596, 131072, 0, 1048597, 131072, 0, 1048598, 131072, 0, 1048599, 131072, 0, 1048604, 131072, 0, 1048605, 131072, 0, 983066, 131072, 0, 983065, 131072, 0)
+layer_3/tile_data = PackedInt32Array(393218, 0, 0, 393231, 0, 0, 655363, 0, 0, 917505, 0, 0, 393244, 0, 0, 655364, 65536, 0, 655365, 65536, 0, 393219, 65536, 0, 917506, 65536, 0, 917507, 65536, 0, 393232, 65536, 0, 393245, 65536, 0, 393220, 131072, 0, 655366, 131072, 0, 917508, 131072, 0, 393233, 131072, 0, 393246, 131072, 0, 720915, 0, 3, 851990, 0, 3, 786457, 0, 3, 851996, 0, 3, 786462, 0, 3, 983071, 0, 3, 983067, 131072, 3, 983065, 0, 3, 1048599, 0, 3, 1048597, 0, 3, 983061, 65536, 3, 983060, 0, 3, 851988, 131072, 3, 720918, 131072, 3, 720924, 131072, 3, 720922, 131072, 3, 983068, 131072, 3, 1048606, 131072, 3, 1048596, 65536, 3, 1048595, 65536, 3, 983059, 65536, 3, 917523, 65536, 3, 851987, 65536, 3, 786451, 65536, 3, 786452, 65536, 3, 720916, 65536, 3, 720917, 65536, 3, 786453, 65536, 3, 851989, 65536, 3, 917525, 65536, 3, 917524, 65536, 3, 917526, 65536, 3, 983062, 65536, 3, 1048598, 65536, 3, 983063, 65536, 3, 917527, 65536, 3, 917528, 65536, 3, 851992, 65536, 3, 851991, 65536, 3, 786454, 65536, 3, 786455, 65536, 3, 786456, 65536, 3, 720920, 65536, 3, 720919, 65536, 3, 720921, 65536, 3, 851993, 65536, 3, 851994, 65536, 3, 917530, 65536, 3, 917529, 65536, 3, 983066, 65536, 3, 1048602, 65536, 3, 1048601, 65536, 3, 1048600, 65536, 3, 983064, 65536, 3, 1048603, 65536, 3, 1048604, 65536, 3, 1048605, 65536, 3, 983069, 65536, 3, 983070, 65536, 3, 1048607, 65536, 3, 917535, 65536, 3, 917534, 65536, 3, 917533, 65536, 3, 917532, 65536, 3, 917531, 65536, 3, 851995, 65536, 3, 786458, 65536, 3, 786459, 65536, 3, 720923, 65536, 3, 786460, 65536, 3, 786461, 65536, 3, 720925, 65536, 3, 851997, 65536, 3, 851998, 65536, 3, 851999, 65536, 3, 786463, 65536, 3, 720927, 65536, 3, 720926, 65536, 3)
+layer_4/name = "Solid"
+layer_4/enabled = true
+layer_4/modulate = Color(0.625597, 0.625597, 0.625597, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = 0
+layer_4/tile_data = PackedInt32Array(1114112, 0, 3, 1114118, 0, 3, 1114119, 0, 3, 1114122, 0, 3, 1114128, 0, 3, 1114133, 0, 3, 1114135, 0, 3, 1114143, 0, 3, 1114141, 0, 3, 1114137, 131072, 3, 1114125, 131072, 3, 1114121, 131072, 3, 1114116, 131072, 3, 1114114, 131072, 3, 1114113, 65536, 3, 1114115, 65536, 3, 1114117, 65536, 3, 1114120, 65536, 3, 1114123, 65536, 3, 1114124, 65536, 3, 1114126, 65536, 3, 1114127, 65536, 3, 1114129, 65536, 3, 1114130, 65536, 3, 1114131, 65536, 3, 1114132, 65536, 3, 1114134, 65536, 3, 1114136, 65536, 3, 1114138, 65536, 3, 1114139, 65536, 3, 1114140, 65536, 3, 1114142, 65536, 3)
 
 [node name="Decorations" type="Node2D" parent="Environment"]
+
+[node name="Waterfall" type="Node2D" parent="Environment/Decorations"]
+modulate = Color(0.811765, 0.811765, 0.811765, 1)
+z_index = -4
+position = Vector2(985, 560)
+
+[node name="BackRocks" type="Sprite2D" parent="Environment/Decorations/Waterfall"]
+texture = ExtResource("4_omuv5")
+
+[node name="Water" type="Sprite2D" parent="Environment/Decorations/Waterfall"]
+texture = ExtResource("5_ycp50")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Environment/Decorations/Waterfall"]
+position = Vector2(0, -275)
+amount = 12
+texture = ExtResource("5_37fri")
+emission_shape = 3
+emission_rect_extents = Vector2(200, 1)
+direction = Vector2(0, 1)
+spread = 0.0
+initial_velocity_min = 125.0
+initial_velocity_max = 125.0
+linear_accel_min = 50.0
+linear_accel_max = 50.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+color = Color(0.941176, 0.941176, 0.941176, 1)
+
+[node name="FrontRocks" type="Sprite2D" parent="Environment/Decorations/Waterfall"]
+texture = ExtResource("7_4b447")
+
+[node name="WoodenStick" type="Sprite2D" parent="Environment/Decorations"]
+position = Vector2(681, 715)
+rotation = -0.134415
+texture = ExtResource("8_80rgf")
+
+[node name="DirtSlope" type="Sprite2D" parent="Environment/Decorations"]
+position = Vector2(900, 840)
+texture = ExtResource("3_jk1r7")
+
+[node name="FoliageCanopy" type="Sprite2D" parent="Environment/Decorations"]
+z_index = 5
+position = Vector2(960, 147)
+texture = ExtResource("5_2xp1f")
+
+[node name="Log" type="Sprite2D" parent="Environment/Decorations"]
+position = Vector2(1381, 618)
+texture = ExtResource("6_fa50m")
+
+[node name="MossBoulder1" type="Sprite2D" parent="Environment/Decorations"]
+position = Vector2(1603, 955)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("11_0r1mv")
+
+[node name="MossBoulder2" type="Sprite2D" parent="Environment/Decorations"]
+position = Vector2(1436, 960)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("12_x0gvh")
+
+[node name="WoodenStick2" type="Sprite2D" parent="Environment/Decorations"]
+position = Vector2(1136, 955)
+rotation = 0.261303
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_80rgf")
+flip_h = true
+
+[node name="LampOn" type="Sprite2D" parent="Environment/Decorations"]
+position = Vector2(569, 180)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("13_0kokt")
+
+[node name="LampOn2" type="Sprite2D" parent="Environment/Decorations"]
+position = Vector2(1384, 180)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("13_0kokt")
+
+[node name="Collisions" type="Node2D" parent="Environment"]
+visible = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Environment/Collisions"]
+position = Vector2(1507, 843)
+collision_layer = 8
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Collisions/StaticBody2D"]
+position = Vector2(-8, -2)
+shape = SubResource("RectangleShape2D_tsyac")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Environment/Collisions"]
+position = Vector2(987, 1053)
+collision_layer = 4
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Collisions/StaticBody2D2"]
+position = Vector2(-28, -3)
+shape = SubResource("RectangleShape2D_05od8")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Environment/Collisions"]
+position = Vector2(922, 901)
+collision_layer = 8
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Collisions/StaticBody2D3"]
+polygon = PackedVector2Array(158, 118, -315, 120, -216, 69, -131, -33, -51, -89, 39, -143, 158, -240)
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Environment/Collisions"]
+position = Vector2(650, 710)
+collision_layer = 8
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Collisions/StaticBody2D4"]
+position = Vector2(-14.9431, -10.2322)
+rotation = 0.439254
+shape = SubResource("RectangleShape2D_gevwi")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Environment/Collisions"]
+position = Vector2(1138, 961)
+collision_layer = 8
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Collisions/StaticBody2D5"]
+position = Vector2(-4.10876, -3.00226)
+rotation = -0.311632
+shape = SubResource("RectangleShape2D_myp5w")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Environment/Collisions"]
+position = Vector2(1514, 955)
+collision_layer = 8
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Collisions/StaticBody2D6"]
+position = Vector2(-6, -8.5)
+shape = SubResource("RectangleShape2D_a84rd")
+one_way_collision = true
+metadata/_edit_lock_ = true
 
 [node name="Events" type="Node2D" parent="."]
 
 [node name="EventSpawner" type="Node2D" parent="Events"]
+script = ExtResource("14_smr1g")
+event_array = Array[PackedScene]([ExtResource("15_cm0jy")])
+
+[node name="WaterLevel" parent="Events" instance=ExtResource("14_xquta")]
 
 [node name="Interactables" type="Node2D" parent="."]
+
+[node name="WallPlantSprouter" type="Node2D" parent="Interactables"]
+script = ExtResource("5_dx1l8")
+
+[node name="WallPlant" parent="Interactables/WallPlantSprouter" instance=ExtResource("6_rs3yi")]
+position = Vector2(986, 606)
+
+[node name="WallPlant2" parent="Interactables/WallPlantSprouter" instance=ExtResource("6_rs3yi")]
+position = Vector2(1390, 500)
+
+[node name="WallPlant3" parent="Interactables/WallPlantSprouter" instance=ExtResource("6_rs3yi")]
+position = Vector2(1769, 260)
+
+[node name="WallPlant4" parent="Interactables/WallPlantSprouter" instance=ExtResource("6_rs3yi")]
+position = Vector2(210, 260)
+
+[node name="WallPlant5" parent="Interactables/WallPlantSprouter" instance=ExtResource("6_rs3yi")]
+position = Vector2(301, 725)
+
+[node name="WallPlant6" parent="Interactables/WallPlantSprouter" instance=ExtResource("6_rs3yi")]
+position = Vector2(572, 500)
+
+[node name="WallPlant7" parent="Interactables/WallPlantSprouter" instance=ExtResource("6_rs3yi")]
+position = Vector2(1502, 783)
+
+[node name="CeilingLamps" type="Node2D" parent="Interactables"]
+
+[connection signal="child_exiting_tree" from="Events/EventSpawner" to="Events/EventSpawner" method="_on_child_exiting_tree"]

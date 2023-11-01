@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2sy06qgow26p"
-path="res://.godot/imported/boulder.png-488b04f68052c7d5c012d64eea5276dc.ctex"
+uid="uid://5rxikndssedh"
+path="res://.godot/imported/carnivorous_plant_closed.png-cc9615c5086c0726e00cad3e3a50bedc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/fish_tank/sprites/interactables/boulder.png"
-dest_files=["res://.godot/imported/boulder.png-488b04f68052c7d5c012d64eea5276dc.ctex"]
+source_file="res://levels/turtle_habitat/sprites/events/carnivorous_plant_closed.png"
+dest_files=["res://.godot/imported/carnivorous_plant_closed.png-cc9615c5086c0726e00cad3e3a50bedc.ctex"]
 
 [params]
 

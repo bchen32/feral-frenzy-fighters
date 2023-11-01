@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1yn0d3vivecv"
-path="res://.godot/imported/osha_toy.png-70c20669bbd4c3538f0b7ca8497e4fdf.ctex"
+uid="uid://c525iffqji6pj"
+path="res://.godot/imported/waterfall_rock_layer_front.png-0f8f12c5c2c38abfc1fa007c5c8f3063.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/fish_tank/sprites/interactables/osha_toy.png"
-dest_files=["res://.godot/imported/osha_toy.png-70c20669bbd4c3538f0b7ca8497e4fdf.ctex"]
+source_file="res://levels/turtle_habitat/sprites/decor/waterfall_rock_layer_front.png"
+dest_files=["res://.godot/imported/waterfall_rock_layer_front.png-0f8f12c5c2c38abfc1fa007c5c8f3063.ctex"]
 
 [params]
 

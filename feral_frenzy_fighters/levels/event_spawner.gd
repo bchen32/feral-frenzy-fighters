@@ -14,13 +14,13 @@ var current_event_rate: float
 var progression_rate = 0.1 # percentage of how much event rate will progress each time an event concludes
 
 func _ready():
-	if NetworkManager.is_connected:
-		current_event_rate = longest_event_rate
-		countdown_new_event()
+	#if NetworkManager.is_connected:
+	current_event_rate = longest_event_rate
+	countdown_new_event()
 
 func _process(_delta):
 	if start_new_random_event == true and len(event_array) > 0:
-		_choose_events(false)
+		#_choose_events(false) if hard_mode
 		change_set_overview(true)
 		current_event_happening = true
 		
