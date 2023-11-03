@@ -211,6 +211,7 @@ z_index = 5
 position = Vector2(2880, 147)
 texture = ExtResource("5_2xp1f")
 flip_h = true
+metadata/_edit_lock_ = true
 
 [node name="Log" type="Sprite2D" parent="Environment/Decorations"]
 position = Vector2(1381, 618)
