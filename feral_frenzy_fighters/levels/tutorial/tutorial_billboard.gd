@@ -8,7 +8,11 @@ enum TutorialAction {
 	IDLE,
 	WALK_LEFT,
 	WALK_RIGHT,
-	ATTACK
+	ATTACK,
+	DASH,
+	THUMBS_DOWN,
+	THUMBS_UP,
+	SKULL
 }
 
 var current_tutorial_action: TutorialAction
@@ -36,6 +40,14 @@ func _update_control_animations(tutorial_action: TutorialAction):
 			base_action_string = "left"
 		TutorialAction.WALK_RIGHT:
 			base_action_string = "right"
+		TutorialAction.DASH:
+			base_action_string = "dash"
+		TutorialAction.THUMBS_DOWN:
+			base_action_string = "thumbs_down"
+		TutorialAction.THUMBS_UP:
+			base_action_string = "thumbs_up"
+		TutorialAction.SKULL:
+			base_action_string = "skull"
 	
 	_play_and_resize_animation($Control/VBoxContainer/Control/JoystickAnimation, "joystick_" + base_action_string)
 	_play_and_resize_animation($Control/VBoxContainer/Control2/P1Animation, "p1_" + base_action_string)

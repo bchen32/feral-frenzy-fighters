@@ -2,6 +2,7 @@ extends Node2D
 
 @export var tutorial_billboard: Control
 
+var _current_taunt_action: TutorialBillboard.TutorialAction = TutorialBillboard.TutorialAction.IDLE
 var _player_spawn_position: Vector2
 
 # Called when the node enters the scene tree for the first time.
@@ -9,45 +10,76 @@ func _ready():
 	_player_spawn_position = $Player.position
 	Globals.rebind_p1(0)
 
+func _input(event):
+	if _current_taunt_action == TutorialBillboard.TutorialAction.THUMBS_UP and \
+		event.is_action_pressed("p1_thumbs_up"):
+		_current_taunt_action = TutorialBillboard.TutorialAction.SKULL
+		$Player/TutorialBillboard.set_tutorial_action(_current_taunt_action)
+	elif _current_taunt_action == TutorialBillboard.TutorialAction.THUMBS_DOWN and \
+		 event.is_action_pressed("p1_thumbs_down"):
+		_current_taunt_action = TutorialBillboard.TutorialAction.THUMBS_UP
+		$Player/TutorialBillboard.set_tutorial_action(_current_taunt_action)
+	elif _current_taunt_action == TutorialBillboard.TutorialAction.SKULL and \
+		 event.is_action_pressed("p1_skull"):
+		$Player/Camera2D/ArrowDirection.target_area = $Environment/CatTreeMiddle/AttackGoalArea
+		
+		$Environment/CatTreeLeft/DashGoalArea.active_goal_area = false
+		$Environment/CatTreeMiddle/AttackGoalArea.active_goal_area = true
+		
+		$Environment/CatTreeLeft.destructible = true
+		$Environment/CatTreeMiddle.destructible = true
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var attack_goal_distance_vector: Vector2 = \
-		($AttackGoalArea.global_position + Vector2(0, 196)) - $Player.global_position
+		($Environment/CatTreeMiddle/AttackGoalArea.global_position + Vector2(0, 196)) - $Player.global_position
 	var player2_goal_distance_vector: Vector2 = \
 		($Player2/Player2GoalArea.global_position) - $Player.global_position
 	
-	if ($AttackGoalArea.active_goal_area and abs(attack_goal_distance_vector.length()) < 100) or \
+	if ($Environment/CatTreeMiddle/AttackGoalArea.active_goal_area and abs(attack_goal_distance_vector.length()) < 100) or \
 	   ($Player2/Player2GoalArea.active_goal_area and abs(player2_goal_distance_vector.length()) < 100):
 		$Player/TutorialBillboard.set_tutorial_action(TutorialBillboard.TutorialAction.ATTACK)
-
+	
+	if $Environment/CatTreeLeft/DashGoalArea.active_goal_area:
+		var dash_goal = $Player.global_position.y - $Environment/CatTreeLeft/DashGoalArea.global_position.y
+		if dash_goal > -400:
+			$Player/TutorialBillboard.set_tutorial_action(TutorialBillboard.TutorialAction.DASH)
+		else:
+			$Player/TutorialBillboard.set_tutorial_action(TutorialBillboard.TutorialAction.WALK_RIGHT)
 
 func _on_right_goal_area_goal_area_fufilled():
-	$Player/Camera2D/ArrowDirection.target_area = $TopGoalArea
+	$Player/Camera2D/ArrowDirection.target_area = $Environment/CatTreeLeft/TopGoalArea
 	
 	$RightGoalArea.active_goal_area = false
-	$TopGoalArea.active_goal_area = true
+	$Environment/CatTreeLeft/TopGoalArea.active_goal_area = true
 
 
 func _on_top_goal_area_goal_area_fufilled():
-	$Player/Camera2D/ArrowDirection.target_area = $AttackGoalArea
+	$Player/Camera2D/ArrowDirection.target_area = $Environment/CatTreeLeft/DashGoalArea
 	
-	$TopGoalArea.active_goal_area = false
-	$AttackGoalArea.active_goal_area = true
+	$Environment/CatTreeLeft/TopGoalArea.active_goal_area = false
+	$Environment/CatTreeLeft/DashGoalArea.active_goal_area = true
 
+func _on_dash_goal_area_goal_area_fufilled():
+	$Player/Camera2D/ArrowDirection.target_area = null
+	$Environment/CatTreeLeft/DashGoalArea.active_goal_area = false
+	
+	$Player/DamageUI.show()
+	$Player/DamageUI.set_player_death_count(2, 1)
+	
+	_current_taunt_action = TutorialBillboard.TutorialAction.THUMBS_DOWN
+	$Player/TutorialBillboard.set_tutorial_action(_current_taunt_action)
 
 func _on_attack_goal_area_goal_area_fufilled():
 	$Player2.show()
-	$Player/DamageUI.show()
 	
 	$Player/Camera2D/ArrowDirection.target_area = $Player2/Player2GoalArea
-	$AttackGoalArea.active_goal_area = false
+	$Environment/CatTreeMiddle/AttackGoalArea.active_goal_area = false
 	$Player2/Player2GoalArea.active_goal_area = true
 	$Player2.process_mode = Node.PROCESS_MODE_INHERIT
-	
-	$Player/DamageUI.set_player_death_count(2, 1)
 
 
-func _on_cat_tree_left_cat_tree_destroyed():
+func _on_cat_tree_middle_cat_tree_destroyed():
 	_on_attack_goal_area_goal_area_fufilled()
 
 
@@ -71,3 +103,4 @@ func _on_dead_areas_body_entered(body):
 			assert(body == $Player2)
 			
 			get_tree().change_scene_to_file("res://gui/menus/title_screen.tscn")
+

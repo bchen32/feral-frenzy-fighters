@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cnadtlxa56n4j" path="res://gui/menus/sprites/screens/pop_up_blue.png" id="1_voixl"]
 [ext_resource type="Script" path="res://levels/tutorial/tutorial_billboard.gd" id="1_ys11l"]
-[ext_resource type="SpriteFrames" path="res://player/cat/cat_spriteframes.tres" id="2_o6wof"]
+[ext_resource type="SpriteFrames" uid="uid://bmpan0xehi8df" path="res://player/cat/cat_spriteframes.tres" id="2_o6wof"]
 [ext_resource type="Theme" uid="uid://ciapr50n3vxqt" path="res://default_ui_theme.tres" id="5_38lvd"]
 [ext_resource type="SpriteFrames" uid="uid://dh6e8w1pyrd1g" path="res://levels/tutorial/tutorial_billboard_controls.tres" id="34_sj0b5"]
 
@@ -83,7 +83,7 @@ layout_mode = 2
 [node name="JoystickAnimation" type="AnimatedSprite2D" parent="Control/VBoxContainer/Control"]
 position = Vector2(129, 95)
 sprite_frames = ExtResource("34_sj0b5")
-animation = &"p2_fall"
+animation = &"p2_skull"
 
 [node name="Control2" type="Control" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(150, 200)
