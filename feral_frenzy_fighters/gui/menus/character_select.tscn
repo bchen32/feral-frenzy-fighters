@@ -252,7 +252,6 @@ focus_neighbor_right = NodePath("../TurtleButton")
 texture_normal = ExtResource("11_0l6ms")
 
 [node name="TurtleButton" type="TextureButton" parent="Background/P2Buttons"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -285,7 +284,6 @@ focus_neighbor_right = NodePath("../TurtleButton")
 texture_normal = ExtResource("11_0l6ms")
 
 [node name="TurtleButton" type="TextureButton" parent="Background/P1Buttons"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

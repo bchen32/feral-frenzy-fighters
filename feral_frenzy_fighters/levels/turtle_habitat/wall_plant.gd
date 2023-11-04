@@ -8,6 +8,11 @@ var damage_rate = 0.5
 
 var gatekeep_damage = false
 
+var SFX = [
+	preload("res://levels/turtle_habitat/sfx/Pop.wav"),
+	preload("res://levels/cat_tree/sfx/events/cat_spit.wav")
+]
+
 #hitbox settings: search "wall_plant_hitbox"
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @onready var anim = get_node("AnimationPlayer")
@@ -63,11 +68,12 @@ func _change_state(index_state_to_change_to: int):
 		Wall_Plant_States.SPROUTED: # called when wall_plant_sprouter chooses this plant
 			self.health = self.maxHealth
 			gatekeep_damage = false
+			$WallPlantSFX.stream = SFX[0]
+			$WallPlantSFX.play()
 			await get_tree().create_timer(10).timeout # testing only
 			_change_state(2)
 		Wall_Plant_States.BURSTED: # called when health reaches 0 from SPROUTED
 			reset_hitbox()
-			
 			await get_tree().create_timer(bursted_length).timeout
 			_change_state(0)
 

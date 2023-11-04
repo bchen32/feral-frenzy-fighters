@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bitla0de7vemu"]
+[gd_scene load_steps=28 format=3 uid="uid://bitla0de7vemu"]
 
 [ext_resource type="Texture2D" uid="uid://dyt3gihhkorrt" path="res://levels/turtle_habitat/sprites/decor/earth_rocks_withmoss_background.png" id="1_n0v6x"]
 [ext_resource type="Texture2D" uid="uid://bycbiy1n7o04n" path="res://levels/turtle_habitat/tilesets/60x60_tileset_turtle.png" id="2_g3g5f"]
@@ -6,11 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://cfxku88qcj8p2" path="res://levels/turtle_habitat/sprites/decor/waterfall_rock_layer_back.png" id="4_omuv5"]
 [ext_resource type="Texture2D" uid="uid://edfniw8o3ipr" path="res://levels/turtle_habitat/sprites/decor/foliage_canopy.png" id="5_2xp1f"]
 [ext_resource type="Texture2D" uid="uid://c2satq1qdegeu" path="res://levels/turtle_habitat/sprites/decor/waterfall_particle.png" id="5_37fri"]
-[ext_resource type="Script" path="res://levels/turtle_habitat/WallPlantSprouter.gd" id="5_dx1l8"]
+[ext_resource type="Script" path="res://levels/turtle_habitat/wall_plant_sprouter.gd" id="5_dx1l8"]
 [ext_resource type="Texture2D" uid="uid://cakhnta1ihv5m" path="res://levels/turtle_habitat/sprites/decor/waterfall_water_layer.png" id="5_ycp50"]
 [ext_resource type="Texture2D" uid="uid://cfshk8rml88ii" path="res://levels/turtle_habitat/sprites/decor/log.png" id="6_fa50m"]
 [ext_resource type="PackedScene" uid="uid://crsxtmluv764j" path="res://levels/turtle_habitat/wall_plant.tscn" id="6_rs3yi"]
 [ext_resource type="Texture2D" uid="uid://c525iffqji6pj" path="res://levels/turtle_habitat/sprites/decor/waterfall_rock_layer_front.png" id="7_4b447"]
+[ext_resource type="AudioStream" uid="uid://1u7m6lj2d35p" path="res://levels/turtle_habitat/sfx/Waterfall.mp3" id="7_6kbks"]
 [ext_resource type="Texture2D" uid="uid://dea63xhfm8ju" path="res://levels/turtle_habitat/sprites/decor/wooden_stick.png" id="8_80rgf"]
 [ext_resource type="Texture2D" uid="uid://b65mqoc650282" path="res://levels/turtle_habitat/sprites/decor/moss_boulder_1.png" id="11_0r1mv"]
 [ext_resource type="Texture2D" uid="uid://cqerplcng8ur3" path="res://levels/turtle_habitat/sprites/decor/moss_boulder_2.png" id="12_x0gvh"]
@@ -18,6 +19,7 @@
 [ext_resource type="Script" path="res://levels/event_spawner.gd" id="14_smr1g"]
 [ext_resource type="PackedScene" uid="uid://cx0alms8abhh1" path="res://levels/turtle_habitat/water_level.tscn" id="14_xquta"]
 [ext_resource type="PackedScene" uid="uid://boomivtr7a6as" path="res://levels/turtle_habitat/chompy.tscn" id="15_cm0jy"]
+[ext_resource type="AudioStream" uid="uid://0yfwfivpiws6" path="res://levels/turtle_habitat/sfx/Lamp.mp3" id="15_udfde"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s83h5"]
 texture = ExtResource("2_g3g5f")
@@ -164,6 +166,12 @@ color = Color(0.941176, 0.941176, 0.941176, 1)
 [node name="FrontRocks" type="Sprite2D" parent="Environment/Decorations/Waterfall"]
 texture = ExtResource("7_4b447")
 
+[node name="WaterfallSFX" type="AudioStreamPlayer2D" parent="Environment/Decorations/Waterfall"]
+stream = ExtResource("7_6kbks")
+volume_db = -10.0
+autoplay = true
+bus = &"SFX"
+
 [node name="WoodenStick" type="Sprite2D" parent="Environment/Decorations"]
 position = Vector2(681, 715)
 rotation = -0.134415
@@ -208,6 +216,13 @@ texture = ExtResource("13_0kokt")
 position = Vector2(1384, 180)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("13_0kokt")
+
+[node name="Lamp" type="AudioStreamPlayer2D" parent="Environment/Decorations"]
+position = Vector2(968, 36)
+stream = ExtResource("15_udfde")
+volume_db = -5.0
+autoplay = true
+bus = &"SFX"
 
 [node name="Collisions" type="Node2D" parent="Environment"]
 visible = false

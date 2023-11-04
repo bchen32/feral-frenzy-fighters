@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://crsxtmluv764j"]
+[gd_scene load_steps=15 format=3 uid="uid://crsxtmluv764j"]
 
 [ext_resource type="Script" path="res://levels/turtle_habitat/wall_plant.gd" id="1_t8l7r"]
 [ext_resource type="Shader" path="res://levels/turtle_habitat/wall_plant.gdshader" id="2_cve8w"]
 [ext_resource type="Texture2D" uid="uid://bsc7whta1s477" path="res://levels/turtle_habitat/sprites/interactables/pink_flower_closed.png" id="3_6injq"]
 [ext_resource type="Texture2D" uid="uid://cxb6lewjjjskd" path="res://levels/turtle_habitat/sprites/interactables/pink_flower_open.png" id="4_0le80"]
+[ext_resource type="AudioStream" uid="uid://b4u6bv36xwt6l" path="res://levels/cat_tree/sfx/events/cat_spit.wav" id="5_c5fjx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fgmyg"]
 shader = ExtResource("2_cve8w")
@@ -369,6 +370,11 @@ linear_accel_max = 50.0
 scale_amount_min = 3.0
 scale_amount_max = 5.0
 color = Color(0.235294, 1, 0.247059, 1)
+
+[node name="WallPlantSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_c5fjx")
+volume_db = -5.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]

@@ -93,7 +93,6 @@ theme_override_constants/separation = 15
 alignment = 1
 
 [node name="P2TurtleStageButton" type="TextureButton" parent="Background/Player2ButtonsContainer/P2ButtonsBottom"]
-visible = false
 layout_mode = 2
 texture_normal = ExtResource("4_tsooh")
 
@@ -125,7 +124,6 @@ theme_override_constants/separation = 15
 alignment = 1
 
 [node name="P1TurtleStageButton" type="TextureButton" parent="Background/Player1ButtonsContainer/P1ButtonsBottom"]
-visible = false
 layout_mode = 2
 texture_normal = ExtResource("4_tsooh")
 

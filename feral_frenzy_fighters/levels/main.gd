@@ -43,16 +43,22 @@ func _ready():
 			level = load("res://levels/cat_tree/cat_tree_level.tscn").instantiate()
 			$AudioStreamPlayer.stream = preload("res://levels/cat_tree/music/catfight.wav")
 			add_child(level)
-			camera.event_spawner = level.get_node("DynamicObjects/MultiplayerSpawner/Events/EventSpawner")
+			Globals.water_level = 10000
 		1:
 			level = load("res://levels/fish_tank/fish_tank_level.tscn").instantiate()
 			$AudioStreamPlayer.stream = preload("res://levels/fish_tank/sfx/fishfight.wav")
 			add_child(level)
-			camera.event_spawner = level.get_node("Events/EventSpawner")
+			Globals.water_level = 120
+		2:
+			level = load("res://levels/turtle_habitat/turtle_habitat_level.tscn").instantiate()
+			$AudioStreamPlayer.stream = preload("res://levels/cat_tree/music/catfight.wav")
+			add_child(level)
+			Globals.water_level = 10000
 			
 	$AudioStreamPlayer.play()
 	
 	move_child(level, 0)
+	camera.event_spawner = level.get_node("Events/EventSpawner")
 	NetworkManager.recieved_player_data.connect(_game_information)
 	NetworkManager.death_acked.connect(_ack_death)
 	NetworkManager.hit_acked.connect(_ack_hit)

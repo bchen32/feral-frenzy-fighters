@@ -13,6 +13,11 @@ var seeking_speed = 15
 var stretching_speed = 30
 var return_speed = 7
 
+var SFX = [
+	preload("res://levels/turtle_habitat/sfx/Rustle.mp3"),
+	preload("res://levels/turtle_habitat/sfx/Chomp.mp3")
+]
+
 var process = false
 
 #hitbox settings: search "plasma_hitbox"
@@ -44,6 +49,8 @@ func chompy_single_process():
 	match chompy_state:
 		Chompy_States.SEEKING:
 			process = true
+			$ChompySFX.stream = SFX[0]
+			$ChompySFX.play()
 			await get_tree().create_timer(randi_range(min_seeking_time, max_seeking_time)).timeout
 			process = false
 			chompy_state = Chompy_States.STRETCHING
@@ -60,6 +67,8 @@ func chompy_single_process():
 			chompy_hitbox.setup(60, 60, 0, 0, 25, 2, 0, 0)
 			
 			anim.play("Snap")
+			$ChompySFX.stream = SFX[1]
+			$ChompySFX.play()
 			await anim.animation_finished
 			chompy_hitbox.queue_free()
 			

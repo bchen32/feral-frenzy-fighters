@@ -1,0 +1,105 @@
+{
+	"water_scale": 1.0,
+	"walk_accel": 6000,
+	"dash_accel": 9000,
+	"tilt_attack_accel": 1200,
+	"dash_attack_accel": 1500,
+	"air_accel": 3600,
+	"walk_jump_accel": 800,
+	"dash_jump_accel": 1200,
+	"air_jump_accel": 600,
+	"walk_speed": 300,
+	"dash_speed": 500,
+	"dash_attack_speed": 600,
+	"air_jump_speed": 400,
+	"jump_speed": -1000,
+	"terminal_vel": 1000,
+	"fall_grav_scale": 1.8,
+	"kb_base": 500,
+	"kb_hitstun_scale": 0.015,
+	"kb_decay": 2000,
+	"inverse_weight": 10,
+	"spike_mult": 0.5,
+	"hit_grav": 3000,
+	"bounce_thresh": 100,
+	"bounce_decay": 0.6,
+	"attacks": {
+		"neutral": {
+			"frames": 30,
+			"damage": 10,
+			"knockback_scale": 1,
+			"knockback_x_offset": 20,
+			"knockback_y_offset": -20,
+			"hitboxes": [
+				{
+					"start_frame": 8,
+					"end_frame": 16,
+					"width": 28,
+					"height": 10,
+					"x_offset": 30,
+					"y_offset": -20
+				}
+			]
+		},
+		"air_neutral": {
+			"frames": 20,
+			"damage": 10,
+			"knockback_scale": 1,
+			"knockback_x_offset": 0,
+			"knockback_y_offset": 0,
+			"hitboxes": [
+				{
+					"start_frame": 4,
+					"end_frame": 20,
+					"width": 40,
+					"height": 40,
+					"x_offset": 0,
+					"y_offset": 0
+				}
+			]
+		},
+		"dash_attack": {
+			"frames": 45,
+			"damage": 15,
+			"knockback_scale": 1,
+			"knockback_x_offset": 20,
+			"knockback_y_offset": -5,
+			"hitboxes": [
+				{
+					"start_frame": 4,
+					"end_frame": 24,
+					"width": 20,
+					"height": 40,
+					"x_offset": 30,
+					"y_offset": 0
+				}
+			]
+		}
+	},
+	"animation_offset": {
+		"base": {
+			"x": 0,
+			"y": 0
+		},
+		"fall": {
+			"x": -1,
+			"y": 9
+		},
+		"hit": {
+			"x": -1,
+			"y": 6
+		},
+		"idle": {
+			"x": -1,
+			"y": -3
+		},
+		"jump": {
+			"x": -2,
+			"y": 11
+		},
+		"walk": {
+			"x": -1,
+			"y": -3
+		}
+	}
+}

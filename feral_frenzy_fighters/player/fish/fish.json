@@ -1,4 +1,5 @@
 {
+	"water_scale": 1.4,
 	"walk_accel": 6000,
 	"dash_accel": 9000,
 	"tilt_attack_accel": 1200,
@@ -19,7 +20,7 @@
 	"kb_decay": 2000,
 	"inverse_weight": 10,
 	"spike_mult": 0.5,
-	"hit_grav": 1500,
+	"hit_grav": 3000,
 	"bounce_thresh": 100,
 	"bounce_decay": 0.6,
 	"attacks": {
@@ -73,6 +74,20 @@
 					"y_offset": 0
 				}
 			]
+		}
+	},
+	"animation_offset": {
+		"base": {
+			"x": 0,
+			"y": 0
+		},
+		"dash_attack": {
+			"x": 0,
+			"y": 6
+		},
+		"air_attack_neutral": {
+			"x": 10,
+			"y": 0
 		}
 	}
 }

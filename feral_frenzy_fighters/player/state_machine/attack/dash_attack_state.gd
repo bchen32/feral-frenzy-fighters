@@ -5,14 +5,14 @@ extends AttackState
 func enter():
 	super()
 	if direction == "right":
-		character.velocity.x = character.stats.dash_attack_speed
+		character.velocity.x = character.get_scaled_stat("dash_attack_speed")
 	elif direction == "left":
-		character.velocity.x = -character.stats.dash_attack_speed
+		character.velocity.x = -character.get_scaled_stat("dash_attack_speed")
 	else:
 		if character.anim_player.flip_h:
-			character.velocity.x = character.stats.dash_attack_speed
+			character.velocity.x = character.get_scaled_stat("dash_attack_speed")
 		else:
-			character.velocity.x = -character.stats.dash_attack_speed
+			character.velocity.x = -character.get_scaled_stat("dash_attack_speed")
 	attack = character.stats.attacks["dash_attack"]
 	character.chosen_attack = attack
 	character.play_anim("dash_attack")

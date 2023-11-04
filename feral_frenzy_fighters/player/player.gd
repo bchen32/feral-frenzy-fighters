@@ -44,6 +44,11 @@ var bloodied = false
 		"sprite_scene": "res://player/fish/fish.tscn",
 		"stats": "res://player/fish/fish.json"
 	},
+	"turtle":
+	{
+		"sprite_scene": "res://player/turtle/turtle.tscn",
+		"stats": "res://player/turtle/turtle.json"
+	},
 	"beanbag":
 	{
 		"sprite_scene": "res://player/beanbag/beanbag.tscn",
@@ -151,11 +156,6 @@ func _ready():
 	var p2_icon
 
 	var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
-	if character_type != "beanbag":
-		color = "blue" if player_num else "purple"
-		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
-	else:
-		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
 	
 	_damage_label.set_player_death_count(player_num, stocks)
 	
@@ -257,9 +257,16 @@ func play_anim(animation_name: String):
 			180,
 			1)
 			if _damage_label:
+				_damage_label.get_node(("P2" if player_num else "P1") + "/DamageLabel").label_settings.font_color = Color("d85244")
 				var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
 				if character_type != "beanbag":
-					color = "blue" if player_num else "purple"
+					if player_num:
+						if character_type == Globals.player_sprites[0]:
+							color = "alternate"
+						else:
+							color = "blue"
+					else:
+						color = "purple"
 					player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_injured_icon_" + color + ".png")
 	else:
 		anim_player.play("_".join([color, animation_name]))
@@ -383,6 +390,10 @@ func end_attack():
 	chosen_attack = {}
 
 
+func get_scaled_stat(stat_name):
+	return stats[stat_name] * (stats["water_scale"] if position.y > Globals.water_level else 1)
+
+
 func air_movement(delta):
 	velocity.y += get_grav() * delta
 	velocity.y = minf(velocity.y, stats.terminal_vel)
@@ -445,12 +456,17 @@ func acknowledge_death():
 	percentage = 0
 	bloodied = false
 	if _damage_label:
+		_damage_label.get_node(("P2" if player_num else "P1") + "/DamageLabel").label_settings.font_color = Color.WHITE
 		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
 		if character_type != "beanbag":
-			color = "blue" if player_num else "purple"
+			if player_num:
+				if character_type == Globals.player_sprites[0]:
+					color = "alternate"
+				else:
+					color = "blue"
+			else:
+				color = "purple"
 			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
-		else:
-			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
 	
 	if not NetworkManager.is_connected and not _is_lobby:
 		stocks -= 1
@@ -458,8 +474,6 @@ func acknowledge_death():
 			_damage_label.set_player_death_count(player_num, stocks)
 		
 		if not _is_lobby and stocks <= 0:
-			if NetworkManager.is_host:
-				NetworkManager._players_in_which_lobbies[player_id].on_player_completely_dead(player_num)
 			
 			Globals.player1_won = player_num != 0
 			Globals.cutscene_player_end_game = true
@@ -480,16 +494,17 @@ func _physics_process(delta: float):
 func _process(_delta: float):
 	if stats.size() == 0:
 		stats = load_stats(character_data[character_type].stats)
-	
-	if character_type == "cat":
-		if anim_player.flip_h:
-			anim_player.position.x = -12
-		else:
-			anim_player.position.x = 12
-		if "jump" in anim_player.animation or "fall" in anim_player.animation:
-			anim_player.position.y = 8
-		else:
-			anim_player.position.y = -8
+
+	var anim_offset_match = false
+	for anim_name in stats.animation_offset:
+		if anim_name in anim_player.animation:
+			anim_player.position.x = (1 if anim_player.flip_h else -1) * stats.animation_offset[anim_name].x
+			anim_player.position.y = stats.animation_offset[anim_name].y
+			anim_offset_match = true
+			break
+	if not anim_offset_match:
+		anim_player.position.x = (1 if anim_player.flip_h else -1) * stats.animation_offset.base.x
+		anim_player.position.y = stats.animation_offset.base.y
 	if _damage_label:
 		_damage_label.set_player_damage(player_num, percentage)
 	

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b84s4ajxtqw2w"]
+
+[ext_resource type="SpriteFrames" uid="uid://5ndf5vg0xhdn" path="res://player/turtle/turtle_spriteframes.tres" id="1_l7lgg"]
+[ext_resource type="Texture2D" uid="uid://c64c766os6f0o" path="res://gui/hud/sprites/stats_paw_prints/turtle_paw_purple.png" id="2_ccn5u"]
+[ext_resource type="Texture2D" uid="uid://m800bio6560s" path="res://gui/hud/sprites/stats_paw_prints/turtle_paw_blue.png" id="3_w63n7"]
+
+[node name="Turtle" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = ExtResource("1_l7lgg")
+animation = &"purple_air_attack_neutral"
+
+[node name="Player1Icon2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -64)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_ccn5u")
+
+[node name="Player2Icon2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -64)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_w63n7")

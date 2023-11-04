@@ -9,8 +9,8 @@ func enter():
 
 
 func exit():
-	character.air_speed_upper_bound = character.stats.walk_speed
-	character.air_speed_lower_bound = -character.stats.walk_speed
+	character.air_speed_upper_bound = character.get_scaled_stat("walk_speed")
+	character.air_speed_lower_bound = -character.get_scaled_stat("walk_speed")
 
 
 func update(delta):
