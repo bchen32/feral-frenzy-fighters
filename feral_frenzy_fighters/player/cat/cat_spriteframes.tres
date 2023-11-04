@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=286 format=3 uid="uid://bmpan0xehi8df"]
+[gd_resource type="SpriteFrames" load_steps=289 format=3 uid="uid://bmpan0xehi8df"]
 
 [ext_resource type="Texture2D" uid="uid://bp3sgi724j4kp" path="res://player/cat/sprites/air_attack_neutral/alternate/Alternative_Cat_Aerial_Attack-1.png" id="1_dyq33"]
 [ext_resource type="Texture2D" uid="uid://bqstom6cetyod" path="res://player/cat/sprites/air_attack_neutral/alternate/Alternative_Cat_Aerial_Attack-2.png" id="2_1u5sg"]
@@ -285,6 +285,9 @@
 [ext_resource type="Texture2D" uid="uid://bdlxskb5myiyg" path="res://player/cat/sprites/walk/blue/Cat_Walk_Blue-6.png" id="186_naiao"]
 [ext_resource type="Texture2D" uid="uid://daiiyf68cwged" path="res://player/cat/sprites/walk/blue/Cat_Walk_Blue-7.png" id="187_1mujl"]
 [ext_resource type="Texture2D" uid="uid://cdqyxik0rqovn" path="res://player/cat/sprites/walk/blue/Cat_Walk_Blue-8.png" id="188_cd3ma"]
+[ext_resource type="Texture2D" uid="uid://daaxv81eiw4u3" path="res://gui/menus/sprites/buttons/icons/reaction_skull_icon.png" id="286_ye2oc"]
+[ext_resource type="Texture2D" uid="uid://d0h4gfjucihfx" path="res://gui/menus/sprites/buttons/icons/reaction_thumb_down_icon.png" id="287_4yftt"]
+[ext_resource type="Texture2D" uid="uid://caq7e6yit4hkr" path="res://gui/menus/sprites/buttons/icons/reaction_thumb_up_icon.png" id="288_mcbl3"]
 
 [resource]
 animations = [{
@@ -1442,4 +1445,28 @@ animations = [{
 "loop": true,
 "name": &"purple_walk",
 "speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("286_ye2oc")
+}],
+"loop": true,
+"name": &"tutorial_skull",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("287_4yftt")
+}],
+"loop": true,
+"name": &"tutorial_thumbs_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("288_mcbl3")
+}],
+"loop": true,
+"name": &"tutorial_thumbs_up",
+"speed": 5.0
 }]

@@ -21,10 +21,10 @@ func _input(event):
 		$Player/TutorialBillboard.set_tutorial_action(_current_taunt_action)
 	elif _current_taunt_action == TutorialBillboard.TutorialAction.SKULL and \
 		 event.is_action_pressed("p1_skull"):
-		$Player/Camera2D/ArrowDirection.target_area = $Environment/CatTreeMiddle/AttackGoalArea
+		$Player/Camera2D/ArrowDirection.target_area = $Environment/AttackGoalArea
 		
 		$Environment/CatTreeLeft/DashGoalArea.active_goal_area = false
-		$Environment/CatTreeMiddle/AttackGoalArea.active_goal_area = true
+		$Environment/AttackGoalArea.active_goal_area = true
 		
 		$Environment/CatTreeLeft.destructible = true
 		$Environment/CatTreeMiddle.destructible = true
@@ -32,20 +32,20 @@ func _input(event):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var attack_goal_distance_vector: Vector2 = \
-		($Environment/CatTreeMiddle/AttackGoalArea.global_position + Vector2(0, 196)) - $Player.global_position
+		($Environment/AttackGoalArea.global_position + Vector2(0, 400)) - $Player.global_position
 	var player2_goal_distance_vector: Vector2 = \
 		($Player2/Player2GoalArea.global_position) - $Player.global_position
 	
-	if ($Environment/CatTreeMiddle/AttackGoalArea.active_goal_area and abs(attack_goal_distance_vector.length()) < 100) or \
+	if ($Environment/AttackGoalArea.active_goal_area and abs(attack_goal_distance_vector.length()) < 100) or \
 	   ($Player2/Player2GoalArea.active_goal_area and abs(player2_goal_distance_vector.length()) < 100):
 		$Player/TutorialBillboard.set_tutorial_action(TutorialBillboard.TutorialAction.ATTACK)
 	
 	if $Environment/CatTreeLeft/DashGoalArea.active_goal_area:
 		var dash_goal = $Player.global_position.y - $Environment/CatTreeLeft/DashGoalArea.global_position.y
-		if dash_goal > -400:
+		if dash_goal > -400 and $Player/TutorialBillboard.current_tutorial_action == TutorialBillboard.TutorialAction.WALK_RIGHT:
 			$Player/TutorialBillboard.set_tutorial_action(TutorialBillboard.TutorialAction.DASH)
-		else:
-			$Player/TutorialBillboard.set_tutorial_action(TutorialBillboard.TutorialAction.WALK_RIGHT)
+		elif dash_goal <= -400 or $Player/TutorialBillboard.current_tutorial_action != TutorialBillboard.TutorialAction.DASH:
+			_on_arrow_direction_on_direction_changed()
 
 func _on_right_goal_area_goal_area_fufilled():
 	$Player/Camera2D/ArrowDirection.target_area = $Environment/CatTreeLeft/TopGoalArea
@@ -67,14 +67,17 @@ func _on_dash_goal_area_goal_area_fufilled():
 	$Player/DamageUI.show()
 	$Player/DamageUI.set_player_death_count(2, 1)
 	
+	$Player/DamageUI/P2.hide()
+	
 	_current_taunt_action = TutorialBillboard.TutorialAction.THUMBS_DOWN
 	$Player/TutorialBillboard.set_tutorial_action(_current_taunt_action)
 
 func _on_attack_goal_area_goal_area_fufilled():
 	$Player2.show()
+	$Player/DamageUI/P2.show()
 	
 	$Player/Camera2D/ArrowDirection.target_area = $Player2/Player2GoalArea
-	$Environment/CatTreeMiddle/AttackGoalArea.active_goal_area = false
+	$Environment/AttackGoalArea.active_goal_area = false
 	$Player2/Player2GoalArea.active_goal_area = true
 	$Player2.process_mode = Node.PROCESS_MODE_INHERIT
 

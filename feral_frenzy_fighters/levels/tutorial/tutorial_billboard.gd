@@ -60,6 +60,12 @@ func set_tutorial_action(tutorial_action: TutorialAction):
 	show()
 	_update_control_animations(tutorial_action)
 	
+	if tutorial_action == TutorialAction.THUMBS_DOWN or \
+	   tutorial_action == TutorialAction.THUMBS_UP or tutorial_action == TutorialAction.SKULL:
+		$Control/PlayerSprite/AnimatedSprite2D.scale = Vector2(3, 3)
+	else:
+		$Control/PlayerSprite/AnimatedSprite2D.scale = Vector2(0.3, 0.3)
+	
 	match tutorial_action:
 		TutorialAction.FALL:
 			$Control/PlayerSprite/AnimatedSprite2D.play("blue_fall")
@@ -73,6 +79,14 @@ func set_tutorial_action(tutorial_action: TutorialAction):
 			$Control/PlayerSprite/AnimatedSprite2D.flip_h = \
 				tutorial_action == TutorialAction.WALK_RIGHT
 			$Control/PlayerSprite/AnimatedSprite2D.play("blue_walk")
+		TutorialAction.DASH:
+			$Control/PlayerSprite/AnimatedSprite2D.play("blue_dash")
+		TutorialAction.THUMBS_DOWN:
+			$Control/PlayerSprite/AnimatedSprite2D.play("tutorial_thumbs_down")
+		TutorialAction.THUMBS_UP:
+			$Control/PlayerSprite/AnimatedSprite2D.play("tutorial_thumbs_up")
+		TutorialAction.SKULL:
+			$Control/PlayerSprite/AnimatedSprite2D.play("tutorial_skull")
 	
 	current_tutorial_action = tutorial_action
 
