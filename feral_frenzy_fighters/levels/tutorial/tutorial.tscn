@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="3_og5f5"]
 [ext_resource type="Texture2D" uid="uid://uk8l6kbu2oih" path="res://levels/cat_tree/tilesets/wallpaper_complete.png" id="4_vgnqx"]
 [ext_resource type="Script" path="res://levels/tutorial/arrow_direction.gd" id="6_k2hb0"]
-[ext_resource type="Texture2D" uid="uid://tlykuvqt8y0n" path="res://levels/tutorial/UI/arrow_purple.png" id="7_5hakw"]
+[ext_resource type="Texture2D" uid="uid://tlykuvqt8y0n" path="res://levels/tutorial/ui/arrow_purple.png" id="7_5hakw"]
 [ext_resource type="PackedScene" uid="uid://bj67e35cxlvj7" path="res://levels/tutorial/goal_area.tscn" id="7_b57ej"]
 [ext_resource type="PackedScene" uid="uid://caorfjy1fvecb" path="res://levels/tutorial/tutorial_billboard.tscn" id="9_754rh"]
 [ext_resource type="Texture2D" uid="uid://b705gvrh4dpob" path="res://levels/tutorial/ui/tutorial_title_ui.png" id="10_47t8y"]
@@ -65,16 +65,17 @@ scale = Vector2(1, 0.9)
 starting_health = 20
 
 [node name="Player2" parent="." node_paths=PackedStringArray("_damage_label") instance=ExtResource("3_og5f5")]
-visible = false
-position = Vector2(1122, 766)
+process_mode = 4
+position = Vector2(1166, 776)
 scale = Vector2(1.5, 1.5)
-character_type = "beanbag"
-player_num = 1
+player_num = 2
 stocks = 1
+character_type = "beanbag"
 _damage_label = NodePath("../Player/DamageUI")
 
 [node name="Player2GoalArea" parent="Player2" instance=ExtResource("7_b57ej")]
 z_index = 1
+position = Vector2(-4, -6.66669)
 scale = Vector2(0.57, 0.4)
 external_trigger_area = true
 

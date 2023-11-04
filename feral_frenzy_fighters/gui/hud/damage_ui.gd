@@ -31,7 +31,6 @@ func set_player_damage(player_num: int, player_knockback_percentage: int):
 			$P2/DamageLabel.text = text_string
 		2:
 			$P2/DamageLabel.text = text_string
-			$P2/TextureRect.texture = preload("res://player/beanbag/sprites/idle/beanbag-head.png")
 
 
 func set_player_death_count(player_num: int, death_count: int):

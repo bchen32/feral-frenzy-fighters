@@ -42,6 +42,9 @@ func _on_attack_goal_area_goal_area_fufilled():
 	$Player/Camera2D/ArrowDirection.target_area = $Player2/Player2GoalArea
 	$AttackGoalArea.active_goal_area = false
 	$Player2/Player2GoalArea.active_goal_area = true
+	$Player2.process_mode = Node.PROCESS_MODE_INHERIT
+	
+	$Player/DamageUI.set_player_death_count(2, 1)
 
 
 func _on_cat_tree_left_cat_tree_destroyed():
