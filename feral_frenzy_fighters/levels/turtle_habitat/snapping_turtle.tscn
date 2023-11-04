@@ -1,11 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://duxrdac7rv5sl"]
 
-[ext_resource type="Texture2D" uid="uid://bdxq2i2pv02g8" path="res://levels/turtle_habitat/sprites/events/snapping/snap_turtle_standing_mouth_close.png" id="1_1t3hv"]
 [ext_resource type="Texture2D" uid="uid://lsjwk1pklcjm" path="res://levels/turtle_habitat/sprites/events/smoke_particle effect.png" id="1_hq4sv"]
+[ext_resource type="Script" path="res://levels/turtle_habitat/snapping_turtle.gd" id="1_wo5pb"]
 [ext_resource type="Texture2D" uid="uid://dox8pd81l4t0x" path="res://levels/fish_tank/sprites/decor/bubbles.png" id="2_ny5hy"]
-[ext_resource type="Texture2D" uid="uid://c8y55bac0kdns" path="res://levels/turtle_habitat/sprites/events/snapping/snap_turtle_standing_mouth_open_2.png" id="2_vdv4p"]
-[ext_resource type="Texture2D" uid="uid://7gtxblkk5irs" path="res://levels/turtle_habitat/sprites/events/snapping/snap_turtle_standing_mouth_close_2.png" id="3_qyxsv"]
-[ext_resource type="Texture2D" uid="uid://ca8fvsu8ydl4" path="res://levels/turtle_habitat/sprites/events/snapping/snap_turtle_standing_mouth_open.png" id="4_u15op"]
 [ext_resource type="Texture2D" uid="uid://bgc1xlhsrpg33" path="res://levels/turtle_habitat/sprites/events/snapping_swimming/snap_turtle_swim_mouth_open.png" id="5_lm7vg"]
 [ext_resource type="Texture2D" uid="uid://duy2r4ntmpbfh" path="res://levels/turtle_habitat/sprites/events/snapping_swimming/snap_turtle_swim_mouth_close_2.png" id="6_vnhom"]
 [ext_resource type="Texture2D" uid="uid://cfk1y1fogiumt" path="res://levels/turtle_habitat/sprites/events/snapping_swimming/snap_turtle_swim_mouth_close.png" id="7_ib1c6"]
@@ -14,20 +11,11 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_pxmyb"]
 animations = [{
 "frames": [{
-"duration": 2.0,
-"texture": ExtResource("1_1t3hv")
-}, {
 "duration": 1.0,
-"texture": ExtResource("2_vdv4p")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_qyxsv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_u15op")
+"texture": ExtResource("8_f4d3h")
 }],
 "loop": true,
-"name": &"Standing",
+"name": &"Death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -59,50 +47,181 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_i5gxc"]
-resource_name = "Standing"
-length = 5.0001
-loop_mode = 1
-step = 1.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lmgf"]
+size = Vector2(296, 113)
+
+[sub_resource type="Animation" id="Animation_3kwqa"]
+resource_name = "Death"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Offset:position")
+tracks/0/path = NodePath("SwimmingParticles:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 4),
-"transitions": PackedFloat32Array(2, 0.5, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-5, 0), Vector2(0, 0)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_xq8rf"]
+[sub_resource type="Animation" id="Animation_bhqnl"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Offset:position")
+tracks/0/path = NodePath("SwimmingParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwimmingParticles:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(30, -20)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwimmingParticles:direction")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_a71oj"]
+resource_name = "SwimmingRightParticle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwimmingParticles:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-30, -20)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwimmingParticles:direction")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwimmingParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_k8olw"]
+[sub_resource type="Animation" id="Animation_r0ka1"]
+resource_name = "SwimmingLeftParticle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwimmingParticles:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(30, -20)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwimmingParticles:direction")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwimmingParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h7ybx"]
 _data = {
-"RESET": SubResource("Animation_xq8rf"),
-"Standing": SubResource("Animation_i5gxc")
+"Death": SubResource("Animation_3kwqa"),
+"RESET": SubResource("Animation_bhqnl"),
+"SwimmingLeftParticle": SubResource("Animation_r0ka1"),
+"SwimmingRightParticle": SubResource("Animation_a71oj")
 }
 
 [node name="SnappingTurtle" type="Node2D"]
+z_index = 1
+script = ExtResource("1_wo5pb")
 
-[node name="Offset" type="Node2D" parent="."]
-
-[node name="StandingParticles" type="CPUParticles2D" parent="Offset"]
+[node name="StandingParticles" type="CPUParticles2D" parent="."]
 position = Vector2(10, 0)
 emitting = false
 speed_scale = 0.9
@@ -115,27 +234,54 @@ initial_velocity_max = 200.0
 scale_amount_min = 0.5
 color = Color(1, 1, 1, 0.588235)
 
-[node name="SwimmingParticles" type="CPUParticles2D" parent="Offset"]
-position = Vector2(10, 0)
+[node name="SwimmingParticles" type="CPUParticles2D" parent="."]
+position = Vector2(30, -20)
 speed_scale = 0.9
 texture = ExtResource("2_ny5hy")
 direction = Vector2(1, -1)
-spread = 5.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 100.0
-initial_velocity_max = 200.0
-scale_amount_min = 0.08
-scale_amount_max = 0.25
+spread = 20.0
+gravity = Vector2(0, -125)
+initial_velocity_min = 75.0
+initial_velocity_max = 125.0
+scale_amount_min = 0.05
+scale_amount_max = 0.17
 color = Color(1, 1, 1, 0.588235)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Offset"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_pxmyb")
-animation = &"Standing"
-frame_progress = 0.260429
+animation = &"Swimming"
+autoplay = "Swimming"
 speed_scale = 0.75
 
+[node name="DeathParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 40
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -125)
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+damping_min = 100.0
+damping_max = 100.0
+scale_amount_min = 3.0
+scale_amount_max = 7.0
+color = Color(0.701961, 0.701961, 0.384314, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, -1.5)
+shape = SubResource("RectangleShape2D_0lmgf")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-speed_scale = 3.68
 libraries = {
-"": SubResource("AnimationLibrary_k8olw")
+"": SubResource("AnimationLibrary_h7ybx")
 }
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

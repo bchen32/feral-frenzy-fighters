@@ -3,9 +3,9 @@ extends Node2D
 enum Water_Level_States {LOWTIDE, LOWTOHIGH, HIGHTIDE, HIGHTOLOW}
 var water_level_state = Water_Level_States.LOWTIDE
 
-var max_high_tide_delay = 30
-var min_high_tide_delay = 20
-var high_tide_duration = 15
+var max_high_tide_delay = 5#30
+var min_high_tide_delay = 5#20
+var high_tide_duration = 30
 
 @onready var anim = get_node("AnimationPlayer")
 @onready var event_spawner = $"../EventSpawner"
