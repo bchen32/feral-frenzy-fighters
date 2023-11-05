@@ -30,7 +30,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print("snapping_turtle: global_position = ", global_position)
 	if dead == false:
 		if !snapping_spawner.submerged_players.is_empty():
 			for p in snapping_spawner.submerged_players:
@@ -79,7 +78,7 @@ func reset_hitbox():
 		anim_sprite.add_child(turtle_hitbox)
 		
 		# width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-		turtle_hitbox.setup(105, 40, 0, 0, 10, 1.5, 0, 0)
+		turtle_hitbox.setup(105, 40, 0, 0, 5, 1.5, 0, 0)
 		
 		await get_tree().create_timer(reset_hitbox_rate).timeout
 		reset_hitbox()

@@ -28,6 +28,10 @@ func _process(delta):
 				submerged_players.append(p)
 			elif submerged_players.has(p) && p.global_position.y < 400:
 				submerged_players.remove_at(submerged_players.find(p))
+		
+		if water_level.water_level_state != 2:
+			submerged_players.clear()
+			waiting_on_high_tide = true
 
 func snapping_manager():
 	# spawning
@@ -38,10 +42,10 @@ func snapping_manager():
 	
 	# life
 	await get_tree().create_timer(high_tide_duration).timeout
-	
+	kill_all()
+
+func kill_all():
 	# death
-	for t in self.get_children():
-		t.death()
-	await get_tree().create_timer(3).timeout
-	waiting_on_high_tide = true
-	submerged_players.clear()
+	if !self.get_children().is_empty():
+		for t in self.get_children():
+			t.death()

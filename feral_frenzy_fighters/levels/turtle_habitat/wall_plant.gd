@@ -4,7 +4,7 @@ enum Wall_Plant_States {UNSPROUTED, SPROUTED, BURSTED}
 var wall_plant_state = Wall_Plant_States.UNSPROUTED
 
 var bursted_length = 10
-var damage_rate = 0.5
+var damage_rate = 0.25
 
 var gatekeep_damage = false
 
@@ -84,7 +84,7 @@ func reset_hitbox(): # wall plant has a "poison" effect, so it keeps resetting h
 		sprite.add_child(wall_plant_hitbox)
 		
 		# width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-		wall_plant_hitbox.setup(80, 80, 0, 0, 5, 1.25, 0, 0)
+		wall_plant_hitbox.setup(80, 80, 0, 0, 2, 0.5, 0, 0)
 		
 		await get_tree().create_timer(damage_rate).timeout
 		reset_hitbox()
