@@ -10,17 +10,19 @@ var high_tide_duration = 30
 var electrified = false
 var electric_dmg_rate = 1
 
+var log_low_tide_pos: Vector2 = Vector2(1400, 620)
+
 #hitbox settings: search "water_level_hitbox"
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @onready var anim: AnimationPlayer = get_node("AnimationPlayer")
 @onready var event_spawner = $"../EventSpawner"
 @onready var electric_particles: CPUParticles2D = get_node("ElectricParticles")
 @onready var ceiling_lamps = $"../../Interactables/CeilingLamps"
+@onready var log_sprite: Sprite2D = get_node("Log")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	water_level_process()
-	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -28,6 +30,8 @@ func _process(delta):
 		water_level_state = Water_Level_States.LOWTOHIGH
 		water_level_process()
 		event_spawner.start_external_event = false
+	
+	log_process()
 
 func water_level_process():
 	match water_level_state:
@@ -70,10 +74,32 @@ func electrified_water_level():
 		electric_particles.add_child(water_level_hitbox)
 		
 		# width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-		water_level_hitbox.setup(1350, 410, 0, 0, 25, 2, 0, 0)
+		water_level_hitbox.setup(1350, 400, 0, -50, 25, 2, 0, 0)
 		
 		await get_tree().create_timer(electric_dmg_rate).timeout
 		electrified_water_level()
 	else:
 		electrified = false
 		electric_particles.emitting = false
+
+func log_process():
+	match water_level_state:
+		Water_Level_States.LOWTIDE:
+			log_sprite.global_position = log_low_tide_pos
+			
+		Water_Level_States.LOWTOHIGH:
+			
+			if self.global_position.y > log_low_tide_pos.y:
+				log_sprite.global_position = log_low_tide_pos
+			elif self.global_position.y <= log_low_tide_pos.y:
+				log_sprite.global_position = Vector2(log_low_tide_pos.x, self.global_position.y)
+			
+		Water_Level_States.HIGHTIDE:
+			log_sprite.global_position = Vector2(log_low_tide_pos.x, self.global_position.y)
+			
+		Water_Level_States.HIGHTOLOW:
+			
+			if self.global_position.y > log_low_tide_pos.y:
+				log_sprite.global_position = log_low_tide_pos
+			elif self.global_position.y <= log_low_tide_pos.y:
+				log_sprite.global_position = Vector2(log_low_tide_pos.x, self.global_position.y)

@@ -1,8 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://cx0alms8abhh1"]
+[gd_scene load_steps=15 format=3 uid="uid://cx0alms8abhh1"]
 
 [ext_resource type="Script" path="res://levels/turtle_habitat/water_level.gd" id="1_crvb1"]
 [ext_resource type="Texture2D" uid="uid://1s24v4v0afya" path="res://levels/turtle_habitat/sprites/events/water_complete.png" id="2_i8cav"]
+[ext_resource type="Texture2D" uid="uid://cfxku88qcj8p2" path="res://levels/turtle_habitat/sprites/decor/waterfall_rock_layer_back.png" id="3_4c6me"]
+[ext_resource type="Texture2D" uid="uid://cfshk8rml88ii" path="res://levels/turtle_habitat/sprites/decor/log.png" id="3_jyvoh"]
 [ext_resource type="Texture2D" uid="uid://7d11uxe5s5xa" path="res://levels/turtle_habitat/sprites/decor/lily_pads_flowers.png" id="3_wybh4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l63ha"]
+size = Vector2(215, 83)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1epyb"]
+polygon = PackedVector2Array(-81, -31, -89, -29, -99, -21, -106, -6, -94, 5, -108, 9, -109, 28, -105, 43, -95, 52, 80, 42, 93, 37, 107, 18, 107, -7, 101, -25, 94, -24, 94, -33, 73, -34, 7, -31, -5, -36, -27, -40, -38, -45, -43, -52, -55, -49, -56, -45, -37, -30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4avk"]
+size = Vector2(246.667, 46.6666)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fcil1"]
+polygon = PackedVector2Array(-125.333, -1.33325, -120, 18.6667, -102.667, 22.6667, -84, 18.6667, -66.6667, 25.3334, -24, 25.3334, 21.3333, 17.3334, 82.6667, 14.6667, 118.667, 0, 134.667, 0, 130.667, -14.6666, 118.667, -26.6666, 110.667, -26.6666, 81.3333, -34.6666, 41.3333, -34.6666, 1.33331, -24, -10.6667, -17.3333, -30.6667, -28, -53.3333, -30.6666, -85.3333, -25.3333, -108, -14.6666)
 
 [sub_resource type="Animation" id="Animation_geyx6"]
 resource_name = "HighTide"
@@ -56,6 +70,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_pmwds"]
 resource_name = "Transition"
 length = 4.0
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -82,6 +97,39 @@ z_index = 5
 z_as_relative = false
 position = Vector2(0, 920)
 script = ExtResource("1_crvb1")
+
+[node name="Log" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1400, -300)
+texture = ExtResource("3_jyvoh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Log"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Log/StaticBody2D"]
+position = Vector2(-1.5, 9.5)
+shape = SubResource("RectangleShape2D_l63ha")
+one_way_collision = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Log"]
+occluder = SubResource("OccluderPolygon2D_1epyb")
+
+[node name="Rocks" type="Sprite2D" parent="."]
+position = Vector2(560, 0)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_4c6me")
+offset = Vector2(0, 410)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Rocks"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rocks/StaticBody2D"]
+position = Vector2(3.33331, 0.666748)
+shape = SubResource("RectangleShape2D_u4avk")
+one_way_collision = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Rocks"]
+occluder = SubResource("OccluderPolygon2D_fcil1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.588235)
