@@ -21,8 +21,8 @@ var ui
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if NetworkManager.is_connected:
-		p1_locked = NetworkManager.my_player_num != 1
-		p2_locked = NetworkManager.my_player_num != 2
+		p1_locked = NetworkManager.my_player_num != 0
+		p2_locked = NetworkManager.my_player_num != 1
 		
 		NetworkManager.character_stage_screen_change_acked.connect(_on_character_screen_change_acked)
 		NetworkManager.character_stage_screen_lock_in_acked.connect(_on_character_screen_lock_in_acked)
@@ -142,20 +142,19 @@ func become_inactive():
 	queue_free()
 
 func _on_character_screen_change_acked(player_num: int, character: int):
-	if player_num != NetworkManager.my_player_num:
-		if player_num == 1:
-			p1_selection[p1_character].texture_normal = graybox
-			p1_character = character
-			p1_selection[p1_character].texture_normal = purplebox
-			on_character1_change(false)
-		else:
-			p2_selection[p2_character].texture_normal = graybox
-			p2_character = character
-			p2_selection[p2_character].texture_normal = bluebox
-			on_character2_change(false)
+	if player_num == 0:
+		p1_selection[p1_character].texture_normal = graybox
+		p1_character = character
+		p1_selection[p1_character].texture_normal = purplebox
+		on_character1_change(false)
+	else:
+		p2_selection[p2_character].texture_normal = graybox
+		p2_character = character
+		p2_selection[p2_character].texture_normal = bluebox
+		on_character2_change(false)
 
 func _on_character_screen_lock_in_acked(player_num: int, character: int):
-	if player_num == 1:
+	if player_num == 0:
 		p1_character = character
 		$Background/Player1Text/P1Ready.show()
 	else:
@@ -243,7 +242,7 @@ func on_locked_in():
 
 
 func _on_button_mouse_entered(extra_arg_0):
-	if NetworkManager.is_connected and NetworkManager.my_player_num == 2 and !p2_locked:
+	if NetworkManager.is_connected and NetworkManager.my_player_num == 1 and !p2_locked:
 		p2_selection[p2_character].texture_normal = graybox
 		p2_character = extra_arg_0
 		p2_selection[p2_character].texture_normal = bluebox
@@ -255,7 +254,7 @@ func _on_button_mouse_entered(extra_arg_0):
 		on_character1_change()
 
 func _p1_lock_in():
-	if NetworkManager.is_connected and NetworkManager.my_player_num == 2 and !p2_locked:
+	if NetworkManager.is_connected and NetworkManager.my_player_num == 1 and !p2_locked:
 		p2_locked = true
 		$Background/Player2Text/P2Ready.show()
 		NetworkManager.character_stage_screen_lock_in.rpc()

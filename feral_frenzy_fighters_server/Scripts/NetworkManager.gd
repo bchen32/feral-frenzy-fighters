@@ -163,11 +163,13 @@ func character_stage_screen_character_change(character_stage: int):
 					lobby._players[player_key].character_type = clampi(character_stage, 0, 2) 
 				else:
 					lobby._players[player_key].stage_type = clampi(character_stage, 0, 2)
+				
+				break
 		
 		assert(player_num >= 0)
 		
 		for player_key in lobby._players:
-			ack_character_screen_character_change.rpc_id(player_key, player_num, character_stage)
+			ack_character_stage_screen_character_change.rpc_id(player_key, player_num, character_stage)
 
 @rpc("any_peer", "reliable", "call_remote")
 func character_stage_screen_lock_in():
@@ -241,7 +243,7 @@ func ack_death(player_num: int):
 	pass
 
 @rpc("authority", "reliable", "call_remote")
-func ack_hit(player_num: int):
+func ack_hit(player_num: int, hit_data: Dictionary):
 	pass
 
 @rpc("authority", "reliable", "call_remote")
@@ -253,7 +255,7 @@ func ack_env_hit(env_part: String, health_change: float):
 	pass
 
 @rpc("authority", "reliable", "call_remote")
-func ack_character_screen_character_change(player_num: int, character: int):
+func ack_character_stage_screen_character_change(player_num: int, character: int):
 	pass
 
 @rpc("authority", "reliable", "call_remote")

@@ -404,7 +404,7 @@ func get_scaled_stat(stat_name):
 func air_movement(delta):
 	velocity.y += get_grav() * delta
 	velocity.y = minf(velocity.y, stats.terminal_vel)
-	var direction = Input.get_axis(
+	var direction = InputManager.get_axis(
 		get_input("left"), get_input("right")
 	)
 	if direction:

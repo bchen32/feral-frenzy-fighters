@@ -49,7 +49,7 @@ func get_lobby_state_string(lobby_num: int):
 
 
 func add_player(player_id: int):
-	_players[player_id] = Player.new(len(_players) + 1, player_id)
+	_players[player_id] = Player.new(len(_players), player_id)
 	
 	if len(_players) >= TARGET_PLAYERS:
 		_lobby_game_state = NetworkGameState.CHARACTER_SELECT
@@ -135,7 +135,7 @@ func update():
 			"flip_h": player.flip_h
 		}
 		
-		player_datas[player.player_num - 1] = player_data
+		player_datas[player.player_num] = player_data
 	
 	for player_key in _players:
 		_network_manager.game_information.rpc_id(player_key, player_datas)

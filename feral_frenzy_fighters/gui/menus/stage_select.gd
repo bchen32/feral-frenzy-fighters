@@ -19,8 +19,8 @@ var final_selection
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if NetworkManager.is_connected:
-		p1_locked = NetworkManager.my_player_num != 1
-		p2_locked = NetworkManager.my_player_num != 2
+		p1_locked = NetworkManager.my_player_num != 0
+		p2_locked = NetworkManager.my_player_num != 1
 		
 		NetworkManager.character_stage_screen_change_acked.connect(_on_stage_screen_change_acked)
 		NetworkManager.character_stage_screen_lock_in_acked.connect(_on_stage_screen_lock_in_acked)
@@ -159,6 +159,8 @@ func on_stage2_change(send_networked_response: bool = true):
 func _on_stage_selected(stage_selected: int):
 	var new_icon
 	
+	Globals.stage = stage_selected
+	
 	match stage_selected:
 		0:
 			new_icon = $Background/StageIconsContainer/StageIconsTop/CatStageIcon.duplicate()
@@ -207,7 +209,7 @@ func go_to_stage():
 	get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
 
 func _on_button_mouse_entered(extra_arg_0):
-	if NetworkManager.is_connected and NetworkManager.my_player_num == 2 and !p2_locked:
+	if NetworkManager.is_connected and NetworkManager.my_player_num == 1 and !p2_locked:
 		p2_selection[p2_stage].texture_normal = graybox
 		p2_stage = extra_arg_0
 		p2_selection[p2_stage].texture_normal = bluebox
@@ -219,7 +221,7 @@ func _on_button_mouse_entered(extra_arg_0):
 		on_stage1_change()
 
 func _p1_lock_in():
-	if NetworkManager.is_connected and NetworkManager.my_player_num == 2 and !p2_locked:
+	if NetworkManager.is_connected and NetworkManager.my_player_num == 1 and !p2_locked:
 		p2_locked = true
 		p2_selection[p2_stage].modulate.a = 1
 		actual_selection.append(p2_stage)
@@ -232,7 +234,7 @@ func _p1_lock_in():
 	on_locked_in()
 
 func _on_stage_screen_change_acked(player_num: int, stage: int):
-	if player_num != NetworkManager.my_player_num:
+	if player_num - 1 != NetworkManager.my_player_num:
 		if player_num == 1:
 			p1_selection[p1_stage].texture_normal = graybox
 			p1_stage = stage
