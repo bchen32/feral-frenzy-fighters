@@ -11,8 +11,9 @@ signal death_acked
 signal hit_acked
 signal chat_acked
 signal env_hit_acked
-signal character_screen_change_acked
-signal character_screen_lock_in_acked
+signal character_stage_screen_change_acked
+signal character_stage_screen_lock_in_acked
+signal on_stage_selected
 
 enum NetworkGameState {
 	NOT_CONNECTED,
@@ -95,7 +96,7 @@ func game_state_change(game_state: NetworkGameState, display_name: String):
 		NetworkManager.NetworkGameState.CHARACTER_SELECT:
 			get_tree().change_scene_to_file("res://gui/menus/character_select.tscn")
 		NetworkManager.NetworkGameState.STAGE_SELECT:
-			pass
+			$"../CharacterSelect".on_locked_in()
 		NetworkManager.NetworkGameState.IN_SECOND_CUTSCENE:
 			Globals.cutscene_player_end_game = true
 			
@@ -140,12 +141,16 @@ func ack_env_hit(env_part: String, health_change: float):
 	env_hit_acked.emit(env_part, health_change)
 
 @rpc("authority", "reliable", "call_remote")
-func ack_character_screen_character_change(player_num: int, character: int):
-	character_screen_change_acked.emit(player_num, character)
+func ack_character_stage_screen_character_change(player_num: int, character: int):
+	character_stage_screen_change_acked.emit(player_num, character)
 
 @rpc("authority", "reliable", "call_remote")
-func ack_character_screen_lock_in(player_num: int):
-	character_screen_lock_in_acked.emit(player_num)
+func ack_character_stage_screen_lock_in(player_num: int):
+	character_stage_screen_lock_in_acked.emit(player_num)
+
+@rpc("authority", "reliable", "call_remote")
+func stage_selected(stage_selected: int):
+	on_stage_selected.emit(stage_selected)
 
 # Code execed on server
 @rpc("any_peer", "unreliable", "call_remote")
@@ -153,7 +158,7 @@ func update_game_information(player_position: Vector2, player_state: Globals.Sta
 	pass
 
 @rpc("any_peer", "reliable", "call_remote")
-func character_screen_lock_in():
+func character_stage_screen_lock_in():
 	pass
 
 @rpc("any_peer", "reliable", "call_remote")
@@ -173,7 +178,7 @@ func report_env_hit(env_part: String, health_change: float):
 	pass
 
 @rpc("any_peer", "reliable", "call_remote")
-func character_screen_character_change(character: int):
+func character_stage_screen_character_change(character: int):
 	pass
 
 @rpc("any_peer", "reliable", "call_remote")

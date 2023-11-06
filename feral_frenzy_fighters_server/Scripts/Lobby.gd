@@ -107,6 +107,13 @@ func game_state_change_request(sender_id: int, requested_game_state: Lobby.Netwo
 			
 			_ready_to_battle = {}
 
+func change_game_state(game_state: Lobby.NetworkGameState):
+	if _lobby_game_state != game_state:
+		_lobby_game_state = game_state
+		
+		for player_key in _players:
+			_network_manager.game_state_change.rpc_id(player_key, _lobby_game_state, "")
+
 func update_game_information(sender_id: int, player_position: Vector2, player_state_type: Player.StateType,
 							 flip_h: bool):
 	_players[sender_id].position = player_position

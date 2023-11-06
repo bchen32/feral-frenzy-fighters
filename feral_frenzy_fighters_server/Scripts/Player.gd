@@ -21,7 +21,9 @@ var player_id: int # the unique id the server gives to the player
 var stock: int = 0
 var percentage: int = 0
 var character_type: int = 0 # 0: Cat, 1: Fish, 2: Turtle
+var stage_type: int = 0
 var character_locked_in: bool = false
+var stage_locked_in: bool = false
 
 # game state variables
 var player_position: Vector2

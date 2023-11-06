@@ -24,8 +24,8 @@ func _ready():
 		p1_locked = NetworkManager.my_player_num != 1
 		p2_locked = NetworkManager.my_player_num != 2
 		
-		NetworkManager.character_screen_change_acked.connect(_on_character_screen_change_acked)
-		NetworkManager.character_screen_lock_in_acked.connect(_on_character_screen_lock_in_acked)
+		NetworkManager.character_stage_screen_change_acked.connect(_on_character_screen_change_acked)
+		NetworkManager.character_stage_screen_lock_in_acked.connect(_on_character_screen_lock_in_acked)
 	
 	for button in $Background/P1Buttons.get_children():
 		if button.is_visible():
@@ -92,7 +92,7 @@ func _process(delta):
 		if is_action_just_pressed(1, "accept"):
 			p1_locked = true
 			$Background/Player1Text/P1Ready.show()
-			NetworkManager.character_screen_lock_in.rpc()
+			NetworkManager.character_stage_screen_lock_in.rpc()
 			on_locked_in()
 	
 	if !p2_locked:
@@ -123,7 +123,7 @@ func _process(delta):
 		if is_action_just_pressed(2, "accept") and !p2_locked:
 			p2_locked = true
 			$Background/Player2Text/P2Ready.show()
-			NetworkManager.character_screen_lock_in.rpc()
+			NetworkManager.character_stage_screen_lock_in.rpc()
 			
 			on_locked_in()
 		
@@ -157,7 +157,7 @@ func _on_character_screen_lock_in_acked(player_num: int):
 
 func on_character1_change(send_networked_response: bool = true):
 	if send_networked_response and NetworkManager.is_connected:
-		NetworkManager.character_screen_character_change.rpc(p1_character)
+		NetworkManager.character_stage_screen_character_change.rpc(p1_character)
 	
 	$P1Sounds.play()
 	
@@ -173,7 +173,7 @@ func on_character1_change(send_networked_response: bool = true):
 
 func on_character2_change(send_networked_response: bool = true):
 	if send_networked_response and NetworkManager.is_connected:
-		NetworkManager.character_screen_character_change.rpc(p2_character)
+		NetworkManager.character_stage_screen_character_change.rpc(p2_character)
 	
 	$P2Sounds.play()
 	match (p2_character):
@@ -195,7 +195,8 @@ func on_locked_in():
 		Globals.player_sprites.append(player_text.text.to_lower())
 	
 	$MenuSound.play()
-	if p1_locked and p2_locked and not NetworkManager.is_connected:
+	if p1_locked and p2_locked and \
+	   (not NetworkManager.is_connected or NetworkManager._network_game_state == NetworkManager.NetworkGameState.STAGE_SELECT):
 		# setting up the beginning cutscene
 		match p1_character:
 			0:
@@ -238,11 +239,11 @@ func _p1_lock_in():
 	if NetworkManager.is_connected and NetworkManager.my_player_num == 2 and !p2_locked:
 		p2_locked = true
 		$Background/Player2Text/P2Ready.show()
-		NetworkManager.character_screen_lock_in.rpc()
+		NetworkManager.character_stage_screen_lock_in.rpc()
 		on_locked_in()
 	elif !p1_locked:
 		p1_locked = true
 		$Background/Player1Text/P1Ready.show()
-		NetworkManager.character_screen_lock_in.rpc()
+		NetworkManager.character_stage_screen_lock_in.rpc()
 		on_locked_in()
 

@@ -143,48 +143,78 @@ func report_env_hit(env_part: String, health_change: float):
 		ack_env_hit.rpc_id(player_key, env_part, health_change)
 
 @rpc("any_peer", "reliable", "call_remote")
-func character_screen_character_change(character: int):
+func character_stage_screen_character_change(character_stage: int):
 	var sender_id = multiplayer.get_remote_sender_id()
 	var lobby = _players_in_which_lobbies[sender_id]
+	var is_character_select_screen: bool = \
+		lobby._lobby_game_state == Lobby.NetworkGameState.CHARACTER_SELECT
 	
-	if lobby._lobby_game_state == Lobby.NetworkGameState.CHARACTER_SELECT:
+	if is_character_select_screen or lobby._lobby_game_state == Lobby.NetworkGameState.STAGE_SELECT:
 		var player_num: int = -1
 		
 		for player_key in lobby._players:
 			if player_key == sender_id:
 				player_num = lobby._players[player_key].player_num
 				
-				if lobby._players[player_key].character_locked_in:
+				if (is_character_select_screen and lobby._players[player_key].character_locked_in) or \
+				   (not is_character_select_screen and lobby._players[player_key].stage_locked_in):
 					return
+				elif is_character_select_screen:
+					lobby._players[player_key].character_type = clampi(character_stage, 0, 2) 
 				else:
-					lobby._players[player_key].character_type = character
+					lobby._players[player_key].stage_type = clampi(character_stage, 0, 2)
 		
 		assert(player_num >= 0)
 		
 		for player_key in lobby._players:
-			ack_character_screen_character_change.rpc_id(player_key, player_num, character)
+			ack_character_screen_character_change.rpc_id(player_key, player_num, character_stage)
 
 @rpc("any_peer", "reliable", "call_remote")
-func character_screen_lock_in():
+func character_stage_screen_lock_in():
 	var sender_id = multiplayer.get_remote_sender_id()
 	var lobby = _players_in_which_lobbies[sender_id]
+	var is_character_select_screen: bool = \
+		lobby._lobby_game_state == Lobby.NetworkGameState.CHARACTER_SELECT
 	
-	if lobby._lobby_game_state == Lobby.NetworkGameState.CHARACTER_SELECT:
+	if is_character_select_screen or lobby._lobby_game_state == Lobby.NetworkGameState.STAGE_SELECT:
 		var player_num: int = -1
 		
 		for player_key in lobby._players:
 			if player_key == sender_id:
 				player_num = lobby._players[player_key].player_num
 				
-				if lobby._players[player_key].character_locked_in:
+				if (is_character_select_screen and lobby._players[player_key].character_locked_in) or \
+				   (not is_character_select_screen and lobby._players[player_key].stage_locked_in):
 					return
-				else:
+				elif is_character_select_screen:
 					lobby._players[player_key].character_locked_in = true
+				else:
+					lobby._players[player_key].stage_locked_in = true
 		
 		assert(player_num >= 0)
 		
+		var all_players_locked_in: bool = true
+		
 		for player_key in lobby._players:
+			if (is_character_select_screen and not lobby._players[player_key].character_locked_in) or \
+			   (not is_character_select_screen and not lobby._players[player_key].stage_locked_in):
+				all_players_locked_in = false
+			
 			ack_character_screen_lock_in.rpc_id(player_key, player_num)
+		
+		
+		if all_players_locked_in:
+			var player_stage
+			
+			if not is_character_select_screen:
+				player_stage = randi_range(0, lobby._players.size() - 1)
+				player_stage = lobby._players.values()[player_stage].stage_type
+			
+			for player_key in lobby._players:
+				if is_character_select_screen:
+					lobby.change_game_state(Lobby.NetworkGameState.STAGE_SELECT)
+				else:
+					stage_selected.rpc_id(player_key, player_stage)
 
 # rpcs called on the client
 @rpc("authority", "reliable", "call_remote")
@@ -222,4 +252,8 @@ func ack_character_screen_character_change(player_num: int, character: int):
 
 @rpc("authority", "reliable", "call_remote")
 func ack_character_screen_lock_in(player_num: int):
+	pass
+
+@rpc("authority", "reliable", "call_remote")
+func stage_selected(stage_selected: int):
 	pass
