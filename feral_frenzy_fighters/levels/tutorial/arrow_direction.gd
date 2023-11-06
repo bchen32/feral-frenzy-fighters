@@ -32,7 +32,7 @@ func _process(delta):
 	
 	var position_delta: Vector2 = target_area.global_position - _player.global_position
 	
-	if target_area.is_player_in_area or position_delta.length() < 100:
+	if target_area.is_player_in_area or position_delta.length() < 200:
 		hide()
 		return
 	else:
@@ -44,33 +44,19 @@ func _process(delta):
 		if position_delta.x > 0:
 			# point LEFT
 			new_direction = Direction.LEFT
-			#position = Vector2(right_position.x, right_position.y)
-			#rotation_degrees = 0
 		else:
 			# point RIGHT
 			new_direction = Direction.RIGHT
-			#position = Vector2(-right_position.x, right_position.y)
-			#rotation_degrees = 180
 	else:
 		if position_delta.y > 0:
 			# point UP
 			new_direction = Direction.UP
-			#rotation_degrees = 90
-			#position = Vector2(20, -150)
 		else:
 			# point DOWN
 			new_direction = Direction.DOWN
-			#rotation_degrees = 270
-			#position = Vector2(-40, -100)
 	
-	if abs(global_position.angle_to_point(target_area.global_position)) < 0.1:
-		if rotation_degrees > global_position.angle_to_point(target_area.global_position):
-			rotation_degrees -= 1
-		elif rotation_degrees < global_position.angle_to_point(target_area.global_position):
-			rotation_degrees += 1
+	rotation_degrees = rad_to_deg(global_position.direction_to(target_area.global_position).angle())
 	
-	print("arrow_direction: angle to target_area = ", global_position.angle_to_point(target_area.global_position))
-	print("arrow_direction: rotation_degrees = ", rotation_degrees)
 	
 	if current_direction != new_direction:
 		current_direction = new_direction

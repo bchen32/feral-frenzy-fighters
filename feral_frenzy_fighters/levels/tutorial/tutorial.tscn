@@ -114,12 +114,12 @@ _damage_label = NodePath("DamageUI")
 zoom = Vector2(1.75, 1.75)
 
 [node name="ArrowDirection" type="TextureRect" parent="Player/Camera2D" node_paths=PackedStringArray("target_area")]
-offset_left = 509.0
-offset_top = -94.0
-offset_right = 709.0
-offset_bottom = 106.0
+offset_left = 200.0
+offset_top = -100.0
+offset_right = 400.0
+offset_bottom = 100.0
 scale = Vector2(0.45, 0.45)
-pivot_offset = Vector2(-510.233, 94.1563)
+pivot_offset = Vector2(-200, 100)
 texture = ExtResource("7_5hakw")
 script = ExtResource("6_k2hb0")
 target_area = NodePath("../../../RightGoalArea")

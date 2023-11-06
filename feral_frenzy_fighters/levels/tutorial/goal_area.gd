@@ -11,15 +11,17 @@ var is_player_in_area: bool = false
 
 var _past_active_goal_area: bool = false
 
+@onready var collision: CollisionShape2D = get_node("CollisionShape2D")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	monitoring = active_goal_area
+	
 	if _past_active_goal_area != active_goal_area:
 		if active_goal_area:
 			$AnimationPlayer.play("flicker")
-			monitoring = true
 		else:
 			$AnimationPlayer.stop()
-			monitoring = false
 		
 		_past_active_goal_area = active_goal_area
 
