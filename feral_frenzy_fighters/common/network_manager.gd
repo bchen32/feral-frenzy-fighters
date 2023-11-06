@@ -2,7 +2,7 @@ extends Node
 
 var multiplayer_peer = WebSocketMultiplayerPeer.new()
 
-const SERVER_IP = "feral.insightgit.com"
+const SERVER_IP = "127.0.0.1"#"feral.insightgit.com"
 const SERVER_PORT = 11111
 
 signal network_game_state_changed
@@ -11,10 +11,14 @@ signal death_acked
 signal hit_acked
 signal chat_acked
 signal env_hit_acked
+signal character_screen_change_acked
+signal character_screen_lock_in_acked
 
 enum NetworkGameState {
 	NOT_CONNECTED,
 	LOBBY,
+	CHARACTER_SELECT,
+	STAGE_SELECT,
 	IN_FIRST_CUTSCENE,
 	IN_BATTLE,
 	IN_SECOND_CUTSCENE
@@ -88,6 +92,10 @@ func game_state_change(game_state: NetworkGameState, display_name: String):
 			Globals.cutscene_player_video_path = ""
 			Globals.audio_stream_to_play_during_cutscene = null
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
+		NetworkManager.NetworkGameState.CHARACTER_SELECT:
+			get_tree().change_scene_to_file("res://gui/menus/character_select.tscn")
+		NetworkManager.NetworkGameState.STAGE_SELECT:
+			pass
 		NetworkManager.NetworkGameState.IN_SECOND_CUTSCENE:
 			Globals.cutscene_player_end_game = true
 			
@@ -127,13 +135,25 @@ func ack_hit(player_num: int, hit_data: Dictionary):
 func ack_chat(player_num: int, chat_emoji: ChatEmoji):
 	chat_acked.emit(player_num, chat_emoji)
 
-#@rpc("authority", "reliable", "call_remote")
-#func ack_env_hit(env_part: String, health_change: float):
-#	env_hit_acked.emit(env_part, health_change)
+@rpc("authority", "reliable", "call_remote")
+func ack_env_hit(env_part: String, health_change: float):
+	env_hit_acked.emit(env_part, health_change)
+
+@rpc("authority", "reliable", "call_remote")
+func ack_character_screen_character_change(player_num: int, character: int):
+	character_screen_change_acked.emit(player_num, character)
+
+@rpc("authority", "reliable", "call_remote")
+func ack_character_screen_lock_in(player_num: int):
+	character_screen_lock_in_acked.emit(player_num)
 
 # Code execed on server
 @rpc("any_peer", "unreliable", "call_remote")
 func update_game_information(player_position: Vector2, player_state: Globals.States, flip_h: bool):
+	pass
+
+@rpc("any_peer", "reliable", "call_remote")
+func character_screen_lock_in():
 	pass
 
 @rpc("any_peer", "reliable", "call_remote")
@@ -147,7 +167,15 @@ func game_state_change_request(requested_game_state: NetworkGameState):
 @rpc("any_peer", "reliable", "call_remote")
 func report_hit(player_num: int, hit_data: Dictionary):
 	pass
-	
+
+@rpc("any_peer", "reliable", "call_remote")
+func report_env_hit(env_part: String, health_change: float):
+	pass
+
+@rpc("any_peer", "reliable", "call_remote")
+func character_screen_character_change(character: int):
+	pass
+
 @rpc("any_peer", "reliable", "call_remote")
 func report_chat(emoji: ChatEmoji):
 	pass

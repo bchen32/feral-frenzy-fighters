@@ -16,10 +16,12 @@ enum StateType {
 
 # network identification variables
 var display_name: String
-var player_num: int # Player 1(0), Player 2(1), etc.
+var player_num: int # Player 1(1), Player 2(2), etc.
 var player_id: int # the unique id the server gives to the player
 var stock: int = 0
 var percentage: int = 0
+var character_type: int = 0 # 0: Cat, 1: Fish, 2: Turtle
+var character_locked_in: bool = false
 
 # game state variables
 var player_position: Vector2

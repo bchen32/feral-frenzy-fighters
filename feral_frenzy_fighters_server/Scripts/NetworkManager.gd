@@ -134,13 +134,57 @@ func report_hit(player_num: int, hit_data: Dictionary):
 	for player_key in lobby._players:
 		ack_hit.rpc_id(player_key, player_num, hit_data)
 
-#@rpc("any_peer", "reliable", "call_remote")
-#func report_env_hit(env_part: String, health_change: float):
-#	var sender_id = multiplayer.get_remote_sender_id()
-#	var lobby = _players_in_which_lobbies[sender_id]
-#	
-#	for player_key in lobby._players:
-#		ack_env_hit.rpc_id(player_key, env_part, health_change)
+@rpc("any_peer", "reliable", "call_remote")
+func report_env_hit(env_part: String, health_change: float):
+	var sender_id = multiplayer.get_remote_sender_id()
+	var lobby = _players_in_which_lobbies[sender_id]
+	
+	for player_key in lobby._players:
+		ack_env_hit.rpc_id(player_key, env_part, health_change)
+
+@rpc("any_peer", "reliable", "call_remote")
+func character_screen_character_change(character: int):
+	var sender_id = multiplayer.get_remote_sender_id()
+	var lobby = _players_in_which_lobbies[sender_id]
+	
+	if lobby._lobby_game_state == Lobby.NetworkGameState.CHARACTER_SELECT:
+		var player_num: int = -1
+		
+		for player_key in lobby._players:
+			if player_key == sender_id:
+				player_num = lobby._players[player_key].player_num
+				
+				if lobby._players[player_key].character_locked_in:
+					return
+				else:
+					lobby._players[player_key].character_type = character
+		
+		assert(player_num >= 0)
+		
+		for player_key in lobby._players:
+			ack_character_screen_character_change.rpc_id(player_key, player_num, character)
+
+@rpc("any_peer", "reliable", "call_remote")
+func character_screen_lock_in():
+	var sender_id = multiplayer.get_remote_sender_id()
+	var lobby = _players_in_which_lobbies[sender_id]
+	
+	if lobby._lobby_game_state == Lobby.NetworkGameState.CHARACTER_SELECT:
+		var player_num: int = -1
+		
+		for player_key in lobby._players:
+			if player_key == sender_id:
+				player_num = lobby._players[player_key].player_num
+				
+				if lobby._players[player_key].character_locked_in:
+					return
+				else:
+					lobby._players[player_key].character_locked_in = true
+		
+		assert(player_num >= 0)
+		
+		for player_key in lobby._players:
+			ack_character_screen_lock_in.rpc_id(player_key, player_num)
 
 # rpcs called on the client
 @rpc("authority", "reliable", "call_remote")
@@ -168,6 +212,14 @@ func ack_hit(player_num: int):
 func ack_chat(player_num: int, emoji: Lobby.ChatEmoji):
 	pass
 
-#@rpc("authority", "reliable", "call_remote")
-#func ack_env_hit(env_part: String, health_change: float):
-#	pass
+@rpc("authority", "reliable", "call_remote")
+func ack_env_hit(env_part: String, health_change: float):
+	pass
+
+@rpc("authority", "reliable", "call_remote")
+func ack_character_screen_character_change(player_num: int, character: int):
+	pass
+
+@rpc("authority", "reliable", "call_remote")
+func ack_character_screen_lock_in(player_num: int):
+	pass

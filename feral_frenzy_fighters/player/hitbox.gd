@@ -51,7 +51,10 @@ func _on_body_entered(body: Node2D):
 func _on_area_2d_area_entered(area):
 	if self.get_parent() is PlayerCharacter:
 		if area.get_parent() is Interactable:
-			area.get_parent()._change_health(-dmg)
+			if NetworkManager.is_connected:
+				NetworkManager.report_env_hit.rpc(area.get_parent().name, -dmg)
+			else:
+				area.get_parent()._change_health(-dmg)
 
 func get_kb(body: PlayerCharacter):
 	# Modified SSB formula

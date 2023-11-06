@@ -5,6 +5,8 @@ class_name Lobby
 enum NetworkGameState {
 	NOT_CONNECTED,
 	LOBBY,
+	CHARACTER_SELECT,
+	STAGE_SELECT,
 	INFIRSTCUTSCENE,
 	INBATTLE,
 	INSECONDCUTSCENE
@@ -43,26 +45,26 @@ func get_lobby_state_string(lobby_num: int):
 	
 	return lobby_state 
 
+
 func add_player(player_id: int):
-	_players[player_id] = Player.new(len(_players), player_id)
+	_players[player_id] = Player.new(len(_players) + 1, player_id)
 	
 	if len(_players) >= TARGET_PLAYERS:
-		_lobby_game_state = NetworkGameState.INFIRSTCUTSCENE
-		_network_manager.game_state_change.rpc(_lobby_game_state, "")
+		_lobby_game_state = NetworkGameState.CHARACTER_SELECT
 		
 		var display_names: Array[String] = []
-		
+	
 		for player_key in _players:
 			var player = _players[player_key]
 			display_names.append(player.display_name)
-		
+	
 		# setup game state while they are in the cutscene
 		for player_key in _players:
 			var player = _players[player_key]
 			
 			player.stock = START_STOCK
 			player.percentage = START_PERCENTAGE
-			
+		
 			# set level spawn poses
 			match player.player_num:
 				0:
@@ -75,6 +77,8 @@ func add_player(player_id: int):
 															 display_names,
 															 START_STOCK,
 															 START_PERCENTAGE)
+		
+		_network_manager.game_state_change.rpc(_lobby_game_state, "")
 	else:
 		_network_manager.game_state_change.rpc_id(player_id, _lobby_game_state, 
 												  _players[player_id].display_name)
