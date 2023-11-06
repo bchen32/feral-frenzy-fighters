@@ -90,8 +90,6 @@ func game_state_change(game_state: NetworkGameState, display_name: String):
 			get_tree().change_scene_to_file("res://levels/lobby.tscn")
 		NetworkManager.NetworkGameState.IN_FIRST_CUTSCENE:
 			Globals.cutscene_player_end_game = false
-			Globals.cutscene_player_video_path = ""
-			Globals.audio_stream_to_play_during_cutscene = null
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
 		NetworkManager.NetworkGameState.CHARACTER_SELECT:
 			get_tree().change_scene_to_file("res://gui/menus/character_select.tscn")
@@ -145,8 +143,8 @@ func ack_character_stage_screen_character_change(player_num: int, character: int
 	character_stage_screen_change_acked.emit(player_num, character)
 
 @rpc("authority", "reliable", "call_remote")
-func ack_character_stage_screen_lock_in(player_num: int):
-	character_stage_screen_lock_in_acked.emit(player_num)
+func ack_character_stage_screen_lock_in(player_num: int, character_stage: int):
+	character_stage_screen_lock_in_acked.emit(player_num, character_stage)
 
 @rpc("authority", "reliable", "call_remote")
 func stage_selected(stage_selected: int):

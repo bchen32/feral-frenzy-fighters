@@ -22,6 +22,8 @@ const TARGET_PLAYERS = 2
 const START_STOCK = 5
 const START_PERCENTAGE = 0
 
+var selected_stage: int = -1
+
 var _lobby_game_state: NetworkGameState = NetworkGameState.LOBBY
 var _players: Dictionary = {}
 var _network_manager: NetworkManager
@@ -95,12 +97,12 @@ func remove_player(player_id: int):
 			_network_manager.game_state_change.rpc_id(player_key, NetworkGameState.LOBBY, "")
 
 func game_state_change_request(sender_id: int, requested_game_state: Lobby.NetworkGameState):
-	if _lobby_game_state == NetworkGameState.INFIRSTCUTSCENE and \
-	  requested_game_state == NetworkGameState.INBATTLE:
+	if (_lobby_game_state == NetworkGameState.INFIRSTCUTSCENE and requested_game_state == NetworkGameState.INBATTLE) or \
+	   (_lobby_game_state == NetworkGameState.STAGE_SELECT and requested_game_state == NetworkGameState.INFIRSTCUTSCENE):
 		_ready_to_battle[sender_id] = true
 		
 		if len(_ready_to_battle) == len(_players):
-			_lobby_game_state = NetworkGameState.INBATTLE
+			_lobby_game_state = requested_game_state
 			
 			for player_key in _players:
 				_network_manager.game_state_change.rpc_id(player_key, _lobby_game_state, "")
@@ -133,7 +135,7 @@ func update():
 			"flip_h": player.flip_h
 		}
 		
-		player_datas[player.player_num] = player_data
+		player_datas[player.player_num - 1] = player_data
 	
 	for player_key in _players:
 		_network_manager.game_information.rpc_id(player_key, player_datas)

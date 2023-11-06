@@ -196,7 +196,10 @@ func animate_selection(icon):
 	tween.tween_property(icon, "global_position", viewport_center-icon_size/2, .5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	await get_tree().create_timer(.5).timeout
 	
-	if not NetworkManager.is_connected:
+	if NetworkManager.is_connected:
+		NetworkManager.game_state_change_request.rpc(
+			NetworkManager.NetworkGameState.IN_FIRST_CUTSCENE)
+	else:
 		go_to_stage()
 
 func go_to_stage():
@@ -241,7 +244,7 @@ func _on_stage_screen_change_acked(player_num: int, stage: int):
 			p2_selection[p2_stage].texture_normal = bluebox
 			on_stage2_change(false)
 
-func _on_stage_screen_lock_in_acked(player_num: int):
+func _on_stage_screen_lock_in_acked(player_num: int, stage: int):
 	if player_num == 1:
 		p1_selection[p1_stage].modulate.a = 1
 	else:

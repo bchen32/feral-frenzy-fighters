@@ -131,6 +131,11 @@ func _process(delta):
 func become_inactive():
 	var tween := create_tween()
 	tween.tween_property($Background, "global_position", Vector2(get_viewport().size.x,0), .5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	
+	if NetworkManager.is_connected:
+		NetworkManager.character_stage_screen_change_acked.disconnect(_on_character_screen_change_acked)
+		NetworkManager.character_stage_screen_lock_in_acked.connect(_on_character_screen_lock_in_acked)
+	
 	set_process(false)
 	get_parent().set_process(true)
 	await get_tree().create_timer(.5).timeout
@@ -149,11 +154,15 @@ func _on_character_screen_change_acked(player_num: int, character: int):
 			p2_selection[p2_character].texture_normal = bluebox
 			on_character2_change(false)
 
-func _on_character_screen_lock_in_acked(player_num: int):
+func _on_character_screen_lock_in_acked(player_num: int, character: int):
 	if player_num == 1:
+		p1_character = character
 		$Background/Player1Text/P1Ready.show()
 	else:
+		p2_character = character
 		$Background/Player2Text/P2Ready.show()
+	
+	_update_beginning_cutscene()
 
 func on_character1_change(send_networked_response: bool = true):
 	if send_networked_response and NetworkManager.is_connected:
@@ -170,6 +179,8 @@ func on_character1_change(send_networked_response: bool = true):
 			p1_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_display.png")
 		2:
 			p1_text.text = str("Turtle")
+	
+	_update_beginning_cutscene()
 
 func on_character2_change(send_networked_response: bool = true):
 	if send_networked_response and NetworkManager.is_connected:
@@ -185,19 +196,11 @@ func on_character2_change(send_networked_response: bool = true):
 			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_display.png")
 		2:
 			p2_text.text = str("Turtle")
+	
+	_update_beginning_cutscene()
 
-func on_locked_in():
-	#SET PLAYER CHARACTERS HERE
-	
-	Globals.player_sprites.clear()
-	
-	for player_text in [p1_text, p2_text]:
-		Globals.player_sprites.append(player_text.text.to_lower())
-	
-	$MenuSound.play()
-	if p1_locked and p2_locked and \
-	   (not NetworkManager.is_connected or NetworkManager._network_game_state == NetworkManager.NetworkGameState.STAGE_SELECT):
-		# setting up the beginning cutscene
+func _update_beginning_cutscene():
+	# setting up the beginning cutscene
 		match p1_character:
 			0:
 				if p1_character == p2_character:
@@ -216,10 +219,26 @@ func on_locked_in():
 			2:
 				# turtle! need to impl!
 				pass
-		
+
+func on_locked_in():
+	#SET PLAYER CHARACTERS HERE
+	
+	Globals.player_sprites.clear()
+	
+	for player_text in [p1_text, p2_text]:
+		Globals.player_sprites.append(player_text.text.to_lower())
+	
+	$MenuSound.play()
+	if p1_locked and p2_locked and \
+	   (not NetworkManager.is_connected or NetworkManager._network_game_state == NetworkManager.NetworkGameState.STAGE_SELECT):
 		var stage_select = preload("res://gui/menus/stage_select.tscn").instantiate()
 		stage_select.position.x = get_viewport().size.x
 		add_child(stage_select)
+		
+		if NetworkManager.is_connected:
+			NetworkManager.character_stage_screen_change_acked.disconnect(_on_character_screen_change_acked)
+			NetworkManager.character_stage_screen_lock_in_acked.connect(_on_character_screen_lock_in_acked)
+		
 		self.set_process(false)
 
 
