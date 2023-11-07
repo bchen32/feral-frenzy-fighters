@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://sjcnk7j4e0i4"]
 
 [ext_resource type="Script" path="res://gui/menus/cutscene_player.gd" id="1_w1rcn"]
-[ext_resource type="Texture2D" uid="uid://cjdwrx85ltdgh" path="res://levels/tutorial/UI/frames/skip/right_bumper-1.png" id="2_svh3y"]
-[ext_resource type="Texture2D" uid="uid://c8iob8v6at1lp" path="res://levels/tutorial/UI/frames/skip/right_bumper-2.png" id="3_exogg"]
-[ext_resource type="Texture2D" uid="uid://csfw0i44hrjp3" path="res://levels/tutorial/UI/frames/skip/keyboard_ENTER-1.png" id="4_xj16s"]
-[ext_resource type="Texture2D" uid="uid://bdnq05l7ri03b" path="res://levels/tutorial/UI/frames/skip/keyboard_ENTER-2.png" id="5_ltxo2"]
+[ext_resource type="Texture2D" uid="uid://cjdwrx85ltdgh" path="res://levels/tutorial/ui/frames/skip/right_bumper-1.png" id="2_svh3y"]
+[ext_resource type="Texture2D" uid="uid://c8iob8v6at1lp" path="res://levels/tutorial/ui/frames/skip/right_bumper-2.png" id="3_exogg"]
+[ext_resource type="Texture2D" uid="uid://csfw0i44hrjp3" path="res://levels/tutorial/ui/frames/skip/keyboard_ENTER-1.png" id="4_xj16s"]
+[ext_resource type="Texture2D" uid="uid://bdnq05l7ri03b" path="res://levels/tutorial/ui/frames/skip/keyboard_ENTER-2.png" id="5_ltxo2"]
 [ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="6_gc1yg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ns4u7"]

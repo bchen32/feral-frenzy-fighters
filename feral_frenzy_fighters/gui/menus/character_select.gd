@@ -126,24 +126,26 @@ func on_character1_change():
 	match (p1_character):
 		0:
 			p1_text.text = str("Cat")
-			p1_portrait.texture = preload("res://gui/hud/sprites/cs_icons/cat_display.png")
+			p1_portrait.texture = preload("res://gui/hud/sprites/cs_icons/cat_purple.png")
 		1:
 			p1_text.text = str("Fish")
-			p1_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_display.png")
+			p1_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_purple.png")
 		2:
 			p1_text.text = str("Turtle")
+			p1_portrait.texture = preload("res://gui/hud/sprites/cs_icons/turtle_purple.png")
 			
 func on_character2_change():
 	$P2Sounds.play()
 	match (p2_character):
 		0:
 			p2_text.text = str("Cat")
-			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/cat_display.png")
+			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/cat_blue.png")
 		1:
 			p2_text.text = str("Fish")
-			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_display.png")
+			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_blue.png")
 		2:
 			p2_text.text = str("Turtle")
+			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/turtle_blue.png")
 
 func on_locked_in():
 	#SET PLAYER CHARACTERS HERE

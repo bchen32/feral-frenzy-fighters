@@ -3,18 +3,19 @@
 [ext_resource type="Script" path="res://gui/menus/character_select.gd" id="1_l7hwe"]
 [ext_resource type="Texture2D" uid="uid://dpaluibvjuaoc" path="res://gui/menus/sprites/screens/screen_background.png" id="2_p5ahl"]
 [ext_resource type="Texture2D" uid="uid://b7cpj70v5wlqx" path="res://gui/menus/sprites/screens/character_select/player1_character_card.png" id="3_3xujn"]
-[ext_resource type="Texture2D" uid="uid://cwik1s35algkf" path="res://gui/hud/sprites/head_icons/cat_head_icon_blue.png" id="3_slkil"]
 [ext_resource type="Texture2D" uid="uid://2f40vlydd1q5" path="res://gui/menus/sprites/screens/character_select/character_select_background_head.png" id="3_tiawo"]
 [ext_resource type="Texture2D" uid="uid://b5jjsc1wyfmc0" path="res://gui/menus/sprites/screens/examples/new_characters_screen_example (2).png" id="3_y07iv"]
 [ext_resource type="Texture2D" uid="uid://cw1jrbqv2ua74" path="res://gui/menus/sprites/screens/character_select/player2_character_card.png" id="4_2v6uk"]
 [ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="4_dln4l"]
-[ext_resource type="Texture2D" uid="uid://deoofxekcwx7e" path="res://gui/hud/sprites/cs_icons/cat_display.png" id="8_21ubo"]
+[ext_resource type="Texture2D" uid="uid://cho3ld66pofbw" path="res://gui/hud/sprites/head_icons/cat_icon_character_select.png" id="9_1e8s7"]
+[ext_resource type="Texture2D" uid="uid://cs41yvkraiob4" path="res://gui/hud/sprites/head_icons/fish_icon_character_select.png" id="10_c2olc"]
 [ext_resource type="Texture2D" uid="uid://hmrruicpuegu" path="res://gui/hud/sprites/cs_icons/selection_box.png" id="11_0l6ms"]
-[ext_resource type="Texture2D" uid="uid://cq2brr07edjpi" path="res://gui/hud/sprites/head_icons/fish_head_icon_purple.png" id="11_wfj7e"]
+[ext_resource type="Texture2D" uid="uid://dumo2066ytmjc" path="res://gui/hud/sprites/head_icons/turtle_icon_character_select.png" id="11_bpcki"]
 [ext_resource type="AudioStream" uid="uid://coneg16uuc06h" path="res://gui/menus/sfx/button.wav" id="12_d8f5d"]
-[ext_resource type="Texture2D" uid="uid://7ycsnfvdwx6r" path="res://gui/hud/sprites/head_icons/turtle_head_icon.png" id="12_ex2b8"]
 [ext_resource type="AudioStream" uid="uid://bw1ubqplxxg77" path="res://gui/menus/sfx/select.wav" id="13_i8kyi"]
 [ext_resource type="Texture2D" uid="uid://b258wqkbna8yg" path="res://gui/menus/sprites/screens/titles/characters_ui.png" id="15_ys53q"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w6u7p"]
 
 [sub_resource type="Theme" id="Theme_5uuse"]
 default_font = ExtResource("4_dln4l")
@@ -71,13 +72,13 @@ theme_override_constants/separation = 1050
 
 [node name="Player1Portrait" type="TextureRect" parent="Background/PlayerPortraits"]
 layout_mode = 2
-texture = ExtResource("8_21ubo")
+texture = SubResource("CompressedTexture2D_w6u7p")
 expand_mode = 3
 flip_h = true
 
 [node name="Player2Portrait" type="TextureRect" parent="Background/PlayerPortraits"]
 layout_mode = 2
-texture = ExtResource("8_21ubo")
+texture = SubResource("CompressedTexture2D_w6u7p")
 expand_mode = 3
 
 [node name="Player1Text" type="RichTextLabel" parent="Background"]
@@ -166,13 +167,12 @@ autowrap_mode = 0
 layout_mode = 0
 offset_left = 559.0
 offset_top = 401.0
-offset_right = 1595.0
-offset_bottom = 657.0
+offset_right = 1364.0
+offset_bottom = 660.0
 theme_override_constants/separation = 50
 
 [node name="Cat" type="TextureRect" parent="Background/IconBackgrounds"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_left = NodePath("../Turtle")
 focus_neighbor_right = NodePath("../Fish")
@@ -196,11 +196,12 @@ texture = ExtResource("3_tiawo")
 
 [node name="Icons" type="HBoxContainer" parent="Background"]
 layout_mode = 0
-offset_left = 581.0
-offset_top = 414.0
-offset_right = 1617.0
-offset_bottom = 670.0
-theme_override_constants/separation = 100
+offset_left = 571.0
+offset_top = 427.0
+offset_right = 1306.0
+offset_bottom = 630.0
+scale = Vector2(1.05, 1.05)
+theme_override_constants/separation = 90
 
 [node name="Cat" type="TextureRect" parent="Background/Icons"]
 layout_mode = 2
@@ -208,24 +209,24 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_left = NodePath("../Turtle")
 focus_neighbor_right = NodePath("../Fish")
-texture = ExtResource("3_slkil")
+texture = ExtResource("9_1e8s7")
 
 [node name="Fish" type="TextureRect" parent="Background/Icons"]
+custom_minimum_size = Vector2(175, 160)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_left = NodePath("../Cat")
 focus_neighbor_right = NodePath("../Turtle")
-texture = ExtResource("11_wfj7e")
+texture = ExtResource("10_c2olc")
 
 [node name="Turtle" type="TextureRect" parent="Background/Icons"]
-modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_left = NodePath("../Fish")
 focus_neighbor_right = NodePath("../Cat")
-texture = ExtResource("12_ex2b8")
+texture = ExtResource("11_bpcki")
 
 [node name="P2Buttons" type="HBoxContainer" parent="Background"]
 layout_mode = 0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy2fuku8bbf3r"
-path="res://.godot/imported/fish_level_select_image.png-75a530a07b9c97391af4269f852263e5.ctex"
+uid="uid://c5eaonm6rhtwr"
+path="res://.godot/imported/fish_purple.png-306d5f77c2de0a6963d4865ff25e2fac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/hud/sprites/stage_select_icons/fish_level_select_image.png"
-dest_files=["res://.godot/imported/fish_level_select_image.png-75a530a07b9c97391af4269f852263e5.ctex"]
+source_file="res://gui/hud/sprites/cs_icons/fish_purple.png"
+dest_files=["res://.godot/imported/fish_purple.png-306d5f77c2de0a6963d4865ff25e2fac.ctex"]
 
 [params]
 
