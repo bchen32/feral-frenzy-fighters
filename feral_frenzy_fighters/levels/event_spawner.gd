@@ -16,6 +16,12 @@ var progression_rate = 0.1 # percentage of how much event rate will progress eac
 func _ready():
 	current_event_rate = longest_event_rate
 	countdown_new_event()
+	
+	NetworkManager.on_send_env_data.connect(_on_send_env_data)
+
+func _on_send_env_data(env_name: String, env_data: Array):
+	if env_name == "event":
+		_choose_events(false, env_data[0])
 
 func _process(_delta):
 	if start_new_random_event == true and len(event_array) > 0:
@@ -23,16 +29,22 @@ func _process(_delta):
 		change_set_overview(true)
 		current_event_happening = true
 		
-		_choose_events(insert_external_event)
+		if NetworkManager.is_connected and not insert_external_event:
+			NetworkManager.get_env_data.rpc("event")
+		else:
+			_choose_events(insert_external_event)
 		
 		insert_external_event = false
 		start_new_random_event = false
 
-func _choose_events(external: bool):
+func _choose_events(external: bool, pre_chosen_event: int = -1):
 	await get_tree().create_timer(1).timeout # delay to let camera adjust before new event
 	
 	if external == false:
 		var chosen_event = event_array.pick_random()
+		
+		if pre_chosen_event >= 0:
+			chosen_event = event_array[pre_chosen_event]
 		
 		var current_event = chosen_event.instantiate()
 		add_child(current_event)

@@ -133,6 +133,10 @@ func get_env_data(sender_id: int, env_name: String):
 					env_data.push_back(Vector2(rand_x, rand_y))
 				
 				env_data.push_back(Vector2(1539, 629))
+			"event":
+				var random_event: int = randi_range(0, 1)
+				
+				env_data.push_back(random_event)
 		
 		for player_key in _players:
 			_network_manager.send_env_data.rpc_id(player_key, env_name, env_data)
