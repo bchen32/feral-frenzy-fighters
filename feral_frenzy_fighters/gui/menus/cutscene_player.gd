@@ -94,7 +94,7 @@ func _on_skip_controller_ready():
 
 
 func _on_skip_keyboard_animation_looped():
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(5).timeout
 	get_node("skip_keyboard").hide()
 	get_node("skip_controller").hide()
 
