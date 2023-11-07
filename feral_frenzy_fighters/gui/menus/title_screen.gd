@@ -80,10 +80,8 @@ func _on_play_button_mouse_exited():
 		children.hide()
 
 func _on_options_button_pressed():
-	ui.next($MainMenu/OptionsDialog)
+	ui.next($"MainMenu/AudioSliders")
 	_on_button_selected()
-
-
 func _on_host_button_pressed():
 	NetworkManager.become_host()
 
@@ -107,10 +105,4 @@ func _on_tutorial_button_pressed():
 	get_tree().change_scene_to_file("res://levels/tutorial/tutorial.tscn")
 	
 
-func _on_volume_button_pressed():
-	ui.next($MainMenu/AudioSliders)
-	_on_button_selected()
 
-
-func _on_back_button_pressed():
-	ui.back()
