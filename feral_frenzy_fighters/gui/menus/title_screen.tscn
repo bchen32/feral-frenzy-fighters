@@ -24,10 +24,10 @@
 [ext_resource type="Texture2D" uid="uid://rb31ehfgk53n" path="res://gui/menus/sprites/screens/examples/options_example.png" id="24_i6uum"]
 [ext_resource type="Texture2D" uid="uid://b5jm0t8cpmgq6" path="res://gui/menus/sprites/screens/faded_black.png" id="25_bmnas"]
 [ext_resource type="Texture2D" uid="uid://cnadtlxa56n4j" path="res://gui/menus/sprites/screens/pop_up_blue.png" id="26_ds1jq"]
-[ext_resource type="Texture2D" uid="uid://p4igqy63ikte" path="res://gui/menus/sprites/screens/titles/volume_ui.png" id="26_oblpl"]
+[ext_resource type="Texture2D" path="res://gui/menus/sprites/screens/titles/volume_ui.png" id="26_oblpl"]
 [ext_resource type="Texture2D" uid="uid://crx7dfnmm8rsn" path="res://gui/menus/sprites/screens/titles/multiplayer_ui.png" id="27_e51u0"]
-[ext_resource type="Texture2D" uid="uid://b0w03hxdngiuh" path="res://gui/menus/sprites/screens/icons/music_icon.png" id="27_ush3f"]
-[ext_resource type="Texture2D" uid="uid://cv2ixefe0xryy" path="res://gui/menus/sprites/screens/icons/sound_icon_loud.png" id="28_122wv"]
+[ext_resource type="Texture2D" path="res://gui/menus/sprites/screens/icons/music_icon.png" id="27_ush3f"]
+[ext_resource type="Texture2D" path="res://gui/menus/sprites/screens/icons/sound_icon_loud.png" id="28_122wv"]
 [ext_resource type="Script" path="res://gui/menus/icon_button.gd" id="28_mlo4o"]
 [ext_resource type="Texture2D" uid="uid://diipaw50krrur" path="res://gui/menus/sprites/buttons/button_icon.png" id="29_pqkes"]
 [ext_resource type="Texture2D" uid="uid://g48dhv3srl7d" path="res://gui/menus/sprites/screens/titles/options_ui.png" id="30_8lp80"]
@@ -35,7 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://qadgeqbcf0jq" path="res://gui/menus/sprites/buttons/button_icon_highlight.png" id="31_jv14s"]
 [ext_resource type="Texture2D" uid="uid://b0ciegbjevlvd" path="res://gui/menus/sprites/buttons/icons/settings_icon.png" id="32_abyt0"]
 [ext_resource type="AudioStream" uid="uid://coneg16uuc06h" path="res://gui/menus/sfx/button.wav" id="34_r00cv"]
-[ext_resource type="Texture2D" uid="uid://dmlfid0hfdu2w" path="res://gui/menus/sprites/screens/examples/volume_example.png" id="34_xltnq"]
+[ext_resource type="Texture2D" path="res://gui/menus/sprites/screens/examples/volume_example.png" id="34_xltnq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vu2cy"]
 texture = ExtResource("11_jd057")
@@ -487,6 +487,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AudioSliders" type="Control" parent="MainMenu"]
+visible = false
 anchors_preset = 0
 scale = Vector2(1.92, 1.92)
 
