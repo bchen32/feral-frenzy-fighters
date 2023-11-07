@@ -14,6 +14,7 @@ signal env_hit_acked
 signal character_stage_screen_change_acked
 signal character_stage_screen_lock_in_acked
 signal on_stage_selected
+signal on_send_env_data
 
 enum NetworkGameState {
 	NOT_CONNECTED,
@@ -150,6 +151,10 @@ func ack_character_stage_screen_lock_in(player_num: int, character_stage: int):
 func stage_selected(stage_selected: int):
 	on_stage_selected.emit(stage_selected)
 
+@rpc("authority", "reliable", "call_remote")
+func send_env_data(env_name: String, env_data: Array):
+	on_send_env_data.emit(env_name, env_data)
+
 # Code execed on server
 @rpc("any_peer", "unreliable", "call_remote")
 func update_game_information(player_position: Vector2, player_state: Globals.States, flip_h: bool):
@@ -181,4 +186,8 @@ func character_stage_screen_character_change(character: int):
 
 @rpc("any_peer", "reliable", "call_remote")
 func report_chat(emoji: ChatEmoji):
+	pass
+
+@rpc("any_peer", "reliable", "call_remote")
+func get_env_data(env_name: String):
 	pass

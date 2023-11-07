@@ -143,6 +143,13 @@ func report_env_hit(env_part: String, health_change: float):
 		ack_env_hit.rpc_id(player_key, env_part, health_change)
 
 @rpc("any_peer", "reliable", "call_remote")
+func get_env_data(env_name: String):
+	var sender_id = multiplayer.get_remote_sender_id()
+	var lobby = _players_in_which_lobbies[sender_id]
+	
+	lobby.get_env_data(sender_id, env_name)
+
+@rpc("any_peer", "reliable", "call_remote")
 func character_stage_screen_character_change(character_stage: int):
 	var sender_id = multiplayer.get_remote_sender_id()
 	var lobby = _players_in_which_lobbies[sender_id]
@@ -264,4 +271,8 @@ func ack_character_stage_screen_lock_in(player_num: int, character_stage: int):
 
 @rpc("authority", "reliable", "call_remote")
 func stage_selected(stage_selected: int):
+	pass
+
+@rpc("authority", "reliable", "call_remote")
+func send_env_data(env_name: String, env_data: Array):
 	pass

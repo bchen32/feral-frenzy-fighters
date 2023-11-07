@@ -28,6 +28,7 @@ var _lobby_game_state: NetworkGameState = NetworkGameState.LOBBY
 var _players: Dictionary = {}
 var _network_manager: NetworkManager
 var _ready_to_battle: Dictionary = {}
+var _env_data: Dictionary = {}
 
 func _init(network_manager: NetworkManager):
 	_network_manager = network_manager
@@ -108,6 +109,35 @@ func game_state_change_request(sender_id: int, requested_game_state: Lobby.Netwo
 				_network_manager.game_state_change.rpc_id(player_key, _lobby_game_state, "")
 			
 			_ready_to_battle = {}
+
+func get_env_data(sender_id: int, env_name: String):
+	if env_name not in _env_data:
+		_env_data[env_name] = {sender_id: true}
+	else:
+		_env_data[env_name][sender_id] = true
+	
+	if len(_env_data[env_name]) >= len(_players):
+		var env_data: Array = []
+		
+		match env_name:
+			"plasma_ball":
+				for i in range(5):
+					var rand_x = randi_range(0, 1920)
+					var rand_y = randi_range(0, 1080)
+					
+					if i != 0:
+						while env_data[i - 1].distance_to(Vector2(rand_x, rand_y)) < 1000:
+							rand_x = randi_range(0, 1920)
+							rand_y = randi_range(0, 1080)
+					
+					env_data.push_back(Vector2(rand_x, rand_y))
+				
+				env_data.push_back(Vector2(1539, 629))
+		
+		for player_key in _players:
+			_network_manager.send_env_data.rpc_id(player_key, env_name, env_data)
+		
+		_env_data[env_name] = {}
 
 func change_game_state(game_state: Lobby.NetworkGameState):
 	if _lobby_game_state != game_state:
