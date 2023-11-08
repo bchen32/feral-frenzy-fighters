@@ -4,7 +4,7 @@ enum Wall_Plant_States {UNSPROUTED, SPROUTED, BURSTED}
 var wall_plant_state = Wall_Plant_States.UNSPROUTED
 
 var bursted_length = 10
-var damage_rate = 0.5
+var damage_rate = 0.25
 
 var gatekeep_damage = false
 
@@ -32,18 +32,18 @@ func _process(delta):
 
 func _change_health(health_change: float):
 	if wall_plant_state == Wall_Plant_States.SPROUTED && gatekeep_damage == false:
-		self.health += health_change
-		
-		anim.play("Damage")
-		await anim.animation_finished
-		
-		if self.health <= 0:
+		if self.health > 0:
+			self.health += health_change
+			
+			anim.play("Damage")
+			await anim.animation_finished
+			
+			if !hitbox.get_overlapping_bodies().is_empty():
+				anim.play("Indication")
+		elif self.health <= 0:
 			_change_state(2)
 			# state doesn't change until AFTER anim = dmg can still happen after health <= 0, so gatekeep bool implemented
 			gatekeep_damage = true
-		
-		if !hitbox.get_overlapping_bodies().is_empty():
-			anim.play("Indication")
 
 func _change_state(index_state_to_change_to: int):
 	# animation plays first
@@ -70,8 +70,6 @@ func _change_state(index_state_to_change_to: int):
 			gatekeep_damage = false
 			$WallPlantSFX.stream = SFX[0]
 			$WallPlantSFX.play()
-			await get_tree().create_timer(10).timeout # testing only
-			_change_state(2)
 		Wall_Plant_States.BURSTED: # called when health reaches 0 from SPROUTED
 			reset_hitbox()
 			await get_tree().create_timer(bursted_length).timeout
@@ -86,17 +84,17 @@ func reset_hitbox(): # wall plant has a "poison" effect, so it keeps resetting h
 		sprite.add_child(wall_plant_hitbox)
 		
 		# width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-		wall_plant_hitbox.setup(80, 80, 0, 0, 5, 1.25, 0, 0)
+		wall_plant_hitbox.setup(80, 80, 0, 0, 2, 0.5, 0, 0)
 		
 		await get_tree().create_timer(damage_rate).timeout
 		reset_hitbox()
 
 func _on_hitbox_body_entered(body):
-	if wall_plant_state == Wall_Plant_States.SPROUTED:
+	if wall_plant_state == Wall_Plant_States.SPROUTED && gatekeep_damage == false:
 		anim.play("Indication")
 
 
 func _on_hitbox_body_exited(body):
-	if wall_plant_state == Wall_Plant_States.SPROUTED:
+	if wall_plant_state == Wall_Plant_States.SPROUTED && gatekeep_damage == false:
 		if hitbox.get_overlapping_bodies().is_empty():
-			anim.play("RESET")
+			anim.play("KeepSprouted")

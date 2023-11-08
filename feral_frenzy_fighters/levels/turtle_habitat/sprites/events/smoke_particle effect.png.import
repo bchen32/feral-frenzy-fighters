@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmmaph3hlmm3c"
-path="res://.godot/imported/water_complete_with_lilypads_flowers.png-da6825a2b95586159e12cd0e0e08e34a.ctex"
+uid="uid://lsjwk1pklcjm"
+path="res://.godot/imported/smoke_particle effect.png-081065978836372c5718a3779b4c2468.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/turtle_habitat/sprites/events/water_complete_with_lilypads_flowers.png"
-dest_files=["res://.godot/imported/water_complete_with_lilypads_flowers.png-da6825a2b95586159e12cd0e0e08e34a.ctex"]
+source_file="res://levels/turtle_habitat/sprites/events/smoke_particle effect.png"
+dest_files=["res://.godot/imported/smoke_particle effect.png-081065978836372c5718a3779b4c2468.ctex"]
 
 [params]
 
