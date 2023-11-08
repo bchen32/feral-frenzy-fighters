@@ -11,13 +11,13 @@ scale = Vector2(0.1, 0.1)
 sprite_frames = ExtResource("1_l7lgg")
 animation = &"purple_injured_dash_attack"
 
-[node name="Player1Icon2" type="Sprite2D" parent="."]
+[node name="Player1Icon" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -64)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_ccn5u")
 
-[node name="Player2Icon2" type="Sprite2D" parent="."]
+[node name="Player2Icon" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -64)
 scale = Vector2(0.2, 0.2)
