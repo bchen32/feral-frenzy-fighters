@@ -275,7 +275,19 @@ func play_anim(animation_name: String):
 						color = "purple"
 					player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_injured_icon_" + color + ".png")
 	else:
-		anim_player.play("_".join([color, animation_name]))
+		if character_type == "cat":
+			if in_water():
+				anim_player.play("_".join([color, animation_name, "bubble"]))
+			else:
+				anim_player.play("_".join([color, animation_name]))
+		elif character_type == "fish":
+			if in_water():
+				anim_player.play("_".join([color, animation_name, "no_bubble"]))
+			else:
+				anim_player.play("_".join([color, animation_name]))
+		else:
+			anim_player.play("_".join([color, animation_name]))
+		
 
 
 func play_audio(audio_type: AudioType):
