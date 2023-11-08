@@ -262,6 +262,12 @@ shader_parameter/tint = Vector4(0, 0, 0, -1)
 
 [node name="FishTankLevel" type="Node2D"]
 
+[node name="P1Spawn" type="Node2D" parent="."]
+position = Vector2(500, 700)
+
+[node name="P2Spawn" type="Node2D" parent="."]
+position = Vector2(1420, 700)
+
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="FishLevelWallpaper" type="Sprite2D" parent="Environment"]
