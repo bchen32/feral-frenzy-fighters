@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://gui/menus/stage_select.gd" id="1_u3a4l"]
 [ext_resource type="Texture2D" uid="uid://l7f5xmyfd33c" path="res://gui/menus/sprites/screens/examples/new_stages_example.png" id="3_5ongw"]
 [ext_resource type="Texture2D" uid="uid://b2rt3pcgemsmr" path="res://gui/hud/sprites/stage_select_icons/cat_level_select_image.png" id="3_ti4ec"]
-[ext_resource type="Texture2D" uid="uid://dl1j8fhw67dbc" path="res://gui/hud/sprites/stage_select_icons/stages_select_background.png" id="3_uogas"]
-[ext_resource type="Texture2D" uid="uid://bdev7bnl4emwa" path="res://gui/hud/sprites/stage_select_icons/fish_level_select_image.png" id="4_d7bvs"]
+[ext_resource type="Texture2D" uid="uid://dy2fuku8bbf3r" path="res://gui/hud/sprites/stage_select_icons/fish_level_select_image.png" id="4_d7bvs"]
 [ext_resource type="Texture2D" uid="uid://bniprnwe6473y" path="res://gui/menus/sprites/screens/titles/stages_ui (1).png" id="4_kpv76"]
 [ext_resource type="Texture2D" uid="uid://cw7myyjxxr6n8" path="res://gui/hud/sprites/stage_select_icons/random_select_stage.png" id="4_tsooh"]
 [ext_resource type="AudioStream" uid="uid://coneg16uuc06h" path="res://gui/menus/sfx/button.wav" id="7_3tqbt"]
+[ext_resource type="Texture2D" uid="uid://bf2ni8gvvpyfo" path="res://gui/hud/sprites/stage_select_icons/turtle_level_select_image.png" id="7_vuxiy"]
 [ext_resource type="AudioStream" uid="uid://bw1ubqplxxg77" path="res://gui/menus/sfx/select.wav" id="8_myv1g"]
 
 [node name="StageSelect" type="Control"]
@@ -61,9 +61,8 @@ theme_override_constants/separation = 3
 alignment = 1
 
 [node name="TurtleStageIcon" type="TextureRect" parent="Background/StageIconsContainer/StageIconsBottom"]
-modulate = Color(0, 0, 0, 1)
 layout_mode = 2
-texture = ExtResource("3_uogas")
+texture = ExtResource("7_vuxiy")
 
 [node name="Player2ButtonsContainer" type="VBoxContainer" parent="Background"]
 layout_mode = 0

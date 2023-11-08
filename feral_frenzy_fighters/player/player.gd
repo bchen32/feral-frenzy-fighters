@@ -490,6 +490,10 @@ func _physics_process(delta: float):
 	# if we are the server setup, we need to tell InputManager which player to get inputs for
 	if character_type != "beanbag":
 		set_collision_mask_value(4, not InputManager.is_action_pressed(get_input("down")))  # drop through platforms while down is held
+		if InputManager.is_action_just_pressed(get_input("pause")) && !NetworkManager.is_connected:
+			get_tree().paused = !get_tree().paused
+			var pause_menu = preload("res://pause_menu.tscn").instantiate()
+			get_parent().camera.get_node("CanvasLayer").add_child(pause_menu)
 	frame += 1
 	state_machine.update(delta)
 	move_and_slide()

@@ -8,8 +8,8 @@ extends Control
 var ui
 
 func _ready():
-	music_slider.value = 0 if Globals.music_val == -1 else Globals.music_val
-	sfx_slider.value = 0 if Globals.sfx_val == -1 else Globals.sfx_val
+	music_slider.value = 25 if Globals.music_val == -1 else Globals.music_val
+	sfx_slider.value = 125 if Globals.sfx_val == -1 else Globals.sfx_val
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(music_slider.value / 100))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(sfx_slider.value / 100))
 	$"MainMenu/Title/ButtonsVBox/Play/PlayButton".grab_focus()
@@ -80,8 +80,10 @@ func _on_play_button_mouse_exited():
 		children.hide()
 
 func _on_options_button_pressed():
-	ui.next($"MainMenu/AudioSliders")
+	ui.next($MainMenu/OptionsDialog)
 	_on_button_selected()
+
+
 func _on_host_button_pressed():
 	NetworkManager.become_host()
 
@@ -103,3 +105,17 @@ func _on_button_selected():
 
 func _on_tutorial_button_pressed():
 	get_tree().change_scene_to_file("res://levels/tutorial/tutorial.tscn")
+	
+func _on_volume_button_pressed():
+	ui.next($MainMenu/AudioSliders)
+	_on_button_selected()
+
+func _on_moveset_button_pressed():
+	ui.next($MainMenu/MovesetDialog)
+	_on_button_selected()
+
+func _on_back_button_pressed():
+	ui.back()
+
+func _on_close_button_button_pressed():
+	ui.back()

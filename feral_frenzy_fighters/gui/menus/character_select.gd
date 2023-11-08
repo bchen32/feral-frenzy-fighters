@@ -65,7 +65,7 @@ func _process(delta):
 		else:
 			become_inactive()
 	if !p1_locked:
-		if is_action_just_pressed(1, "left"):
+		if is_action_just_pressed(1, "left") or is_action_just_pressed(1, "ui_left"):
 			if p1_character <= 0:
 				p1_selection[p1_character].texture_normal = graybox
 				p1_selection[len(p1_selection)-1].texture_normal = purplebox
@@ -76,8 +76,7 @@ func _process(delta):
 				p1_character-=1
 				p1_selection[p1_character].texture_normal = purplebox
 				on_character1_change()
-				
-		if is_action_just_pressed(1, "right"):
+		if is_action_just_pressed(1, "right") or is_action_just_pressed(1, "ui_right"):
 			if p1_character >= len(p1_selection)-1:
 				p1_selection[p1_character].texture_normal = graybox
 				p1_selection[0].texture_normal = purplebox
@@ -96,7 +95,7 @@ func _process(delta):
 			on_locked_in()
 	
 	if !p2_locked:
-		if is_action_just_pressed(2, "left"):
+		if is_action_just_pressed(2, "left") or is_action_just_pressed(2, "ui_left"):
 			if p2_character <= 0:
 				p2_selection[p2_character].texture_normal = graybox
 				p2_selection[len(p2_selection)-1].texture_normal = bluebox
@@ -107,8 +106,7 @@ func _process(delta):
 				p2_character-=1
 				p2_selection[p2_character].texture_normal = bluebox
 				on_character2_change()
-
-		if is_action_just_pressed(2, "right"):
+		if is_action_just_pressed(2, "right") or is_action_just_pressed(2, "ui_right"):
 			if p2_character >= len(p2_selection)-1:
 				p2_selection[p2_character].texture_normal = graybox
 				p2_selection[0].texture_normal = bluebox
@@ -172,30 +170,29 @@ func on_character1_change(send_networked_response: bool = true):
 	match (p1_character):
 		0:
 			p1_text.text = str("Cat")
-			p1_portrait.texture = preload("res://gui/hud/sprites/cs_icons/cat_display.png")
+			p1_portrait.texture = preload("res://gui/hud/sprites/cs_icons/cat_purple.png")
 		1:
 			p1_text.text = str("Fish")
-			p1_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_display.png")
+			p1_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_purple.png")
 		2:
 			p1_text.text = str("Turtle")
-	
+			p1_portrait.texture = preload("res://gui/hud/sprites/cs_icons/turtle_purple.png")
 	_update_beginning_cutscene()
 
 func on_character2_change(send_networked_response: bool = true):
 	if send_networked_response and NetworkManager.is_connected:
 		NetworkManager.character_stage_screen_character_change.rpc(p2_character)
-	
 	$P2Sounds.play()
 	match (p2_character):
 		0:
 			p2_text.text = str("Cat")
-			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/cat_display.png")
+			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/cat_blue.png")
 		1:
 			p2_text.text = str("Fish")
-			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_display.png")
+			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_blue.png")
 		2:
 			p2_text.text = str("Turtle")
-	
+			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/turtle_blue.png")	
 	_update_beginning_cutscene()
 
 func _update_beginning_cutscene():
