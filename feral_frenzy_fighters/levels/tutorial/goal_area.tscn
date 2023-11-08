@@ -31,15 +31,21 @@ _data = {
 script = ExtResource("1_dc4dw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 16)
+position = Vector2(0, -98)
 shape = SubResource("RectangleShape2D_2tk6l")
 debug_color = Color(0, 0.647059, 0.176471, 0.419608)
 
 [node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
 offset_left = -32.0
-offset_top = -83.0
+offset_top = -197.0
 offset_right = 32.0
-offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 0
 color = Color(1, 1, 1, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

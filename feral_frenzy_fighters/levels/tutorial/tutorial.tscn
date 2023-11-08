@@ -67,11 +67,11 @@ starting_health = 20
 destructible = false
 
 [node name="TopGoalArea" parent="Environment/CatTreeLeft" instance=ExtResource("7_b57ej")]
-position = Vector2(8, -652.222)
+position = Vector2(-2, -526)
 scale = Vector2(1, 1.11111)
 
 [node name="DashGoalArea" parent="Environment/CatTreeLeft" instance=ExtResource("7_b57ej")]
-position = Vector2(796, -958.889)
+position = Vector2(796, -830)
 scale = Vector2(1, 1.11111)
 
 [node name="CatTreeMiddle" parent="Environment" instance=ExtResource("5_1welx")]
@@ -80,7 +80,7 @@ starting_health = 30
 destructible = false
 
 [node name="AttackGoalArea" parent="Environment" instance=ExtResource("7_b57ej")]
-position = Vector2(1533, 430)
+position = Vector2(1533, 825)
 scale = Vector2(1, 3.5)
 external_trigger_area = true
 
@@ -89,19 +89,19 @@ process_mode = 4
 visible = false
 position = Vector2(1166, 776)
 scale = Vector2(1.5, 1.5)
+character_type = "beanbag"
 player_num = 2
 stocks = 1
-character_type = "beanbag"
 _damage_label = NodePath("../Player/DamageUI")
 
 [node name="Player2GoalArea" parent="Player2" instance=ExtResource("7_b57ej")]
 z_index = 1
-position = Vector2(-4, -6.66669)
+position = Vector2(-4, 40)
 scale = Vector2(0.57, 0.4)
 external_trigger_area = true
 
 [node name="RightGoalArea" parent="." instance=ExtResource("7_b57ej")]
-position = Vector2(1186, 711)
+position = Vector2(1186, 825)
 active_goal_area = true
 
 [node name="Player" parent="." node_paths=PackedStringArray("_damage_label") instance=ExtResource("3_og5f5")]
