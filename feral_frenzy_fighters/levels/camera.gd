@@ -12,7 +12,7 @@ extends Camera2D
 @export var max_zoom: float = 1.5
 @export var margin: Vector2 = Vector2(400.0, 400.0)
 @export var limit_margins: Vector2 = Vector2(0, 0)
-@export var shake_intensity: float = 20.0
+@export var shake_intensity: float = 5.0
 @export var shake_decay: float = 20.0
 @export var shake_zoom: float = 1.5
 
