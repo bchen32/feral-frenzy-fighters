@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=433 format=3 uid="uid://bmpan0xehi8df"]
+[gd_resource type="SpriteFrames" load_steps=430 format=3 uid="uid://bmpan0xehi8df"]
 
 [ext_resource type="Texture2D" uid="uid://bp3sgi724j4kp" path="res://player/cat/sprites/air_attack_neutral/alternate/Alternative_Cat_Aerial_Attack-1.png" id="1_dyq33"]
 [ext_resource type="Texture2D" uid="uid://bqstom6cetyod" path="res://player/cat/sprites/air_attack_neutral/alternate/Alternative_Cat_Aerial_Attack-2.png" id="2_1u5sg"]
@@ -63,7 +63,6 @@
 [ext_resource type="Texture2D" uid="uid://b2ydoxor0idu7" path="res://player/cat/sprites/air_attack_neutral/alternate/injured/Injured_Alternate_Aerial_Attack-3.png" id="39_vrna4"]
 [ext_resource type="Texture2D" uid="uid://c018dxsgllbjn" path="res://player/cat/sprites/dash_attack/alternate/bubble/Alternate_Cat_Dash_Attack_Bubble-5.png" id="40_3sl81"]
 [ext_resource type="Texture2D" uid="uid://8d2aclp33a74" path="res://player/cat/sprites/air_attack_neutral/alternate/injured/Injured_Alternate_Aerial_Attack-4.png" id="40_70qib"]
-[ext_resource type="Texture2D" uid="uid://6qpijnbieee6" path="res://player/cat/sprites/hit_graphic/alternate/bubble/Alternate_Cat_Damage_Graphic_Bubble-1.png" id="41_1atj3"]
 [ext_resource type="Texture2D" uid="uid://dp1fybj7x722i" path="res://player/cat/sprites/dash_attack/alternate/bubble/Alternate_Cat_Dash_Attack_Bubble-6.png" id="41_3jy4f"]
 [ext_resource type="Texture2D" uid="uid://md831mo3llyw" path="res://player/cat/sprites/air_attack_neutral/alternate/injured/Injured_Alternate_Aerial_Attack-5.png" id="41_hypx6"]
 [ext_resource type="Texture2D" uid="uid://d3w5x0eoiyq5k" path="res://player/cat/sprites/dash_attack/alternate/bubble/Alternate_Cat_Dash_Attack_Bubble-7.png" id="42_6bvli"]
@@ -320,7 +319,6 @@
 [ext_resource type="Texture2D" uid="uid://vwl46lyw818c" path="res://player/cat/sprites/walk/purple/injured/cat_injured_walk_purple_5.png" id="166_0arx1"]
 [ext_resource type="Texture2D" uid="uid://dqww4t333rcsf" path="res://player/cat/sprites/idle/blue/injured/injured_cat_idle_4.png" id="166_irlx1"]
 [ext_resource type="Texture2D" uid="uid://besf5x6b4jfrj" path="res://player/cat/sprites/jump/blue/injured/Cat_Jump_Blue_Injured-2.png" id="167_6y4gt"]
-[ext_resource type="Texture2D" uid="uid://cwt1edx5b03lc" path="res://player/cat/sprites/hit_graphic/blue/bubble/Cat_Damage_Graphic_Blue_Bubble-1.png" id="167_fema1"]
 [ext_resource type="Texture2D" uid="uid://dtqbg64ng43s8" path="res://player/cat/sprites/walk/purple/injured/cat_injured_walk_purple_6.png" id="167_fn6l8"]
 [ext_resource type="Texture2D" uid="uid://c37san78c0gqt" path="res://player/cat/sprites/jump/blue/injured/Cat_Jump_Blue_Injured-3.png" id="168_44vfv"]
 [ext_resource type="Texture2D" uid="uid://cbhjnbbhxx720" path="res://player/cat/sprites/walk/purple/injured/cat_injured_walk_purple_7.png" id="168_flwpt"]
@@ -402,7 +400,6 @@
 [ext_resource type="Texture2D" uid="uid://daaxv81eiw4u3" path="res://gui/menus/sprites/buttons/icons/reaction_skull_icon.png" id="286_ye2oc"]
 [ext_resource type="Texture2D" uid="uid://d0h4gfjucihfx" path="res://gui/menus/sprites/buttons/icons/reaction_thumb_down_icon.png" id="287_4yftt"]
 [ext_resource type="Texture2D" uid="uid://caq7e6yit4hkr" path="res://gui/menus/sprites/buttons/icons/reaction_thumb_up_icon.png" id="288_mcbl3"]
-[ext_resource type="Texture2D" uid="uid://c0tibkovk1a4x" path="res://player/cat/sprites/hit_graphic/purple/bubble/Cat_Graphic_Damage_Purple_Bubble-1.png" id="293_icxnl"]
 [ext_resource type="Texture2D" uid="uid://dj0x3ee4wu75r" path="res://player/cat/sprites/hit_graphic/purple/bubble/Cat_Graphic_Damage_Purple_Bubble-2.png" id="294_ib5le"]
 [ext_resource type="Texture2D" uid="uid://ddo76pd2k2vrr" path="res://player/cat/sprites/hit_graphic/purple/bubble/Cat_Graphic_Damage_Purple_Bubble-3.png" id="295_iymjw"]
 [ext_resource type="Texture2D" uid="uid://13uhcfq6b2v2" path="res://player/cat/sprites/hit_graphic/purple/bubble/Cat_Graphic_Damage_Purple_Bubble-4.png" id="296_4bvsp"]
@@ -671,9 +668,6 @@ animations = [{
 "speed": 15.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("41_1atj3")
-}, {
 "duration": 1.0,
 "texture": ExtResource("42_romce")
 }, {
@@ -1254,9 +1248,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("167_fema1")
-}, {
-"duration": 1.0,
 "texture": ExtResource("168_yhol7")
 }, {
 "duration": 1.0,
@@ -1832,9 +1823,6 @@ animations = [{
 "speed": 15.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("293_icxnl")
-}, {
 "duration": 1.0,
 "texture": ExtResource("294_ib5le")
 }, {
