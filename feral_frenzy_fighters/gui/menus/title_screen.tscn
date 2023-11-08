@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://br6txao4iioos"]
+[gd_scene load_steps=58 format=3 uid="uid://br6txao4iioos"]
 
 [ext_resource type="Script" path="res://gui/menus/title_screen.gd" id="1_u2ssx"]
 [ext_resource type="PackedScene" uid="uid://sjcnk7j4e0i4" path="res://gui/menus/cutscene_player.tscn" id="2_g7u1a"]
@@ -34,8 +34,12 @@
 [ext_resource type="Texture2D" uid="uid://chdwycww66d" path="res://gui/menus/sprites/buttons/button_icon_pressed.png" id="30_jsdcc"]
 [ext_resource type="Texture2D" uid="uid://qadgeqbcf0jq" path="res://gui/menus/sprites/buttons/button_icon_highlight.png" id="31_jv14s"]
 [ext_resource type="Texture2D" uid="uid://b0ciegbjevlvd" path="res://gui/menus/sprites/buttons/icons/settings_icon.png" id="32_abyt0"]
+[ext_resource type="Script" path="res://gui/menus/moveset.gd" id="34_1g8jc"]
 [ext_resource type="AudioStream" uid="uid://coneg16uuc06h" path="res://gui/menus/sfx/button.wav" id="34_r00cv"]
 [ext_resource type="Texture2D" path="res://gui/menus/sprites/screens/examples/volume_example.png" id="34_xltnq"]
+[ext_resource type="Texture2D" uid="uid://jo38swmcraew" path="res://gui/menus/sprites/screens/examples/moveset_concept1.png" id="35_01kqj"]
+[ext_resource type="SpriteFrames" uid="uid://bmpan0xehi8df" path="res://player/cat/cat_spriteframes.tres" id="36_ftmfg"]
+[ext_resource type="SpriteFrames" uid="uid://dh6e8w1pyrd1g" path="res://levels/tutorial/tutorial_billboard_controls.tres" id="37_txy1q"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vu2cy"]
 texture = ExtResource("11_jd057")
@@ -64,6 +68,104 @@ load_path = "res://.godot/imported/sound_volume_slider_icon.png-69e599103a98ae70
 [sub_resource type="LabelSettings" id="LabelSettings_m61ry"]
 font = ExtResource("15_3jjna")
 font_size = 100
+
+[sub_resource type="Image" id="Image_3g24o"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 1, 179, 179, 179, 20, 188, 188, 188, 19, 255, 255, 255, 1, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 179, 179, 179, 20, 180, 180, 180, 64, 180, 180, 180, 64, 188, 188, 188, 19, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 188, 188, 188, 19, 180, 180, 180, 64, 180, 180, 180, 64, 188, 188, 188, 19, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 1, 188, 188, 188, 19, 188, 188, 188, 19, 255, 255, 255, 1, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 8,
+"mipmaps": false,
+"width": 8
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_nkhc3"]
+image = SubResource("Image_3g24o")
+
+[sub_resource type="Image" id="Image_ar624"]
+data = {
+"data": PackedByteArray(181, 181, 181, 48, 179, 179, 179, 50, 213, 213, 213, 6, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 179, 179, 179, 50, 180, 180, 180, 64, 180, 180, 180, 54, 213, 213, 213, 6, 255, 255, 255, 0, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 204, 204, 204, 5, 178, 178, 178, 53, 180, 180, 180, 64, 180, 180, 180, 54, 213, 213, 213, 6, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 255, 255, 255, 0, 204, 204, 204, 5, 182, 182, 182, 52, 180, 180, 180, 64, 180, 180, 180, 51, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 255, 255, 255, 0, 213, 213, 213, 6, 180, 180, 180, 54, 180, 180, 180, 64, 179, 179, 179, 50, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 213, 213, 213, 6, 180, 180, 180, 54, 180, 180, 180, 64, 183, 183, 183, 53, 170, 170, 170, 6, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 182, 182, 182, 49, 180, 180, 180, 64, 183, 183, 183, 53, 170, 170, 170, 6, 255, 255, 255, 0, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 181, 181, 181, 41, 182, 182, 182, 49, 170, 170, 170, 6, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64),
+"format": "RGBA8",
+"height": 8,
+"mipmaps": false,
+"width": 8
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_su4di"]
+image = SubResource("Image_ar624")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vklqa"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gaj08"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nimyj"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_7gt2o"]
+default_font = ExtResource("15_3jjna")
+TextEdit/colors/background_color = Color(0, 0, 0, 0)
+TextEdit/colors/caret_background_color = Color(0, 0, 0, 1)
+TextEdit/colors/caret_color = Color(0.875, 0.875, 0.875, 1)
+TextEdit/colors/current_line_color = Color(0.25, 0.25, 0.26, 0.8)
+TextEdit/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+TextEdit/colors/font_outline_color = Color(1, 1, 1, 1)
+TextEdit/colors/font_placeholder_color = Color(0.875, 0.875, 0.875, 0.6)
+TextEdit/colors/font_readonly_color = Color(0.875, 0.875, 0.875, 0.5)
+TextEdit/colors/font_selected_color = Color(0, 0, 0, 0)
+TextEdit/colors/search_result_border_color = Color(0.3, 0.3, 0.3, 0.4)
+TextEdit/colors/search_result_color = Color(0.3, 0.3, 0.3, 1)
+TextEdit/colors/selection_color = Color(0.5, 0.5, 0.5, 1)
+TextEdit/colors/word_highlighted_color = Color(0.5, 0.5, 0.5, 0.25)
+TextEdit/constants/caret_width = 1
+TextEdit/constants/line_spacing = 4
+TextEdit/constants/outline_size = 0
+TextEdit/font_sizes/font_size = 27
+TextEdit/icons/space = SubResource("ImageTexture_nkhc3")
+TextEdit/icons/tab = SubResource("ImageTexture_su4di")
+TextEdit/styles/focus = SubResource("StyleBoxFlat_vklqa")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_gaj08")
+TextEdit/styles/read_only = SubResource("StyleBoxFlat_nimyj")
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -635,7 +737,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("23_4bb6r")
 
 [node name="OptionsExample" type="Sprite2D" parent="MainMenu/OptionsDialog"]
 visible = false
@@ -714,7 +815,6 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="MovesetButton" type="Button" parent="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer" groups=["TitleButtons"]]
-visible = false
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
 theme = ExtResource("3_0h4m0")
@@ -777,6 +877,243 @@ text = "?"
 label_settings = SubResource("LabelSettings_m61ry")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MovesetDialog" type="Control" parent="MainMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogShade" type="TextureRect" parent="MainMenu/MovesetDialog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("25_bmnas")
+
+[node name="DialogBackground" type="TextureRect" parent="MainMenu/MovesetDialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -473.0
+offset_top = -509.0
+offset_right = 533.0
+offset_bottom = 497.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("26_ds1jq")
+
+[node name="MovesetUIArea" type="Control" parent="MainMenu/MovesetDialog/DialogBackground"]
+anchors_preset = 0
+offset_left = 65.0
+offset_top = 51.0
+offset_right = 961.0
+offset_bottom = 958.0
+script = ExtResource("34_1g8jc")
+
+[node name="MovesetConcept1" type="Sprite2D" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea"]
+visible = false
+modulate = Color(1, 1, 1, 0.32549)
+position = Vector2(450, 477)
+scale = Vector2(1.03542, 1.02963)
+texture = ExtResource("35_01kqj")
+
+[node name="PlayerSprite" type="Control" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -240.5
+offset_right = 273.0
+offset_bottom = 107.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/PlayerSprite"]
+position = Vector2(229.5, 96)
+scale = Vector2(0.3, 0.3)
+sprite_frames = ExtResource("36_ftmfg")
+animation = &"alternate_air_attack_neutral"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 201.0
+offset_right = 453.0
+offset_bottom = 809.0
+scale = Vector2(0.6, 0.6)
+alignment = 1
+
+[node name="Control" type="Control" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/VBoxContainer"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 2
+
+[node name="JoystickAnimation" type="AnimatedSprite2D" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/VBoxContainer/Control"]
+position = Vector2(129, 95)
+sprite_frames = ExtResource("37_txy1q")
+animation = &"p2_skull"
+
+[node name="Control2" type="Control" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/VBoxContainer"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 2
+
+[node name="P1Animation" type="AnimatedSprite2D" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/VBoxContainer/Control2"]
+position = Vector2(130, 94)
+sprite_frames = ExtResource("37_txy1q")
+animation = &"p1_attack"
+
+[node name="Control3" type="Control" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/VBoxContainer"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 2
+
+[node name="P2Animation" type="AnimatedSprite2D" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/VBoxContainer/Control3"]
+position = Vector2(126, 67)
+sprite_frames = ExtResource("37_txy1q")
+animation = &"p2_attack"
+
+[node name="Character" type="RichTextLabel" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = -336.5
+offset_right = 68.0
+offset_bottom = -260.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7gt2o")
+theme_override_font_sizes/normal_font_size = 75
+text = "Cat"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Movement" type="RichTextLabel" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = 127.5
+offset_right = 226.0
+offset_bottom = 203.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7gt2o")
+theme_override_font_sizes/normal_font_size = 58
+text = "Regular Attack"
+fit_content = true
+autowrap_mode = 0
+
+[node name="next" type="Control" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -167.0
+offset_top = 546.0
+offset_right = 33.0
+offset_bottom = 775.0
+grow_horizontal = 0
+scale = Vector2(0.45, 0.45)
+
+[node name="IconButtonClick" type="TextureButton" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/next" groups=["TitleButtons"]]
+layout_mode = 0
+offset_left = 4.44446
+offset_top = 17.7777
+offset_right = 204.444
+offset_bottom = 217.778
+texture_normal = ExtResource("29_pqkes")
+texture_pressed = ExtResource("30_jsdcc")
+texture_hover = ExtResource("31_jv14s")
+
+[node name="Icon" type="TextureRect" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/next/IconButtonClick"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_egfgu")
+stretch_mode = 3
+flip_h = true
+
+[node name="before" type="Control" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -815.0
+offset_top = 548.0
+offset_right = -615.0
+offset_bottom = 748.0
+grow_horizontal = 0
+scale = Vector2(0.45, 0.45)
+
+[node name="IconButtonClick" type="TextureButton" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/before" groups=["TitleButtons"]]
+layout_mode = 0
+offset_left = 4.44446
+offset_top = 17.7777
+offset_right = 204.444
+offset_bottom = 217.778
+texture_normal = ExtResource("29_pqkes")
+texture_pressed = ExtResource("30_jsdcc")
+texture_hover = ExtResource("31_jv14s")
+
+[node name="Icon" type="TextureRect" parent="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/before/IconButtonClick"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_egfgu")
+stretch_mode = 3
+
+[node name="BackButton" type="Button" parent="MainMenu/MovesetDialog/DialogBackground" groups=["TitleButtons"]]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+offset_left = 352.0
+offset_top = 727.0
+offset_right = 675.0
+offset_bottom = 890.0
+theme = ExtResource("3_0h4m0")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxTexture_mn2ma")
+text = "Back"
 
 [node name="PlayDialog" type="Control" parent="MainMenu"]
 visible = false
@@ -974,17 +1311,26 @@ text = "host"
 [connection signal="pressed" from="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea/BackButton" to="MainMenu/AudioSliders/VolumeDialog" method="_on_second_button_pressed" flags=18]
 [connection signal="value_changed" from="MainMenu/AudioSliders/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="MainMenu/AudioSliders/VBoxContainer/SfxSlider" to="." method="_on_sfx_slider_value_changed"]
-[connection signal="on_first_button_pressed" from="MainMenu/OptionsDialog" to="." method="_on_play_dialog_on_online_button_pressed"]
-[connection signal="on_second_button_pressed" from="MainMenu/OptionsDialog" to="." method="_on_play_dialog_on_local_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/VolumeButton" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/VolumeButton" to="." method="_on_volume_button_pressed"]
 [connection signal="pressed" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/VolumeButton" to="MainMenu/OptionsDialog" method="_on_first_button_pressed" flags=18]
 [connection signal="pressed" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/VolumeButton" to="MainMenu/OptionsDialog" method="_on_volume_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/MovesetButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/MovesetButton" to="." method="_on_moveset_button_pressed"]
 [connection signal="pressed" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/MovesetButton" to="MainMenu/OptionsDialog" method="_on_second_button_pressed" flags=18]
+[connection signal="pressed" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/MovesetButton" to="MainMenu/OptionsDialog" method="_on_moveset_button_pressed"]
+[connection signal="button_pressed" from="MainMenu/OptionsDialog/DialogBackground/CloseButton" to="." method="_on_close_button_button_pressed"]
 [connection signal="button_pressed" from="MainMenu/OptionsDialog/DialogBackground/CloseButton" to="MainMenu/OptionsDialog" method="_on_close_button_button_pressed" flags=18]
 [connection signal="focus_entered" from="MainMenu/OptionsDialog/DialogBackground/CloseButton/IconButtonClick" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/OptionsDialog/DialogBackground/CloseButton/IconButtonClick" to="MainMenu/OptionsDialog/DialogBackground/CloseButton" method="_on_icon_button_click_pressed" flags=18]
+[connection signal="focus_entered" from="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/next/IconButtonClick" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/next/IconButtonClick" to="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/next" method="_on_icon_button_click_pressed" flags=18]
+[connection signal="focus_entered" from="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/before/IconButtonClick" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/before/IconButtonClick" to="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea" method="_on_icon_button_click_pressed"]
+[connection signal="pressed" from="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/before/IconButtonClick" to="MainMenu/MovesetDialog/DialogBackground/MovesetUIArea/before" method="_on_icon_button_click_pressed" flags=18]
+[connection signal="focus_entered" from="MainMenu/MovesetDialog/DialogBackground/BackButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/MovesetDialog/DialogBackground/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MainMenu/MovesetDialog/DialogBackground/BackButton" to="MainMenu/AudioSliders/VolumeDialog" method="_on_second_button_pressed" flags=18]
 [connection signal="on_first_button_pressed" from="MainMenu/PlayDialog" to="." method="_on_play_dialog_on_online_button_pressed"]
 [connection signal="on_second_button_pressed" from="MainMenu/PlayDialog" to="." method="_on_play_dialog_on_local_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayOnlineButton" to="." method="_on_button_entered"]

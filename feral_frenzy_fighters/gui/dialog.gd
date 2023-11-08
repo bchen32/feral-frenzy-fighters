@@ -20,3 +20,4 @@ func _on_first_button_pressed():
 
 func _on_second_button_pressed():
 	on_second_button_pressed.emit()
+
