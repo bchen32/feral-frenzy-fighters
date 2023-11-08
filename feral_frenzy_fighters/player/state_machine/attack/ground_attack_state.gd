@@ -6,13 +6,12 @@ func enter():
 	super()
 	var attacks = character.stats.attacks
 	direction = "neutral"
-	character.chosen_attack = attacks[direction]
-	attack = character.chosen_attack
+	attack = attacks[direction]
 	character.play_anim("attack_%s" % direction)
 
 
 func update(delta):
-	if character.frame >= character.chosen_attack.frames:
+	if character.frame >= attack.frames:
 		return Globals.States.IDLE
 	if not character.is_on_floor():
 		return Globals.States.AIR

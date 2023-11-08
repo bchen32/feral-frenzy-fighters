@@ -10,6 +10,8 @@ var speed
 var reset_speed
 var min_destination_distance = 1000
 
+var env_data: Array
+
 #hitbox settings: search "plasma_hitbox"
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @export var particles: PackedScene
@@ -33,7 +35,17 @@ func _ready():
 	destination = Vector2(0, 0) # just to set variable to be a vector2
 	speed = 2000
 	reset_speed = speed
-	self.self_modulate = Color.WHITE	
+	self.self_modulate = Color.WHITE
+	
+	if NetworkManager.is_connected:
+		NetworkManager.on_send_env_data.connect(_on_send_env_data)
+		NetworkManager.env_hit_acked.connect(_on_env_hit_acked)
+
+func _on_env_hit_acked(env_part: String, health_change: int):
+	var env_part_name: String = name
+	
+	if env_part_name == env_part:
+		_change_health(health_change)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -80,7 +92,10 @@ func _stability_change(turning_unstable: bool):
 		audio_player.play()
 		await anim.animation_finished
 		
-		_choose_random_point()
+		if NetworkManager.is_connected:
+			NetworkManager.get_env_data.rpc("plasma_ball")
+		else:
+			_choose_random_point()
 	elif turning_unstable == false:
 		$Ambient.volume_db = start_vol
 		sprite.get_child(0).queue_free()
@@ -95,12 +110,20 @@ func _stability_change(turning_unstable: bool):
 		amount_of_times_moved = 0
 		unstable = false
 
+func _on_send_env_data(env_name: String, new_env_data: Array):
+	if env_name == "plasma_ball":
+		env_data = new_env_data
+		_choose_random_point()
+
 func _choose_random_point():
-	var rand_x = randi_range(0, 1920)
-	var rand_y = randi_range(0, 1080)
-	destination = Vector2(rand_x, rand_y)
+	if NetworkManager.is_connected:
+		destination = env_data[amount_of_times_moved]
+	else:
+		var rand_x = randi_range(0, 1920)
+		var rand_y = randi_range(0, 1080)
+		destination = Vector2(rand_x, rand_y)
 	
-	if self.position.distance_to(destination) < min_destination_distance:
+	if self.position.distance_to(destination) < min_destination_distance and not NetworkManager.is_connected:
 		_choose_random_point()
 	else:
 		amount_of_times_moved += 1

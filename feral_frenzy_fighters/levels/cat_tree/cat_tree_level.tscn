@@ -149,6 +149,12 @@ polygon = PackedVector2Array(678, 827, 679, 899, 1196, 899, 1197, 827)
 
 [node name="CatTreeLevel" type="Node2D"]
 
+[node name="P1Spawn" type="Node2D" parent="."]
+position = Vector2(400, 700)
+
+[node name="P2Spawn" type="Node2D" parent="."]
+position = Vector2(1520, 700)
+
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="WallpaperBackground" type="Sprite2D" parent="Environment"]
@@ -339,3 +345,5 @@ occluder = SubResource("OccluderPolygon2D_v3l2i")
 [node name="LO4" type="LightOccluder2D" parent="LightOccluders"]
 position = Vector2(1275, 223)
 occluder = SubResource("OccluderPolygon2D_v3l2i")
+
+[connection signal="child_exiting_tree" from="Events/EventSpawner" to="Events/EventSpawner" method="_on_child_exiting_tree"]

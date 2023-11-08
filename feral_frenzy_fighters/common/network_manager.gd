@@ -11,10 +11,16 @@ signal death_acked
 signal hit_acked
 signal chat_acked
 signal env_hit_acked
+signal character_stage_screen_change_acked
+signal character_stage_screen_lock_in_acked
+signal on_stage_selected
+signal on_send_env_data
 
 enum NetworkGameState {
 	NOT_CONNECTED,
 	LOBBY,
+	CHARACTER_SELECT,
+	STAGE_SELECT,
 	IN_FIRST_CUTSCENE,
 	IN_BATTLE,
 	IN_SECOND_CUTSCENE
@@ -85,18 +91,19 @@ func game_state_change(game_state: NetworkGameState, display_name: String):
 			get_tree().change_scene_to_file("res://levels/lobby.tscn")
 		NetworkManager.NetworkGameState.IN_FIRST_CUTSCENE:
 			Globals.cutscene_player_end_game = false
-			Globals.cutscene_player_video_path = ""
-			Globals.audio_stream_to_play_during_cutscene = null
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
+		NetworkManager.NetworkGameState.CHARACTER_SELECT:
+			get_tree().change_scene_to_file("res://gui/menus/character_select.tscn")
+		NetworkManager.NetworkGameState.STAGE_SELECT:
+			$"../CharacterSelect".on_locked_in()
 		NetworkManager.NetworkGameState.IN_SECOND_CUTSCENE:
 			Globals.cutscene_player_end_game = true
 			
 			if display_name == "0":
-				Globals.cutscene_player_video_path = "res://gui/menus/cutscenes/cat_v_cat_player_two_wins.ogv"
+				Globals.cutscene_player_video_path = get_node("../Main/Player").ending_video
 			else:
 				assert(display_name == "1")
-				Globals.cutscene_player_video_path = "res://gui/menus/cutscenes/cat_v_cat_player_one_wins.ogv"
-			
+				Globals.cutscene_player_video_path = get_node("../Main/Player2").ending_video
 			
 			Globals.audio_stream_to_play_during_cutscene = preload("res://gui/menus/music/triumphant.wav")
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
@@ -127,13 +134,33 @@ func ack_hit(player_num: int, hit_data: Dictionary):
 func ack_chat(player_num: int, chat_emoji: ChatEmoji):
 	chat_acked.emit(player_num, chat_emoji)
 
-#@rpc("authority", "reliable", "call_remote")
-#func ack_env_hit(env_part: String, health_change: float):
-#	env_hit_acked.emit(env_part, health_change)
+@rpc("authority", "reliable", "call_remote")
+func ack_env_hit(env_part: String, health_change: float):
+	env_hit_acked.emit(env_part, health_change)
+
+@rpc("authority", "reliable", "call_remote")
+func ack_character_stage_screen_character_change(player_num: int, character: int):
+	character_stage_screen_change_acked.emit(player_num, character)
+
+@rpc("authority", "reliable", "call_remote")
+func ack_character_stage_screen_lock_in(player_num: int, character_stage: int):
+	character_stage_screen_lock_in_acked.emit(player_num, character_stage)
+
+@rpc("authority", "reliable", "call_remote")
+func stage_selected(stage_selected: int):
+	on_stage_selected.emit(stage_selected)
+
+@rpc("authority", "reliable", "call_remote")
+func send_env_data(env_name: String, env_data: Array):
+	on_send_env_data.emit(env_name, env_data)
 
 # Code execed on server
 @rpc("any_peer", "unreliable", "call_remote")
 func update_game_information(player_position: Vector2, player_state: Globals.States, flip_h: bool):
+	pass
+
+@rpc("any_peer", "reliable", "call_remote")
+func character_stage_screen_lock_in():
 	pass
 
 @rpc("any_peer", "reliable", "call_remote")
@@ -147,7 +174,19 @@ func game_state_change_request(requested_game_state: NetworkGameState):
 @rpc("any_peer", "reliable", "call_remote")
 func report_hit(player_num: int, hit_data: Dictionary):
 	pass
-	
+
+@rpc("any_peer", "reliable", "call_remote")
+func report_env_hit(env_part: String, health_change: float):
+	pass
+
+@rpc("any_peer", "reliable", "call_remote")
+func character_stage_screen_character_change(character: int):
+	pass
+
 @rpc("any_peer", "reliable", "call_remote")
 func report_chat(emoji: ChatEmoji):
+	pass
+
+@rpc("any_peer", "reliable", "call_remote")
+func get_env_data(env_name: String):
 	pass

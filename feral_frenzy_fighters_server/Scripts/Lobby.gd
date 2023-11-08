@@ -5,6 +5,8 @@ class_name Lobby
 enum NetworkGameState {
 	NOT_CONNECTED,
 	LOBBY,
+	CHARACTER_SELECT,
+	STAGE_SELECT,
 	INFIRSTCUTSCENE,
 	INBATTLE,
 	INSECONDCUTSCENE
@@ -20,10 +22,13 @@ const TARGET_PLAYERS = 2
 const START_STOCK = 5
 const START_PERCENTAGE = 0
 
+var selected_stage: int = -1
+
 var _lobby_game_state: NetworkGameState = NetworkGameState.LOBBY
 var _players: Dictionary = {}
 var _network_manager: NetworkManager
 var _ready_to_battle: Dictionary = {}
+var _env_data: Dictionary = {}
 
 func _init(network_manager: NetworkManager):
 	_network_manager = network_manager
@@ -43,26 +48,26 @@ func get_lobby_state_string(lobby_num: int):
 	
 	return lobby_state 
 
+
 func add_player(player_id: int):
 	_players[player_id] = Player.new(len(_players), player_id)
 	
 	if len(_players) >= TARGET_PLAYERS:
-		_lobby_game_state = NetworkGameState.INFIRSTCUTSCENE
-		_network_manager.game_state_change.rpc(_lobby_game_state, "")
+		_lobby_game_state = NetworkGameState.CHARACTER_SELECT
 		
 		var display_names: Array[String] = []
-		
+	
 		for player_key in _players:
 			var player = _players[player_key]
 			display_names.append(player.display_name)
-		
+	
 		# setup game state while they are in the cutscene
 		for player_key in _players:
 			var player = _players[player_key]
 			
 			player.stock = START_STOCK
 			player.percentage = START_PERCENTAGE
-			
+		
 			# set level spawn poses
 			match player.player_num:
 				0:
@@ -75,6 +80,8 @@ func add_player(player_id: int):
 															 display_names,
 															 START_STOCK,
 															 START_PERCENTAGE)
+		
+		_network_manager.game_state_change.rpc(_lobby_game_state, "")
 	else:
 		_network_manager.game_state_change.rpc_id(player_id, _lobby_game_state, 
 												  _players[player_id].display_name)
@@ -91,17 +98,71 @@ func remove_player(player_id: int):
 			_network_manager.game_state_change.rpc_id(player_key, NetworkGameState.LOBBY, "")
 
 func game_state_change_request(sender_id: int, requested_game_state: Lobby.NetworkGameState):
-	if _lobby_game_state == NetworkGameState.INFIRSTCUTSCENE and \
-	  requested_game_state == NetworkGameState.INBATTLE:
+	if (_lobby_game_state == NetworkGameState.INFIRSTCUTSCENE and requested_game_state == NetworkGameState.INBATTLE) or \
+	   (_lobby_game_state == NetworkGameState.STAGE_SELECT and requested_game_state == NetworkGameState.INFIRSTCUTSCENE):
 		_ready_to_battle[sender_id] = true
 		
 		if len(_ready_to_battle) == len(_players):
-			_lobby_game_state = NetworkGameState.INBATTLE
+			_lobby_game_state = requested_game_state
 			
 			for player_key in _players:
 				_network_manager.game_state_change.rpc_id(player_key, _lobby_game_state, "")
 			
 			_ready_to_battle = {}
+
+func get_env_data(sender_id: int, env_name: String):
+	if env_name not in _env_data:
+		_env_data[env_name] = {sender_id: true}
+	else:
+		_env_data[env_name][sender_id] = true
+	
+	if len(_env_data[env_name]) >= len(_players):
+		var env_data: Array = []
+		
+		_env_data[env_name] = {}
+		
+		match env_name:
+			"plasma_ball":
+				for i in range(5):
+					var rand_x = randi_range(0, 1920)
+					var rand_y = randi_range(0, 1080)
+					
+					if i != 0:
+						while env_data[i - 1].distance_to(Vector2(rand_x, rand_y)) < 1000:
+							rand_x = randi_range(0, 1920)
+							rand_y = randi_range(0, 1080)
+					
+					env_data.push_back(Vector2(rand_x, rand_y))
+				
+				env_data.push_back(Vector2(1539, 629))
+			"event":
+				var random_event: int = randi_range(0, 1)
+				
+				env_data.push_back(random_event)
+				
+				if selected_stage == 0:
+					if random_event == 1:
+						# hairball on cat tree level
+						env_data.push_back(randi_range(0, 1)) # hairball position
+						env_data.push_back(randi_range(0, 5)) # hairball shooting delay
+						env_data.push_back(randf_range(-60, 0)) # hairball angle
+					else:
+						# falling mouse on cat tree level
+						env_data.push_back(randi_range(500, 1500))
+						env_data.push_back(randf_range(-.3, .3))
+						env_data.push_back(randf_range(0,.3))
+		
+		for player_key in _players:
+			_network_manager.send_env_data.rpc_id(player_key, env_name, env_data)
+		
+		_env_data[env_name] = {}
+
+func change_game_state(game_state: Lobby.NetworkGameState):
+	if _lobby_game_state != game_state:
+		_lobby_game_state = game_state
+		
+		for player_key in _players:
+			_network_manager.game_state_change.rpc_id(player_key, _lobby_game_state, "")
 
 func update_game_information(sender_id: int, player_position: Vector2, player_state_type: Player.StateType,
 							 flip_h: bool):

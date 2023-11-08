@@ -1,5 +1,8 @@
 extends Node2D
 
+class_name CatHairball
+
+var event_network_data: Array
 var x_positions = [250, 1670]
 var facing_left = false
 var shoot = false
@@ -20,7 +23,10 @@ func _ready():
 	hairball.visible = false
 	
 	# Choose random set x position for sprite, and flip horizontally to look towards middle
-	sprite.position.x = x_positions.pick_random()
+	if NetworkManager.is_connected:
+		sprite.position.x = x_positions[event_network_data[0]]
+	else:
+		sprite.position.x = x_positions.pick_random()
 	self.position.y = 1500
 	
 	if sprite.position.x == x_positions[1]:
@@ -31,8 +37,10 @@ func _ready():
 	
 	anim.play("coming_in")
 	
+	var delay: int = event_network_data[1] if NetworkManager.is_connected else randi_range(1, 5)
+	
 	await anim.animation_finished
-	await get_tree().create_timer(randi_range(1, 5)).timeout
+	await get_tree().create_timer(delay).timeout
 	
 	_shoot_hairball()
 
@@ -45,7 +53,7 @@ func _physics_process(delta):
 func _shoot_hairball():
 	anim.play("about_to_shoot")
 	
-	var angle = randf_range(-60, 0) # choose a random angle in perspective of facing right
+	var angle = event_network_data[2] if NetworkManager.is_connected else randf_range(-60, 0) # choose a random angle in perspective of facing right
 	
 	if facing_left == true: # flip angle if facing left
 		angle *= -1

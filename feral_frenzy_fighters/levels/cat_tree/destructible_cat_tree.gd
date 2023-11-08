@@ -25,7 +25,9 @@ func _process(delta):
 		destroyed = true
 
 func _on_env_hit_acked(env_part: String, health_change: int):
-	if name == env_part:
+	var env_part_name: String = name
+	
+	if env_part_name == env_part:
 		_change_health(health_change)
 
 func _change_health(health_change: float):

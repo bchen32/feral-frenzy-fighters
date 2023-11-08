@@ -18,13 +18,11 @@ script = ExtResource("1_ghdqb")
 _players = [NodePath("Player"), NodePath("Player2")]
 
 [node name="Player" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("1_ynwnh")]
-position = Vector2(407, 711)
 _damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
 _dead_areas = NodePath("../DeadAreas")
 ending_video_audiostream = ExtResource("3_yody1")
 
 [node name="Player2" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("1_ynwnh")]
-position = Vector2(1546, 708)
 player_num = 1
 _damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
 _dead_areas = NodePath("../DeadAreas")

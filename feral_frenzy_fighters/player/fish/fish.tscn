@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqiurpsdch4o6"]
 
-[ext_resource type="SpriteFrames" uid="uid://c5cfept34peg4" path="res://player/fish/fish_spriteframes.tres" id="1_sgxhd"]
+[ext_resource type="SpriteFrames" uid="uid://b63sh4er1wi71" path="res://player/fish/fish_spriteframes.tres" id="1_sgxhd"]
 [ext_resource type="Texture2D" uid="uid://bj6kje07hc5yq" path="res://gui/hud/sprites/stats_paw_prints/fish_tail_purple.png" id="181_2jfxv"]
 [ext_resource type="Texture2D" uid="uid://blm862dcd5r3n" path="res://gui/hud/sprites/stats_paw_prints/fish_tail_blue.png" id="182_cl3b8"]
 
@@ -9,7 +9,7 @@
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = ExtResource("1_sgxhd")
-animation = &"alternate_injured_walk"
+animation = &"purple_walk_no_bubble"
 
 [node name="Player1Icon" type="Sprite2D" parent="."]
 visible = false
