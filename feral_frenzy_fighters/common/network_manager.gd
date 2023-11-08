@@ -100,11 +100,10 @@ func game_state_change(game_state: NetworkGameState, display_name: String):
 			Globals.cutscene_player_end_game = true
 			
 			if display_name == "0":
-				Globals.cutscene_player_video_path = "res://gui/menus/cutscenes/cat_v_cat_player_two_wins.ogv"
+				Globals.cutscene_player_video_path = get_node("../Main/Player").ending_video
 			else:
 				assert(display_name == "1")
-				Globals.cutscene_player_video_path = "res://gui/menus/cutscenes/cat_v_cat_player_one_wins.ogv"
-			
+				Globals.cutscene_player_video_path = get_node("../Main/Player2").ending_video
 			
 			Globals.audio_stream_to_play_during_cutscene = preload("res://gui/menus/music/triumphant.wav")
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
