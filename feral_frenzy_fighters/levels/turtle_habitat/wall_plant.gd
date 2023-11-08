@@ -14,7 +14,7 @@ var SFX = [
 ]
 
 #hitbox settings: search "wall_plant_hitbox"
-var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attacks/hitbox.tscn")
 @onready var anim = get_node("AnimationPlayer")
 @onready var hitbox = get_node("Hitbox")
 @onready var sprite = get_node("Sprite2D")

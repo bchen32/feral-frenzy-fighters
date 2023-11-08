@@ -9,7 +9,7 @@ var shoot = false
 var speed = 1000
 
 #hitbox settings: line 63
-var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attacks/hitbox.tscn")
 @onready var sprite = self.get_child(0)
 @onready var anim = self.get_child(1)
 @onready var mouth = self.get_node("Sprite2D/Mouth")

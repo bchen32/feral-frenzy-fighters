@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 #hitbox settings: line 23
-var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attacks/hitbox.tscn")
 @onready var pebble_sprites = [
 	load("res://levels/fish_tank/sprites/events/bigger_pebbles_hotpink.png"),
 	load("res://levels/fish_tank/sprites/events/bigger_pebbles_pink.png"),

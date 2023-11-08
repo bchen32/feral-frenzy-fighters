@@ -21,7 +21,7 @@ var SFX = [
 var process = false
 
 #hitbox settings: search "plasma_hitbox"
-var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attacks/hitbox.tscn")
 @onready var p1 = self.get_tree().get_nodes_in_group("players").front()
 @onready var p2 = self.get_tree().get_nodes_in_group("players").back()
 @onready var anim = get_node("AnimationPlayer")

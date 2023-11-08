@@ -43,7 +43,7 @@ var color: String = ""
 var bloodied = false
 var anim_player: AnimatedSprite2D
 var stats: Dictionary
-var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attacks/hitbox.tscn")
 var frame: int = 0
 var percentage: float = 0.0
 var air_speed_upper_bound: float
@@ -456,7 +456,10 @@ func acknowledge_death():
 	var ko_icon_load = preload("res://gui/hud/ko_icon.tscn").instantiate()
 	
 	get_parent().add_child(ko_icon_load)
-	
+	var cam = get_parent().get_node("Camera2D")
+	if cam:
+		cam.shake()
+
 	ko_icon_load.global_position = ko_icon_position
 	reset_player()
 	if not NetworkManager.is_connected and not _is_lobby:

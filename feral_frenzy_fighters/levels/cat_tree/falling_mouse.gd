@@ -3,7 +3,7 @@ extends Node2D
 class_name FallingMouse
 
 #hitbox settings: line 25
-var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attacks/hitbox.tscn")
 @onready var anim = get_node("AnimationPlayer")
 @onready var mouse_sprite = get_node("MouseParent/Mouse")
 @onready var mouse_sfx = get_node("MouseParent/MouseSFX")

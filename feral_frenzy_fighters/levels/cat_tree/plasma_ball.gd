@@ -13,7 +13,7 @@ var min_destination_distance = 1000
 var env_data: Array
 
 #hitbox settings: search "plasma_hitbox"
-var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attacks/hitbox.tscn")
 @export var particles: PackedScene
 @onready var sprite = self.get_node("PlasmaBallSprite")
 @onready var anim = self.get_node("AnimationPlayer")

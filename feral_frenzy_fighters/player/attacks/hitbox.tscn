@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://doa564lgsji33"]
 
-[ext_resource type="Script" path="res://player/hitbox.gd" id="1_6utdx"]
+[ext_resource type="Script" path="res://player/attacks/hitbox.gd" id="1_6utdx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsil2"]
 resource_local_to_scene = true
