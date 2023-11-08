@@ -8,10 +8,10 @@ extends Camera2D
 @export var max_pos_speed: float = 800.0
 @export var max_zoom_speed: float = 2.0
 @export var event_duration: float = 1.0
-@export var min_zoom: float = 0.9
+@export var min_zoom: float = 1.0
 @export var max_zoom: float = 1.5
 @export var margin: Vector2 = Vector2(400.0, 400.0)
-@export var limit_margins: Vector2 = Vector2(200.0, 100.0)
+@export var limit_margins: Vector2 = Vector2(0, 0)
 
 var event_spawner: Node # set by main.gd
 var viewport_rect: Rect2
