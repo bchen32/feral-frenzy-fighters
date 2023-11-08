@@ -357,6 +357,10 @@ func get_grav():
 	)
 
 
+func in_water():
+	return position.y > Globals.water_level
+
+
 func update_attack(attack_name: String):
 	var attack = stats.attacks[attack_name]
 	for hitbox_stats in attack.hitboxes:
@@ -391,7 +395,7 @@ func end_attack():
 
 
 func get_scaled_stat(stat_name):
-	return stats[stat_name] * (stats["water_scale"] if position.y > Globals.water_level else 1)
+	return stats[stat_name] * (stats["water_scale"] if in_water() else 1)
 
 
 func air_movement(delta):
