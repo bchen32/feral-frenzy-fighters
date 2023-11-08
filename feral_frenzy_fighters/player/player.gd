@@ -141,7 +141,7 @@ func _ready():
 				color = "blue"
 		else:
 			color = "purple"
-		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
 	
 	if character_type != "beanbag":
 		var states = {
@@ -195,7 +195,7 @@ func reset_player():
 	if _damage_label:
 		_damage_label.get_node(("P2" if player_num else "P1") + "/DamageLabel").label_settings.font_color = Color.WHITE
 		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
-		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
 	if character_type != "beanbag":
 		var states = {
 			Globals.States.AIR: AirState.new(),
@@ -273,7 +273,7 @@ func play_anim(animation_name: String):
 							color = "blue"
 					else:
 						color = "purple"
-					player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_injured_icon_" + color + ".png")
+					player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon_injured.png")
 	else:
 		if character_type == "cat":
 			if in_water():

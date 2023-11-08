@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di4cfm44f8tac"
-path="res://.godot/imported/turtle_head_icon_injured.png-3949854d59af775e84759c12d32909ce.ctex"
+uid="uid://blbg4o4vqyab2"
+path="res://.godot/imported/purple_turtle_head_icon_injured.png-2e341b5c16ba82ddd6b8b3ad5dc12fef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/hud/sprites/head_icons/turtle_head_icon_injured.png"
-dest_files=["res://.godot/imported/turtle_head_icon_injured.png-3949854d59af775e84759c12d32909ce.ctex"]
+source_file="res://gui/hud/sprites/head_icons/purple_turtle_head_icon_injured.png"
+dest_files=["res://.godot/imported/purple_turtle_head_icon_injured.png-2e341b5c16ba82ddd6b8b3ad5dc12fef.ctex"]
 
 [params]
 
