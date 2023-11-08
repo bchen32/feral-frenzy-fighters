@@ -25,7 +25,7 @@ extends CharacterBody2D
 	}
 }
 @export var player_num: int = 0
-@export var stocks: int = 3
+@export var stocks: int = 4
 @export var _damage_label: Control
 @export var _dead_areas: Node2D
 @export var ending_video: String
