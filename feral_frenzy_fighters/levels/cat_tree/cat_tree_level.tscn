@@ -339,3 +339,5 @@ occluder = SubResource("OccluderPolygon2D_v3l2i")
 [node name="LO4" type="LightOccluder2D" parent="LightOccluders"]
 position = Vector2(1275, 223)
 occluder = SubResource("OccluderPolygon2D_v3l2i")
+
+[connection signal="child_exiting_tree" from="Events/EventSpawner" to="Events/EventSpawner" method="_on_child_exiting_tree"]

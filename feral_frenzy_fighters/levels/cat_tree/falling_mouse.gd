@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name FallingMouse
+
 #hitbox settings: line 25
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @onready var anim = get_node("AnimationPlayer")
@@ -8,14 +10,25 @@ var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @onready var vent_sfx = get_node("VentParent/VentSFX")
 var mouse_is_falling = false
 
+var event_network_data: Array
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.position.x = randi_range(500, 1500) # choose random x position
 	self.position.y = -150
 	
-	mouse_sfx.set_pitch_scale(vent_sfx.get_pitch_scale() + randf_range(-.3,.3))
+	var mouse_pitch_scale = randf_range(-.3, .3)
+	var vent_pitch_scale = randf_range(0, .3)
+	
 	randomize()
-	vent_sfx.set_pitch_scale(vent_sfx.get_pitch_scale() + randf_range(0,.3))
+	
+	if NetworkManager.is_connected:
+		self.position.x = event_network_data[0]
+		mouse_pitch_scale = event_network_data[1]
+		vent_pitch_scale = event_network_data[2]
+	
+	mouse_sfx.set_pitch_scale(vent_sfx.get_pitch_scale() + mouse_pitch_scale)
+	vent_sfx.set_pitch_scale(vent_sfx.get_pitch_scale() + vent_pitch_scale)
 	
 	# Create a new hitbox
 	var mouse_hitbox = hitbox_scene.instantiate()

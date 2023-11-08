@@ -119,6 +119,8 @@ func get_env_data(sender_id: int, env_name: String):
 	if len(_env_data[env_name]) >= len(_players):
 		var env_data: Array = []
 		
+		_env_data[env_name] = {}
+		
 		match env_name:
 			"plasma_ball":
 				for i in range(5):
@@ -137,6 +139,18 @@ func get_env_data(sender_id: int, env_name: String):
 				var random_event: int = randi_range(0, 1)
 				
 				env_data.push_back(random_event)
+				
+				if selected_stage == 0:
+					if random_event == 1:
+						# hairball on cat tree level
+						env_data.push_back(randi_range(0, 1)) # hairball position
+						env_data.push_back(randi_range(0, 5)) # hairball shooting delay
+						env_data.push_back(randf_range(-60, 0)) # hairball angle
+					else:
+						# falling mouse on cat tree level
+						env_data.push_back(randi_range(500, 1500))
+						env_data.push_back(randf_range(-.3, .3))
+						env_data.push_back(randf_range(0,.3))
 		
 		for player_key in _players:
 			_network_manager.send_env_data.rpc_id(player_key, env_name, env_data)

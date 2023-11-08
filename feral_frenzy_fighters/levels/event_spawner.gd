@@ -21,7 +21,7 @@ func _ready():
 
 func _on_send_env_data(env_name: String, env_data: Array):
 	if env_name == "event":
-		_choose_events(false, env_data[0])
+		_choose_events(false, env_data)
 
 func _process(_delta):
 	if start_new_random_event == true and len(event_array) > 0:
@@ -32,21 +32,27 @@ func _process(_delta):
 		if NetworkManager.is_connected and not insert_external_event:
 			NetworkManager.get_env_data.rpc("event")
 		else:
-			_choose_events(insert_external_event)
+			_choose_events(insert_external_event, [])
 		
 		insert_external_event = false
 		start_new_random_event = false
 
-func _choose_events(external: bool, pre_chosen_event: int = -1):
+func _choose_events(external: bool, event_data: Array):
 	await get_tree().create_timer(1).timeout # delay to let camera adjust before new event
 	
 	if external == false:
 		var chosen_event = event_array.pick_random()
 		
-		if pre_chosen_event >= 0:
-			chosen_event = event_array[pre_chosen_event]
+		if not event_data.is_empty():
+			chosen_event = event_array[event_data[0]]
 		
 		var current_event = chosen_event.instantiate()
+		
+		if current_event is CatHairball or current_event is FallingMouse:
+			var event_slice = event_data.slice(1)
+			
+			current_event.event_network_data = event_slice
+		
 		add_child(current_event)
 	elif external == true:
 		start_external_event = true # external events will reference when this is true
