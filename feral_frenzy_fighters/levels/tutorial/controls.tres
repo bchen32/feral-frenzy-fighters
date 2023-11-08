@@ -1,0 +1,356 @@
+[gd_resource type="SpriteFrames" load_steps=55 format=3 uid="uid://csismq7plnok1"]
+
+[ext_resource type="Texture2D" uid="uid://dl88i01ob5fva" path="res://levels/tutorial/ui/frames/attack/button_B_O-1.png" id="1_mh0et"]
+[ext_resource type="Texture2D" uid="uid://bufex2k2kjlmu" path="res://levels/tutorial/ui/frames/attack/button_B_O-2.png" id="2_6v3mx"]
+[ext_resource type="Texture2D" uid="uid://gawfqou6abxo" path="res://levels/tutorial/ui/frames/dash/left_bumper_1.png" id="3_kvwu7"]
+[ext_resource type="Texture2D" uid="uid://cbtgm08hfa1ak" path="res://levels/tutorial/ui/frames/dash/left_bumper_2.png" id="4_rydjr"]
+[ext_resource type="Texture2D" uid="uid://brploh4s02vel" path="res://levels/tutorial/ui/frames/down-crouch/left_joystick_down-1.png" id="5_wjkns"]
+[ext_resource type="Texture2D" uid="uid://b2gu87mp277uw" path="res://levels/tutorial/ui/frames/down-crouch/left_joystick_down-2.png" id="6_4mmoi"]
+[ext_resource type="Texture2D" uid="uid://n1f0u0c3e263" path="res://levels/tutorial/ui/frames/jump/button_A_X-1.png" id="7_b07aq"]
+[ext_resource type="Texture2D" uid="uid://b44lysj1iqbyk" path="res://levels/tutorial/ui/frames/jump/button_A_X-2.png" id="8_4qdrq"]
+[ext_resource type="Texture2D" uid="uid://cpcpjkhxl5g5x" path="res://levels/tutorial/ui/frames/left/left_joystick_left-1.png" id="9_7quo5"]
+[ext_resource type="Texture2D" uid="uid://csefnpl70qpwq" path="res://levels/tutorial/ui/frames/left/left_joystick_left-2.png" id="10_7hwox"]
+[ext_resource type="Texture2D" uid="uid://dk0nfppu5pdw4" path="res://levels/tutorial/ui/frames/right/left_joystick_right-1.png" id="11_qu6x2"]
+[ext_resource type="Texture2D" uid="uid://c87iin3th42ld" path="res://levels/tutorial/ui/frames/right/left_joystick_right-2.png" id="12_ndtwg"]
+[ext_resource type="Texture2D" uid="uid://dcq8igvt0kal7" path="res://levels/tutorial/ui/frames/taunt/d_pad_left-1.png" id="13_bqsyp"]
+[ext_resource type="Texture2D" uid="uid://dkfrnkry6e1hv" path="res://levels/tutorial/ui/frames/taunt/d_pad_left-2.png" id="14_me0nj"]
+[ext_resource type="Texture2D" uid="uid://bc8xgbjut7s7j" path="res://levels/tutorial/ui/frames/taunt/d_pad_down-1.png" id="15_kct25"]
+[ext_resource type="Texture2D" uid="uid://covubitkwj8ys" path="res://levels/tutorial/ui/frames/taunt/d_pad_down-2.png" id="16_78357"]
+[ext_resource type="Texture2D" uid="uid://buv8jyygku013" path="res://levels/tutorial/ui/frames/taunt/d_pad_up-1.png" id="17_ngrgr"]
+[ext_resource type="Texture2D" uid="uid://bo5iuasfa82ri" path="res://levels/tutorial/ui/frames/taunt/d_pad_up-2.png" id="18_0fgao"]
+[ext_resource type="Texture2D" uid="uid://bj4u8awjjgvnl" path="res://levels/tutorial/ui/frames/attack/keyboard_SPACEBAR-1.png" id="19_3lftu"]
+[ext_resource type="Texture2D" uid="uid://cetqh3tyht5ta" path="res://levels/tutorial/ui/frames/attack/keyboard_SPACEBAR-2.png" id="20_v7rd6"]
+[ext_resource type="Texture2D" uid="uid://bj1lkq42mbcvu" path="res://levels/tutorial/ui/frames/dash/keyboard_shift_1.png" id="21_usa8e"]
+[ext_resource type="Texture2D" uid="uid://b1lc66sbtt3te" path="res://levels/tutorial/ui/frames/dash/keyboard_shift_2.png" id="22_gkug5"]
+[ext_resource type="Texture2D" uid="uid://rllxks2i74f7" path="res://levels/tutorial/ui/frames/down-crouch/keyboard_S-1.png" id="23_bwsq8"]
+[ext_resource type="Texture2D" uid="uid://rmn8r628qi14" path="res://levels/tutorial/ui/frames/down-crouch/keyboard_S-2.png" id="24_bstov"]
+[ext_resource type="Texture2D" uid="uid://cuta6qehgvvop" path="res://levels/tutorial/ui/frames/jump/keyboard_UP-1.png" id="25_2gsxl"]
+[ext_resource type="Texture2D" uid="uid://dy8r67w3t4tky" path="res://levels/tutorial/ui/frames/jump/keyboard_UP-2.png" id="26_yjle8"]
+[ext_resource type="Texture2D" uid="uid://cr53rl28hqkxx" path="res://levels/tutorial/ui/frames/left/keyboard_A-1.png" id="27_5bx7l"]
+[ext_resource type="Texture2D" uid="uid://vci3tgvvqln8" path="res://levels/tutorial/ui/frames/left/keyboard_A-2.png" id="28_fx3cw"]
+[ext_resource type="Texture2D" uid="uid://5q4ipal113n" path="res://levels/tutorial/ui/frames/right/keyboard_D-1.png" id="29_rbbrt"]
+[ext_resource type="Texture2D" uid="uid://bwe4ao78tift0" path="res://levels/tutorial/ui/frames/right/keyboard_D-2.png" id="30_p0uvq"]
+[ext_resource type="Texture2D" uid="uid://7y085sucror5" path="res://levels/tutorial/ui/frames/taunt/keyboard_3-1.png" id="31_agj6r"]
+[ext_resource type="Texture2D" uid="uid://d25yimtjbn0cx" path="res://levels/tutorial/ui/frames/taunt/keyboard_3-2.png" id="32_4qlyr"]
+[ext_resource type="Texture2D" uid="uid://cumn220i5o1nu" path="res://levels/tutorial/ui/frames/taunt/keyboard_1-1.png" id="33_4gqn5"]
+[ext_resource type="Texture2D" uid="uid://ch4cqopt3dw7q" path="res://levels/tutorial/ui/frames/taunt/keyboard_1-2.png" id="34_ilei6"]
+[ext_resource type="Texture2D" uid="uid://cgtw7taf87x7r" path="res://levels/tutorial/ui/frames/taunt/keyboard_2-1.png" id="35_2k6hg"]
+[ext_resource type="Texture2D" uid="uid://cn4wna0fxc68u" path="res://levels/tutorial/ui/frames/taunt/keyboard_2-2.png" id="36_6tqq4"]
+[ext_resource type="Texture2D" uid="uid://cbnsf7epd32bb" path="res://levels/tutorial/ui/frames/attack/keyboard_ALT-1.png" id="37_1hujx"]
+[ext_resource type="Texture2D" uid="uid://dwmeg4hb5rkwo" path="res://levels/tutorial/ui/frames/attack/keyboard_ALT-2.png" id="38_750d1"]
+[ext_resource type="Texture2D" uid="uid://yi5xlpgokt6g" path="res://levels/tutorial/ui/frames/dash/keyboard_CTRL_1.png" id="39_fpcow"]
+[ext_resource type="Texture2D" uid="uid://1jlxnibfg2k5" path="res://levels/tutorial/ui/frames/dash/keyboard_CTRL_2.png" id="40_knbwf"]
+[ext_resource type="Texture2D" uid="uid://cgdr2tkn0dh74" path="res://levels/tutorial/ui/frames/down-crouch/keyboard_DOWN-1.png" id="41_pv5jp"]
+[ext_resource type="Texture2D" uid="uid://csn5j85g0hbp1" path="res://levels/tutorial/ui/frames/down-crouch/keyboard_DOWN-2.png" id="42_5ekqb"]
+[ext_resource type="Texture2D" uid="uid://citom5pg2aa3e" path="res://levels/tutorial/ui/frames/jump/keyboard_W-1.png" id="43_yy2ur"]
+[ext_resource type="Texture2D" uid="uid://dge4ih0xg4cv3" path="res://levels/tutorial/ui/frames/jump/keyboard_W-2.png" id="44_d26ds"]
+[ext_resource type="Texture2D" uid="uid://cqawa71btp0e0" path="res://levels/tutorial/ui/frames/left/keyboard_LEFT-1.png" id="45_b2n3m"]
+[ext_resource type="Texture2D" uid="uid://dwdufh5b1kdeb" path="res://levels/tutorial/ui/frames/left/keyboard_LEFT-2.png" id="46_oaydu"]
+[ext_resource type="Texture2D" uid="uid://bmgo3rq7vobiu" path="res://levels/tutorial/ui/frames/right/keyboard_RIGHT-1.png" id="47_ph57o"]
+[ext_resource type="Texture2D" uid="uid://bp4by8bncrai4" path="res://levels/tutorial/ui/frames/right/keyboard_RIGHT-2.png" id="48_hjv4f"]
+[ext_resource type="Texture2D" uid="uid://cqdgabiplitga" path="res://levels/tutorial/ui/frames/taunt/keyboard_9-1.png" id="49_kc1jw"]
+[ext_resource type="Texture2D" uid="uid://dyek3mv2j5ihs" path="res://levels/tutorial/ui/frames/taunt/keyboard_9-2.png" id="50_0bgho"]
+[ext_resource type="Texture2D" uid="uid://eqljdispgj3x" path="res://levels/tutorial/ui/frames/taunt/keyboard_7-1.png" id="51_uwgc6"]
+[ext_resource type="Texture2D" uid="uid://bo5yuv75lguc0" path="res://levels/tutorial/ui/frames/taunt/keyboard_7-2.png" id="52_36bvf"]
+[ext_resource type="Texture2D" uid="uid://boy7uwgdsbp0u" path="res://levels/tutorial/ui/frames/taunt/keyboard_8-1.png" id="53_tugc2"]
+[ext_resource type="Texture2D" uid="uid://be8q2qlfnbbj8" path="res://levels/tutorial/ui/frames/taunt/keyboard_8-2.png" id="54_gt8ph"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mh0et")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6v3mx")
+}],
+"loop": true,
+"name": &"joystick_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kvwu7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rydjr")
+}],
+"loop": true,
+"name": &"joystick_dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_wjkns")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4mmoi")
+}],
+"loop": true,
+"name": &"joystick_fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_b07aq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4qdrq")
+}],
+"loop": true,
+"name": &"joystick_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_7quo5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7hwox")
+}],
+"loop": true,
+"name": &"joystick_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_qu6x2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ndtwg")
+}],
+"loop": true,
+"name": &"joystick_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_bqsyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_me0nj")
+}],
+"loop": true,
+"name": &"joystick_skull",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_kct25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_78357")
+}],
+"loop": true,
+"name": &"joystick_thumbs_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_ngrgr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_0fgao")
+}],
+"loop": true,
+"name": &"joystick_thumbs_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_3lftu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_v7rd6")
+}],
+"loop": true,
+"name": &"p1_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_usa8e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_gkug5")
+}],
+"loop": true,
+"name": &"p1_dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_bwsq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_bstov")
+}],
+"loop": true,
+"name": &"p1_fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_2gsxl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_yjle8")
+}],
+"loop": true,
+"name": &"p1_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_5bx7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_fx3cw")
+}],
+"loop": true,
+"name": &"p1_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_rbbrt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_p0uvq")
+}],
+"loop": true,
+"name": &"p1_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("31_agj6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_4qlyr")
+}],
+"loop": true,
+"name": &"p1_skull",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_4gqn5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_ilei6")
+}],
+"loop": true,
+"name": &"p1_thumbs_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("35_2k6hg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_6tqq4")
+}],
+"loop": true,
+"name": &"p1_thumbs_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_1hujx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_750d1")
+}],
+"loop": true,
+"name": &"p2_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("39_fpcow")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_knbwf")
+}],
+"loop": true,
+"name": &"p2_dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("41_pv5jp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_5ekqb")
+}],
+"loop": true,
+"name": &"p2_fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("43_yy2ur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_d26ds")
+}],
+"loop": true,
+"name": &"p2_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("45_b2n3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_oaydu")
+}],
+"loop": true,
+"name": &"p2_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("47_ph57o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_hjv4f")
+}],
+"loop": true,
+"name": &"p2_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("49_kc1jw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_0bgho")
+}],
+"loop": true,
+"name": &"p2_skull",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("51_uwgc6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_36bvf")
+}],
+"loop": true,
+"name": &"p2_thumbs_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("53_tugc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_gt8ph")
+}],
+"loop": true,
+"name": &"p2_thumbs_up",
+"speed": 5.0
+}]
