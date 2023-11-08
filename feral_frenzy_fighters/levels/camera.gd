@@ -8,27 +8,34 @@ extends Camera2D
 @export var max_pos_speed: float = 800.0
 @export var max_zoom_speed: float = 2.0
 @export var event_duration: float = 1.0
-@export var min_zoom: float = 1.0
+@export var min_zoom: float = 1.02 # workaround so shake doesn't show too much
 @export var max_zoom: float = 1.5
 @export var margin: Vector2 = Vector2(400.0, 400.0)
 @export var limit_margins: Vector2 = Vector2(0, 0)
+@export var shake_intensity: float = 20.0
+@export var shake_decay: float = 20.0
+@export var shake_zoom: float = 1.5
 
 var event_spawner: Node # set by main.gd
 var viewport_rect: Rect2
 var initial_pos: Vector2
 var old_target_zoom: float
+var curr_shake: float
 
 
 func _ready():
 	viewport_rect = get_viewport().get_visible_rect()
+	position = position.clamp(viewport_rect.position + (viewport_rect.size / (2 * zoom)) - limit_margins,
+								viewport_rect.end - (viewport_rect.size / (2 * zoom)) + limit_margins)
 	initial_pos = position
 	old_target_zoom = zoom.x
+	curr_shake = 0.0
 
 func _process(delta):
 	if (event_spawner != null and event_spawner.set_camera_overview) or len(players) == 1:
 		var tween = create_tween().set_parallel(true)
 		tween.tween_property(self, "position", initial_pos, event_duration)
-		tween.tween_property(self, "zoom", Vector2(1.0, 1.0), event_duration)
+		tween.tween_property(self, "zoom", Vector2(min_zoom, min_zoom), event_duration)
 	else:
 		var zoom_x = (viewport_rect.size.x - 2 * margin.x) / (abs(players[1].position.x - players[0].position.x))
 		var zoom_y = (viewport_rect.size.y - 2 * margin.y) / (abs(players[1].position.y - players[0].position.y))
@@ -57,3 +64,12 @@ func _process(delta):
 		position.y = move_toward(position.y, target_pos.y, (fall_speed_mult if is_falling else 1.0) * pos_speed_y * delta)
 		position = position.clamp(viewport_rect.position + (viewport_rect.size / (2 * zoom)) - limit_margins,
 								viewport_rect.end - (viewport_rect.size / (2 * zoom)) + limit_margins)
+	if curr_shake > 0:
+		offset = Vector2(randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity))
+		curr_shake -= shake_decay * delta
+	else:
+		offset = Vector2(0, 0)
+
+
+func shake():
+	curr_shake = shake_intensity
