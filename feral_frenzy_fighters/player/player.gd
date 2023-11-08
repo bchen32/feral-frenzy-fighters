@@ -1,37 +1,6 @@
 class_name PlayerCharacter
 extends CharacterBody2D
 
-var bloodied = false
-
-@export var sprite_scene: PackedScene
-@export var player_num: int = 0
-@export var stocks: int = 3
-@export var walk_accel: float = 6000.0
-@export var dash_accel: float = 9000.0
-@export var tilt_attack_accel: float = 1200.0
-@export var dash_attack_accel: float = 1500.0
-@export var air_accel: float = 3600.0
-@export var walk_jump_accel: float = 800.0 # jump accels not scaled by delta
-@export var dash_jump_accel: float = 1200.0
-@export var air_jump_accel: float = 600.0
-@export var walk_speed: float = 400.0
-@export var dash_speed: float = 600.0
-@export var dash_attack_speed: float = 750.0
-@export var air_jump_speed: float = 400.0
-@export var jump_speed: float = -1000.0
-@export var terminal_vel: float = 1000.0
-@export var fall_grav_scale: float = 1.8
-@export var kb_base: float = 500.0
-@export var kb_hitstun_scale: float = 0.015
-@export var kb_decay: float = 2000.0
-@export var inverse_weight: float = 10.0
-@onready var CS = $CollisionShape2D
-@onready var gamepad = false if(character_type == "beanbag") else Globals.player_gamepad[player_num]
-@export var spike_mult: float = 0.5
-@export var hit_grav: float = 1500.0
-@export var bounce_thresh: float = 100.0
-@export var bounce_decay: float = 0.6
-
 @export var character_type: String
 @export var character_data: Dictionary = {
 	"cat":
@@ -55,19 +24,23 @@ var bloodied = false
 		"stats": "res://player/cat/cat.json"
 	}
 }
-
+@export var player_num: int = 0
+@export var stocks: int = 3
 @export var _damage_label: Control
 @export var _dead_areas: Node2D
 @export var ending_video: String
 @export var ending_video_audiostream: AudioStream
 @export var _is_lobby: bool = false
-
-@onready var state_machine: Node = $StateMachine
-
 @export var physics_blood:Array[PackedScene]
 @export var dash_particles:Array[PackedScene]
 
+@onready var state_machine: Node = $StateMachine
+@onready var CS = $CollisionShape2D
+@onready var gamepad = false if(character_type == "beanbag") else Globals.player_gamepad[player_num]
+
+
 var color: String = ""
+var bloodied = false
 var anim_player: AnimatedSprite2D
 var stats: Dictionary
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
@@ -82,7 +55,6 @@ var curr_hitboxes: Array[Node]
 var curr_hitboxes_ends: Array[int]
 
 # networking stuff
-@export var chosen_attack: Dictionary
 var display_name: String
 var player_state_type: Globals.States
 var stock: int
@@ -129,7 +101,6 @@ var _jump_sfx = [
 	preload("res://player/cat/sfx/jump/single_jump.wav")
 ]
 
-var _multiplayer_sync = MultiplayerSynchronizer.new()
 var _sprites_scene_instance: Node
 
 # Dash right now for the game jam is unused
@@ -151,18 +122,18 @@ func _ready():
 	add_child(_sprites_scene_instance)
 	anim_player = _sprites_scene_instance.get_node("AnimatedSprite2D")
 	var sprite_node_path = NodePath(_sprites_scene_instance.name + "/AnimatedSprite2D:flip_h")
-	
-	var p1_icon
-	var p2_icon
 
 	var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
 	
 	_damage_label.set_player_death_count(player_num, stocks)
-	
+	var p1_icon
+	var p2_icon
 	if character_type == "beanbag":
 		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
 		player_head.scale -= Vector2(0.02, 0.02)
 	else:
+		p1_icon = _sprites_scene_instance.get_node("Player1Icon")
+		p2_icon = _sprites_scene_instance.get_node("Player2Icon")
 		if player_num:
 			if character_type == Globals.player_sprites[0]:
 				color = "alternate"
@@ -171,9 +142,6 @@ func _ready():
 		else:
 			color = "purple"
 		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
-	
-	p1_icon = _sprites_scene_instance.get_node("Player1Icon")
-	p2_icon = _sprites_scene_instance.get_node("Player2Icon")
 	
 	if character_type != "beanbag":
 		var states = {
@@ -213,6 +181,38 @@ func _ready():
 		if p1_icon:
 			p1_icon.visible = true
 	refresh_dead_areas(_dead_areas)
+
+
+func set_spawn(spawn_pos):
+	_initial_player_position = spawn_pos
+	position = spawn_pos
+
+func reset_player():
+	InputManager.paused = true
+	position = _initial_player_position
+	velocity = Vector2(0, 0)
+	percentage = 0
+	bloodied = false
+	if _damage_label:
+		_damage_label.get_node(("P2" if player_num else "P1") + "/DamageLabel").label_settings.font_color = Color.WHITE
+		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
+	if character_type != "beanbag":
+		var states = {
+			Globals.States.AIR: AirState.new(),
+			Globals.States.AIR_ATTACK: AirAttackState.new(),
+			Globals.States.AIR_JUMP: AirJumpState.new(),
+			Globals.States.DASH: DashState.new(),
+			Globals.States.DASH_ATTACK: DashAttackState.new(),
+			Globals.States.DASH_JUMP: DashJumpState.new(),
+			Globals.States.GROUND_ATTACK: GroundAttackState.new(),
+			Globals.States.HIT: HitState.new(),
+			Globals.States.IDLE: IdleState.new(),
+			Globals.States.WALK: WalkState.new(),
+			Globals.States.WALK_JUMP: WalkJumpState.new()
+		}
+		state_machine.init(self, states, Globals.States.IDLE)
+
 
 func refresh_dead_areas(new_dead_areas: Node2D):
 	if _dead_areas:
@@ -381,10 +381,10 @@ func update_attack(attack_name: String):
 				hitbox_stats.height,
 				(1.0 if anim_player.flip_h else -1.0) * hitbox_stats.x_offset,  # handles if sprite is facing other direction
 				hitbox_stats.y_offset,
-				chosen_attack.damage,
-				chosen_attack.knockback_scale,
-				(1.0 if anim_player.flip_h else -1.0) * chosen_attack.knockback_x_offset,
-				chosen_attack.knockback_y_offset
+				attack.damage,
+				attack.knockback_scale,
+				(1.0 if anim_player.flip_h else -1.0) * attack.knockback_x_offset,
+				attack.knockback_y_offset
 			)
 	for i in range(len(curr_hitboxes)):
 		if frame == curr_hitboxes_ends[i]:
@@ -397,8 +397,6 @@ func end_attack():
 			child.queue_free()
 	curr_hitboxes = []
 	curr_hitboxes_ends = []
-	
-	chosen_attack = {}
 
 
 func get_scaled_stat(stat_name):
@@ -461,24 +459,7 @@ func acknowledge_death():
 	get_parent().add_child(ko_icon_load)
 	
 	ko_icon_load.global_position = ko_icon_position
-	
-	position = _initial_player_position # needs to reload state machine (hit stun carries over)
-	velocity = Vector2(0, 0)
-	percentage = 0
-	bloodied = false
-	if _damage_label:
-		_damage_label.get_node(("P2" if player_num else "P1") + "/DamageLabel").label_settings.font_color = Color.WHITE
-		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
-		if character_type != "beanbag":
-			if player_num:
-				if character_type == Globals.player_sprites[0]:
-					color = "alternate"
-				else:
-					color = "blue"
-			else:
-				color = "purple"
-			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
-	
+	reset_player()
 	if not NetworkManager.is_connected and not _is_lobby:
 		stocks -= 1
 		if _damage_label:

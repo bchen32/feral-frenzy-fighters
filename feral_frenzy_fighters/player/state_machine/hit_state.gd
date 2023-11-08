@@ -19,7 +19,7 @@ func enter():
 	180,
 	10)
 	
-	hitstun = floor(character.kb * character.kb_hitstun_scale)
+	hitstun = floor(character.kb * character.stats.kb_hitstun_scale)
 	character.velocity.x = cos(character.kb_angle) * character.kb
 	character.velocity.y = sin(character.kb_angle) * character.kb
 	if character.velocity.y > 0: # Make spikes less punishing
