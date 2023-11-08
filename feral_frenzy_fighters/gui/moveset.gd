@@ -82,7 +82,7 @@ func _update_controls():
 
 func _on_back_button_pressed():
 	get_parent().get_parent().ui.back()
-	pass # Replace with function body.
+
 	
 func _button_hovered():
 	var back_sound = preload("res://player/randomSFX.tscn").instantiate()

@@ -551,7 +551,7 @@ layout_mode = 2
 position = Vector2(126, 67)
 sprite_frames = ExtResource("72_3apvg")
 animation = &"attack"
-frame_progress = 0.466883
+frame_progress = 0.0638308
 
 [node name="Character" type="RichTextLabel" parent="DialogBackground/MovesetUIArea"]
 clip_contents = false

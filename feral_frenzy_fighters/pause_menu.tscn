@@ -1,0 +1,146 @@
+[gd_scene load_steps=10 format=3 uid="uid://di6m8x6mh11r7"]
+
+[ext_resource type="Texture2D" uid="uid://rb31ehfgk53n" path="res://gui/menus/sprites/screens/examples/options_example.png" id="1_ra7ji"]
+[ext_resource type="Script" path="res://pause_menu.gd" id="1_uf5m1"]
+[ext_resource type="Texture2D" uid="uid://b5jm0t8cpmgq6" path="res://gui/menus/sprites/screens/faded_black.png" id="2_y3u1r"]
+[ext_resource type="Texture2D" uid="uid://cnadtlxa56n4j" path="res://gui/menus/sprites/screens/pop_up_blue.png" id="3_dufcj"]
+[ext_resource type="Texture2D" uid="uid://g48dhv3srl7d" path="res://gui/menus/sprites/screens/titles/options_ui.png" id="4_5n6ax"]
+[ext_resource type="Theme" uid="uid://ciapr50n3vxqt" path="res://default_ui_theme.tres" id="5_kielc"]
+[ext_resource type="Texture2D" uid="uid://bar3a8okfu77w" path="res://gui/menus/sprites/buttons/button_highlight.png" id="6_nq5uc"]
+[ext_resource type="PackedScene" uid="uid://ctl1tov56fref" path="res://gui/moveset_dialog.tscn" id="19_nvfbu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sefc7"]
+texture = ExtResource("6_nq5uc")
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uf5m1")
+
+[node name="ScuffSolution" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MovesetDialog" parent="ScuffSolution" instance=ExtResource("19_nvfbu")]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="OptionsDialog" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsExample" type="Sprite2D" parent="OptionsDialog"]
+visible = false
+modulate = Color(1, 1, 1, 0.772549)
+position = Vector2(964, 542)
+texture = ExtResource("1_ra7ji")
+
+[node name="DialogShade" type="TextureRect" parent="OptionsDialog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_y3u1r")
+
+[node name="DialogBackground" type="TextureRect" parent="OptionsDialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -473.0
+offset_top = -509.0
+offset_right = 533.0
+offset_bottom = 497.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_dufcj")
+
+[node name="OptionsUIArea" type="Control" parent="OptionsDialog/DialogBackground"]
+anchors_preset = 0
+offset_left = 65.0
+offset_top = 51.0
+offset_right = 961.0
+offset_bottom = 958.0
+
+[node name="DialogTitle" type="TextureRect" parent="OptionsDialog/DialogBackground/OptionsUIArea"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -252.0
+offset_top = 107.0
+offset_right = 252.0
+offset_bottom = 252.0
+grow_horizontal = 2
+texture = ExtResource("4_5n6ax")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsDialog/DialogBackground/OptionsUIArea"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -110.5
+offset_right = 117.0
+offset_bottom = 217.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+
+[node name="VolumeButton" type="Button" parent="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer" groups=["TitleButtons"]]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme = ExtResource("5_kielc")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxTexture_sefc7")
+text = "Resume"
+
+[node name="Spacer" type="Control" parent="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="MovesetButton" type="Button" parent="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer" groups=["TitleButtons"]]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+theme = ExtResource("5_kielc")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxTexture_sefc7")
+text = "Moveset"
+
+[connection signal="focus_entered" from="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/VolumeButton" to="." method="_button_hovered"]
+[connection signal="pressed" from="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/VolumeButton" to="." method="_on_volume_button_pressed"]
+[connection signal="pressed" from="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/VolumeButton" to="OptionsDialog" method="_on_first_button_pressed" flags=18]
+[connection signal="focus_entered" from="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/MovesetButton" to="." method="_button_hovered"]
+[connection signal="pressed" from="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/MovesetButton" to="." method="_on_moveset_button_pressed"]
+[connection signal="pressed" from="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/MovesetButton" to="OptionsDialog" method="_on_second_button_pressed" flags=18]
