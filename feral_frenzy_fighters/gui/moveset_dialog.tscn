@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://jo38swmcraew" path="res://gui/menus/sprites/screens/examples/moveset_concept1.png" id="4_lapdd"]
 [ext_resource type="Texture2D" uid="uid://dgnqs1kere5wy" path="res://player/cat/sprites/attack_neutral/blue/Cat_Attack_Blue-1.png" id="5_4syw3"]
 [ext_resource type="Texture2D" uid="uid://ce7q4y2qmwxd8" path="res://player/cat/sprites/attack_neutral/blue/Cat_Attack_Blue-2.png" id="6_m81kn"]
-[ext_resource type="SpriteFrames" uid="uid://dh6e8w1pyrd1g" path="res://levels/tutorial/tutorial_billboard_controls.tres" id="6_ttijs"]
 [ext_resource type="FontFile" uid="uid://bfatsjftj2x60" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="7_nmgyl"]
 [ext_resource type="Texture2D" uid="uid://v1bsxnovqqwf" path="res://player/cat/sprites/attack_neutral/blue/Cat_Attack_Blue_No_Backlight-2.png" id="8_iufeo"]
 [ext_resource type="Texture2D" uid="uid://diipaw50krrur" path="res://gui/menus/sprites/buttons/button_icon.png" id="8_yop3r"]
@@ -79,6 +78,7 @@
 [ext_resource type="Texture2D" uid="uid://cuuy0gg8lpvf5" path="res://player/turtle/sprites/attack_neutral/blue/Turtle_Attack_Neutral_Blue-5.png" id="69_w4uak"]
 [ext_resource type="Texture2D" uid="uid://bt7y2hw8183fa" path="res://player/turtle/sprites/attack_neutral/blue/Turtle_Attack_Neutral_Blue-6.png" id="70_aj3rf"]
 [ext_resource type="Texture2D" uid="uid://d284nkvxbbwqq" path="res://player/turtle/sprites/attack_neutral/blue/Turtle_Attack_Neutral_Blue-7.png" id="71_tjavb"]
+[ext_resource type="SpriteFrames" uid="uid://csismq7plnok1" path="res://levels/tutorial/controls.tres" id="72_3apvg"]
 
 [sub_resource type="GDScript" id="GDScript_wdlla"]
 script/source = "extends Node
@@ -529,28 +529,29 @@ alignment = 1
 custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 
-[node name="JoystickAnimation" type="AnimatedSprite2D" parent="DialogBackground/MovesetUIArea/VBoxContainer/Control"]
+[node name="C1" type="AnimatedSprite2D" parent="DialogBackground/MovesetUIArea/VBoxContainer/Control"]
 position = Vector2(129, 95)
-sprite_frames = ExtResource("6_ttijs")
-animation = &"p2_skull"
+sprite_frames = ExtResource("72_3apvg")
+animation = &"attack"
 
 [node name="Control2" type="Control" parent="DialogBackground/MovesetUIArea/VBoxContainer"]
 custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 
-[node name="P1Animation" type="AnimatedSprite2D" parent="DialogBackground/MovesetUIArea/VBoxContainer/Control2"]
+[node name="C2" type="AnimatedSprite2D" parent="DialogBackground/MovesetUIArea/VBoxContainer/Control2"]
 position = Vector2(130, 94)
-sprite_frames = ExtResource("6_ttijs")
-animation = &"p1_attack"
+sprite_frames = ExtResource("72_3apvg")
+animation = &"attack"
 
 [node name="Control3" type="Control" parent="DialogBackground/MovesetUIArea/VBoxContainer"]
 custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 
-[node name="P2Animation" type="AnimatedSprite2D" parent="DialogBackground/MovesetUIArea/VBoxContainer/Control3"]
+[node name="C3" type="AnimatedSprite2D" parent="DialogBackground/MovesetUIArea/VBoxContainer/Control3"]
 position = Vector2(126, 67)
-sprite_frames = ExtResource("6_ttijs")
-animation = &"p2_attack"
+sprite_frames = ExtResource("72_3apvg")
+animation = &"attack"
+frame_progress = 0.664229
 
 [node name="Character" type="RichTextLabel" parent="DialogBackground/MovesetUIArea"]
 clip_contents = false
@@ -614,6 +615,7 @@ offset_bottom = 217.778
 texture_normal = ExtResource("8_yop3r")
 texture_pressed = ExtResource("9_1ym3l")
 texture_hover = ExtResource("10_4373r")
+texture_focused = ExtResource("10_4373r")
 
 [node name="Icon" type="TextureRect" parent="DialogBackground/MovesetUIArea/next_move/next_move"]
 layout_mode = 1
@@ -654,6 +656,7 @@ offset_bottom = 217.778
 texture_normal = ExtResource("8_yop3r")
 texture_pressed = ExtResource("9_1ym3l")
 texture_hover = ExtResource("10_4373r")
+texture_focused = ExtResource("10_4373r")
 
 [node name="Icon" type="TextureRect" parent="DialogBackground/MovesetUIArea/last_move/last_move"]
 layout_mode = 1
@@ -686,13 +689,14 @@ scale = Vector2(0.45, 0.45)
 
 [node name="next_character" type="TextureButton" parent="DialogBackground/MovesetUIArea/next_char" groups=["TitleButtons"]]
 layout_mode = 0
-offset_left = 4.44446
-offset_top = 17.7777
-offset_right = 204.444
-offset_bottom = 217.778
+offset_left = -273.333
+offset_top = -6.66666
+offset_right = -73.3333
+offset_bottom = 193.334
 texture_normal = ExtResource("8_yop3r")
 texture_pressed = ExtResource("9_1ym3l")
 texture_hover = ExtResource("10_4373r")
+texture_focused = ExtResource("10_4373r")
 
 [node name="Icon" type="TextureRect" parent="DialogBackground/MovesetUIArea/next_char/next_character"]
 layout_mode = 1
@@ -726,13 +730,14 @@ scale = Vector2(0.45, 0.45)
 
 [node name="last_character" type="TextureButton" parent="DialogBackground/MovesetUIArea/last_char" groups=["TitleButtons"]]
 layout_mode = 0
-offset_left = 4.44446
-offset_top = 17.7777
-offset_right = 204.444
-offset_bottom = 217.778
+offset_left = 268.889
+offset_top = -6.66666
+offset_right = 468.889
+offset_bottom = 193.334
 texture_normal = ExtResource("8_yop3r")
 texture_pressed = ExtResource("9_1ym3l")
 texture_hover = ExtResource("10_4373r")
+texture_focused = ExtResource("10_4373r")
 
 [node name="Icon" type="TextureRect" parent="DialogBackground/MovesetUIArea/last_char/last_character"]
 layout_mode = 1
@@ -762,13 +767,12 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxTexture_mn2ma")
 text = "Back"
 
-[connection signal="pressed" from="DialogBackground/MovesetUIArea/next_move/next_move" to="." method="_on_icon_button_click_pressed"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/next_move/next_move" to="." method="_on_next_move_pressed"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/next_move/next_move" to="DialogBackground/MovesetUIArea/next_move" method="_on_icon_button_click_pressed" flags=18]
-[connection signal="pressed" from="DialogBackground/MovesetUIArea/last_move/last_move" to="." method="_on_icon_button_click_pressed"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/last_move/last_move" to="." method="_on_last_move_pressed"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/last_move/last_move" to="DialogBackground/MovesetUIArea/last_move" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/next_char/next_character" to="." method="_on_next_character_pressed"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/next_char/next_character" to="DialogBackground/MovesetUIArea/next_char" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/last_char/last_character" to="." method="_on_last_character_pressed"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/last_char/last_character" to="DialogBackground/MovesetUIArea/last_char" method="_on_icon_button_click_pressed" flags=18]
+[connection signal="pressed" from="DialogBackground/BackButton" to="." method="_on_back_button_pressed"]

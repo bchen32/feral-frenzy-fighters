@@ -60,7 +60,7 @@ func _process(delta):
 			become_inactive()
 			
 	if !p1_locked:
-		if InputManager.is_action_just_pressed("p1_left"):
+		if InputManager.is_action_just_pressed("p1_left") or InputManager.is_action_just_pressed("p1_ui_left") :
 			if p1_stage <= 0:
 				p1_selection[p1_stage].texture_normal = graybox
 				p1_selection[len(p1_selection)-1].texture_normal = purplebox
@@ -72,7 +72,7 @@ func _process(delta):
 				p1_selection[p1_stage].texture_normal = purplebox
 				on_stage1_change()
 				
-		if InputManager.is_action_just_pressed("p1_right"):
+		if InputManager.is_action_just_pressed("p1_right") or InputManager.is_action_just_pressed("p1_ui_right"):
 			if p1_stage >= len(p1_selection)-1:
 				p1_selection[p1_stage].texture_normal = graybox
 				p1_selection[0].texture_normal = purplebox
@@ -91,7 +91,7 @@ func _process(delta):
 			on_locked_in()
 				
 	if !p2_locked:
-		if InputManager.is_action_just_pressed("p2_left"):
+		if InputManager.is_action_just_pressed("p2_left") or InputManager.is_action_just_pressed("p2_ui_left"):
 			if p2_stage <= 0:
 				p2_selection[p2_stage].texture_normal = graybox
 				p2_selection[len(p2_selection)-1].texture_normal = bluebox
@@ -103,7 +103,7 @@ func _process(delta):
 				p2_selection[p2_stage].texture_normal = bluebox
 				on_stage2_change()
 				
-		if InputManager.is_action_just_pressed("p2_right"):
+		if InputManager.is_action_just_pressed("p2_right") or InputManager.is_action_just_pressed("p2_ui_right"):
 			if p2_stage >= len(p2_selection)-1:
 				p2_selection[p2_stage].texture_normal = graybox
 				p2_selection[0].texture_normal = bluebox
