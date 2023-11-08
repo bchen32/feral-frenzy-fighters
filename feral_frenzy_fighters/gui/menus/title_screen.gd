@@ -103,6 +103,3 @@ func _on_button_selected():
 
 func _on_tutorial_button_pressed():
 	get_tree().change_scene_to_file("res://levels/tutorial/tutorial.tscn")
-	
-
-

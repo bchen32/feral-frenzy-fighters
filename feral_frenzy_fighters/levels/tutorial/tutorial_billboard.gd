@@ -8,7 +8,11 @@ enum TutorialAction {
 	IDLE,
 	WALK_LEFT,
 	WALK_RIGHT,
-	ATTACK
+	ATTACK,
+	DASH,
+	THUMBS_DOWN,
+	THUMBS_UP,
+	SKULL
 }
 
 var current_tutorial_action: TutorialAction
@@ -36,6 +40,14 @@ func _update_control_animations(tutorial_action: TutorialAction):
 			base_action_string = "left"
 		TutorialAction.WALK_RIGHT:
 			base_action_string = "right"
+		TutorialAction.DASH:
+			base_action_string = "dash"
+		TutorialAction.THUMBS_DOWN:
+			base_action_string = "thumbs_down"
+		TutorialAction.THUMBS_UP:
+			base_action_string = "thumbs_up"
+		TutorialAction.SKULL:
+			base_action_string = "skull"
 	
 	_play_and_resize_animation($Control/VBoxContainer/Control/JoystickAnimation, "joystick_" + base_action_string)
 	_play_and_resize_animation($Control/VBoxContainer/Control2/P1Animation, "p1_" + base_action_string)
@@ -47,6 +59,12 @@ func set_tutorial_action(tutorial_action: TutorialAction):
 	
 	show()
 	_update_control_animations(tutorial_action)
+	
+	if tutorial_action == TutorialAction.THUMBS_DOWN or \
+	   tutorial_action == TutorialAction.THUMBS_UP or tutorial_action == TutorialAction.SKULL:
+		$Control/PlayerSprite/AnimatedSprite2D.scale = Vector2(3, 3)
+	else:
+		$Control/PlayerSprite/AnimatedSprite2D.scale = Vector2(0.3, 0.3)
 	
 	match tutorial_action:
 		TutorialAction.FALL:
@@ -61,6 +79,14 @@ func set_tutorial_action(tutorial_action: TutorialAction):
 			$Control/PlayerSprite/AnimatedSprite2D.flip_h = \
 				tutorial_action == TutorialAction.WALK_RIGHT
 			$Control/PlayerSprite/AnimatedSprite2D.play("blue_walk")
+		TutorialAction.DASH:
+			$Control/PlayerSprite/AnimatedSprite2D.play("blue_dash")
+		TutorialAction.THUMBS_DOWN:
+			$Control/PlayerSprite/AnimatedSprite2D.play("tutorial_thumbs_down")
+		TutorialAction.THUMBS_UP:
+			$Control/PlayerSprite/AnimatedSprite2D.play("tutorial_thumbs_up")
+		TutorialAction.SKULL:
+			$Control/PlayerSprite/AnimatedSprite2D.play("tutorial_skull")
 	
 	current_tutorial_action = tutorial_action
 

@@ -4,6 +4,7 @@ signal cat_tree_destroyed
 
 @export var starting_health: int
 @export var respawn_time: float
+@export var destructible: bool = true
 @onready var anim = self.get_node("AnimationPlayer")
 @onready var physical_collision = self.get_node("Physical")
 @onready var hitbox = self.get_node("Hitbox")
@@ -19,15 +20,20 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if self.health <= 0 && destroyed == false:
+	if self.health <= 0 && destroyed == false && destructible:
 		_destroy_self()
 		destroyed = true
 
 func _on_env_hit_acked(env_part: String, health_change: int):
-	if name == env_part:
+	var env_part_name: String = name
+	
+	if env_part_name == env_part:
 		_change_health(health_change)
 
 func _change_health(health_change: float):
+	if !destructible:
+		return
+	
 	self.health += health_change
 	if anim.is_playing():
 		anim.stop()
@@ -63,7 +69,7 @@ func _respawn():
 	destroyed = false
 
 func _on_hitbox_body_entered(body):
-	if destroyed == false:
+	if destroyed == false and destructible:
 		anim.play("Indication")
 
 func _on_hitbox_body_exited(body):

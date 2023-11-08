@@ -26,7 +26,7 @@ var bloodied = false
 @export var kb_decay: float = 2000.0
 @export var inverse_weight: float = 10.0
 @onready var CS = $CollisionShape2D
-@onready var gamepad = Globals.player_gamepad[player_num]
+@onready var gamepad = false if(character_type == "beanbag") else Globals.player_gamepad[player_num]
 @export var spike_mult: float = 0.5
 @export var hit_grav: float = 1500.0
 @export var bounce_thresh: float = 100.0
@@ -159,7 +159,10 @@ func _ready():
 	
 	_damage_label.set_player_death_count(player_num, stocks)
 	
-	if character_type != "beanbag":
+	if character_type == "beanbag":
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
+		player_head.scale -= Vector2(0.02, 0.02)
+	else:
 		if player_num:
 			if character_type == Globals.player_sprites[0]:
 				color = "alternate"
@@ -168,8 +171,11 @@ func _ready():
 		else:
 			color = "purple"
 		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
-		p1_icon = _sprites_scene_instance.get_node("Player1Icon")
-		p2_icon = _sprites_scene_instance.get_node("Player2Icon")
+	
+	p1_icon = _sprites_scene_instance.get_node("Player1Icon")
+	p2_icon = _sprites_scene_instance.get_node("Player2Icon")
+	
+	if character_type != "beanbag":
 		var states = {
 			Globals.States.AIR: AirState.new(),
 			Globals.States.AIR_ATTACK: AirAttackState.new(),
@@ -191,6 +197,7 @@ func _ready():
 			Globals.States.IDLE: BeanbagIdleState.new()
 		}
 		state_machine.init(self, states, Globals.States.IDLE)
+		_sprites_scene_instance.position = Vector2(10, 10)
 
 	if _dead_areas:
 		for dead_area in _dead_areas.get_children():
@@ -333,7 +340,7 @@ func get_input(input_name: String):
 			return "p1_%s" % input_name
 		else:
 			# TODO(Bobby): Find a cleaner soln than just having a null_input
-			return "null_input"
+			return ""
 	else:
 		return "p%s_%s" % [player_num + 1, input_name]
 
@@ -401,7 +408,7 @@ func get_scaled_stat(stat_name):
 func air_movement(delta):
 	velocity.y += get_grav() * delta
 	velocity.y = minf(velocity.y, stats.terminal_vel)
-	var direction = Input.get_axis(
+	var direction = InputManager.get_axis(
 		get_input("left"), get_input("right")
 	)
 	if direction:
@@ -478,19 +485,19 @@ func acknowledge_death():
 			_damage_label.set_player_death_count(player_num, stocks)
 		
 		if not _is_lobby and stocks <= 0:
-			
 			Globals.player1_won = player_num != 0
 			Globals.cutscene_player_end_game = true
 			Globals.cutscene_player_video_path = ending_video
 			Globals.audio_stream_to_play_during_cutscene = ending_video_audiostream
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
+	
 	play_audio(AudioType.DEATH)
 	play_particles(physics_blood,0, 30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
 
 func _physics_process(delta: float):
 	# if we are the server setup, we need to tell InputManager which player to get inputs for
-	
-	set_collision_mask_value(4, not InputManager.is_action_pressed(get_input("down")))  # drop through platforms while down is held
+	if character_type != "beanbag":
+		set_collision_mask_value(4, not InputManager.is_action_pressed(get_input("down")))  # drop through platforms while down is held
 	frame += 1
 	state_machine.update(delta)
 	move_and_slide()

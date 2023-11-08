@@ -16,11 +16,20 @@ func switch_player_id(player_id: int):
 		_current_input_sent = past_input_sent_queue[player_id].pop_front()
 
 func get_axis(negative_input: String, positive_input: String) -> float:
+	if negative_input.is_empty():
+		return false
+	
 	return Input.get_axis(negative_input, positive_input)
 
 func is_action_just_pressed(input: String):
+	if input.is_empty():
+		return false
+	
 	return Input.is_action_just_pressed(input)
 
 func is_action_pressed(input: String) -> bool:
+	if input.is_empty():
+		return false
+	
 	return Input.is_action_pressed(input)
 
