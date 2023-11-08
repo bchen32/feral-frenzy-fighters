@@ -468,7 +468,10 @@ func acknowledge_death():
 	var ko_icon_load = preload("res://gui/hud/ko_icon.tscn").instantiate()
 	
 	get_parent().add_child(ko_icon_load)
-	
+	var cam = get_parent().get_node("Camera2D")
+	if cam:
+		cam.shake()
+
 	ko_icon_load.global_position = ko_icon_position
 	reset_player()
 	if not NetworkManager.is_connected and not _is_lobby:
@@ -482,7 +485,6 @@ func acknowledge_death():
 			Globals.cutscene_player_video_path = ending_video
 			Globals.audio_stream_to_play_during_cutscene = ending_video_audiostream
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
-	
 	play_audio(AudioType.DEATH)
 	play_particles(physics_blood,0, 30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
 

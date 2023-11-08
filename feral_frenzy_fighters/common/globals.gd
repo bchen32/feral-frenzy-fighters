@@ -7,7 +7,7 @@ var cutscene_player_end_game: bool = false
 var player1_won: bool = false
 var player_sprites: Array[String] = ["cat", "cat"]
 var stage: int
-var water_level: int
+var water_level: float
 
 var audio_stream_to_play_during_cutscene: AudioStream
 var sfx_val = -1

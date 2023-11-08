@@ -30,7 +30,7 @@ func _process(delta):
 		water_level_state = Water_Level_States.LOWTOHIGH
 		water_level_process()
 		event_spawner.start_external_event = false
-	
+	Globals.water_level = self.global_position.y
 	log_process()
 
 func water_level_process():

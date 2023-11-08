@@ -23,7 +23,6 @@ var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 func _ready():
 	if position.x < 1000:
 		destination = Vector2(420, self.global_position.y)
-		anim.play("LeftSwimParticle")
 	elif position.x > 1000:
 		destination = Vector2(1500, self.global_position.y)
 	reset_hitbox()
