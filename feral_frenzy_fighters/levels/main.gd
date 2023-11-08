@@ -42,27 +42,20 @@ func _ready():
 		0:
 			level = load("res://levels/cat_tree/cat_tree_level.tscn").instantiate()
 			$AudioStreamPlayer.stream = preload("res://levels/cat_tree/music/catfight.wav")
-			add_child(level)
-#			level.get_node("Player").set_spawn(spawn_pos)
-#			level.get_node("Player2").set_spawn(spawn_pos2)
 			Globals.water_level = 10000
 		1:
 			level = load("res://levels/fish_tank/fish_tank_level.tscn").instantiate()
 			$AudioStreamPlayer.stream = preload("res://levels/fish_tank/sfx/fishfight.wav")
-			add_child(level)
-#			level.get_node("Player").set_spawn(spawn_pos)
-#			level.get_node("Player2").set_spawn(spawn_pos2)
 			Globals.water_level = 120
 		2:
 			level = load("res://levels/turtle_habitat/turtle_habitat_level.tscn").instantiate()
 			$AudioStreamPlayer.stream = preload("res://levels/cat_tree/music/catfight.wav")
-			add_child(level)
-#			level.get_node("Player").set_spawn(spawn_pos)
-#			level.get_node("Player2").set_spawn(spawn_pos2)
 			Globals.water_level = 10000
 			
 	$AudioStreamPlayer.play()
-	
+	add_child(level)
+	$Player.set_spawn(level.get_node("P1Spawn").position)
+	$Player2.set_spawn(level.get_node("P2Spawn").position)
 	move_child(level, 0)
 	camera.event_spawner = level.get_node("Events/EventSpawner")
 	NetworkManager.recieved_player_data.connect(_game_information)

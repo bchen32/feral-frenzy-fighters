@@ -171,7 +171,6 @@ func _ready():
 		for dead_area in _dead_areas.get_children():
 			dead_area.body_entered.connect(_on_dead_area_entered)
 
-	_initial_player_position = position
 	if player_num == 1:
 		anim_player.flip_h = false
 		if p2_icon:
