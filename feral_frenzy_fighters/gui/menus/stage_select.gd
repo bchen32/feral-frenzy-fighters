@@ -234,8 +234,8 @@ func _p1_lock_in():
 	on_locked_in()
 
 func _on_stage_screen_change_acked(player_num: int, stage: int):
-	if player_num - 1 != NetworkManager.my_player_num:
-		if player_num == 1:
+	if player_num != NetworkManager.my_player_num:
+		if player_num == 0:
 			p1_selection[p1_stage].texture_normal = graybox
 			p1_stage = stage
 			p1_selection[p1_stage].texture_normal = purplebox
