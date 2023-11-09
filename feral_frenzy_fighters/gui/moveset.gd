@@ -7,7 +7,7 @@ extends Control
 
 var characters = ["cat", "fish", "turtle"]
 var moves = ["nattack", "nair", "dattack"]
-var display_moves = ["Grounded Attack", "Air Attack", "Dash Attack"]
+var display_moves = ["Grounded Attack", "Aerial Attack", "Dash Attack"]
 
 var controls = {
 	0 : ["attack","none","none"],
