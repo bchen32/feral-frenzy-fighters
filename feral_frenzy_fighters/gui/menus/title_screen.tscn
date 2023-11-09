@@ -1,7 +1,6 @@
-[gd_scene load_steps=47 format=3 uid="uid://br6txao4iioos"]
+[gd_scene load_steps=46 format=3 uid="uid://br6txao4iioos"]
 
 [ext_resource type="Script" path="res://gui/menus/title_screen.gd" id="1_u2ssx"]
-[ext_resource type="PackedScene" uid="uid://sjcnk7j4e0i4" path="res://gui/menus/cutscene_player.tscn" id="2_g7u1a"]
 [ext_resource type="Theme" uid="uid://ciapr50n3vxqt" path="res://default_ui_theme.tres" id="3_0h4m0"]
 [ext_resource type="Texture2D" uid="uid://dpaluibvjuaoc" path="res://gui/menus/sprites/screens/screen_background.png" id="4_eh3f6"]
 [ext_resource type="AudioStream" uid="uid://b6vmgj8xixu57" path="res://gui/menus/music/intro_theme.wav" id="4_n3vdy"]
@@ -71,14 +70,6 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_u2ssx")
 beginning_cutscene_path = "res://gui/menus/cutscenes/cat_v_cat_pre_battle.ogv"
-
-[node name="CutscenePlayer" parent="." node_paths=PackedStringArray("node_to_show", "audio_stream_player") instance=ExtResource("2_g7u1a")]
-visible = false
-layout_mode = 1
-node_to_show = NodePath("../MainMenu")
-audio_stream_player = NodePath("../AudioStreamPlayer2D")
-audio_stream_to_play_during = ExtResource("4_n3vdy")
-audio_stream_to_play_after = ExtResource("4_n3vdy")
 
 [node name="MainMenu" type="TextureRect" parent="."]
 layout_mode = 0
@@ -941,6 +932,7 @@ bus = &"SFX"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_n3vdy")
+autoplay = true
 bus = &"Music"
 
 [node name="HostButton" type="Button" parent="."]
