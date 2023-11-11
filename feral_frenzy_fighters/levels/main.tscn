@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpqtgmb2u4uo0"]
+[gd_scene load_steps=10 format=3 uid="uid://cpqtgmb2u4uo0"]
 
 [ext_resource type="Script" path="res://levels/main.gd" id="1_ghdqb"]
 [ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="1_ynwnh"]
 [ext_resource type="PackedScene" uid="uid://cqwih0alupqsb" path="res://gui/hud/damage_ui.tscn" id="2_tb6xb"]
 [ext_resource type="AudioStream" uid="uid://2pedg4faj0li" path="res://gui/menus/music/triumphant.wav" id="3_yody1"]
+[ext_resource type="PackedScene" uid="uid://eg7h4gkm6w3x" path="res://player/respawn/respawn.tscn" id="4_uvofl"]
 [ext_resource type="AudioStream" uid="uid://gv5krwja5mbt" path="res://levels/cat_tree/music/catfight.wav" id="5_7efgp"]
 [ext_resource type="PackedScene" uid="uid://cmvf4h60u8y1p" path="res://levels/camera.tscn" id="5_lovfr"]
 
@@ -27,6 +28,8 @@ player_num = 1
 _damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
 _dead_areas = NodePath("../DeadAreas")
 ending_video_audiostream = ExtResource("3_yody1")
+
+[node name="Respawn" parent="." instance=ExtResource("4_uvofl")]
 
 [node name="DeadAreas" type="Node2D" parent="."]
 position = Vector2(-3, 557)

@@ -56,6 +56,7 @@ func _ready():
 	add_child(level)
 	$Player.set_spawn(level.get_node("P1Spawn").position)
 	$Player2.set_spawn(level.get_node("P2Spawn").position)
+	$Respawn.set_spawn(level.get_node("P1Spawn").position, level.get_node("P2Spawn").position)
 	move_child(level, 0)
 	camera.event_spawner = level.get_node("Events/EventSpawner")
 	NetworkManager.recieved_player_data.connect(_game_information)
