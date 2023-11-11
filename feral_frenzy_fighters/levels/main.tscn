@@ -29,7 +29,10 @@ _damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
 _dead_areas = NodePath("../DeadAreas")
 ending_video_audiostream = ExtResource("3_yody1")
 
-[node name="Respawn" parent="." instance=ExtResource("4_uvofl")]
+[node name="P1Respawn" parent="." instance=ExtResource("4_uvofl")]
+p1_respawn = true
+
+[node name="P2Respawn" parent="." instance=ExtResource("4_uvofl")]
 
 [node name="DeadAreas" type="Node2D" parent="."]
 position = Vector2(-3, 557)

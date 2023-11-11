@@ -1,12 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://eg7h4gkm6w3x"]
+[gd_scene load_steps=11 format=3 uid="uid://eg7h4gkm6w3x"]
 
 [ext_resource type="Script" path="res://player/respawn/respawn.gd" id="1_y7f8q"]
-[ext_resource type="Texture2D" uid="uid://babl67v7lmkxf" path="res://player/respawn/sprites/test_tube_respawn_blue_no_bottom.png" id="2_tky44"]
 [ext_resource type="Texture2D" uid="uid://ce4qfbgwx780w" path="res://player/respawn/sprites/test_tube_respawn_bottom_part.png" id="3_inxrf"]
 [ext_resource type="Texture2D" uid="uid://c58k36o5xw1rw" path="res://player/respawn/sprites/rocket_blue_fire2.png" id="4_ppwkr"]
 [ext_resource type="Texture2D" uid="uid://lsjwk1pklcjm" path="res://levels/turtle_habitat/sprites/events/smoke_particle effect.png" id="5_dkbtt"]
 [ext_resource type="Texture2D" uid="uid://dproynp4kvu5y" path="res://player/respawn/sprites/test_tube_respawn_empty_no_bottom.png" id="6_l6vix"]
-[ext_resource type="Texture2D" uid="uid://doaxqnp1debu5" path="res://player/respawn/sprites/rocket_purple_fire2.png" id="7_c52uw"]
 
 [sub_resource type="Animation" id="Animation_jltj2"]
 resource_name = "FlyingIn"
@@ -14,7 +12,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Capsule:rotation")
+tracks/0/path = NodePath("CapsuleSprite:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -26,7 +24,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Capsule/LeftRocket:rotation")
+tracks/1/path = NodePath("CapsuleSprite/LeftRocket:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -38,7 +36,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Capsule/RightRocket:rotation")
+tracks/2/path = NodePath("CapsuleSprite/RightRocket:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -50,7 +48,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Capsule/LeftRocket/LeftParticles:emitting")
+tracks/3/path = NodePath("CapsuleSprite/LeftRocket/LeftParticles:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -62,7 +60,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Capsule/RightRocket/RightParticles:emitting")
+tracks/4/path = NodePath("CapsuleSprite/RightRocket/RightParticles:emitting")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -70,157 +68,6 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_mbn12"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Capsule:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Capsule/LeftRocket:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Capsule/RightRocket:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Capsule/LeftRocket/LeftParticles:emitting")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Capsule/RightRocket/RightParticles:emitting")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Capsule/Hatch:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("OpenSmokeParticles:emitting")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("OpenLiquidParticles:emitting")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Capsule:texture")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_tky44")]
-}
-
-[sub_resource type="Animation" id="Animation_r2lhk"]
-resource_name = "Stopping"
-length = 2.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Capsule:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 1.5, 2, 2.5),
-"transitions": PackedFloat32Array(0.5, -2, -2, -2, 1),
-"update": 0,
-"values": [-0.0872665, 0.0872665, -0.0523599, 0.0349066, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Capsule/LeftRocket:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-0.349066, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Capsule/RightRocket:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-0.349066, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_fnanf"]
@@ -229,7 +76,7 @@ length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Capsule:rotation")
+tracks/0/path = NodePath("CapsuleSprite:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -241,7 +88,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Capsule/LeftRocket:rotation")
+tracks/1/path = NodePath("CapsuleSprite/LeftRocket:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -253,7 +100,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Capsule/RightRocket:rotation")
+tracks/2/path = NodePath("CapsuleSprite/RightRocket:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -265,7 +112,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Capsule/Hatch:rotation")
+tracks/3/path = NodePath("CapsuleSprite/Hatch:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -301,14 +148,153 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Capsule:texture")
+tracks/6/path = NodePath("CapsuleSprite:texture")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 1.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1.4),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_tky44"), ExtResource("6_l6vix")]
+"values": [ExtResource("6_l6vix")]
+}
+
+[sub_resource type="Animation" id="Animation_mbn12"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CapsuleSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CapsuleSprite/LeftRocket:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CapsuleSprite/RightRocket:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CapsuleSprite/LeftRocket/LeftParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CapsuleSprite/RightRocket/RightParticles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CapsuleSprite/Hatch:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("OpenSmokeParticles:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("OpenLiquidParticles:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_r2lhk"]
+resource_name = "Stopping"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CapsuleSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
+"transitions": PackedFloat32Array(0.5, -2, -2, -2, 1),
+"update": 0,
+"values": [-0.0872665, 0.0872665, -0.0523599, 0.0349066, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CapsuleSprite/LeftRocket:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.349066, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CapsuleSprite/RightRocket:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.349066, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7orj4"]
@@ -320,12 +306,13 @@ _data = {
 }
 
 [node name="Respawn" type="Node2D"]
+z_index = 15
 script = ExtResource("1_y7f8q")
 
-[node name="P1Capsule" type="Node2D" parent="."]
-scale = Vector2(0.3, 0.3)
+[node name="Capsule" type="Node2D" parent="."]
+scale = Vector2(0.35, 0.35)
 
-[node name="OpenLiquidParticles" type="CPUParticles2D" parent="P1Capsule"]
+[node name="OpenLiquidParticles" type="CPUParticles2D" parent="Capsule"]
 position = Vector2(0, 200)
 emitting = false
 amount = 25
@@ -339,24 +326,24 @@ scale_amount_min = 3.0
 scale_amount_max = 5.0
 color = Color(0.47451, 0.741176, 0.843137, 1)
 
-[node name="Capsule" type="Sprite2D" parent="P1Capsule"]
+[node name="CapsuleSprite" type="Sprite2D" parent="Capsule"]
 position = Vector2(0, -230)
-texture = ExtResource("2_tky44")
+texture = ExtResource("6_l6vix")
 offset = Vector2(0, 230)
 
-[node name="Hatch" type="Sprite2D" parent="P1Capsule/Capsule"]
+[node name="Hatch" type="Sprite2D" parent="Capsule/CapsuleSprite"]
 position = Vector2(120, 420)
 texture = ExtResource("3_inxrf")
 offset = Vector2(-120, 10)
 
-[node name="LeftRocket" type="Sprite2D" parent="P1Capsule/Capsule"]
+[node name="LeftRocket" type="Sprite2D" parent="Capsule/CapsuleSprite"]
 z_index = 1
 position = Vector2(-120, 10)
 scale = Vector2(0.5, 0.3)
 texture = ExtResource("4_ppwkr")
 offset = Vector2(0, 100)
 
-[node name="LeftParticles" type="CPUParticles2D" parent="P1Capsule/Capsule/LeftRocket"]
+[node name="LeftParticles" type="CPUParticles2D" parent="Capsule/CapsuleSprite/LeftRocket"]
 z_index = -1
 position = Vector2(0, 150)
 emitting = false
@@ -372,14 +359,14 @@ scale_amount_min = 2.0
 scale_amount_max = 3.0
 color = Color(0.914063, 0.519531, 0.300781, 1)
 
-[node name="RightRocket" type="Sprite2D" parent="P1Capsule/Capsule"]
+[node name="RightRocket" type="Sprite2D" parent="Capsule/CapsuleSprite"]
 z_index = 1
 position = Vector2(120, 10)
 scale = Vector2(0.5, 0.3)
 texture = ExtResource("4_ppwkr")
 offset = Vector2(0, 100)
 
-[node name="RightParticles" type="CPUParticles2D" parent="P1Capsule/Capsule/RightRocket"]
+[node name="RightParticles" type="CPUParticles2D" parent="Capsule/CapsuleSprite/RightRocket"]
 z_index = -1
 position = Vector2(0, 150)
 emitting = false
@@ -395,7 +382,7 @@ scale_amount_min = 2.0
 scale_amount_max = 3.0
 color = Color(0.914063, 0.519531, 0.300781, 1)
 
-[node name="OpenSmokeParticles" type="CPUParticles2D" parent="P1Capsule"]
+[node name="OpenSmokeParticles" type="CPUParticles2D" parent="Capsule"]
 emitting = false
 amount = 30
 lifetime = 2.0
@@ -414,106 +401,7 @@ scale_amount_min = 0.75
 scale_amount_max = 1.25
 color = Color(1, 1, 1, 0.686275)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="P1Capsule"]
-autoplay = "RESET"
-libraries = {
-"": SubResource("AnimationLibrary_7orj4")
-}
-
-[node name="P2Capsule" type="Node2D" parent="."]
-visible = false
-scale = Vector2(0.3, 0.3)
-
-[node name="OpenLiquidParticles" type="CPUParticles2D" parent="P2Capsule"]
-position = Vector2(0, 200)
-emitting = false
-amount = 25
-lifetime = 0.75
-speed_scale = 1.5
-emission_shape = 3
-emission_rect_extents = Vector2(100, 1)
-direction = Vector2(0, 1)
-spread = 0.0
-scale_amount_min = 3.0
-scale_amount_max = 5.0
-color = Color(0.671875, 0.601563, 0.761719, 1)
-
-[node name="Capsule" type="Sprite2D" parent="P2Capsule"]
-position = Vector2(0, -230)
-texture = ExtResource("2_tky44")
-offset = Vector2(0, 230)
-
-[node name="Hatch" type="Sprite2D" parent="P2Capsule/Capsule"]
-position = Vector2(120, 420)
-texture = ExtResource("3_inxrf")
-offset = Vector2(-120, 10)
-
-[node name="LeftRocket" type="Sprite2D" parent="P2Capsule/Capsule"]
-z_index = 1
-position = Vector2(-120, 10)
-scale = Vector2(0.5, 0.3)
-texture = ExtResource("7_c52uw")
-offset = Vector2(0, 100)
-
-[node name="LeftParticles" type="CPUParticles2D" parent="P2Capsule/Capsule/LeftRocket"]
-z_index = -1
-position = Vector2(0, 150)
-emitting = false
-amount = 15
-speed_scale = 2.0
-lifetime_randomness = 0.4
-direction = Vector2(0, 1)
-spread = 10.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 700.0
-initial_velocity_max = 700.0
-scale_amount_min = 2.0
-scale_amount_max = 3.0
-color = Color(0.914063, 0.519531, 0.300781, 1)
-
-[node name="RightRocket" type="Sprite2D" parent="P2Capsule/Capsule"]
-z_index = 1
-position = Vector2(120, 10)
-scale = Vector2(0.5, 0.3)
-texture = ExtResource("7_c52uw")
-offset = Vector2(0, 100)
-
-[node name="RightParticles" type="CPUParticles2D" parent="P2Capsule/Capsule/RightRocket"]
-z_index = -1
-position = Vector2(0, 150)
-emitting = false
-amount = 15
-speed_scale = 2.0
-lifetime_randomness = 0.4
-direction = Vector2(0, 1)
-spread = 10.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 700.0
-initial_velocity_max = 700.0
-scale_amount_min = 2.0
-scale_amount_max = 3.0
-color = Color(0.914063, 0.519531, 0.300781, 1)
-
-[node name="OpenSmokeParticles" type="CPUParticles2D" parent="P2Capsule"]
-emitting = false
-amount = 30
-lifetime = 2.0
-speed_scale = 2.0
-texture = ExtResource("5_dkbtt")
-emission_shape = 3
-emission_rect_extents = Vector2(100, 135)
-direction = Vector2(0, 0)
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 10.0
-angular_velocity_min = -5.0
-angular_velocity_max = 5.0
-scale_amount_min = 0.75
-scale_amount_max = 1.25
-color = Color(1, 1, 1, 0.686275)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="P2Capsule"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Capsule"]
 autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_7orj4")

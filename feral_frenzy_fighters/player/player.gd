@@ -196,6 +196,12 @@ func reset_player():
 		_damage_label.get_node(("P2" if player_num else "P1") + "/DamageLabel").label_settings.font_color = Color.WHITE
 		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
 		player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
+	
+	if self.name == "Player":
+		$"../P1Respawn".respawn_player()
+	elif self.name == "Player2":
+		$"../P2Respawn".respawn_player()
+	
 	if character_type != "beanbag":
 		var states = {
 			Globals.States.AIR: AirState.new(),
