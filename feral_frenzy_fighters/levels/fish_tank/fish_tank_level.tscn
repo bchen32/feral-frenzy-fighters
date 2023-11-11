@@ -272,10 +272,10 @@ polygon = PackedVector2Array(1504, 613, 1638, 613, 1683, 716, 1459, 716)
 [node name="FishTankLevel" type="Node2D"]
 
 [node name="P1Spawn" type="Node2D" parent="."]
-position = Vector2(500, 700)
+position = Vector2(770, 60)
 
 [node name="P2Spawn" type="Node2D" parent="."]
-position = Vector2(1420, 700)
+position = Vector2(1140, 60)
 
 [node name="Environment" type="Node2D" parent="."]
 

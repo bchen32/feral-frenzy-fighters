@@ -5,9 +5,9 @@ var capsule_state = Capsule_States.NOCAPSULE
 
 @export var p1_respawn: bool
 
-var capsule_spawn_pos: Vector2
+var capsule_right_pos: Vector2
+var capsule_left_pos: Vector2
 var player_respawn_pos: Vector2
-var capsule_end_pos: Vector2
 var capsule_destination: Vector2
 
 @onready var capsule: Node2D = get_node("Capsule")
@@ -27,8 +27,8 @@ func _ready():
 func set_spawn(player_spawn):
 	player_respawn_pos = player_spawn
 	
-	capsule_spawn_pos = Vector2(2500, player_spawn.y)
-	capsule_end_pos = Vector2(-500, player_spawn.y)
+	capsule_right_pos = Vector2(2500, player_spawn.y)
+	capsule_left_pos = Vector2(-500, player_spawn.y)
 	
 	set_capsule_stuff()
 
@@ -55,22 +55,33 @@ func respawn_player():
 	capsule_state = Capsule_States.FLYINGIN
 	set_capsule_stuff()
 
-func set_capsule_stuff():
+func set_capsule_stuff(): #p1 capsule left to right, p2 capsule vice versa
 	match capsule_state:
 		Capsule_States.NOCAPSULE:
 			anim.play("RESET")
-			capsule.position = capsule_spawn_pos
-			capsule_destination = capsule_spawn_pos
 			if p1_respawn:
 				$Capsule/CapsuleSprite.texture = capsule_sprites_array[0]
+				capsule.position = capsule_left_pos
+				capsule_destination = capsule_left_pos
 			else:
 				$Capsule/CapsuleSprite.texture = capsule_sprites_array[1]
+				capsule.position = capsule_right_pos
+				capsule_destination = capsule_right_pos
 		Capsule_States.FLYINGIN:
-			anim.play("FlyingIn")
+			if p1_respawn:
+				anim.play("FlyingInFromLeft")
+			else:
+				anim.play("FlyingInFromRight")
 			capsule_destination = player_respawn_pos
 		Capsule_States.WAITING:
-			anim.play("Stopping")
+			if p1_respawn:
+				anim.play("StoppingFromLeft")
+			else:
+				anim.play("StoppingFromRight")
 		Capsule_States.FLYINGOUT:
 			anim.play("OpenThenFlyOut")
 			await anim.animation_finished
-			capsule_destination = capsule_end_pos
+			if p1_respawn:
+				capsule_destination = capsule_right_pos
+			else:
+				capsule_destination = capsule_left_pos
