@@ -6,7 +6,7 @@ extends Node2D
 	load("res://levels/fish_tank/sprites/decor/tiki_fish_head.png"),
 	load("res://levels/fish_tank/sprites/decor/tiki_turtle_head.png")
 ]
-@onready var sprite = get_node("Sprite2D")
+@onready var sprite: Sprite2D = get_node("Sprite2D")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,13 +16,17 @@ func _ready():
 		
 		if p1_tiki == true:
 			match (p1_chr):
-				"res://player/cat/cat.tscn":
+				"cat":
 					sprite.texture = tiki_sprites[0]
-				"res://player/fish/fish.tscn":
+				"fish":
 					sprite.texture = tiki_sprites[1]
+				"turtle":
+					sprite.texture = tiki_sprites[2]
 		if p1_tiki == false:
 			match (p2_chr):
-				"res://player/cat/cat.tscn":
+				"cat":
 					sprite.texture = tiki_sprites[0]
-				"res://player/fish/fish.tscn":
+				"fish":
 					sprite.texture = tiki_sprites[1]
+				"turtle":
+					sprite.texture = tiki_sprites[2]

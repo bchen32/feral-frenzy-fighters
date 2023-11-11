@@ -304,15 +304,15 @@ layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
-layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array()
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array(917507, 0, 2, 917532, 0, 2)
 layer_2/name = "Decor"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array(851976, 131072, 5, 786440, 131072, 5, 720904, 131072, 5, 589832, 131072, 5, 524296, 131072, 5, 458760, 131072, 5, 851991, 131072, 5, 786455, 131072, 5, 720919, 131072, 5, 589847, 131072, 5, 524311, 131072, 5, 458775, 131072, 5, 655368, 131072, 6, 655383, 131072, 7, 393224, 131072, 3, 393239, 131072, 3, 917532, 0, 2, 917507, 0, 2)
+layer_2/tile_data = PackedInt32Array(851976, 131072, 5, 786440, 131072, 5, 720904, 131072, 5, 589832, 131072, 5, 524296, 131072, 5, 458760, 131072, 5, 851991, 131072, 5, 786455, 131072, 5, 720919, 131072, 5, 589847, 131072, 5, 524311, 131072, 5, 458775, 131072, 5, 655368, 131072, 6, 655383, 131072, 7, 393224, 131072, 3, 393239, 131072, 3)
 layer_3/name = "Fall-Through"
 layer_3/enabled = true
 layer_3/modulate = Color(1, 1, 1, 1)
@@ -436,7 +436,7 @@ texture = ExtResource("6_elfyn")
 metadata/_edit_lock_ = true
 
 [node name="TikiHut" type="Sprite2D" parent="Environment/Decorations"]
-position = Vector2(1571, 727)
+position = Vector2(1587, 727)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("10_ehe4q")
 metadata/_edit_lock_ = true
@@ -445,7 +445,7 @@ metadata/_edit_lock_ = true
 collision_layer = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Decorations/TikiHut/StaticBody2D"]
-polygon = PackedVector2Array(-186.667, -18, -111.667, -190, 113.333, -190, 186.667, -18)
+polygon = PackedVector2Array(-186.667, -18, -111.667, -190, 206.667, -190, 205, -18)
 
 [node name="TikiHead" parent="Environment/Decorations" instance=ExtResource("10_hjvma")]
 z_index = -1
@@ -548,6 +548,7 @@ position = Vector2(742, 0)
 occluder = SubResource("OccluderPolygon2D_ao0v5")
 
 [node name="LightOccluder2D6" type="LightOccluder2D" parent="LightOccluders"]
+position = Vector2(16, 0)
 occluder = SubResource("OccluderPolygon2D_xvk5b")
 
 [connection signal="child_exiting_tree" from="Events/EventSpawner" to="Events/EventSpawner" method="_on_child_exiting_tree"]
