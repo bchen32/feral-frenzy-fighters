@@ -461,8 +461,8 @@ spread = 10.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 700.0
 initial_velocity_max = 700.0
-scale_amount_min = 2.0
-scale_amount_max = 3.0
+scale_amount_min = 4.0
+scale_amount_max = 6.0
 color = Color(0.914063, 0.519531, 0.300781, 1)
 
 [node name="RightRocket" type="Sprite2D" parent="Capsule/CapsuleSprite"]
@@ -484,8 +484,8 @@ spread = 10.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 700.0
 initial_velocity_max = 700.0
-scale_amount_min = 2.0
-scale_amount_max = 3.0
+scale_amount_min = 4.0
+scale_amount_max = 6.0
 color = Color(0.914063, 0.519531, 0.300781, 1)
 
 [node name="OpenSmokeParticles" type="CPUParticles2D" parent="Capsule"]
