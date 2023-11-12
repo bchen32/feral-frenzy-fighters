@@ -39,6 +39,7 @@ func is_action_pressed(input: String) -> bool:
 	return Input.is_action_pressed(input)
 
 func _process(delta):
-	if paused:
-		await get_tree().create_timer(1).timeout
-		paused = false
+	if !get_tree().root.has_node("/root/Main"):
+		if paused:
+			await get_tree().create_timer(1).timeout
+			paused = false
