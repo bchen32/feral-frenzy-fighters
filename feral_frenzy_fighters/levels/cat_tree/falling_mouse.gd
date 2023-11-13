@@ -35,7 +35,7 @@ func _ready():
 	mouse_sprite.add_child(mouse_hitbox)
 	
 	#width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-	mouse_hitbox.setup(110, 50, -60, 40, 5, 1.25, 0, 0)
+	mouse_hitbox.setup(110, 50, -60, 40, 5, 1.25, 0, 0, false)
 	
 	mouse_sprite.visible = false
 	

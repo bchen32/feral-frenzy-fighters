@@ -44,6 +44,7 @@ var bloodied = false
 var anim_player: AnimatedSprite2D
 var stats: Dictionary
 var hitbox_scene: PackedScene = preload("res://player/attacks/hitbox.tscn")
+var projectile_scene: PackedScene = preload("res://player/attacks/projectile.tscn")
 var frame: int = 0
 var percentage: float = 0.0
 var air_speed_upper_bound: float
@@ -372,7 +373,20 @@ func update_attack(attack_name: String):
 	for hitbox_stats in attack.hitboxes:
 		if frame == hitbox_stats.start_frame:
 			var hitbox = hitbox_scene.instantiate()
-			add_child(hitbox)
+			var is_projectile = false
+			if hitbox_stats.projectile_data:
+				var projectile = projectile_scene.instantiate()
+				projectile.setup(
+					hitbox,
+					Vector2(
+						(1.0 if anim_player.flip_h else -1.0) * hitbox_stats.projectile_data.velocity.x,
+						hitbox_stats.projectile_data.velocity.y
+					)
+				)
+				add_child(projectile)
+				is_projectile = true
+			else:
+				add_child(hitbox)
 			curr_hitboxes.append(hitbox)
 			curr_hitboxes_ends.append(int(hitbox_stats.end_frame))
 			hitbox.setup(
@@ -383,7 +397,8 @@ func update_attack(attack_name: String):
 				attack.damage,
 				attack.knockback_scale,
 				(1.0 if anim_player.flip_h else -1.0) * attack.knockback_x_offset,
-				attack.knockback_y_offset
+				attack.knockback_y_offset,
+				is_projectile
 			)
 	for i in range(len(curr_hitboxes)):
 		if frame == curr_hitboxes_ends[i]:
@@ -392,7 +407,7 @@ func update_attack(attack_name: String):
 
 func end_attack():
 	for child in get_children():
-		if child is Hitbox:
+		if child is Hitbox or child is Projectile:
 			child.queue_free()
 	curr_hitboxes = []
 	curr_hitboxes_ends = []

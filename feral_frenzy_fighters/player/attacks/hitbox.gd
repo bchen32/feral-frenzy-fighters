@@ -8,19 +8,24 @@ var dmg: float
 var kb_scale: float
 var kb_x_offset: float
 var kb_y_offset: float
+var projectile: bool
 
 
-func setup(width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset):
+func setup(width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset, is_projectile):
 	collision_shape.shape.extents = Vector2(width, height)
 	translate(Vector2(x_offset, y_offset))
 	dmg = damage
 	kb_scale = knockback_scale
 	kb_x_offset = knockback_x_offset
 	kb_y_offset = knockback_y_offset
-	excludes.append(get_parent())
 	excludes.append(self)
 	self.body_entered.connect(_on_body_entered)
 	self.area_entered.connect(_on_area_2d_area_entered)
+	projectile = is_projectile
+	if projectile:
+		excludes.append(get_parent().get_parent())
+	else:
+		excludes.append(get_parent())
 
 
 func _on_body_entered(body: Node2D):
@@ -47,6 +52,8 @@ func _on_body_entered(body: Node2D):
 			body.hit = true
 			body.kb = kb
 			body.kb_angle = angle
+	elif body is StaticBody2D:
+		get_parent().collide()
 
 func _on_area_2d_area_entered(area):
 	if self.get_parent() is PlayerCharacter:

@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dgryka6ovy68x"]
+[gd_scene load_steps=3 format=3 uid="uid://dgryka6ovy68x"]
 
 [ext_resource type="Script" path="res://player/attacks/projectile.gd" id="1_w644d"]
+[ext_resource type="Texture2D" uid="uid://m2t2k0s0ohfh" path="res://player/fish/sprites/attack_neutral/pufferfishbomb/Pufferfish_Bomb-8.png" id="2_crt0x"]
 
 [node name="Projectile" type="Node2D"]
 script = ExtResource("1_w644d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_crt0x")

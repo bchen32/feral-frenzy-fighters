@@ -1,14 +1,21 @@
 extends Node2D
+class_name Projectile
 
 
-# Stores some velocity, instances some hitbox
-# Does some sort of bounce/collision checking
+var initialized: bool = false
+var velocity: Vector2 = Vector2(0, 0)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func setup(h_box, vel):
+	add_child(h_box)
+	velocity = vel
+	initialized = true
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func collide():
+	queue_free()
+
+
 func _process(delta):
-	pass
+	if not initialized:
+		pass
+	position += velocity * delta

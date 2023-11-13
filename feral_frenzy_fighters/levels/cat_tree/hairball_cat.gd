@@ -68,7 +68,7 @@ func _shoot_hairball():
 	hairball.add_child(hairball_hitbox)
 	
 	# width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-	hairball_hitbox.setup(70, 70, 0, 0, 10, 1.5, 0, 0)
+	hairball_hitbox.setup(70, 70, 0, 0, 10, 1.5, 0, 0, false)
 	
 	shoot = true
 	cat_sfx.set_pitch_scale(randf_range(1,1.5))

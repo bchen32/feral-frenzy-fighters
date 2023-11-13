@@ -132,7 +132,7 @@ func _choose_random_point():
 		sprite.add_child(plasma_hitbox)
 		
 		# width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-		plasma_hitbox.setup(50, 50, 0, 0, 15, 2, 0, 0)
+		plasma_hitbox.setup(50, 50, 0, 0, 15, 2, 0, 0, false)
 
 func _move_ball(delta):
 	if !self.position.distance_to(destination) < 0.1: # if the plasma ball hasn't reached the destination
