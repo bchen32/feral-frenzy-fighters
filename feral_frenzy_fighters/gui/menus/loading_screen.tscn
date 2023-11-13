@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4iefljlvawrj"]
+
+[ext_resource type="Texture2D" uid="uid://dpaluibvjuaoc" path="res://gui/menus/sprites/screens/screen_background.png" id="1_63hc6"]
+[ext_resource type="Script" path="res://gui/menus/loading_screen.gd" id="2_657dt"]
+[ext_resource type="Texture2D" uid="uid://5sypmsvo4y78" path="res://gui/menus/sprites/screens/loading_icon.png" id="3_380uy"]
+[ext_resource type="Texture2D" uid="uid://u756v8lp0brt" path="res://gui/menus/sprites/screens/titles/title_ui.png" id="3_rih7v"]
+[ext_resource type="Texture2D" uid="uid://bfgpxcgrqc384" path="res://gui/menus/sprites/screens/titles/tips_background.png" id="5_7kpc7"]
+[ext_resource type="Theme" uid="uid://ciapr50n3vxqt" path="res://default_ui_theme.tres" id="6_w6ann"]
+
+[node name="LoadingScreen" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_63hc6")
+script = ExtResource("2_657dt")
+
+[node name="UI" type="Node" parent="."]
+
+[node name="Wheel" type="TextureRect" parent="UI"]
+unique_name_in_owner = true
+layout_direction = 1
+offset_left = 854.0
+offset_top = 539.0
+offset_right = 1054.0
+offset_bottom = 739.0
+pivot_offset = Vector2(100, 100)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_380uy")
+stretch_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+offset_left = 343.0
+offset_top = 85.0
+offset_right = 1569.0
+offset_bottom = 915.0
+theme_override_constants/separation = 300
+alignment = 1
+
+[node name="Title" type="TextureRect" parent="UI/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_rih7v")
+
+[node name="Tips" type="TextureRect" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_7kpc7")
+stretch_mode = 3
+
+[node name="TipText" type="RichTextLabel" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -329.0
+offset_top = 295.0
+offset_right = 321.0
+offset_bottom = 356.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(325, 30)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("6_w6ann")
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]Among us in real life[/center]"
+fit_content = true
+scroll_active = false
