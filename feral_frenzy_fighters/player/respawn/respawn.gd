@@ -64,11 +64,15 @@ func capsule_movement():
 		if capsule_state == Capsule_States.WAITING && !anim.is_playing():
 			if Input.is_anything_pressed():
 				set_capsule_stuff(Capsule_States.FLYINGOUT)
-				lock_player(false)
 
 func respawn_player():
 	lock_player(true)
-	InputManager.paused = true
+	
+	if p1_respawn:
+		$"../Player".set_process(false)
+	else:
+		$"../Player2".set_process(false)
+	
 	await get_tree().create_timer(capsule_delay).timeout
 	set_capsule_stuff(Capsule_States.FLYINGIN)
 
@@ -116,13 +120,16 @@ func set_capsule_stuff(new_state: Capsule_States): #p1 capsule left to right, p2
 				anim.play("StoppingFromRight")
 			await anim.animation_finished
 			
-			InputManager.paused = false
+			if p1_respawn:
+				$"../Player".set_process(true)
+			else:
+				$"../Player2".set_process(true)
 			
 			await get_tree().create_timer(capsule_auto_drop_delay).timeout
 			if keep_player:
 				set_capsule_stuff(Capsule_States.FLYINGOUT)
-				lock_player(false)
 		Capsule_States.FLYINGOUT:
+			lock_player(false)
 			anim.play("OpenThenFlyOut")
 			await anim.animation_finished
 			capsule_destination = capsule_left_pos
