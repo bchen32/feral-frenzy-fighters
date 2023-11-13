@@ -97,9 +97,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -252.0
-offset_top = 107.0
+offset_top = 83.0
 offset_right = 252.0
-offset_bottom = 252.0
+offset_bottom = 228.0
 grow_horizontal = 2
 texture = ExtResource("4_5n6ax")
 
@@ -110,13 +110,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -206.0
-offset_top = -110.5
-offset_right = 117.0
-offset_bottom = 217.5
+offset_left = -205.0
+offset_top = -187.5
+offset_right = 118.0
+offset_bottom = 318.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.25, 1.25)
+theme_override_constants/separation = 16
 
 [node name="VolumeButton" type="Button" parent="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer" groups=["TitleButtons"]]
 custom_minimum_size = Vector2(0, 150)
@@ -126,10 +127,6 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxTexture_sefc7")
 text = "Resume"
 
-[node name="Spacer" type="Control" parent="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-
 [node name="MovesetButton" type="Button" parent="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer" groups=["TitleButtons"]]
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
@@ -138,9 +135,20 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxTexture_sefc7")
 text = "Moveset"
 
+[node name="QuitButton" type="Button" parent="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer" groups=["TitleButtons"]]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+theme = ExtResource("5_kielc")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxTexture_sefc7")
+text = "Quit"
+
 [connection signal="focus_entered" from="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/VolumeButton" to="." method="_button_hovered"]
 [connection signal="pressed" from="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/VolumeButton" to="." method="_on_volume_button_pressed"]
 [connection signal="pressed" from="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/VolumeButton" to="OptionsDialog" method="_on_first_button_pressed" flags=18]
 [connection signal="focus_entered" from="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/MovesetButton" to="." method="_button_hovered"]
 [connection signal="pressed" from="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/MovesetButton" to="." method="_on_moveset_button_pressed"]
 [connection signal="pressed" from="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/MovesetButton" to="OptionsDialog" method="_on_second_button_pressed" flags=18]
+[connection signal="focus_entered" from="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/QuitButton" to="." method="_button_hovered"]
+[connection signal="pressed" from="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/QuitButton" to="OptionsDialog" method="_on_second_button_pressed" flags=18]

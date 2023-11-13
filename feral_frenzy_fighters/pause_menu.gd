@@ -32,3 +32,5 @@ func _button_hovered():
 	back_sound.volume_db = -5
 	back_sound.play()
 
+func _on_quit_button_pressed():
+	get_tree().change_scene_to_file("res://gui/menus/title_screen.tscn")
