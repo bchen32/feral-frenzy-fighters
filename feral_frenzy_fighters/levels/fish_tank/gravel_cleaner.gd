@@ -1,11 +1,20 @@
 extends Node2D
 
+class_name GravelCleaner
+
 @onready var anim = get_node("AnimationPlayer")
+var event_network_data: Array
 var players_caught = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var rand_side = randi_range(0, 1)
+	var rand_side: int
+	
+	if NetworkManager.is_connected:
+		rand_side = event_network_data[0]
+	else:
+		rand_side = randi_range(0, 1)
+	
 	if rand_side == 0:
 		anim.play("SuckFromLeft")
 	else:

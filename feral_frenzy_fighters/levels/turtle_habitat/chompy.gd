@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Chompy
+
 enum Chompy_States {SEEKING, STRETCHING, SNAPPING}
 var chompy_state = Chompy_States.SEEKING
 
@@ -12,6 +14,8 @@ var max_seeking_time = 10
 var seeking_speed = 15
 var stretching_speed = 30
 var return_speed = 7
+
+var event_network_data: Array
 
 var SFX = [
 	preload("res://levels/turtle_habitat/sfx/Rustle.mp3"),
@@ -29,7 +33,12 @@ var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var players = [p1, p2]
-	target_player = players.pick_random()
+	
+	if NetworkManager.is_connected:
+		target_player = players[event_network_data[0]]
+	else:
+		target_player = players.pick_random()
+	
 	chompy_single_process()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

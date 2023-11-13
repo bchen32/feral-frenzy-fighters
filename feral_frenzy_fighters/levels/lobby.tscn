@@ -24,6 +24,14 @@ _damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
 _dead_areas = NodePath("../DeadAreas")
 _is_lobby = true
 
+[node name="BeanbagPlayer" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("3_xfftx")]
+position = Vector2(997, 551)
+character_type = "beanbag"
+player_num = 2
+_damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
+_dead_areas = NodePath("../DeadAreas")
+_is_lobby = true
+
 [node name="DeadAreas" type="Node2D" parent="."]
 position = Vector2(-3, 557)
 
@@ -70,7 +78,6 @@ players = [NodePath("../Player")]
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
 [node name="DamageUI" parent="Camera2D/CanvasLayer" instance=ExtResource("5_vp1oi")]
-visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_right = 0.5

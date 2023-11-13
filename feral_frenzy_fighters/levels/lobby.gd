@@ -10,6 +10,8 @@ func _ready():
 	$CatTreeLevel.remove_child($CatTreeLevel/Camera2D)
 	$CatTreeLevel.remove_child($CatTreeLevel/Player)
 	$CatTreeLevel.remove_child($CatTreeLevel/Player2)
+	
+	$CatTreeLevel/Events/EventSpawner.queue_free()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

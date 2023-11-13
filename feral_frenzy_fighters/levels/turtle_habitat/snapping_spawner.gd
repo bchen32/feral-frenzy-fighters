@@ -13,6 +13,8 @@ var submerged_players = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	NetworkManager.on_send_env_data.connect(_on_send_env_data)
+	
 	players.append_array(get_tree().get_nodes_in_group("players"))
 	high_tide_duration = water_level.high_tide_duration - 3
 
@@ -20,7 +22,10 @@ func _ready():
 func _process(delta):
 	if waiting_on_high_tide == true:
 		if water_level.water_level_state == 2: # high tide
-			snapping_manager()
+			if NetworkManager.is_connected:
+				NetworkManager.get_env_data.rpc("snapping_manager")
+			else:
+				snapping_manager()
 			waiting_on_high_tide = false
 	elif waiting_on_high_tide == false:
 		for p in players: # snapping turtles will only track players in submerged_players[]
@@ -32,6 +37,13 @@ func _process(delta):
 		if water_level.water_level_state != 2:
 			submerged_players.clear()
 			waiting_on_high_tide = true
+
+func _on_send_env_data(event_string: String, event_data: Array):
+	if event_string == "snapping_manager":
+		for turtle_pos in event_data:
+			var new_turtle = snap_turtle.instantiate()
+			new_turtle.global_position = turtle_pos
+			self.add_child(new_turtle)
 
 func snapping_manager():
 	# spawning

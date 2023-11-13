@@ -151,6 +151,17 @@ func get_env_data(sender_id: int, env_name: String):
 						env_data.push_back(randi_range(500, 1500))
 						env_data.push_back(randf_range(-.3, .3))
 						env_data.push_back(randf_range(0,.3))
+				else:
+					# fish net and gravel cleaner on fish tank level, and chompy on turtle habitat level
+					env_data.push_back(randi_range(0, 1))
+			"water_level":
+				env_data.push_back(randi_range(20, 30))
+			"snapping_manager":
+				var turtle_amount = 4
+				var x_spawn_points = [-200, 2200]
+				
+				for t in turtle_amount:
+					env_data.push_back(Vector2(x_spawn_points.pick_random(), randi_range(560, 920)))
 		
 		for player_key in _players:
 			_network_manager.send_env_data.rpc_id(player_key, env_name, env_data)
