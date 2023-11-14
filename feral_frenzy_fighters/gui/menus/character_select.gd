@@ -236,8 +236,12 @@ func _update_beginning_cutscene():
 					Globals.cutscene_player_video_path = \
 						"res://gui/menus/cutscenes/pre_battle/p1_fish_v_p2_cat_pre_battle.ogv"
 			2:
-				# turtle! need to impl!
-				pass
+				if p1_character == p2_character:
+					Globals.cutscene_player_video_path = \
+						"res://gui/menus/cutscenes/pre_battle/turtle_v_turtle_pre_battle.ogv"
+				else:
+					Globals.cutscene_player_video_path = \
+						"res://gui/menus/cutscenes/pre_battle/turtle p1 v cat p2 prebattle.ogv"
 
 func on_locked_in():
 	#SET PLAYER CHARACTERS HERE
