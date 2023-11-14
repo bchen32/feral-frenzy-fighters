@@ -345,7 +345,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Image" id="Image_o3ryc"]
+[sub_resource type="Image" id="Image_swlwp"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 1, 179, 179, 179, 20, 188, 188, 188, 19, 255, 255, 255, 1, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 179, 179, 179, 20, 180, 180, 180, 64, 180, 180, 180, 64, 188, 188, 188, 19, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 188, 188, 188, 19, 180, 180, 180, 64, 180, 180, 180, 64, 188, 188, 188, 19, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 1, 188, 188, 188, 19, 188, 188, 188, 19, 255, 255, 255, 1, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -355,9 +355,9 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_nkhc3"]
-image = SubResource("Image_o3ryc")
+image = SubResource("Image_swlwp")
 
-[sub_resource type="Image" id="Image_wpgy2"]
+[sub_resource type="Image" id="Image_powlg"]
 data = {
 "data": PackedByteArray(181, 181, 181, 48, 179, 179, 179, 50, 213, 213, 213, 6, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 179, 179, 179, 50, 180, 180, 180, 64, 180, 180, 180, 54, 213, 213, 213, 6, 255, 255, 255, 0, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 204, 204, 204, 5, 178, 178, 178, 53, 180, 180, 180, 64, 180, 180, 180, 54, 213, 213, 213, 6, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 255, 255, 255, 0, 204, 204, 204, 5, 182, 182, 182, 52, 180, 180, 180, 64, 180, 180, 180, 51, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 255, 255, 255, 0, 213, 213, 213, 6, 180, 180, 180, 54, 180, 180, 180, 64, 179, 179, 179, 50, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 213, 213, 213, 6, 180, 180, 180, 54, 180, 180, 180, 64, 183, 183, 183, 53, 170, 170, 170, 6, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 182, 182, 182, 49, 180, 180, 180, 64, 183, 183, 183, 53, 170, 170, 170, 6, 255, 255, 255, 0, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 181, 181, 181, 41, 182, 182, 182, 49, 170, 170, 170, 6, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64),
 "format": "RGBA8",
@@ -367,7 +367,7 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_su4di"]
-image = SubResource("Image_wpgy2")
+image = SubResource("Image_powlg")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vklqa"]
 content_margin_left = 4.0
@@ -768,20 +768,20 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_mn2ma")
 text = "Back"
 
 [connection signal="focus_entered" from="DialogBackground/MovesetUIArea/next_move/next_move" to="." method="_button_hovered"]
-[connection signal="pressed" from="DialogBackground/MovesetUIArea/next_move/next_move" to="." method="_button_hovered"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/next_move/next_move" to="." method="_on_next_move_pressed"]
+[connection signal="pressed" from="DialogBackground/MovesetUIArea/next_move/next_move" to="." method="_button_hovered"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/next_move/next_move" to="DialogBackground/MovesetUIArea/next_move" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="focus_entered" from="DialogBackground/MovesetUIArea/last_move/last_move" to="." method="_button_hovered"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/last_move/last_move" to="." method="_button_hovered"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/last_move/last_move" to="." method="_on_last_move_pressed"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/last_move/last_move" to="DialogBackground/MovesetUIArea/last_move" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="focus_entered" from="DialogBackground/MovesetUIArea/next_char/next_character" to="." method="_button_hovered"]
-[connection signal="pressed" from="DialogBackground/MovesetUIArea/next_char/next_character" to="." method="_button_hovered"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/next_char/next_character" to="." method="_on_next_character_pressed"]
+[connection signal="pressed" from="DialogBackground/MovesetUIArea/next_char/next_character" to="." method="_button_hovered"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/next_char/next_character" to="DialogBackground/MovesetUIArea/next_char" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="focus_entered" from="DialogBackground/MovesetUIArea/last_char/last_character" to="." method="_button_hovered"]
-[connection signal="pressed" from="DialogBackground/MovesetUIArea/last_char/last_character" to="." method="_button_hovered"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/last_char/last_character" to="." method="_on_last_character_pressed"]
+[connection signal="pressed" from="DialogBackground/MovesetUIArea/last_char/last_character" to="." method="_button_hovered"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/last_char/last_character" to="DialogBackground/MovesetUIArea/last_char" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="focus_entered" from="DialogBackground/BackButton" to="." method="_button_hovered"]
 [connection signal="pressed" from="DialogBackground/BackButton" to="." method="_on_back_button_pressed"]
