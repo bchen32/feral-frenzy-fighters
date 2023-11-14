@@ -186,13 +186,13 @@ func on_character2_change(send_networked_response: bool = true):
 	match (p2_character):
 		0:
 			p2_text.text = str("Cat")
-			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/cat_blue.png")
+			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_cat.png")
 		1:
 			p2_text.text = str("Fish")
-			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_blue.png")
+			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_fish.png")
 		2:
 			p2_text.text = str("Turtle")
-			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/turtle_blue.png")	
+			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_turtle.png")
 	_update_beginning_cutscene()
 
 func _update_beginning_cutscene():
