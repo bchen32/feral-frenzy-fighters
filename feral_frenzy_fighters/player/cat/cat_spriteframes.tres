@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=430 format=3 uid="uid://bmpan0xehi8df"]
+[gd_resource type="SpriteFrames" load_steps=429 format=3 uid="uid://bmpan0xehi8df"]
 
 [ext_resource type="Texture2D" uid="uid://bp3sgi724j4kp" path="res://player/cat/sprites/air_attack_neutral/alternate/Alternative_Cat_Aerial_Attack-1.png" id="1_dyq33"]
 [ext_resource type="Texture2D" uid="uid://bqstom6cetyod" path="res://player/cat/sprites/air_attack_neutral/alternate/Alternative_Cat_Aerial_Attack-2.png" id="2_1u5sg"]
@@ -23,8 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dk8ah3ggog7av" path="res://player/cat/sprites/run/alternate/Alternate_Cat_Run-5.png" id="15_effff"]
 [ext_resource type="Texture2D" uid="uid://bj7u62e1t1xni" path="res://player/cat/sprites/run/alternate/Alternate_Cat_Run-6.png" id="16_etj6k"]
 [ext_resource type="Texture2D" uid="uid://lr16j5o4h3kv" path="res://player/cat/sprites/run/alternate/Alternate_Cat_Run-7.png" id="17_4q01m"]
-[ext_resource type="Texture2D" uid="uid://4s63xrunomvl" path="res://player/cat/sprites/attack_neutral/alternate/bubble/Alternate_Cat_Attack_Bubble-1.png" id="17_je52w"]
-[ext_resource type="Texture2D" uid="uid://doc3ul0spdt8b" path="res://player/cat/sprites/run/alternate/Alternate_Cat_Run-8.png" id="18_67x32"]
+[ext_resource type="Texture2D" uid="uid://4s63xrunomvl" path="res://player/cat/sprites/run/alternate/Alternate_Cat_Run-8.png" id="18_67x32"]
 [ext_resource type="Texture2D" uid="uid://dr73o5qtchko7" path="res://player/cat/sprites/attack_neutral/alternate/bubble/Alternate_Cat_Attack_Bubble-2.png" id="18_p4wt4"]
 [ext_resource type="Texture2D" uid="uid://c4fncj27o8xgi" path="res://player/cat/sprites/attack_neutral/alternate/bubble/Alternate_Cat_Attack_Bubble-3.png" id="19_06kao"]
 [ext_resource type="Texture2D" uid="uid://bur12ymrm2mc3" path="res://player/cat/sprites/dash_attack/alternate/Alternate_Cat_Dash_Attack-1.png" id="19_s8vdi"]
@@ -500,7 +499,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("17_je52w")
+"texture": ExtResource("18_67x32")
 }, {
 "duration": 1.0,
 "texture": ExtResource("18_p4wt4")
@@ -512,7 +511,7 @@ animations = [{
 "texture": ExtResource("20_pttuo")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_je52w")
+"texture": ExtResource("18_67x32")
 }],
 "loop": false,
 "name": &"alternate_attack_neutral_bubble",
