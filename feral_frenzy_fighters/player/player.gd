@@ -39,6 +39,7 @@ extends CharacterBody2D
 @onready var gamepad = false if(character_type == "beanbag") else Globals.player_gamepad[player_num]
 
 
+var character_int = {"cat": 0, "fish": 1, "turtle": 2}
 var color: String = ""
 var bloodied = false
 var anim_player: AnimatedSprite2D
@@ -74,9 +75,24 @@ var _attack_sfx = [
 	preload("res://player/cat/sfx/attack/attack_3.wav")
 ]
 
-var _dash_sfx = [
-	preload("res://player/cat/sfx/dash/dash_1.wav")
-]
+var _dash_sfx = {
+	0 : [
+		preload("res://player/cat/sfx/dash/dash_1.wav")
+	],
+	
+	1 : [
+		preload("res://player/fish/sfx/Fish Dash 1.wav"),
+		preload("res://player/fish/sfx/Fish Dash 2.wav"),
+		preload("res://player/fish/sfx/Fish Dash 3.wav")
+	],
+	
+	2 : [
+		preload("res://player/turtle/sfx/Turtle Dash 1.wav"),
+		preload("res://player/turtle/sfx/Turtle Dash 2.wav"),
+		preload("res://player/turtle/sfx/Turtle Dash 3.wav"),
+		preload("res://player/turtle/sfx/Turtle Dash 4.wav")
+	]
+}
 
 var _death_sfx = [
 	preload("res://player/cat/sfx/death/death_1.wav"),
@@ -89,17 +105,45 @@ var _hit_sfx = [
 	preload("res://player/cat/sfx/hit/hit_3.wav")
 ]
 
-var _walk_sfx = [
+var _walk_sfx = {
+	0 : [ 
 	preload("res://player/cat/sfx/walk/walk_1.wav"),
 	preload("res://player/cat/sfx/walk/walk_2.wav"),
 	preload("res://player/cat/sfx/walk/walk_3.wav"),
 	preload("res://player/cat/sfx/walk/walk_4.wav")
-]
+	],
+	
+	1: [
+	preload("res://player/fish/sfx/Fish Walk 1.wav"),
+	preload("res://player/fish/sfx/Fish Walk 2.wav"),
+	preload("res://player/fish/sfx/Fish Walk 3.wav"),
+	preload("res://player/fish/sfx/Fish Walk 4.wav")
+	],
+	
+	2: [
+	preload("res://player/turtle/sfx/Turtle Walk 1.wav"),
+	preload("res://player/turtle/sfx/Turtle Walk 2.wav"),
+	preload("res://player/turtle/sfx/Turtle Walk 3.wav")
+	]
+	
+	}
 
-var _jump_sfx = [
-	preload("res://player/cat/sfx/jump/double_jump.wav"),
-	preload("res://player/cat/sfx/jump/single_jump.wav")
-]
+var _jump_sfx = {
+	0 : [
+		preload("res://player/cat/sfx/jump/single_jump.wav"),
+		preload("res://player/cat/sfx/jump/double_jump.wav")
+	],
+	
+	1: [
+		preload("res://player/fish/sfx/Fish Jump 1.wav"),
+		preload("res://player/fish/sfx/Fish Jump 2.wav")
+	],
+	
+	2: [
+		preload("res://player/turtle/sfx/Turtle Jump 1.wav"),
+		preload("res://player/turtle/sfx/Turtle Jump 2.wav")
+	]
+}
 
 var _sprites_scene_instance: Node
 
@@ -299,15 +343,15 @@ func play_audio(audio_type: AudioType):
 		AudioType.ATTACK:
 			audio_stream = _attack_sfx[randi_range(0, _attack_sfx.size() - 1)]
 		AudioType.DASH:
-			audio_stream = _dash_sfx[randi_range(0, _dash_sfx.size() - 1)]
+			audio_stream = _dash_sfx[character_int[character_type]][randi_range(0, _dash_sfx[character_int[character_type]].size() - 1)]
 		AudioType.DEATH:
 			audio_stream = _death_sfx[randi_range(0, _death_sfx.size() - 1)]
 		AudioType.HIT:
 			audio_stream = _hit_sfx[randi_range(0, _hit_sfx.size() - 1)]
 		AudioType.WALK:
-			audio_stream = _walk_sfx[randi_range(0, _walk_sfx.size() - 1)]
+			audio_stream = _walk_sfx[character_int[character_type]][randi_range(0, _walk_sfx[character_int[character_type]].size() - 1)]
 		AudioType.JUMP: 
-			audio_stream = _jump_sfx[randi_range(0, _jump_sfx.size() - 1)]
+			audio_stream = _jump_sfx[character_int[character_type]][randi_range(0, _jump_sfx[character_int[character_type]].size() - 1)]
 		
 	add_child(audio_player)
 	audio_player.stream = audio_stream

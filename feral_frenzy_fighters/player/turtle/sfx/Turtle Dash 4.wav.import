@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d2edsr5r3rk2a"
+path="res://.godot/imported/Turtle Dash 4.wav-d649632253cea29a0e91fe07a40c3533.sample"
+
+[deps]
+
+source_file="res://player/turtle/sfx/Turtle Dash 4.wav"
+dest_files=["res://.godot/imported/Turtle Dash 4.wav-d649632253cea29a0e91fe07a40c3533.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
