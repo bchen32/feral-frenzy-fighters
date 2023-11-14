@@ -4,18 +4,11 @@ var timer = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	
 	%TipText.text = "[center]" + select_tip() + "[/center]"
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	rotate_wheel(delta, .1)
-	
-	
+
 func rotate_wheel(delta, og_timer):
 	if timer <= 0:
 		%Wheel.rotation_degrees += 45
