@@ -1,19 +1,25 @@
 extends Control
 
 var ui
+var active = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	active = false
 	ui = Menu.new($OptionsDialog)
 	$OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/VolumeButton.grab_focus()
+	await get_tree().create_timer(0.1).timeout
+	active = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("ui_back"):
-		_on_volume_button_pressed()
+	if active:
+		if Input.is_action_just_pressed("ui_back"):
+			_on_volume_button_pressed()
 	
 func _on_volume_button_pressed():
 	if len(ui._queue) <= 1:
+		Globals.pause_timer()
 		get_tree().paused = false
 		_button_hovered()
 		queue_free()
