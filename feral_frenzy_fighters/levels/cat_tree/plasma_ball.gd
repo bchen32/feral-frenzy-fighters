@@ -13,7 +13,7 @@ var min_destination_distance = 1000
 var env_data: Array
 
 #hitbox settings: search "plasma_hitbox"
-var hitbox_scene: PackedScene = preload("res://player/attacks/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attack/hitbox.tscn")
 @export var particles: PackedScene
 @onready var sprite = self.get_node("PlasmaBallSprite")
 @onready var anim = self.get_node("AnimationPlayer")
@@ -132,7 +132,7 @@ func _choose_random_point():
 		sprite.add_child(plasma_hitbox)
 		
 		# width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-		plasma_hitbox.setup(50, 50, 0, 0, 15, 2, 0, 0, false)
+		plasma_hitbox.setup(50, 50, 0, 0, 15, 2, 0, 0, false, self)
 
 func _move_ball(delta):
 	if !self.position.distance_to(destination) < 0.1: # if the plasma ball hasn't reached the destination

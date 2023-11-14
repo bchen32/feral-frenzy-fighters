@@ -11,7 +11,7 @@ var kb_y_offset: float
 var projectile: bool
 
 
-func setup(width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset, is_projectile):
+func setup(width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset, is_projectile, exclude):
 	collision_shape.shape.extents = Vector2(width, height)
 	translate(Vector2(x_offset, y_offset))
 	dmg = damage
@@ -22,16 +22,13 @@ func setup(width, height, x_offset, y_offset, damage, knockback_scale, knockback
 	self.body_entered.connect(_on_body_entered)
 	self.area_entered.connect(_on_area_2d_area_entered)
 	projectile = is_projectile
-	if projectile:
-		excludes.append(get_parent().get_parent())
-	else:
-		excludes.append(get_parent())
+	excludes.append(exclude)
 
 
 func _on_body_entered(body: Node2D):
+	var exclude = false
 	if body not in excludes and body is PlayerCharacter:
-		excludes.append(body)  # only process collision once
-		
+		exclude = true
 		if NetworkManager.is_connected:
 			var hit_info: Dictionary = {
 				"dmg": dmg,
@@ -52,16 +49,22 @@ func _on_body_entered(body: Node2D):
 			body.hit = true
 			body.kb = kb
 			body.kb_angle = angle
-	elif body is StaticBody2D:
+	if projectile and body not in excludes:
+		exclude = true
 		get_parent().collide()
+	if exclude:
+		excludes.append(body)  # only process collision once
 
 func _on_area_2d_area_entered(area):
-	if self.get_parent() is PlayerCharacter:
-		if area.get_parent() is Interactable:
+	if area.get_parent() is Interactable:
+		if self.get_parent() is PlayerCharacter or projectile:
 			if NetworkManager.is_connected:
 				NetworkManager.report_env_hit.rpc(area.get_parent().name, -dmg)
 			else:
 				area.get_parent()._change_health(-dmg)
+			if projectile:
+				get_parent().collide()
+		
 
 func get_kb(body: PlayerCharacter):
 	# Modified SSB formula

@@ -14,7 +14,7 @@ var SFX = [
 ]
 
 #hitbox settings: search "wall_plant_hitbox"
-var hitbox_scene: PackedScene = preload("res://player/attacks/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attack/hitbox.tscn")
 @onready var anim = get_node("AnimationPlayer")
 @onready var hitbox = get_node("Hitbox")
 @onready var sprite = get_node("Sprite2D")
@@ -86,7 +86,7 @@ func reset_hitbox(): # wall plant has a "poison" effect, so it keeps resetting h
 		sprite.add_child(wall_plant_hitbox)
 		
 		# width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-		wall_plant_hitbox.setup(80, 80, 0, 0, 5, 1.25, 0, 0, false)
+		wall_plant_hitbox.setup(80, 80, 0, 0, 5, 1.25, 0, 0, false, self)
 		
 		await get_tree().create_timer(damage_rate).timeout
 		reset_hitbox()
