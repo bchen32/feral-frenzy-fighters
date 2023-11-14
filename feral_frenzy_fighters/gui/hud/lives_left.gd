@@ -11,12 +11,7 @@ func _process(delta):
 
 func set_num_lives(num_lives):
 	await self.ready
-	var lives_left = get_child_count()
-	if num_lives > lives_left:
-		for i in range(lives_left, num_lives):
-			add_child(heart.instantiate())
-	elif num_lives < lives_left:
-		for i in range(num_lives, lives_left):
-			remove_child(get_child(0))
-	else:
-		pass
+	for i in range(get_child_count()):
+		remove_child(get_child(0))
+	for i in range(num_lives):
+		add_child(heart.instantiate())
