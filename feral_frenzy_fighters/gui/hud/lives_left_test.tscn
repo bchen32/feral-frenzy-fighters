@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1l04me2c13sb"]
+
+[ext_resource type="PackedScene" uid="uid://3i6qdyv3xnac" path="res://gui/hud/lives_left.tscn" id="1_kdfq8"]
+[ext_resource type="Script" path="res://gui/hud/lives_left_test.gd" id="1_nocsb"]
+
+[node name="LivesLeftTest" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_nocsb")
+
+[node name="LivesLeft" parent="." instance=ExtResource("1_kdfq8")]
+layout_mode = 2
+
+[node name="Kill" type="Button" parent="."]
+layout_mode = 2
+text = "Kill"
+
+[connection signal="pressed" from="Kill" to="." method="_on_kill_pressed"]
