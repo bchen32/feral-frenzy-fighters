@@ -177,6 +177,8 @@ func on_character1_change(send_networked_response: bool = true):
 		2:
 			p1_text.text = str("Turtle")
 			p1_portrait.texture = preload("res://gui/hud/sprites/cs_icons/turtle_purple.png")
+	
+	on_character2_change()
 	_update_beginning_cutscene()
 
 func on_character2_change(send_networked_response: bool = true):
@@ -186,13 +188,22 @@ func on_character2_change(send_networked_response: bool = true):
 	match (p2_character):
 		0:
 			p2_text.text = str("Cat")
-			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_cat.png")
+			if p1_character == 0:
+				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_cat.png")
+			else:
+				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/cat_purple.png")
 		1:
 			p2_text.text = str("Fish")
-			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_fish.png")
+			if p1_character == 1:
+				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_fish.png")
+			else:
+				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_purple.png")
 		2:
 			p2_text.text = str("Turtle")
-			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_turtle.png")
+			if p1_character == 2:
+				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_turtle.png")
+			else:
+				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/turtle_purple.png")
 	_update_beginning_cutscene()
 
 func _update_beginning_cutscene():
