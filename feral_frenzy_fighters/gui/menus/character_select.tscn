@@ -1,10 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dy8ds8yb1fohq"]
+[gd_scene load_steps=18 format=3 uid="uid://dy8ds8yb1fohq"]
 
 [ext_resource type="Script" path="res://gui/menus/character_select.gd" id="1_l7hwe"]
 [ext_resource type="Texture2D" uid="uid://dpaluibvjuaoc" path="res://gui/menus/sprites/screens/screen_background.png" id="2_p5ahl"]
 [ext_resource type="Texture2D" uid="uid://b7cpj70v5wlqx" path="res://gui/menus/sprites/screens/character_select/player1_character_card.png" id="3_3xujn"]
 [ext_resource type="Texture2D" uid="uid://2f40vlydd1q5" path="res://gui/menus/sprites/screens/character_select/character_select_background_head.png" id="3_tiawo"]
-[ext_resource type="Texture2D" uid="uid://b5jjsc1wyfmc0" path="res://gui/menus/sprites/screens/examples/new_characters_screen_example (2).png" id="3_y07iv"]
 [ext_resource type="Texture2D" uid="uid://cw1jrbqv2ua74" path="res://gui/menus/sprites/screens/character_select/player2_character_card.png" id="4_2v6uk"]
 [ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="4_dln4l"]
 [ext_resource type="Texture2D" uid="uid://cho3ld66pofbw" path="res://gui/hud/sprites/head_icons/cat_icon_character_select.png" id="9_1e8s7"]
@@ -13,12 +12,15 @@
 [ext_resource type="Texture2D" uid="uid://dumo2066ytmjc" path="res://gui/hud/sprites/head_icons/turtle_icon_character_select.png" id="11_bpcki"]
 [ext_resource type="AudioStream" uid="uid://coneg16uuc06h" path="res://gui/menus/sfx/button.wav" id="12_d8f5d"]
 [ext_resource type="AudioStream" uid="uid://bw1ubqplxxg77" path="res://gui/menus/sfx/select.wav" id="13_i8kyi"]
+[ext_resource type="Texture2D" uid="uid://cptv0ajp2jv80" path="res://gui/menus/sprites/screens/examples/character_select_new.png" id="14_acs75"]
 [ext_resource type="Texture2D" uid="uid://b258wqkbna8yg" path="res://gui/menus/sprites/screens/titles/characters_ui.png" id="15_ys53q"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w6u7p"]
 
 [sub_resource type="Theme" id="Theme_5uuse"]
 default_font = ExtResource("4_dln4l")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f0u58"]
 
 [node name="CharacterSelect" type="Control"]
 layout_mode = 3
@@ -30,12 +32,6 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_p5ahl")
-
-[node name="NewCharactersScreenExample(2)" type="Sprite2D" parent="Background"]
-visible = false
-modulate = Color(1, 1, 1, 0.486275)
-position = Vector2(958, 540)
-texture = ExtResource("3_y07iv")
 
 [node name="CharactersUi" type="Sprite2D" parent="Background"]
 position = Vector2(956, 183)
@@ -110,14 +106,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -140.0
-offset_top = -263.0
-offset_right = 148.0
+offset_left = -73.0
+offset_top = -169.0
+offset_right = 146.0
 offset_bottom = 501.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_5uuse")
-theme_override_font_sizes/normal_font_size = 100
+theme_override_font_sizes/normal_font_size = 50
 text = "READY"
 fit_content = true
 autowrap_mode = 0
@@ -151,17 +147,41 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -142.0
-offset_top = -263.0
+offset_left = -64.0
+offset_top = -169.0
 offset_right = 146.0
 offset_bottom = 501.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_5uuse")
-theme_override_font_sizes/normal_font_size = 100
+theme_override_font_sizes/normal_font_size = 50
 text = "READY"
 fit_content = true
 autowrap_mode = 0
+
+[node name="Player2Stats" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.85
+anchor_bottom = 0.245
+offset_left = 1492.0
+offset_top = 832.0
+offset_right = -1712.0
+offset_bottom = 689.4
+texture = SubResource("CompressedTexture2D_f0u58")
+expand_mode = 3
+
+[node name="Player1Stats" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.85
+anchor_bottom = 0.245
+offset_left = 68.0
+offset_top = 832.0
+offset_right = -3136.0
+offset_bottom = 689.4
+texture = SubResource("CompressedTexture2D_f0u58")
+expand_mode = 3
 
 [node name="IconBackgrounds" type="HBoxContainer" parent="Background"]
 layout_mode = 0
@@ -306,6 +326,13 @@ bus = &"SFX"
 stream = ExtResource("13_i8kyi")
 volume_db = -5.0
 bus = &"SFX"
+
+[node name="CharacterSelectNew" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.27451)
+position = Vector2(962.5, 531.775)
+scale = Vector2(1.02092, 1.02092)
+texture = ExtResource("14_acs75")
 
 [connection signal="mouse_entered" from="Background/P1Buttons/CatButton" to="." method="_on_button_mouse_entered" binds= [0]]
 [connection signal="pressed" from="Background/P1Buttons/CatButton" to="." method="_p1_lock_in"]
