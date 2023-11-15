@@ -167,26 +167,25 @@ func _ready():
 	add_child(_sprites_scene_instance)
 	anim_player = _sprites_scene_instance.get_node("AnimatedSprite2D")
 	var sprite_node_path = NodePath(_sprites_scene_instance.name + "/AnimatedSprite2D:flip_h")
-
-	var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
-	
-	_damage_label.set_player_death_count(player_num, stocks)
+	if player_num:
+		if character_type == Globals.player_sprites[0]:
+			color = "alternate"
+		else:
+			color = "blue"
+	else:
+		color = "purple"
 	var p1_icon
 	var p2_icon
-	if character_type == "beanbag":
-		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
-		player_head.scale -= Vector2(0.02, 0.02)
-	else:
-		p1_icon = _sprites_scene_instance.get_node("Player1Icon")
-		p2_icon = _sprites_scene_instance.get_node("Player2Icon")
-		if player_num:
-			if character_type == Globals.player_sprites[0]:
-				color = "alternate"
-			else:
-				color = "blue"
+	if _damage_label:
+		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
+		_damage_label.set_player_death_count(player_num, stocks)
+		if character_type == "beanbag":
+			player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon.png")
+			player_head.scale -= Vector2(0.02, 0.02)
 		else:
-			color = "purple"
-		player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
+			p1_icon = _sprites_scene_instance.get_node("Player1Icon")
+			p2_icon = _sprites_scene_instance.get_node("Player2Icon")
+			player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
 	
 	if character_type != "beanbag":
 		var states = {

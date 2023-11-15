@@ -21,11 +21,11 @@
 [ext_resource type="Texture2D" uid="uid://cjvi1ar5e1yr4" path="res://gui/menus/sprites/slider/sound_volume_border.png" id="21_uhsip"]
 [ext_resource type="Script" path="res://gui/dialog.gd" id="23_4bb6r"]
 [ext_resource type="Texture2D" uid="uid://b5jm0t8cpmgq6" path="res://gui/menus/sprites/screens/faded_black.png" id="25_bmnas"]
+[ext_resource type="Texture2D" uid="uid://cedt1efve56po" path="res://gui/menus/sprites/slider/sound_effect_icon.png" id="25_jss0d"]
 [ext_resource type="Texture2D" uid="uid://bknvqwtgmhrk1" path="res://gui/menus/sprites/slider/music_icon.png" id="26_76ehv"]
 [ext_resource type="Texture2D" uid="uid://cnadtlxa56n4j" path="res://gui/menus/sprites/screens/pop_up_blue.png" id="26_ds1jq"]
 [ext_resource type="Texture2D" uid="uid://p4igqy63ikte" path="res://gui/menus/sprites/screens/titles/volume_ui.png" id="26_oblpl"]
 [ext_resource type="Texture2D" uid="uid://crx7dfnmm8rsn" path="res://gui/menus/sprites/screens/titles/multiplayer_ui.png" id="27_e51u0"]
-[ext_resource type="Texture2D" uid="uid://cv2ixefe0xryy" path="res://gui/menus/sprites/screens/icons/sound_icon_loud.png" id="28_122wv"]
 [ext_resource type="Script" path="res://gui/menus/icon_button.gd" id="28_mlo4o"]
 [ext_resource type="Texture2D" uid="uid://diipaw50krrur" path="res://gui/menus/sprites/buttons/button_icon.png" id="29_pqkes"]
 [ext_resource type="Texture2D" uid="uid://ciahc6v00gmgp" path="res://gui/menus/sprites/slider/sound_volume_slider_icon_lighter.png" id="29_rsiw2"]
@@ -607,12 +607,12 @@ offset_bottom = 219.0
 grow_horizontal = 2
 texture = ExtResource("26_oblpl")
 
-[node name="MusicIcon" type="Sprite2D" parent="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea"]
+[node name="SFXIcon" type="Sprite2D" parent="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea"]
 position = Vector2(216, 568)
 scale = Vector2(0.9, 0.9)
-texture = ExtResource("28_122wv")
+texture = ExtResource("25_jss0d")
 
-[node name="SoundIconLoud" type="Sprite2D" parent="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea"]
+[node name="MusicIcon" type="Sprite2D" parent="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea"]
 position = Vector2(216, 351)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("26_76ehv")
