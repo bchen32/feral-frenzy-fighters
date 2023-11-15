@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://sjcnk7j4e0i4"]
 
 [ext_resource type="Script" path="res://gui/menus/cutscene_player.gd" id="1_w1rcn"]
-[ext_resource type="Texture2D" uid="uid://cjdwrx85ltdgh" path="res://levels/tutorial/UI/frames/skip/right_bumper-1.png" id="2_svh3y"]
-[ext_resource type="Texture2D" uid="uid://c8iob8v6at1lp" path="res://levels/tutorial/UI/frames/skip/right_bumper-2.png" id="3_exogg"]
-[ext_resource type="Texture2D" uid="uid://csfw0i44hrjp3" path="res://levels/tutorial/UI/frames/skip/keyboard_ENTER-1.png" id="4_xj16s"]
-[ext_resource type="Texture2D" uid="uid://bdnq05l7ri03b" path="res://levels/tutorial/UI/frames/skip/keyboard_ENTER-2.png" id="5_ltxo2"]
+[ext_resource type="Texture2D" uid="uid://n1f0u0c3e263" path="res://levels/tutorial/ui/frames/jump/button_A_X-1.png" id="2_ah8ou"]
+[ext_resource type="Texture2D" uid="uid://b44lysj1iqbyk" path="res://levels/tutorial/ui/frames/jump/button_A_X-2.png" id="3_ivaqq"]
+[ext_resource type="Texture2D" uid="uid://csfw0i44hrjp3" path="res://levels/tutorial/ui/frames/skip/keyboard_ENTER-1.png" id="4_xj16s"]
+[ext_resource type="Texture2D" uid="uid://bdnq05l7ri03b" path="res://levels/tutorial/ui/frames/skip/keyboard_ENTER-2.png" id="5_ltxo2"]
 [ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="6_gc1yg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ns4u7"]
@@ -16,10 +16,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_svh3y")
+"texture": ExtResource("2_ah8ou")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_exogg")
+"texture": ExtResource("3_ivaqq")
 }],
 "loop": true,
 "name": &"Skip_Controller",
@@ -60,7 +60,7 @@ expand = true
 bus = &"Music"
 
 [node name="skip_controller" type="AnimatedSprite2D" parent="."]
-position = Vector2(1742, 147)
+position = Vector2(1742, 135)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_ns4u7")
 animation = &"Skip_Controller"
@@ -80,7 +80,7 @@ tab_size = 7
 position = Vector2(1748, 263.75)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_ns4u7")
-animation = &"Nothing"
+animation = &"Skip_Keyboard"
 
 [node name="Skip2" type="RichTextLabel" parent="skip_keyboard"]
 offset_left = 89.3333
@@ -88,16 +88,6 @@ offset_top = -8.0
 offset_right = 218.333
 offset_bottom = 44.0
 scale = Vector2(0.75, 0.75)
-theme_override_fonts/normal_font = ExtResource("6_gc1yg")
-theme_override_font_sizes/normal_font_size = 50
-text = "SKIP"
-tab_size = 7
-
-[node name="RichTextLabel" type="RichTextLabel" parent="skip_keyboard"]
-offset_left = 1696.0
-offset_top = 120.0
-offset_right = 1825.0
-offset_bottom = 172.0
 theme_override_fonts/normal_font = ExtResource("6_gc1yg")
 theme_override_font_sizes/normal_font_size = 50
 text = "SKIP"

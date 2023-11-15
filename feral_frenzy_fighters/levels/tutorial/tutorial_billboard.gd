@@ -16,6 +16,7 @@ enum TutorialAction {
 }
 
 var current_tutorial_action: TutorialAction
+@onready var context_label: Label = get_node("ContextLabel")
 
 func _play_and_resize_animation(animated_sprite_2d: AnimatedSprite2D, current_animation: String):
 	animated_sprite_2d.play(current_animation)
@@ -69,24 +70,35 @@ func set_tutorial_action(tutorial_action: TutorialAction):
 	match tutorial_action:
 		TutorialAction.FALL:
 			$Control/PlayerSprite/AnimatedSprite2D.play("blue_fall")
+			context_label.text = "Movement:\nHold input to drop down!"
 		TutorialAction.JUMP:
 			$Control/PlayerSprite/AnimatedSprite2D.play("blue_jump")
+			context_label.text = "Movement:\nHint: You can triple jump."
 		TutorialAction.IDLE:
 			hide()
 		TutorialAction.ATTACK:
 			$Control/PlayerSprite/AnimatedSprite2D.play("blue_attack_neutral")
+			if $"../../Environment/AttackGoalArea".monitoring:
+				context_label.text = "Environment:\nWatch for and hit highlighted stuff!"
+			elif $"../../Player2/Player2GoalArea".monitoring:
+				context_label.text = "Goal:\nKnock players out-of-bounds!"
 		TutorialAction.WALK_LEFT, TutorialAction.WALK_RIGHT:
 			$Control/PlayerSprite/AnimatedSprite2D.flip_h = \
 				tutorial_action == TutorialAction.WALK_RIGHT
 			$Control/PlayerSprite/AnimatedSprite2D.play("blue_walk")
+			context_label.text = "Movement:\nMove to the blinking area!"
 		TutorialAction.DASH:
 			$Control/PlayerSprite/AnimatedSprite2D.play("blue_dash")
+			context_label.text = "Movement:\nHold shown input while moving to dash!"
 		TutorialAction.THUMBS_DOWN:
 			$Control/PlayerSprite/AnimatedSprite2D.play("tutorial_thumbs_down")
+			context_label.text = "Taunting:\nPress inputs to emote! :("
 		TutorialAction.THUMBS_UP:
 			$Control/PlayerSprite/AnimatedSprite2D.play("tutorial_thumbs_up")
+			context_label.text = "Taunting:\nPress inputs to emote! :)"
 		TutorialAction.SKULL:
 			$Control/PlayerSprite/AnimatedSprite2D.play("tutorial_skull")
+			context_label.text = "Taunting:\nPress inputs to emote! X_x"
 	
 	current_tutorial_action = tutorial_action
 

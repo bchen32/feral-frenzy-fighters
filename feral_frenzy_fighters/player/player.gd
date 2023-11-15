@@ -142,7 +142,7 @@ func _ready():
 				color = "blue"
 		else:
 			color = "purple"
-		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
 	
 	if character_type != "beanbag":
 		var states = {
@@ -196,7 +196,7 @@ func reset_player():
 	if _damage_label:
 		_damage_label.get_node(("P2" if player_num else "P1") + "/DamageLabel").label_settings.font_color = Color.WHITE
 		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
-		player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_icon_" + color + ".png")
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
 	if character_type != "beanbag":
 		var states = {
 			Globals.States.AIR: AirState.new(),
@@ -274,9 +274,21 @@ func play_anim(animation_name: String):
 							color = "blue"
 					else:
 						color = "purple"
-					player_head.texture = load("res://gui/hud/sprites/head_icons/" + character_type + "_head_injured_icon_" + color + ".png")
+					player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon_injured.png")
 	else:
-		anim_player.play("_".join([color, animation_name]))
+		if character_type == "cat":
+			if in_water():
+				anim_player.play("_".join([color, animation_name, "bubble"]))
+			else:
+				anim_player.play("_".join([color, animation_name]))
+		elif character_type == "fish":
+			if in_water():
+				anim_player.play("_".join([color, animation_name, "no_bubble"]))
+			else:
+				anim_player.play("_".join([color, animation_name]))
+		else:
+			anim_player.play("_".join([color, animation_name]))
+		
 
 
 func play_audio(audio_type: AudioType):
@@ -493,7 +505,6 @@ func acknowledge_death():
 			Globals.cutscene_player_video_path = ending_video
 			Globals.audio_stream_to_play_during_cutscene = ending_video_audiostream
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
-	
 	play_audio(AudioType.DEATH)
 	play_particles(physics_blood,0, 30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
 
@@ -501,6 +512,10 @@ func _physics_process(delta: float):
 	# if we are the server setup, we need to tell InputManager which player to get inputs for
 	if character_type != "beanbag":
 		set_collision_mask_value(4, not InputManager.is_action_pressed(get_input("down")))  # drop through platforms while down is held
+		if InputManager.is_action_just_pressed("pause") && !NetworkManager.is_connected:
+			get_tree().paused = !get_tree().paused
+			var pause_menu = preload("res://pause_menu.tscn").instantiate()
+			get_parent().camera.get_node("CanvasLayer").add_child(pause_menu)
 	frame += 1
 	state_machine.update(delta)
 	move_and_slide()

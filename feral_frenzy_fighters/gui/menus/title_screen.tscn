@@ -1,7 +1,6 @@
-[gd_scene load_steps=40 format=3 uid="uid://br6txao4iioos"]
+[gd_scene load_steps=46 format=3 uid="uid://br6txao4iioos"]
 
 [ext_resource type="Script" path="res://gui/menus/title_screen.gd" id="1_u2ssx"]
-[ext_resource type="PackedScene" uid="uid://sjcnk7j4e0i4" path="res://gui/menus/cutscene_player.tscn" id="2_g7u1a"]
 [ext_resource type="Theme" uid="uid://ciapr50n3vxqt" path="res://default_ui_theme.tres" id="3_0h4m0"]
 [ext_resource type="Texture2D" uid="uid://dpaluibvjuaoc" path="res://gui/menus/sprites/screens/screen_background.png" id="4_eh3f6"]
 [ext_resource type="AudioStream" uid="uid://b6vmgj8xixu57" path="res://gui/menus/music/intro_theme.wav" id="4_n3vdy"]
@@ -24,13 +23,19 @@
 [ext_resource type="Texture2D" uid="uid://rb31ehfgk53n" path="res://gui/menus/sprites/screens/examples/options_example.png" id="24_i6uum"]
 [ext_resource type="Texture2D" uid="uid://b5jm0t8cpmgq6" path="res://gui/menus/sprites/screens/faded_black.png" id="25_bmnas"]
 [ext_resource type="Texture2D" uid="uid://cnadtlxa56n4j" path="res://gui/menus/sprites/screens/pop_up_blue.png" id="26_ds1jq"]
+[ext_resource type="Texture2D" uid="uid://p4igqy63ikte" path="res://gui/menus/sprites/screens/titles/volume_ui.png" id="26_oblpl"]
 [ext_resource type="Texture2D" uid="uid://crx7dfnmm8rsn" path="res://gui/menus/sprites/screens/titles/multiplayer_ui.png" id="27_e51u0"]
+[ext_resource type="Texture2D" uid="uid://b0w03hxdngiuh" path="res://gui/menus/sprites/screens/icons/music_icon.png" id="27_ush3f"]
+[ext_resource type="Texture2D" uid="uid://cv2ixefe0xryy" path="res://gui/menus/sprites/screens/icons/sound_icon_loud.png" id="28_122wv"]
 [ext_resource type="Script" path="res://gui/menus/icon_button.gd" id="28_mlo4o"]
 [ext_resource type="Texture2D" uid="uid://diipaw50krrur" path="res://gui/menus/sprites/buttons/button_icon.png" id="29_pqkes"]
+[ext_resource type="Texture2D" uid="uid://g48dhv3srl7d" path="res://gui/menus/sprites/screens/titles/options_ui.png" id="30_8lp80"]
 [ext_resource type="Texture2D" uid="uid://chdwycww66d" path="res://gui/menus/sprites/buttons/button_icon_pressed.png" id="30_jsdcc"]
 [ext_resource type="Texture2D" uid="uid://qadgeqbcf0jq" path="res://gui/menus/sprites/buttons/button_icon_highlight.png" id="31_jv14s"]
 [ext_resource type="Texture2D" uid="uid://b0ciegbjevlvd" path="res://gui/menus/sprites/buttons/icons/settings_icon.png" id="32_abyt0"]
+[ext_resource type="PackedScene" uid="uid://ctl1tov56fref" path="res://gui/moveset_dialog.tscn" id="34_fg6lk"]
 [ext_resource type="AudioStream" uid="uid://coneg16uuc06h" path="res://gui/menus/sfx/button.wav" id="34_r00cv"]
+[ext_resource type="Texture2D" uid="uid://dmlfid0hfdu2w" path="res://gui/menus/sprites/screens/examples/volume_example.png" id="34_xltnq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vu2cy"]
 texture = ExtResource("11_jd057")
@@ -46,12 +51,15 @@ font_size = 35
 font = ExtResource("15_3jjna")
 font_size = 100
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ii6ab"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hw7k6"]
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mn2ma"]
 texture = ExtResource("13_oy3x2")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5eh20"]
+load_path = "res://.godot/imported/sound_volume_slider_icon.png-69e599103a98ae707243d919bedfc8b1.ctex"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_knx06"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hw7k6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_m61ry"]
 font = ExtResource("15_3jjna")
@@ -62,14 +70,6 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_u2ssx")
 beginning_cutscene_path = "res://gui/menus/cutscenes/cat_v_cat_pre_battle.ogv"
-
-[node name="CutscenePlayer" parent="." node_paths=PackedStringArray("node_to_show", "audio_stream_player") instance=ExtResource("2_g7u1a")]
-visible = false
-layout_mode = 1
-node_to_show = NodePath("../MainMenu")
-audio_stream_player = NodePath("../AudioStreamPlayer2D")
-audio_stream_to_play_during = ExtResource("4_n3vdy")
-audio_stream_to_play_after = ExtResource("4_n3vdy")
 
 [node name="MainMenu" type="TextureRect" parent="."]
 layout_mode = 0
@@ -483,50 +483,123 @@ vertical_alignment = 1
 
 [node name="AudioSliders" type="Control" parent="MainMenu"]
 visible = false
-layout_mode = 3
 anchors_preset = 0
-offset_left = 707.0
-offset_top = 366.0
-offset_right = 707.0
-offset_bottom = 366.0
 scale = Vector2(1.92, 1.92)
 
+[node name="VolumeDialog" type="Control" parent="MainMenu/AudioSliders"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 500.0
+offset_top = 281.25
+offset_right = 500.0
+offset_bottom = 281.25
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.521, 0.521)
+
+[node name="VolumeExample" type="Sprite2D" parent="MainMenu/AudioSliders/VolumeDialog"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.466667)
+position = Vector2(40, 19)
+scale = Vector2(1.0375, 1.04444)
+texture = ExtResource("34_xltnq")
+
+[node name="DialogShade" type="TextureRect" parent="MainMenu/AudioSliders/VolumeDialog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("25_bmnas")
+
+[node name="DialogBackground" type="TextureRect" parent="MainMenu/AudioSliders/VolumeDialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -473.0
+offset_top = -509.0
+offset_right = 533.0
+offset_bottom = 497.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("26_ds1jq")
+
+[node name="OptionsUIArea" type="Control" parent="MainMenu/AudioSliders/VolumeDialog/DialogBackground"]
+anchors_preset = 0
+offset_left = 65.0
+offset_top = 51.0
+offset_right = 961.0
+offset_bottom = 958.0
+
+[node name="DialogTitle" type="TextureRect" parent="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -252.0
+offset_top = 72.0
+offset_right = 252.0
+offset_bottom = 219.0
+grow_horizontal = 2
+texture = ExtResource("26_oblpl")
+
+[node name="MusicIcon" type="Sprite2D" parent="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea"]
+position = Vector2(216, 568)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("27_ush3f")
+
+[node name="SoundIconLoud" type="Sprite2D" parent="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea"]
+position = Vector2(216, 351)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("28_122wv")
+
+[node name="BackButton" type="Button" parent="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea" groups=["TitleButtons"]]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+offset_left = 287.0
+offset_top = 676.0
+offset_right = 610.0
+offset_bottom = 839.0
+theme = ExtResource("3_0h4m0")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxTexture_mn2ma")
+text = "Back"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/AudioSliders"]
-custom_minimum_size = Vector2(575, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
-offset_bottom = 482.0
-scale = Vector2(0.5, 0.5)
-theme_override_constants/separation = 256
+offset_left = 445.0
+offset_top = 211.0
+offset_right = 945.0
+offset_bottom = 587.0
+scale = Vector2(0.4, 0.4)
+theme_override_constants/separation = 150
 
 [node name="MusicSlider" type="HSlider" parent="MainMenu/AudioSliders/VBoxContainer"]
 z_index = 1
 z_as_relative = false
 layout_mode = 2
-theme_override_constants/center_grabber = 0
 theme_override_icons/grabber = ExtResource("20_yxcn2")
-theme_override_icons/grabber_highlight = ExtResource("20_yxcn2")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_ii6ab")
+theme_override_icons/grabber_highlight = SubResource("CompressedTexture2D_5eh20")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_knx06")
 max_value = 200.0
-
-[node name="MusicText" type="RichTextLabel" parent="MainMenu/AudioSliders/VBoxContainer/MusicSlider"]
-clip_contents = false
-custom_minimum_size = Vector2(400, 100)
-layout_mode = 0
-offset_left = 108.792
-offset_top = -139.708
-offset_right = 508.792
-offset_bottom = -39.7083
-theme_override_colors/default_color = Color(0.59375, 0.761719, 0.824219, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 50
-theme_override_fonts/normal_font = ExtResource("15_3jjna")
-theme_override_font_sizes/normal_font_size = 128
-text = "Music"
-scroll_active = false
 
 [node name="MusicBG" type="Sprite2D" parent="MainMenu/AudioSliders/VBoxContainer/MusicSlider"]
 z_as_relative = false
-position = Vector2(287.958, 58.2083)
+position = Vector2(248.828, 56.926)
+scale = Vector2(0.852865, 0.674291)
 texture = ExtResource("21_uhsip")
 
 [node name="SfxSlider" type="HSlider" parent="MainMenu/AudioSliders/VBoxContainer"]
@@ -538,25 +611,166 @@ theme_override_icons/grabber_highlight = ExtResource("20_yxcn2")
 theme_override_styles/slider = SubResource("StyleBoxTexture_hw7k6")
 max_value = 200.0
 
-[node name="SFX" type="RichTextLabel" parent="MainMenu/AudioSliders/VBoxContainer/SfxSlider"]
-clip_contents = false
-layout_mode = 2
-offset_left = 191.583
-offset_top = -139.708
-offset_right = 941.583
-offset_bottom = -39.7084
-theme_override_colors/default_color = Color(0.59375, 0.761719, 0.824219, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 50
-theme_override_fonts/normal_font = ExtResource("15_3jjna")
-theme_override_font_sizes/normal_font_size = 128
-text = "SFX"
-scroll_active = false
-
-[node name="SFXBg" type="Sprite2D" parent="MainMenu/AudioSliders/VBoxContainer/SfxSlider"]
+[node name="SFXBg" type="Sprite2D" parent="MainMenu/AudioSliders/VBoxContainer"]
 z_as_relative = false
-position = Vector2(287.958, 59)
+position = Vector2(248.828, 319.597)
+scale = Vector2(0.852865, 0.674292)
 texture = ExtResource("21_uhsip")
+
+[node name="OptionsDialog" type="Control" parent="MainMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsExample" type="Sprite2D" parent="MainMenu/OptionsDialog"]
+visible = false
+modulate = Color(1, 1, 1, 0.772549)
+position = Vector2(964, 542)
+texture = ExtResource("24_i6uum")
+
+[node name="DialogShade" type="TextureRect" parent="MainMenu/OptionsDialog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("25_bmnas")
+
+[node name="DialogBackground" type="TextureRect" parent="MainMenu/OptionsDialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -473.0
+offset_top = -509.0
+offset_right = 533.0
+offset_bottom = 497.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("26_ds1jq")
+
+[node name="OptionsUIArea" type="Control" parent="MainMenu/OptionsDialog/DialogBackground"]
+anchors_preset = 0
+offset_left = 65.0
+offset_top = 51.0
+offset_right = 961.0
+offset_bottom = 958.0
+
+[node name="DialogTitle" type="TextureRect" parent="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -252.0
+offset_top = 107.0
+offset_right = 252.0
+offset_bottom = 252.0
+grow_horizontal = 2
+texture = ExtResource("30_8lp80")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -110.5
+offset_right = 117.0
+offset_bottom = 217.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+
+[node name="VolumeButton" type="Button" parent="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer" groups=["TitleButtons"]]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme = ExtResource("3_0h4m0")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxTexture_mn2ma")
+text = "Volume"
+
+[node name="Spacer" type="Control" parent="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="MovesetButton" type="Button" parent="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer" groups=["TitleButtons"]]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+theme = ExtResource("3_0h4m0")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxTexture_mn2ma")
+text = "Moveset"
+
+[node name="CloseButton" type="Control" parent="MainMenu/OptionsDialog/DialogBackground"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -181.0
+offset_right = 33.0
+offset_bottom = 209.0
+grow_horizontal = 0
+script = ExtResource("28_mlo4o")
+character = "X"
+
+[node name="IconButtonClick" type="TextureButton" parent="MainMenu/OptionsDialog/DialogBackground/CloseButton" groups=["TitleButtons"]]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+texture_normal = ExtResource("29_pqkes")
+texture_pressed = ExtResource("30_jsdcc")
+texture_hover = ExtResource("31_jv14s")
+
+[node name="Icon" type="TextureRect" parent="MainMenu/OptionsDialog/DialogBackground/CloseButton/IconButtonClick"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("32_abyt0")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="MainMenu/OptionsDialog/DialogBackground/CloseButton/IconButtonClick"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -40.0
+offset_right = 28.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "?"
+label_settings = SubResource("LabelSettings_m61ry")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MovesetDialog" parent="MainMenu" instance=ExtResource("34_fg6lk")]
+visible = false
+layout_mode = 1
 
 [node name="PlayDialog" type="Control" parent="MainMenu"]
 visible = false
@@ -718,6 +932,7 @@ bus = &"SFX"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_n3vdy")
+autoplay = true
 bus = &"Music"
 
 [node name="HostButton" type="Button" parent="."]
@@ -749,8 +964,23 @@ text = "host"
 [connection signal="button_pressed" from="MainMenu/TopBarButtons/SettingsButton" to="." method="_on_settings_button_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/TopBarButtons/SettingsButton/IconButtonClick" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/TopBarButtons/SettingsButton/IconButtonClick" to="MainMenu/TopBarButtons/SettingsButton" method="_on_icon_button_click_pressed" flags=18]
+[connection signal="focus_entered" from="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea/BackButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea/BackButton" to="MainMenu/AudioSliders/VolumeDialog" method="_on_second_button_pressed" flags=18]
 [connection signal="value_changed" from="MainMenu/AudioSliders/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="MainMenu/AudioSliders/VBoxContainer/SfxSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="focus_entered" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/VolumeButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/VolumeButton" to="." method="_on_volume_button_pressed"]
+[connection signal="pressed" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/VolumeButton" to="MainMenu/OptionsDialog" method="_on_volume_button_pressed"]
+[connection signal="pressed" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/VolumeButton" to="MainMenu/OptionsDialog" method="_on_first_button_pressed" flags=18]
+[connection signal="focus_entered" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/MovesetButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/MovesetButton" to="." method="_on_moveset_button_pressed"]
+[connection signal="pressed" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/MovesetButton" to="MainMenu/OptionsDialog" method="_on_moveset_button_pressed"]
+[connection signal="pressed" from="MainMenu/OptionsDialog/DialogBackground/OptionsUIArea/VBoxContainer/MovesetButton" to="MainMenu/OptionsDialog" method="_on_second_button_pressed" flags=18]
+[connection signal="button_pressed" from="MainMenu/OptionsDialog/DialogBackground/CloseButton" to="." method="_on_close_button_button_pressed"]
+[connection signal="button_pressed" from="MainMenu/OptionsDialog/DialogBackground/CloseButton" to="MainMenu/OptionsDialog" method="_on_close_button_button_pressed" flags=18]
+[connection signal="focus_entered" from="MainMenu/OptionsDialog/DialogBackground/CloseButton/IconButtonClick" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/OptionsDialog/DialogBackground/CloseButton/IconButtonClick" to="MainMenu/OptionsDialog/DialogBackground/CloseButton" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="on_first_button_pressed" from="MainMenu/PlayDialog" to="." method="_on_play_dialog_on_online_button_pressed"]
 [connection signal="on_second_button_pressed" from="MainMenu/PlayDialog" to="." method="_on_play_dialog_on_local_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayOnlineButton" to="." method="_on_button_entered"]

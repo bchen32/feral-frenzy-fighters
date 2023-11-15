@@ -132,11 +132,11 @@ texture = ExtResource("10_cj7fl")
 
 [node name="TextureRect" type="TextureRect" parent="P1"]
 layout_mode = 0
-offset_left = 15.0
+offset_left = 16.0
 offset_top = 2.0
-offset_right = 187.0
-offset_bottom = 149.0
-scale = Vector2(0.5, 0.5)
+offset_right = 201.0
+offset_bottom = 164.0
+scale = Vector2(0.46, 0.46)
 
 [node name="BloodSplatTwo2" type="Sprite2D" parent="P1"]
 visible = false
@@ -277,9 +277,9 @@ texture = ExtResource("10_cj7fl")
 layout_mode = 0
 offset_left = 16.0
 offset_top = 2.0
-offset_right = 186.0
-offset_bottom = 149.0
-scale = Vector2(0.5, 0.5)
+offset_right = 201.0
+offset_bottom = 164.0
+scale = Vector2(0.46, 0.46)
 
 [node name="BloodSplatTwo" type="Sprite2D" parent="P2"]
 visible = false

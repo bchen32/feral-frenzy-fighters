@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bsova147i2vec"]
+[gd_scene load_steps=30 format=3 uid="uid://bsova147i2vec"]
 
 [ext_resource type="Texture2D" uid="uid://bh65jpfqqtp5k" path="res://levels/fish_tank/sprites/decor/fish_level_wallpaper.png" id="1_rxrr6"]
 [ext_resource type="Texture2D" uid="uid://bhglr8sk5bivy" path="res://levels/fish_tank/sprites/decor/table.png" id="2_818kr"]
@@ -253,12 +253,21 @@ physics_layer_0/collision_layer = 4
 physics_layer_1/collision_layer = 8
 sources/0 = SubResource("TileSetAtlasSource_25un7")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqywv"]
-size = Vector2(285, 94.9999)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e4h3l"]
 shader = ExtResource("19_hcjn7")
 shader_parameter/tint = Vector4(0, 0, 0, -1)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hgmjn"]
+polygon = PackedVector2Array(209, 120, 209, 840, 1710, 840, 1710, 120, 1740, 120, 1740, 960, 182, 960, 182, 120)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3sesd"]
+polygon = PackedVector2Array(360, 365, 655, 365, 655, 386, 360, 386)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ao0v5"]
+polygon = PackedVector2Array(660, 600, 660, 625, 520, 625, 520, 600)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xvk5b"]
+polygon = PackedVector2Array(1504, 613, 1638, 613, 1683, 716, 1459, 716)
 
 [node name="FishTankLevel" type="Node2D"]
 
@@ -273,15 +282,14 @@ position = Vector2(1420, 700)
 [node name="FishLevelWallpaper" type="Sprite2D" parent="Environment"]
 self_modulate = Color(0.823529, 0.823529, 0.823529, 1)
 z_index = -5
-position = Vector2(960, 540)
+position = Vector2(989.5, 330.5)
+scale = Vector2(1.30781, 1.38796)
 texture = ExtResource("1_rxrr6")
-metadata/_edit_lock_ = true
 
 [node name="Table" type="Sprite2D" parent="Environment"]
-position = Vector2(960.5, 975.25)
-scale = Vector2(1.00052, 1.13784)
+position = Vector2(990.5, 1106.5)
+scale = Vector2(1.30781, 2.55676)
 texture = ExtResource("2_818kr")
-metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="Environment"]
 tile_set = SubResource("TileSet_q0bxu")
@@ -340,18 +348,10 @@ metadata/_edit_lock_ = true
 
 [node name="Pen" type="Sprite2D" parent="Environment/Decorations"]
 self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
-position = Vector2(1082, 1007)
+position = Vector2(873, 1054)
 rotation = 1.45598
-scale = Vector2(2, 2)
+scale = Vector2(2.25, 2.25)
 texture = ExtResource("5_xma4l")
-metadata/_edit_lock_ = true
-
-[node name="TestTubeRack" type="Sprite2D" parent="Environment/Decorations"]
-self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
-z_index = 1
-position = Vector2(1747, 1077)
-scale = Vector2(2, 2)
-texture = ExtResource("6_elfyn")
 metadata/_edit_lock_ = true
 
 [node name="BookThinPurple" type="Sprite2D" parent="Environment/Decorations"]
@@ -359,6 +359,22 @@ self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
 z_index = 2
 position = Vector2(-8, 621)
 scale = Vector2(1.48, 2.13)
+texture = ExtResource("7_vnb83")
+metadata/_edit_lock_ = true
+
+[node name="BookThinPurple3" type="Sprite2D" parent="Environment/Decorations"]
+self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+z_index = 2
+position = Vector2(2082, 670.25)
+scale = Vector2(1.92, 1.80167)
+texture = ExtResource("7_vnb83")
+metadata/_edit_lock_ = true
+
+[node name="BookThinPurple2" type="Sprite2D" parent="Environment/Decorations"]
+self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+z_index = 2
+position = Vector2(-267.5, 600.75)
+scale = Vector2(2.3, 2.265)
 texture = ExtResource("7_vnb83")
 metadata/_edit_lock_ = true
 
@@ -371,6 +387,54 @@ scale = Vector2(1.64, 1.93)
 texture = ExtResource("8_w02iu")
 metadata/_edit_lock_ = true
 
+[node name="BookThin2" type="Sprite2D" parent="Environment/Decorations"]
+self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+z_index = 2
+position = Vector2(-87, 649)
+scale = Vector2(1.64, 1.93)
+texture = ExtResource("8_w02iu")
+metadata/_edit_lock_ = true
+
+[node name="BookThin4" type="Sprite2D" parent="Environment/Decorations"]
+self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+z_index = 2
+position = Vector2(-171, 629.25)
+scale = Vector2(1.64, 2.06167)
+texture = ExtResource("8_w02iu")
+metadata/_edit_lock_ = true
+
+[node name="BookThin3" type="Sprite2D" parent="Environment/Decorations"]
+self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+z_index = 2
+position = Vector2(1992, 649)
+scale = Vector2(1.64, 1.93)
+texture = ExtResource("8_w02iu")
+metadata/_edit_lock_ = true
+
+[node name="BookThin5" type="Sprite2D" parent="Environment/Decorations"]
+self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+z_index = 2
+position = Vector2(2164, 599.25)
+scale = Vector2(1.48001, 2.26167)
+texture = ExtResource("8_w02iu")
+metadata/_edit_lock_ = true
+
+[node name="BookThin6" type="Sprite2D" parent="Environment/Decorations"]
+self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+z_index = 2
+position = Vector2(2263.5, 632.25)
+scale = Vector2(2.58, 2.04167)
+texture = ExtResource("8_w02iu")
+metadata/_edit_lock_ = true
+
+[node name="TestTubeRack" type="Sprite2D" parent="Environment/Decorations"]
+self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+z_index = 2
+position = Vector2(1870, 1156)
+scale = Vector2(2.75, 2.75)
+texture = ExtResource("6_elfyn")
+metadata/_edit_lock_ = true
+
 [node name="TikiHut" type="Sprite2D" parent="Environment/Decorations"]
 position = Vector2(1571, 727)
 scale = Vector2(0.6, 0.6)
@@ -380,9 +444,8 @@ metadata/_edit_lock_ = true
 [node name="StaticBody2D" type="StaticBody2D" parent="Environment/Decorations/TikiHut"]
 collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Decorations/TikiHut/StaticBody2D"]
-position = Vector2(0.833252, -107.5)
-shape = SubResource("RectangleShape2D_cqywv")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Decorations/TikiHut/StaticBody2D"]
+polygon = PackedVector2Array(-186.667, -18, -111.667, -190, 113.333, -190, 186.667, -18)
 
 [node name="TikiHead" parent="Environment/Decorations" instance=ExtResource("10_hjvma")]
 z_index = -1
@@ -464,5 +527,27 @@ material = SubResource("ShaderMaterial_e4h3l")
 offset_left = -55.0
 offset_right = 1993.0
 offset_bottom = 1085.0
+
+[node name="LightOccluders" type="Node2D" parent="."]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="LightOccluders"]
+occluder = SubResource("OccluderPolygon2D_hgmjn")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="LightOccluders"]
+occluder = SubResource("OccluderPolygon2D_3sesd")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="LightOccluders"]
+position = Vector2(900, 0)
+occluder = SubResource("OccluderPolygon2D_3sesd")
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="LightOccluders"]
+occluder = SubResource("OccluderPolygon2D_ao0v5")
+
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="LightOccluders"]
+position = Vector2(742, 0)
+occluder = SubResource("OccluderPolygon2D_ao0v5")
+
+[node name="LightOccluder2D6" type="LightOccluder2D" parent="LightOccluders"]
+occluder = SubResource("OccluderPolygon2D_xvk5b")
 
 [connection signal="child_exiting_tree" from="Events/EventSpawner" to="Events/EventSpawner" method="_on_child_exiting_tree"]

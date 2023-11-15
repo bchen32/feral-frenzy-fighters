@@ -9,6 +9,7 @@ var _player_spawn_position: Vector2
 func _ready():
 	_player_spawn_position = $Player.position
 	Globals.rebind_p1(0)
+	Globals.water_level = 10000
 
 func _input(event):
 	if _current_taunt_action == TutorialBillboard.TutorialAction.THUMBS_UP and \

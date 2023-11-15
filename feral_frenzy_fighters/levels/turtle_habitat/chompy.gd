@@ -28,13 +28,8 @@ var hitbox_scene: PackedScene = preload("res://player/attack/hitbox.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if self.get_tree().has_group("players") == false:
-		target_pos = Vector2(randi_range(150, 1770), randi_range(350, 900))
-		min_seeking_time = 2
-		max_seeking_time = 2
-	else:
-		var players = [p1, p2]
-		target_player = players.pick_random()
+	var players = [p1, p2]
+	target_player = players.pick_random()
 	chompy_single_process()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -64,7 +59,7 @@ func chompy_single_process():
 			self.add_child(chompy_hitbox)
 			
 			# width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-			chompy_hitbox.setup(60, 60, 0, 0, 25, 2, 0, 0, false, self)
+			chompy_hitbox.setup(60, 60, 0, 0, 15, 2, 0, 0, false, self)
 			
 			anim.play("Snap")
 			$ChompySFX.stream = SFX[1]
@@ -78,8 +73,7 @@ func chompy_single_process():
 func chompy_process():
 	match chompy_state:
 		Chompy_States.SEEKING:
-			if self.get_tree().has_group("players") == true:
-				target_pos = target_player.global_position
+			target_pos = target_player.global_position
 			global_position = global_position.move_toward(Vector2(target_pos.x, 0), seeking_speed)
 		Chompy_States.STRETCHING:
 			global_position = global_position.move_toward(target_pos, stretching_speed)

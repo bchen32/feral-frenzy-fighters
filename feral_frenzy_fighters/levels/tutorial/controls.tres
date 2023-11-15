@@ -1,0 +1,130 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://csismq7plnok1"]
+
+[ext_resource type="Texture2D" uid="uid://bufex2k2kjlmu" path="res://levels/tutorial/ui/frames/attack/button_B_O-2.png" id="2_6v3mx"]
+[ext_resource type="Texture2D" uid="uid://cbtgm08hfa1ak" path="res://levels/tutorial/ui/frames/dash/left_bumper_2.png" id="4_rydjr"]
+[ext_resource type="Texture2D" uid="uid://wp5lpajq7gry" path="res://levels/tutorial/ui/frames/dash/keyboard_SHIFT-2.png" id="5_oueum"]
+[ext_resource type="Texture2D" uid="uid://b44lysj1iqbyk" path="res://levels/tutorial/ui/frames/jump/button_A_X-2.png" id="8_4qdrq"]
+[ext_resource type="Texture2D" uid="uid://csefnpl70qpwq" path="res://levels/tutorial/ui/frames/left/left_joystick_left-2.png" id="10_7hwox"]
+[ext_resource type="Texture2D" uid="uid://c87iin3th42ld" path="res://levels/tutorial/ui/frames/right/left_joystick_right-2.png" id="12_ndtwg"]
+[ext_resource type="Texture2D" uid="uid://cw7myyjxxr6n8" path="res://gui/hud/sprites/stage_select_icons/random_select_stage.png" id="19_nkoiv"]
+[ext_resource type="Texture2D" uid="uid://cetqh3tyht5ta" path="res://levels/tutorial/ui/frames/attack/keyboard_SPACEBAR-2.png" id="20_v7rd6"]
+[ext_resource type="Texture2D" uid="uid://dy8r67w3t4tky" path="res://levels/tutorial/ui/frames/jump/keyboard_UP-2.png" id="26_yjle8"]
+[ext_resource type="Texture2D" uid="uid://vci3tgvvqln8" path="res://levels/tutorial/ui/frames/left/keyboard_A-2.png" id="28_fx3cw"]
+[ext_resource type="Texture2D" uid="uid://bwe4ao78tift0" path="res://levels/tutorial/ui/frames/right/keyboard_D-2.png" id="30_p0uvq"]
+[ext_resource type="Texture2D" uid="uid://dwmeg4hb5rkwo" path="res://levels/tutorial/ui/frames/attack/keyboard_ALT-2.png" id="38_750d1"]
+[ext_resource type="Texture2D" uid="uid://1jlxnibfg2k5" path="res://levels/tutorial/ui/frames/dash/keyboard_CTRL_2.png" id="40_knbwf"]
+[ext_resource type="Texture2D" uid="uid://dge4ih0xg4cv3" path="res://levels/tutorial/ui/frames/jump/keyboard_W-2.png" id="44_d26ds"]
+[ext_resource type="Texture2D" uid="uid://dwdufh5b1kdeb" path="res://levels/tutorial/ui/frames/left/keyboard_LEFT-2.png" id="46_oaydu"]
+[ext_resource type="Texture2D" uid="uid://bp4by8bncrai4" path="res://levels/tutorial/ui/frames/right/keyboard_RIGHT-2.png" id="48_hjv4f"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6v3mx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6v3mx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6v3mx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_v7rd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_v7rd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_v7rd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_750d1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_750d1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_750d1")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_rydjr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rydjr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rydjr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_oueum")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_oueum")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_oueum")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_knbwf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_knbwf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_knbwf")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("28_fx3cw")
+}, {
+"duration": 3.0,
+"texture": ExtResource("30_p0uvq")
+}, {
+"duration": 3.0,
+"texture": ExtResource("46_oaydu")
+}, {
+"duration": 3.0,
+"texture": ExtResource("48_hjv4f")
+}, {
+"duration": 3.0,
+"texture": ExtResource("10_7hwox")
+}, {
+"duration": 3.0,
+"texture": ExtResource("12_ndtwg")
+}],
+"loop": true,
+"name": &"horizontal",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("8_4qdrq")
+}, {
+"duration": 3.0,
+"texture": ExtResource("44_d26ds")
+}, {
+"duration": 3.0,
+"texture": ExtResource("26_yjle8")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_nkoiv")
+}],
+"loop": true,
+"name": &"none",
+"speed": 1.0
+}]
