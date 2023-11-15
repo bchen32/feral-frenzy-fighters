@@ -113,7 +113,7 @@ func _ready():
 	
 	if Globals.player_sprites.size() > player_num:
 		character_type = Globals.player_sprites[player_num]
-	elif NetworkManager.is_connected:
+	elif NetworkManager.is_connected and character_type not in character_data:
 		character_type = "cat"
 	
 	stats = load_stats(character_data[character_type].stats)

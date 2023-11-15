@@ -22,6 +22,12 @@ var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if NetworkManager.is_connected:
+		# TODO(Bobby): why do we need this so it sends send_env_data to both peers?
+		await get_tree().create_timer(1).timeout
+	
+	NetworkManager.on_send_env_data.connect(_on_send_env_data)
+	
 	water_level_process()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,13 +39,21 @@ func _process(delta):
 	Globals.water_level = self.global_position.y
 	log_process()
 
+func _on_send_env_data(event_name: String, event_data: Array):
+	if event_name == "water_level":
+		print("got water level")
+		$WaterLevelTimer.start(event_data[0])
+
 func water_level_process():
 	match water_level_state:
 		Water_Level_States.LOWTIDE:
 			anim.play("LowTide")
-			await get_tree().create_timer(randi_range(min_high_tide_delay, max_high_tide_delay)).timeout
-			print("water_level: hey, event_spawner, I want to go next!")
-			event_spawner._external_event(false) # tell event_spawner water_level event wants to start next time
+			
+			if NetworkManager.is_connected:
+				print("requesting water level")
+				NetworkManager.get_env_data.rpc("water_level")
+			else:
+				$WaterLevelTimer.start(randi_range(20, max_high_tide_delay))
 		Water_Level_States.LOWTOHIGH:
 			anim.stop()
 			anim.play("Transition")
@@ -103,3 +117,8 @@ func log_process():
 				log_sprite.global_position = log_low_tide_pos
 			elif self.global_position.y <= log_low_tide_pos.y:
 				log_sprite.global_position = Vector2(log_low_tide_pos.x, self.global_position.y)
+
+func _on_water_level_timer_timeout():
+	print("water_level: hey, event_spawner, I want to go next!")
+	event_spawner._external_event(false) # tell event_spawner water_level event wants to start next time
+

@@ -136,7 +136,7 @@ func get_env_data(sender_id: int, env_name: String):
 				
 				env_data.push_back(Vector2(1539, 629))
 			"event":
-				var random_event: int = randi_range(0, 1)
+				var random_event: int = 0 if selected_stage == 2 else randi_range(0, 1)
 				
 				env_data.push_back(random_event)
 				
@@ -151,8 +151,38 @@ func get_env_data(sender_id: int, env_name: String):
 						env_data.push_back(randi_range(500, 1500))
 						env_data.push_back(randf_range(-.3, .3))
 						env_data.push_back(randf_range(0,.3))
+				else:
+					# fish net and gravel cleaner on fish tank level, and chompy on turtle habitat level
+					env_data.push_back(randi_range(0, 1))
+					
+					if selected_stage == 2:
+						# chompy
+						env_data.push_back(randi_range(5, 10))
+			"water_level":
+				env_data.push_back(randi_range(20, 30))
+			"snapping_manager":
+				var turtle_amount = 4
+				var x_spawn_points = [-200, 2200]
+				
+				for t in turtle_amount:
+					var turtle_positions = [Vector2(x_spawn_points.pick_random(), randi_range(560, 920))]
+					
+					for i in range(10):
+						turtle_positions.push_back(Vector2(randi_range(0, 1920), randi_range(450, 990)))
+					
+					env_data.push_back(turtle_positions)
+			"sprouting_cycle":
+				var sprouting_cycle = [0, 1, 2, 3, 4, 5, 6]
+				
+				while not sprouting_cycle.is_empty():
+					var sprouting = sprouting_cycle.pick_random()
+					sprouting_cycle.erase(sprouting)
+					
+					env_data.push_back(randi_range(3, 7))
+					env_data.push_back(sprouting)
 		
 		for player_key in _players:
+			print("send env data %s for %s" % [player_key, env_name])
 			_network_manager.send_env_data.rpc_id(player_key, env_name, env_data)
 		
 		_env_data[env_name] = {}
