@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://br6txao4iioos"]
+[gd_scene load_steps=44 format=3 uid="uid://br6txao4iioos"]
 
 [ext_resource type="Script" path="res://gui/menus/title_screen.gd" id="1_u2ssx"]
 [ext_resource type="Theme" uid="uid://ciapr50n3vxqt" path="res://default_ui_theme.tres" id="3_0h4m0"]
@@ -20,12 +20,11 @@
 [ext_resource type="Texture2D" uid="uid://d2pnd6moyijur" path="res://gui/menus/sprites/slider/sound_volume_slider_icon.png" id="20_yxcn2"]
 [ext_resource type="Texture2D" uid="uid://cjvi1ar5e1yr4" path="res://gui/menus/sprites/slider/sound_volume_border.png" id="21_uhsip"]
 [ext_resource type="Script" path="res://gui/dialog.gd" id="23_4bb6r"]
-[ext_resource type="Texture2D" uid="uid://rb31ehfgk53n" path="res://gui/menus/sprites/screens/examples/options_example.png" id="24_i6uum"]
 [ext_resource type="Texture2D" uid="uid://b5jm0t8cpmgq6" path="res://gui/menus/sprites/screens/faded_black.png" id="25_bmnas"]
+[ext_resource type="Texture2D" uid="uid://bknvqwtgmhrk1" path="res://gui/menus/sprites/slider/music_icon.png" id="26_76ehv"]
 [ext_resource type="Texture2D" uid="uid://cnadtlxa56n4j" path="res://gui/menus/sprites/screens/pop_up_blue.png" id="26_ds1jq"]
 [ext_resource type="Texture2D" uid="uid://p4igqy63ikte" path="res://gui/menus/sprites/screens/titles/volume_ui.png" id="26_oblpl"]
 [ext_resource type="Texture2D" uid="uid://crx7dfnmm8rsn" path="res://gui/menus/sprites/screens/titles/multiplayer_ui.png" id="27_e51u0"]
-[ext_resource type="Texture2D" uid="uid://b0w03hxdngiuh" path="res://gui/menus/sprites/screens/icons/music_icon.png" id="27_ush3f"]
 [ext_resource type="Texture2D" uid="uid://cv2ixefe0xryy" path="res://gui/menus/sprites/screens/icons/sound_icon_loud.png" id="28_122wv"]
 [ext_resource type="Script" path="res://gui/menus/icon_button.gd" id="28_mlo4o"]
 [ext_resource type="Texture2D" uid="uid://diipaw50krrur" path="res://gui/menus/sprites/buttons/button_icon.png" id="29_pqkes"]
@@ -36,7 +35,6 @@
 [ext_resource type="Texture2D" uid="uid://b0ciegbjevlvd" path="res://gui/menus/sprites/buttons/icons/settings_icon.png" id="32_abyt0"]
 [ext_resource type="PackedScene" uid="uid://ctl1tov56fref" path="res://gui/menus/moveset_dialog.tscn" id="34_fg6lk"]
 [ext_resource type="AudioStream" uid="uid://coneg16uuc06h" path="res://gui/menus/sfx/button.wav" id="34_r00cv"]
-[ext_resource type="Texture2D" uid="uid://dmlfid0hfdu2w" path="res://gui/menus/sprites/screens/examples/volume_example.png" id="34_xltnq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vu2cy"]
 texture = ExtResource("11_jd057")
@@ -562,13 +560,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.521, 0.521)
 
-[node name="VolumeExample" type="Sprite2D" parent="MainMenu/AudioSliders/VolumeDialog"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.466667)
-position = Vector2(40, 19)
-scale = Vector2(1.0375, 1.04444)
-texture = ExtResource("34_xltnq")
-
 [node name="DialogShade" type="TextureRect" parent="MainMenu/AudioSliders/VolumeDialog"]
 layout_mode = 1
 anchors_preset = 15
@@ -619,12 +610,12 @@ texture = ExtResource("26_oblpl")
 [node name="MusicIcon" type="Sprite2D" parent="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea"]
 position = Vector2(216, 568)
 scale = Vector2(0.9, 0.9)
-texture = ExtResource("27_ush3f")
+texture = ExtResource("28_122wv")
 
 [node name="SoundIconLoud" type="Sprite2D" parent="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea"]
 position = Vector2(216, 351)
 scale = Vector2(0.9, 0.9)
-texture = ExtResource("28_122wv")
+texture = ExtResource("26_76ehv")
 
 [node name="BackButton" type="Button" parent="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea" groups=["TitleButtons"]]
 custom_minimum_size = Vector2(100, 150)
@@ -690,12 +681,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="OptionsExample" type="Sprite2D" parent="MainMenu/OptionsDialog"]
-visible = false
-modulate = Color(1, 1, 1, 0.772549)
-position = Vector2(964, 542)
-texture = ExtResource("24_i6uum")
 
 [node name="DialogShade" type="TextureRect" parent="MainMenu/OptionsDialog"]
 layout_mode = 1
@@ -846,12 +831,6 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("23_4bb6r")
-
-[node name="OptionsExample" type="Sprite2D" parent="MainMenu/PlayDialog"]
-visible = false
-modulate = Color(1, 1, 1, 0.772549)
-position = Vector2(964, 542)
-texture = ExtResource("24_i6uum")
 
 [node name="DialogShade" type="TextureRect" parent="MainMenu/PlayDialog"]
 layout_mode = 1
