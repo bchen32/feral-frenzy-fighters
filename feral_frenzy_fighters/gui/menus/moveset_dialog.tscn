@@ -1,7 +1,7 @@
 [gd_scene load_steps=91 format=3 uid="uid://ctl1tov56fref"]
 
 [ext_resource type="Texture2D" uid="uid://b5jm0t8cpmgq6" path="res://gui/menus/sprites/screens/faded_black.png" id="1_esxds"]
-[ext_resource type="Script" path="res://gui/moveset.gd" id="1_s5xd6"]
+[ext_resource type="Script" path="res://gui/menus/moveset.gd" id="1_s5xd6"]
 [ext_resource type="Texture2D" uid="uid://cnadtlxa56n4j" path="res://gui/menus/sprites/screens/pop_up_blue.png" id="2_qe0vc"]
 [ext_resource type="Texture2D" uid="uid://jo38swmcraew" path="res://gui/menus/sprites/screens/examples/moveset_concept1.png" id="4_lapdd"]
 [ext_resource type="Texture2D" uid="uid://dgnqs1kere5wy" path="res://player/cat/sprites/attack_neutral/blue/Cat_Attack_Blue-1.png" id="5_4syw3"]

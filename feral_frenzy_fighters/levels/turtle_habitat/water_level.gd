@@ -13,7 +13,7 @@ var electric_dmg_rate = 1
 var log_low_tide_pos: Vector2 = Vector2(1400, 620)
 
 #hitbox settings: search "water_level_hitbox"
-var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attack/hitbox.tscn")
 @onready var anim: AnimationPlayer = get_node("AnimationPlayer")
 @onready var event_spawner = $"../EventSpawner"
 @onready var electric_particles: CPUParticles2D = get_node("ElectricParticles")

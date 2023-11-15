@@ -16,7 +16,7 @@ var event_network_data: Array
 var _current_event_network_data_dest: int = 0
 
 #hitbox settings: search "turtle_hitbox"
-var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attack/hitbox.tscn")
 @onready var snapping_spawner: Node2D = get_parent()
 @onready var anim_sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
 @onready var area: Area2D = get_node("Area2D")

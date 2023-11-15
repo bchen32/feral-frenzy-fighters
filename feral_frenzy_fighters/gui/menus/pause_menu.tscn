@@ -1,13 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://di6m8x6mh11r7"]
 
 [ext_resource type="Texture2D" uid="uid://rb31ehfgk53n" path="res://gui/menus/sprites/screens/examples/options_example.png" id="1_ra7ji"]
-[ext_resource type="Script" path="res://pause_menu.gd" id="1_uf5m1"]
+[ext_resource type="Script" path="res://gui/menus/pause_menu.gd" id="1_uf5m1"]
 [ext_resource type="Texture2D" uid="uid://b5jm0t8cpmgq6" path="res://gui/menus/sprites/screens/faded_black.png" id="2_y3u1r"]
 [ext_resource type="Texture2D" uid="uid://cnadtlxa56n4j" path="res://gui/menus/sprites/screens/pop_up_blue.png" id="3_dufcj"]
 [ext_resource type="Texture2D" uid="uid://g48dhv3srl7d" path="res://gui/menus/sprites/screens/titles/options_ui.png" id="4_5n6ax"]
 [ext_resource type="Theme" uid="uid://ciapr50n3vxqt" path="res://default_ui_theme.tres" id="5_kielc"]
 [ext_resource type="Texture2D" uid="uid://bar3a8okfu77w" path="res://gui/menus/sprites/buttons/button_highlight.png" id="6_nq5uc"]
-[ext_resource type="PackedScene" uid="uid://ctl1tov56fref" path="res://gui/moveset_dialog.tscn" id="19_nvfbu"]
+[ext_resource type="PackedScene" uid="uid://ctl1tov56fref" path="res://gui/menus/moveset_dialog.tscn" id="19_nvfbu"]
+
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sefc7"]
 texture = ExtResource("6_nq5uc")
