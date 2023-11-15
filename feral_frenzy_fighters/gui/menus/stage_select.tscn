@@ -3,12 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://dpaluibvjuaoc" path="res://gui/menus/sprites/screens/screen_background.png" id="1_fdfi8"]
 [ext_resource type="Script" path="res://gui/menus/stage_select.gd" id="1_u3a4l"]
 [ext_resource type="Texture2D" uid="uid://l7f5xmyfd33c" path="res://gui/menus/sprites/screens/examples/new_stages_example.png" id="3_5ongw"]
-[ext_resource type="Texture2D" uid="uid://b2rt3pcgemsmr" path="res://gui/hud/sprites/stage_select_icons/cat_level_select_image.png" id="3_ti4ec"]
-[ext_resource type="Texture2D" uid="uid://dy2fuku8bbf3r" path="res://gui/hud/sprites/stage_select_icons/fish_level_select_image.png" id="4_d7bvs"]
 [ext_resource type="Texture2D" uid="uid://bniprnwe6473y" path="res://gui/menus/sprites/screens/titles/stages_ui (1).png" id="4_kpv76"]
 [ext_resource type="Texture2D" uid="uid://cw7myyjxxr6n8" path="res://gui/hud/sprites/stage_select_icons/random_select_stage.png" id="4_tsooh"]
+[ext_resource type="Texture2D" uid="uid://ig5ae8w0r4q0" path="res://gui/hud/sprites/stage_select_icons/new_cat_level_select_image.png" id="5_ktsd0"]
+[ext_resource type="Texture2D" uid="uid://bvl4c7oby7yt2" path="res://gui/hud/sprites/stage_select_icons/new_fish_level_select_image.png" id="6_3wn60"]
 [ext_resource type="AudioStream" uid="uid://coneg16uuc06h" path="res://gui/menus/sfx/button.wav" id="7_3tqbt"]
-[ext_resource type="Texture2D" uid="uid://bf2ni8gvvpyfo" path="res://gui/hud/sprites/stage_select_icons/turtle_level_select_image.png" id="7_vuxiy"]
+[ext_resource type="Texture2D" uid="uid://woanesghjk2s" path="res://gui/hud/sprites/stage_select_icons/new_turtle_level_select_image.png" id="7_u51kv"]
 [ext_resource type="AudioStream" uid="uid://bw1ubqplxxg77" path="res://gui/menus/sfx/select.wav" id="8_myv1g"]
 
 [node name="StageSelect" type="Control"]
@@ -29,7 +29,7 @@ visible = false
 position = Vector2(954, 550)
 texture = ExtResource("3_5ongw")
 
-[node name="StagesUi(1)" type="Sprite2D" parent="Background"]
+[node name="stageui" type="Sprite2D" parent="Background"]
 position = Vector2(947, 171)
 texture = ExtResource("4_kpv76")
 
@@ -38,9 +38,9 @@ layout_mode = 0
 offset_left = 388.0
 offset_top = 324.0
 offset_right = 1288.0
-offset_bottom = 886.0
+offset_bottom = 882.0
 scale = Vector2(1.275, 1.271)
-theme_override_constants/separation = 0
+theme_override_constants/separation = 2
 
 [node name="StageIconsTop" type="HBoxContainer" parent="Background/StageIconsContainer"]
 layout_mode = 2
@@ -49,20 +49,20 @@ alignment = 1
 
 [node name="CatStageIcon" type="TextureRect" parent="Background/StageIconsContainer/StageIconsTop"]
 layout_mode = 2
-texture = ExtResource("3_ti4ec")
+texture = ExtResource("5_ktsd0")
 
 [node name="FishStageIcon" type="TextureRect" parent="Background/StageIconsContainer/StageIconsTop"]
 layout_mode = 2
-texture = ExtResource("4_d7bvs")
+texture = ExtResource("6_3wn60")
 
 [node name="StageIconsBottom" type="HBoxContainer" parent="Background/StageIconsContainer"]
 layout_mode = 2
-theme_override_constants/separation = 3
+theme_override_constants/separation = 1
 alignment = 1
 
 [node name="TurtleStageIcon" type="TextureRect" parent="Background/StageIconsContainer/StageIconsBottom"]
 layout_mode = 2
-texture = ExtResource("7_vuxiy")
+texture = ExtResource("7_u51kv")
 
 [node name="Player2ButtonsContainer" type="VBoxContainer" parent="Background"]
 layout_mode = 0
@@ -128,8 +128,6 @@ texture_normal = ExtResource("4_tsooh")
 
 [node name="FadeOut" type="TextureRect" parent="."]
 self_modulate = Color(0, 0, 0, 0)
-z_index = 5
-z_as_relative = false
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0

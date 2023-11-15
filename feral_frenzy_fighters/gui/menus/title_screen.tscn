@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://cv2ixefe0xryy" path="res://gui/menus/sprites/screens/icons/sound_icon_loud.png" id="28_122wv"]
 [ext_resource type="Script" path="res://gui/menus/icon_button.gd" id="28_mlo4o"]
 [ext_resource type="Texture2D" uid="uid://diipaw50krrur" path="res://gui/menus/sprites/buttons/button_icon.png" id="29_pqkes"]
+[ext_resource type="Texture2D" uid="uid://ciahc6v00gmgp" path="res://gui/menus/sprites/slider/sound_volume_slider_icon_lighter.png" id="29_rsiw2"]
 [ext_resource type="Texture2D" uid="uid://g48dhv3srl7d" path="res://gui/menus/sprites/screens/titles/options_ui.png" id="30_8lp80"]
 [ext_resource type="Texture2D" uid="uid://chdwycww66d" path="res://gui/menus/sprites/buttons/button_icon_pressed.png" id="30_jsdcc"]
 [ext_resource type="Texture2D" uid="uid://qadgeqbcf0jq" path="res://gui/menus/sprites/buttons/button_icon_highlight.png" id="31_jv14s"]
@@ -47,6 +48,10 @@ texture = ExtResource("13_oy3x2")
 font = ExtResource("15_3jjna")
 font_size = 35
 
+[sub_resource type="LabelSettings" id="LabelSettings_m61ry"]
+font = ExtResource("15_3jjna")
+font_size = 100
+
 [sub_resource type="LabelSettings" id="LabelSettings_p67dp"]
 font = ExtResource("15_3jjna")
 font_size = 100
@@ -54,16 +59,9 @@ font_size = 100
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mn2ma"]
 texture = ExtResource("13_oy3x2")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5eh20"]
-load_path = "res://.godot/imported/sound_volume_slider_icon.png-69e599103a98ae707243d919bedfc8b1.ctex"
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_knx06"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5116t"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hw7k6"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_m61ry"]
-font = ExtResource("15_3jjna")
-font_size = 100
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -352,6 +350,70 @@ label_settings = SubResource("LabelSettings_0tfhe")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BackButton" type="Control" parent="MainMenu/Credits/CreditsBackground/CreditsLabel"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+anchors_preset = 0
+offset_left = 1292.0
+offset_top = -245.0
+offset_right = 1492.0
+offset_bottom = -39.0
+grow_horizontal = 0
+scale = Vector2(0.85, 0.85)
+script = ExtResource("28_mlo4o")
+
+[node name="IconButtonClick" type="TextureButton" parent="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton" groups=["TitleButtons"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.352
+anchor_top = 0.44
+anchor_right = 0.352
+anchor_bottom = 0.44
+offset_left = -99.4
+offset_top = -93.64
+offset_right = 100.6
+offset_bottom = 106.36
+theme = ExtResource("3_0h4m0")
+texture_normal = ExtResource("29_pqkes")
+texture_pressed = ExtResource("30_jsdcc")
+texture_hover = ExtResource("31_jv14s")
+
+[node name="Icon" type="TextureRect" parent="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton/IconButtonClick"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_egfgu")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton/IconButtonClick"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -40.0
+offset_right = 28.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+"
+label_settings = SubResource("LabelSettings_m61ry")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="CreditsIcon" type="TextureRect" parent="MainMenu/Credits"]
 layout_mode = 1
 anchors_preset = 5
@@ -365,6 +427,7 @@ grow_horizontal = 2
 texture = ExtResource("17_y7rfj")
 
 [node name="TopBarButtons" type="HBoxContainer" parent="MainMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -385,7 +448,6 @@ character = "?"
 icon_texture = ExtResource("19_egfgu")
 
 [node name="IconButtonClick" type="TextureButton" parent="MainMenu/TopBarButtons/InstructionsButton" groups=["TitleButtons"]]
-visible = false
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 200.0
@@ -410,7 +472,6 @@ texture = ExtResource("32_abyt0")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -592,9 +653,10 @@ z_index = 1
 z_as_relative = false
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("20_yxcn2")
-theme_override_icons/grabber_highlight = SubResource("CompressedTexture2D_5eh20")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_knx06")
+theme_override_icons/grabber_highlight = ExtResource("29_rsiw2")
+theme_override_styles/slider = SubResource("StyleBoxTexture_5116t")
 max_value = 200.0
+step = 10.0
 
 [node name="MusicBG" type="Sprite2D" parent="MainMenu/AudioSliders/VBoxContainer/MusicSlider"]
 z_as_relative = false
@@ -607,9 +669,10 @@ z_index = 1
 z_as_relative = false
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("20_yxcn2")
-theme_override_icons/grabber_highlight = ExtResource("20_yxcn2")
+theme_override_icons/grabber_highlight = ExtResource("29_rsiw2")
 theme_override_styles/slider = SubResource("StyleBoxTexture_hw7k6")
 max_value = 200.0
+step = 10.0
 
 [node name="SFXBg" type="Sprite2D" parent="MainMenu/AudioSliders/VBoxContainer"]
 z_as_relative = false
@@ -958,6 +1021,10 @@ text = "host"
 [connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Quit/QuitButton" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Quit/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="button_pressed" from="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton" to="MainMenu/PlayDialog" method="_on_close_button_button_pressed" flags=18]
+[connection signal="focus_entered" from="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton/IconButtonClick" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton/IconButtonClick" to="." method="_on_icon_button_click_pressed"]
+[connection signal="pressed" from="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton/IconButtonClick" to="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="button_pressed" from="MainMenu/TopBarButtons/InstructionsButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick" to="MainMenu/TopBarButtons/InstructionsButton" method="_on_icon_button_click_pressed" flags=18]

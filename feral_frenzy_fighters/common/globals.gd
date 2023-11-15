@@ -26,7 +26,7 @@ var player_gamepad = {
 
 signal shake_completed
 var passwords = {}
-
+var can_pause = true
 
 func _ready():
 	
@@ -102,3 +102,8 @@ func shake(node, amount: float = 5, duration: float = .01, count: int = 10, pass
 				emit_signal("shake_completed", passwords[node])
 		else:
 			node.global_position = og_pos
+			
+func pause_timer():
+	can_pause = false
+	await get_tree().create_timer(0.1).timeout
+	can_pause = true

@@ -99,7 +99,8 @@ position = Vector2(0, 920)
 script = ExtResource("1_crvb1")
 
 [node name="Log" type="Sprite2D" parent="."]
-z_index = -1
+z_index = -2
+z_as_relative = false
 position = Vector2(1400, -300)
 texture = ExtResource("3_jyvoh")
 

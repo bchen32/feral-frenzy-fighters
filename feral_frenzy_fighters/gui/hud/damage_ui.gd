@@ -38,8 +38,10 @@ func set_player_death_count(player_num: int, death_count: int):
 		0:
 			if not tutorial_mode:
 				$P1/KOLabel.text = str(death_count)
+				$P1/LivesLeft.set_num_lives(death_count)
 		1, 2:
 			$P2/KOLabel.text = str(death_count)
+			$P2/LivesLeft.set_num_lives(death_count)
 
 	if ($P2/KOLabel.text == "5"):
 		$P2/BloodSplatTwo.hide()

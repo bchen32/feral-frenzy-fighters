@@ -42,6 +42,11 @@ func _input(event: InputEvent) :
 		_on_video_stream_player_finished()
 
 func _on_video_stream_player_finished():
+	%VideoStreamPlayer.hide()
+	$skip_controller.hide()
+	$skip_keyboard.hide()
+	
+	await get_tree().create_timer(.01).timeout
 	if wait_till_network and Globals.cutscene_player_end_game:
 		NetworkManager.disconnect_network()
 		

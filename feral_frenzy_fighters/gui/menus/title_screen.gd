@@ -14,7 +14,6 @@ func _ready():
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(sfx_slider.value / 100))
 	$"MainMenu/Title/ButtonsVBox/Play/PlayButton".grab_focus()
 	Globals.setup_controls()
-	
 	ui = Menu.new($MainMenu/Title)
 
 func _process(delta):
@@ -118,4 +117,8 @@ func _on_back_button_pressed():
 	ui.back()
 
 func _on_close_button_button_pressed():
+	ui.back()
+
+
+func _on_icon_button_click_pressed():
 	ui.back()
