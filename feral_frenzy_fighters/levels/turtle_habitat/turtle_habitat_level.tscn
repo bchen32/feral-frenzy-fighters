@@ -19,8 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://cx0alms8abhh1" path="res://levels/turtle_habitat/water_level.tscn" id="14_xquta"]
 [ext_resource type="PackedScene" uid="uid://boomivtr7a6as" path="res://levels/turtle_habitat/chompy.tscn" id="15_cm0jy"]
 [ext_resource type="AudioStream" uid="uid://0yfwfivpiws6" path="res://levels/turtle_habitat/sfx/Lamp.mp3" id="15_udfde"]
-[ext_resource type="PackedScene" path="res://levels/turtle_habitat/snapping_spawner.tscn" id="19_nk0hk"]
-[ext_resource type="PackedScene" path="res://levels/turtle_habitat/high_voltage_lamp.tscn" id="22_bft88"]
+[ext_resource type="PackedScene" uid="uid://ug60rr7qlqns" path="res://levels/turtle_habitat/snapping_spawner.tscn" id="19_nk0hk"]
+[ext_resource type="PackedScene" uid="uid://bfob6608nomq0" path="res://levels/turtle_habitat/high_voltage_lamp.tscn" id="22_bft88"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s83h5"]
 texture = ExtResource("2_g3g5f")

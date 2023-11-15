@@ -22,10 +22,13 @@ var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if NetworkManager.is_connected:
+		# TODO(Bobby): why do we need this so it sends send_env_data to both peers?
+		await get_tree().create_timer(1).timeout
+	
 	NetworkManager.on_send_env_data.connect(_on_send_env_data)
 	
-	if NetworkManager.is_connected:
-		water_level_process()
+	water_level_process()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -38,6 +41,7 @@ func _process(delta):
 
 func _on_send_env_data(event_name: String, event_data: Array):
 	if event_name == "water_level":
+		print("got water level")
 		$WaterLevelTimer.start(event_data[0])
 
 func water_level_process():
@@ -46,6 +50,7 @@ func water_level_process():
 			anim.play("LowTide")
 			
 			if NetworkManager.is_connected:
+				print("requesting water level")
 				NetworkManager.get_env_data.rpc("water_level")
 			else:
 				$WaterLevelTimer.start(randi_range(20, max_high_tide_delay))

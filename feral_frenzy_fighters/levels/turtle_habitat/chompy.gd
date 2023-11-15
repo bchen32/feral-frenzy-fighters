@@ -55,7 +55,7 @@ func chompy_single_process():
 			process = true
 			$ChompySFX.stream = SFX[0]
 			$ChompySFX.play()
-			await get_tree().create_timer(randi_range(min_seeking_time, max_seeking_time)).timeout
+			await get_tree().create_timer(event_network_data[1] if NetworkManager.is_connected else randi_range(5, 10)).timeout
 			process = false
 			chompy_state = Chompy_States.STRETCHING
 			chompy_single_process()
