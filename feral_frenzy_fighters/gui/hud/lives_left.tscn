@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://3i6qdyv3xnac"]
+
+[ext_resource type="Script" path="res://gui/hud/lives_left.gd" id="1_6tl1t"]
+
+[node name="LivesLeft" type="HBoxContainer"]
+offset_right = 73.0
+offset_bottom = 62.0
+script = ExtResource("1_6tl1t")

@@ -44,7 +44,8 @@ var color: String = ""
 var bloodied = false
 var anim_player: AnimatedSprite2D
 var stats: Dictionary
-var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attack/hitbox.tscn")
+var projectile_scene: PackedScene = preload("res://player/attack/projectile.tscn")
 var frame: int = 0
 var percentage: float = 0.0
 var air_speed_upper_bound: float
@@ -156,7 +157,7 @@ func _ready():
 	
 	if Globals.player_sprites.size() > player_num:
 		character_type = Globals.player_sprites[player_num]
-	elif NetworkManager.is_connected:
+	elif NetworkManager.is_connected and character_type not in character_data:
 		character_type = "cat"
 	
 	stats = load_stats(character_data[character_type].stats)
@@ -231,8 +232,11 @@ func set_spawn(spawn_pos):
 	position = spawn_pos
 
 func reset_player():
-	InputManager.paused = true
-	position = _initial_player_position
+	if self.name == "Player":
+		$"../P1Respawn".respawn_player()
+	elif self.name == "Player2":
+		$"../P2Respawn".respawn_player()
+	
 	velocity = Vector2(0, 0)
 	percentage = 0
 	bloodied = false
@@ -240,6 +244,7 @@ func reset_player():
 		_damage_label.get_node(("P2" if player_num else "P1") + "/DamageLabel").label_settings.font_color = Color.WHITE
 		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
 		player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
+	
 	if character_type != "beanbag":
 		var states = {
 			Globals.States.AIR: AirState.new(),
@@ -428,9 +433,26 @@ func update_attack(attack_name: String):
 	for hitbox_stats in attack.hitboxes:
 		if frame == hitbox_stats.start_frame:
 			var hitbox = hitbox_scene.instantiate()
-			add_child(hitbox)
-			curr_hitboxes.append(hitbox)
-			curr_hitboxes_ends.append(int(hitbox_stats.end_frame))
+			var is_projectile = false
+			if hitbox_stats.projectile_data:
+				var projectile = projectile_scene.instantiate()
+				projectile.setup(
+					hitbox,
+					Vector2(
+						(1.0 if anim_player.flip_h else -1.0) * hitbox_stats.projectile_data.velocity.x,
+						hitbox_stats.projectile_data.velocity.y
+					),
+					hitbox_stats.projectile_data.travel_anim,
+					hitbox_stats.projectile_data.collide_anim,
+					hitbox_stats.projectile_data.collide_frames
+				)
+				projectile.position = position
+				get_parent().add_child(projectile)
+				is_projectile = true
+			else:
+				add_child(hitbox)
+				curr_hitboxes.append(hitbox)
+				curr_hitboxes_ends.append(int(hitbox_stats.end_frame))
 			hitbox.setup(
 				hitbox_stats.width,
 				hitbox_stats.height,
@@ -439,7 +461,9 @@ func update_attack(attack_name: String):
 				attack.damage,
 				attack.knockback_scale,
 				(1.0 if anim_player.flip_h else -1.0) * attack.knockback_x_offset,
-				attack.knockback_y_offset
+				attack.knockback_y_offset,
+				is_projectile,
+				self
 			)
 	for i in range(len(curr_hitboxes)):
 		if frame == curr_hitboxes_ends[i]:

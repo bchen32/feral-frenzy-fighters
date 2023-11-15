@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://cqwih0alupqsb"]
+[gd_scene load_steps=20 format=3 uid="uid://cqwih0alupqsb"]
 
 [ext_resource type="Script" path="res://gui/hud/damage_ui.gd" id="1_kd0hw"]
 [ext_resource type="Texture2D" uid="uid://djyfonhy27vtl" path="res://gui/hud/sprites/stats_paw_prints/player_stats_purple.png" id="2_jus1w"]
 [ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="3_ekkdo"]
+[ext_resource type="PackedScene" uid="uid://3i6qdyv3xnac" path="res://gui/hud/lives_left.tscn" id="4_nu040"]
 [ext_resource type="Theme" uid="uid://ciapr50n3vxqt" path="res://default_ui_theme.tres" id="5_cn1rk"]
 [ext_resource type="Texture2D" uid="uid://dtjxj17aqw5vn" path="res://gui/hud/sprites/stats_paw_prints/icons/heart_icon.png" id="6_6l4le"]
 [ext_resource type="Texture2D" uid="uid://dtmxypm8hko4g" path="res://gui/hud/sprites/stats_paw_prints/player_stats_blue.png" id="6_xgw5i"]
@@ -94,7 +95,16 @@ label_settings = SubResource("LabelSettings_aypps")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="LivesLeft" parent="P1" instance=ExtResource("4_nu040")]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 85.0
+offset_right = 421.0
+offset_bottom = 147.0
+scale = Vector2(0.5, 0.5)
+
 [node name="KOIcon" type="TextureRect" parent="P1"]
+visible = false
 layout_mode = 0
 offset_left = 134.0
 offset_top = 85.0
@@ -104,6 +114,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_6l4le")
 
 [node name="KOLabel" type="Label" parent="P1"]
+visible = false
 layout_mode = 0
 offset_left = 134.0
 offset_top = 84.0
@@ -237,7 +248,16 @@ label_settings = SubResource("LabelSettings_aypps")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="LivesLeft" parent="P2" instance=ExtResource("4_nu040")]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 85.0
+offset_right = 421.0
+offset_bottom = 147.0
+scale = Vector2(0.5, 0.5)
+
 [node name="KOIcon" type="TextureRect" parent="P2"]
+visible = false
 layout_mode = 0
 offset_left = 134.0
 offset_top = 85.0
@@ -247,6 +267,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_6l4le")
 
 [node name="KOLabel" type="Label" parent="P2"]
+visible = false
 layout_mode = 0
 offset_left = 134.0
 offset_top = 84.0

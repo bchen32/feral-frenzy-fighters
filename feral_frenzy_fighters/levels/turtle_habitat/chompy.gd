@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Chompy
+
 enum Chompy_States {SEEKING, STRETCHING, SNAPPING}
 var chompy_state = Chompy_States.SEEKING
 
@@ -13,6 +15,8 @@ var seeking_speed = 15
 var stretching_speed = 30
 var return_speed = 7
 
+var event_network_data: Array
+
 var SFX = [
 	preload("res://levels/turtle_habitat/sfx/Rustle.mp3"),
 	preload("res://levels/turtle_habitat/sfx/Chomp.mp3")
@@ -21,7 +25,7 @@ var SFX = [
 var process = false
 
 #hitbox settings: search "plasma_hitbox"
-var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attack/hitbox.tscn")
 @onready var p1 = self.get_tree().get_nodes_in_group("players").front()
 @onready var p2 = self.get_tree().get_nodes_in_group("players").back()
 @onready var anim = get_node("AnimationPlayer")
@@ -29,7 +33,12 @@ var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var players = [p1, p2]
-	target_player = players.pick_random()
+	
+	if NetworkManager.is_connected:
+		target_player = players[event_network_data[0]]
+	else:
+		target_player = players.pick_random()
+	
 	chompy_single_process()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,7 +55,7 @@ func chompy_single_process():
 			process = true
 			$ChompySFX.stream = SFX[0]
 			$ChompySFX.play()
-			await get_tree().create_timer(randi_range(min_seeking_time, max_seeking_time)).timeout
+			await get_tree().create_timer(event_network_data[1] if NetworkManager.is_connected else randi_range(5, 10)).timeout
 			process = false
 			chompy_state = Chompy_States.STRETCHING
 			chompy_single_process()
@@ -59,7 +68,7 @@ func chompy_single_process():
 			self.add_child(chompy_hitbox)
 			
 			# width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-			chompy_hitbox.setup(60, 60, 0, 0, 15, 2, 0, 0)
+			chompy_hitbox.setup(60, 60, 0, 0, 15, 2, 0, 0, false, self)
 			
 			anim.play("Snap")
 			$ChompySFX.stream = SFX[1]

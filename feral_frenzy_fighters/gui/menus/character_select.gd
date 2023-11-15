@@ -2,6 +2,8 @@ extends Control
 
 @onready var p1_portrait = $Background/PlayerPortraits/Player1Portrait
 @onready var p2_portrait = $Background/PlayerPortraits/Player2Portrait
+@onready var p2_stat = $Background/Player2Stats
+@onready var p1_stat = $Background/Player1Stats
 @onready var p1_text = $Background/Player1Text
 @onready var p2_text = $Background/Player2Text
 
@@ -171,12 +173,18 @@ func on_character1_change(send_networked_response: bool = true):
 		0:
 			p1_text.text = str("Cat")
 			p1_portrait.texture = preload("res://gui/hud/sprites/cs_icons/cat_purple.png")
+			p1_stat.texture = preload("res://gui/hud/sprites/character_stats/purple_cat_stats.png")
+			
 		1:
 			p1_text.text = str("Fish")
 			p1_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_purple.png")
+			p1_stat.texture = preload("res://gui/hud/sprites/character_stats/purple_fish_stats.png")
 		2:
 			p1_text.text = str("Turtle")
 			p1_portrait.texture = preload("res://gui/hud/sprites/cs_icons/turtle_purple.png")
+			p1_stat.texture = preload("res://gui/hud/sprites/character_stats/purple_turtle_stats.png")
+	
+	on_character2_change()
 	_update_beginning_cutscene()
 
 func on_character2_change(send_networked_response: bool = true):
@@ -186,35 +194,55 @@ func on_character2_change(send_networked_response: bool = true):
 	match (p2_character):
 		0:
 			p2_text.text = str("Cat")
-			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_cat.png")
+			if p1_character == 0:
+				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_cat.png")
+				p2_stat.texture = preload("res://gui/hud/sprites/character_stats/blue_cat_stats.png")
+			else:
+				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/cat_purple.png")
+				p2_stat.texture = preload("res://gui/hud/sprites/character_stats/blue_cat_stats.png")
 		1:
 			p2_text.text = str("Fish")
-			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_fish.png")
+			if p1_character == 1:
+				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_fish.png")
+				p2_stat.texture = preload("res://gui/hud/sprites/character_stats/blue_fish_stats.png")
+			else:
+				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_purple.png")
+				p2_stat.texture = preload("res://gui/hud/sprites/character_stats/blue_fish_stats.png")
 		2:
 			p2_text.text = str("Turtle")
-			p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_turtle.png")
+			if p1_character == 2:
+				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_turtle.png")
+				p2_stat.texture = preload("res://gui/hud/sprites/character_stats/blue_turtle_stats.png")
+			else:
+				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/turtle_purple.png")
+				p2_stat.texture = preload("res://gui/hud/sprites/character_stats/blue_turtle_stats.png")
 	_update_beginning_cutscene()
 
 func _update_beginning_cutscene():
 	# setting up the beginning cutscene
+		var p1_character_string: String
+		var p2_character_string: String
+		
 		match p1_character:
 			0:
-				if p1_character == p2_character:
-					Globals.cutscene_player_video_path = \
-						"res://gui/menus/cutscenes/pre_battle/cat_v_cat_pre_battle.ogv"
-				else:
-					Globals.cutscene_player_video_path = \
-						"res://gui/menus/cutscenes/pre_battle/p1_cat_v_p2_fish_pre_battle.ogv"
+				p1_character_string = "cat"
 			1:
-				if p1_character == p2_character:
-					Globals.cutscene_player_video_path = \
-						"res://gui/menus/cutscenes/pre_battle/fish_v_fish_pre_battle.ogv"
-				else:
-					Globals.cutscene_player_video_path = \
-						"res://gui/menus/cutscenes/pre_battle/p1_fish_v_p2_cat_pre_battle.ogv"
+				p1_character_string = "fish"
 			2:
-				# turtle! need to impl!
-				pass
+				p1_character_string = "turtle"
+		
+		match p2_character:
+			0:
+				p2_character_string = "cat"
+			1:
+				p2_character_string = "fish"
+			2:
+				p2_character_string = "turtle"
+		
+		var file_path: String = "res://gui/menus/cutscenes/pre_battle/%s_v_%s_pre_battle.ogv" \
+			% [p1_character_string, p2_character_string]
+		
+		Globals.cutscene_player_video_path = file_path
 
 func on_locked_in():
 	#SET PLAYER CHARACTERS HERE

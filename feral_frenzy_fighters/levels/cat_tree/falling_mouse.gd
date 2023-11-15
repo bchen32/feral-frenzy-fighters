@@ -3,7 +3,7 @@ extends Node2D
 class_name FallingMouse
 
 #hitbox settings: line 25
-var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attack/hitbox.tscn")
 @onready var anim = get_node("AnimationPlayer")
 @onready var mouse_sprite = get_node("MouseParent/Mouse")
 @onready var mouse_sfx = get_node("MouseParent/MouseSFX")
@@ -35,7 +35,7 @@ func _ready():
 	mouse_sprite.add_child(mouse_hitbox)
 	
 	#width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-	mouse_hitbox.setup(110, 50, -60, 40, 5, 1.25, 0, 0)
+	mouse_hitbox.setup(110, 50, -60, 40, 5, 1.25, 0, 0, false, self)
 	
 	mouse_sprite.visible = false
 	

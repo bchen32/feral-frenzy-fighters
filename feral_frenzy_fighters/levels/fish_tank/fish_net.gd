@@ -1,14 +1,23 @@
 extends Node2D
 
+class_name FishNet
+
 @onready var anim = get_node("AnimationPlayer")
 @onready var trapped_pos = get_node("Sprite2D/TrappedPosition")
+var event_network_data: Array
 var players_caught = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#self.position = Vector2(-500, 0) # makes sure on spawn fish net isn't on screen, only if delaying
 	#await get_tree().create_timer(0.5).timeout
-	var rand_side = randi_range(0, 1)
+	var rand_side: int
+	if NetworkManager.is_connected:
+		rand_side = event_network_data[0]
+	else:
+		rand_side = randi_range(0, 1)
+	
+	
 	if rand_side == 0:
 		anim.play("NetFromLeft")
 	else:

@@ -9,7 +9,7 @@ var shoot = false
 var speed = 1000
 
 #hitbox settings: line 63
-var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attack/hitbox.tscn")
 @onready var sprite = self.get_child(0)
 @onready var anim = self.get_child(1)
 @onready var mouth = self.get_node("Sprite2D/Mouth")
@@ -68,7 +68,7 @@ func _shoot_hairball():
 	hairball.add_child(hairball_hitbox)
 	
 	# width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-	hairball_hitbox.setup(70, 70, 0, 0, 10, 1.5, 0, 0)
+	hairball_hitbox.setup(70, 70, 0, 0, 10, 1.5, 0, 0, false, self)
 	
 	shoot = true
 	cat_sfx.set_pitch_scale(randf_range(1,1.5))

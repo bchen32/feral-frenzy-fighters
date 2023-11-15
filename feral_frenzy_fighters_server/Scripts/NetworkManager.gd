@@ -244,7 +244,7 @@ func game_information(player_datas: Dictionary):
 @rpc("authority", "reliable", "call_remote")
 func game_state_change(game_state: Lobby.NetworkGameState, display_name: String):
 	pass
-	
+
 @rpc("authority", "reliable", "call_remote")
 func ack_death(player_num: int):
 	pass

@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bar3a8okfu77w" path="res://gui/menus/sprites/buttons/button_highlight.png" id="13_oy3x2"]
 [ext_resource type="Texture2D" uid="uid://in6v5g06sma5" path="res://gui/menus/sprites/screens/titles/instructions_ui.png" id="13_tnsa6"]
 [ext_resource type="Texture2D" uid="uid://dcpm33cc5luse" path="res://gui/menus/sprites/screens/pop_up.png" id="14_va4on"]
-[ext_resource type="FontFile" uid="uid://bfatsjftj2x60" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="15_3jjna"]
+[ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="15_3jjna"]
 [ext_resource type="Texture2D" uid="uid://2skm4qqo0wwc" path="res://gui/menus/sprites/screens/titles/credits_ui.png" id="17_y7rfj"]
 [ext_resource type="Texture2D" uid="uid://wnqsljtiihby" path="res://gui/menus/sprites/buttons/icons/arrow.png" id="19_egfgu"]
 [ext_resource type="Texture2D" uid="uid://d2pnd6moyijur" path="res://gui/menus/sprites/slider/sound_volume_slider_icon.png" id="20_yxcn2"]

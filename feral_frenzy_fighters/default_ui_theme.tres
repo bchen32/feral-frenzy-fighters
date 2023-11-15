@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=16 format=3 uid="uid://ciapr50n3vxqt"]
 
-[ext_resource type="FontFile" uid="uid://bfatsjftj2x60" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="1_vdsbf"]
+[ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="1_vdsbf"]
 [ext_resource type="Texture2D" uid="uid://gs5n0glm0abr" path="res://gui/menus/sprites/buttons/button_blue_highlight.png" id="2_ay50d"]
 [ext_resource type="Texture2D" uid="uid://cfnva27afl5us" path="res://gui/menus/sprites/buttons/button_blue.png" id="3_6f5xi"]
 [ext_resource type="Texture2D" uid="uid://bs8g10mvbm5hs" path="res://gui/menus/sprites/buttons/button_blue_pressed.png" id="4_rs5w2"]

@@ -59,6 +59,8 @@ func _ready():
 	add_child(level)
 	$Player.set_spawn(level.get_node("P1Spawn").position)
 	$Player2.set_spawn(level.get_node("P2Spawn").position)
+	$P1Respawn.set_spawn(level.get_node("P1Spawn").position)
+	$P2Respawn.set_spawn(level.get_node("P2Spawn").position)
 	move_child(level, 0)
 	camera.event_spawner = level.get_node("Events/EventSpawner")
 	NetworkManager.recieved_player_data.connect(_game_information)
@@ -69,10 +71,13 @@ func _ready():
 	var prefix_path: String = "res://gui/menus/cutscenes/"
 	var suffix_path: String = "%sp1_%sp2.ogv" % [Globals.player_sprites[0], Globals.player_sprites[1]]
 	
-	if Globals.stage == 0:
-		prefix_path += "cat_arena_outcomes/"
-	else:
-		prefix_path += "fish_arena_outcomes/"
+	match Globals.stage:
+		0:
+			prefix_path += "cat_arena_outcomes/"
+		1:
+			prefix_path += "fish_arena_outcomes/"
+		2:
+			prefix_path += "turtle_arena_outcomes/"
 	
 	$Player.ending_video = "%sp2_win/%s" % [prefix_path, suffix_path]
 	$Player2.ending_video = "%sp1_win/%s" % [prefix_path, suffix_path]

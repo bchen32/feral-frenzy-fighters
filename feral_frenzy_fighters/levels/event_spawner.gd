@@ -48,7 +48,8 @@ func _choose_events(external: bool, event_data: Array):
 		
 		var current_event = chosen_event.instantiate()
 		
-		if current_event is CatHairball or current_event is FallingMouse:
+		if current_event is CatHairball or current_event is FallingMouse or current_event is FishNet or \
+		   current_event is GravelCleaner or current_event is Chompy:
 			var event_slice = event_data.slice(1)
 			
 			current_event.event_network_data = event_slice
