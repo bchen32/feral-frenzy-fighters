@@ -5,10 +5,10 @@ signal cat_tree_destroyed
 @export var starting_health: int
 @export var respawn_time: float
 @export var destructible: bool = true
-@onready var anim = self.get_node("AnimationPlayer")
-@onready var physical_collision = self.get_node("Physical")
-@onready var hitbox = self.get_node("Hitbox")
-@onready var light_occluder = self.get_node("LightOccluder2D")
+@onready var anim: AnimationPlayer = self.get_node("AnimationPlayer")
+@onready var physical_collision: StaticBody2D = self.get_node("Physical")
+@onready var hitbox: Area2D = self.get_node("Hitbox")
+@onready var light_occluder: LightOccluder2D = self.get_node("LightOccluder2D")
 
 var destroyed = false
 
@@ -60,7 +60,7 @@ func _destroy_self():
 func _respawn():
 	anim.play("Respawning")
 	await anim.animation_finished
-	
+	anim.play("RESET")
 	physical_collision.get_child(0).set_deferred("disabled", false)
 	hitbox.get_child(0).set_deferred("disabled", false)
 	light_occluder.visible = true

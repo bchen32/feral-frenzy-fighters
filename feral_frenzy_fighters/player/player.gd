@@ -188,8 +188,11 @@ func set_spawn(spawn_pos):
 	position = spawn_pos
 
 func reset_player():
-	InputManager.paused = true
-	position = _initial_player_position
+	if self.name == "Player":
+		$"../P1Respawn".respawn_player()
+	elif self.name == "Player2":
+		$"../P2Respawn".respawn_player()
+	
 	velocity = Vector2(0, 0)
 	percentage = 0
 	bloodied = false
@@ -197,6 +200,7 @@ func reset_player():
 		_damage_label.get_node(("P2" if player_num else "P1") + "/DamageLabel").label_settings.font_color = Color.WHITE
 		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
 		player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
+	
 	if character_type != "beanbag":
 		var states = {
 			Globals.States.AIR: AirState.new(),

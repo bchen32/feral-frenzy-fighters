@@ -150,10 +150,10 @@ polygon = PackedVector2Array(678, 827, 679, 899, 1196, 899, 1197, 827)
 [node name="CatTreeLevel" type="Node2D"]
 
 [node name="P1Spawn" type="Node2D" parent="."]
-position = Vector2(400, 700)
+position = Vector2(740, 560)
 
 [node name="P2Spawn" type="Node2D" parent="."]
-position = Vector2(1520, 700)
+position = Vector2(1110, 560)
 
 [node name="Environment" type="Node2D" parent="."]
 
