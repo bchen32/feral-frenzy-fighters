@@ -12,6 +12,9 @@ var dead: bool = false
 var death_rotation: float = randf_range(-0.1, 0.1)
 var destination: Vector2
 
+var event_network_data: Array
+var _current_event_network_data_dest: int = 0
+
 #hitbox settings: search "turtle_hitbox"
 var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
 @onready var snapping_spawner: Node2D = get_parent()
@@ -56,7 +59,13 @@ func move_turtle():
 func idle_choose_point():
 	var rand_x = randi_range(0, 1920)
 	var rand_y = randi_range(450, 990)
-	destination = Vector2(rand_x, rand_y)
+	destination = event_network_data[_current_event_network_data_dest] if NetworkManager.is_connected else Vector2(rand_x, rand_y)
+	
+	if NetworkManager.is_connected:
+		_current_event_network_data_dest += 1
+		
+		if _current_event_network_data_dest >= len(event_network_data):
+			_current_event_network_data_dest = 0
 
 func visual_fix():
 	var direction = global_position.direction_to(destination)

@@ -42,8 +42,12 @@ func _on_send_env_data(event_string: String, event_data: Array):
 	if event_string == "snapping_manager":
 		for turtle_pos in event_data:
 			var new_turtle = snap_turtle.instantiate()
-			new_turtle.global_position = turtle_pos
+			new_turtle.global_position = turtle_pos[0]
+			new_turtle.event_network_data = turtle_pos.slice(1)
 			self.add_child(new_turtle)
+		
+		await get_tree().create_timer(high_tide_duration).timeout
+		kill_all()
 
 func snapping_manager():
 	# spawning

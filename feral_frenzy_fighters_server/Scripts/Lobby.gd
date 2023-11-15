@@ -165,7 +165,12 @@ func get_env_data(sender_id: int, env_name: String):
 				var x_spawn_points = [-200, 2200]
 				
 				for t in turtle_amount:
-					env_data.push_back(Vector2(x_spawn_points.pick_random(), randi_range(560, 920)))
+					var turtle_positions = [Vector2(x_spawn_points.pick_random(), randi_range(560, 920))]
+					
+					for i in range(10):
+						turtle_positions.push_back(Vector2(randi_range(0, 1920), randi_range(450, 990)))
+					
+					env_data.push_back(turtle_positions)
 			"sprouting_cycle":
 				var sprouting_cycle = [0, 1, 2, 3, 4, 5, 6]
 				

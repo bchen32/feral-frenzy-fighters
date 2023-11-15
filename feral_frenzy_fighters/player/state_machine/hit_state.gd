@@ -7,17 +7,18 @@ var hitstun: int
 func enter():
 	character.play_anim("hit")
 	
-	character.play_particles(
-	character.physics_blood,
-	0,
-	180,
-	10 * character.percentage)
+	if not NetworkManager.is_connected:
+		character.play_particles(
+		character.physics_blood,
+		0,
+		180,
+		10 * character.percentage)
 
-	character.play_particles(
-	character.physics_blood,
-	1,
-	180,
-	10)
+		character.play_particles(
+		character.physics_blood,
+		1,
+		180,
+		10)
 	
 	hitstun = floor(character.kb * character.stats.kb_hitstun_scale)
 	character.velocity.x = cos(character.kb_angle) * character.kb
