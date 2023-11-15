@@ -231,11 +231,6 @@ func set_spawn(spawn_pos):
 	position = spawn_pos
 
 func reset_player():
-	if self.name == "Player":
-		$"../P1Respawn".respawn_player()
-	elif self.name == "Player2":
-		$"../P2Respawn".respawn_player()
-	
 	velocity = Vector2(0, 0)
 	percentage = 0
 	bloodied = false
@@ -545,6 +540,7 @@ func acknowledge_death():
 		stocks -= 1
 		if _damage_label:
 			_damage_label.set_player_death_count(player_num, stocks)
+			_damage_label.set_player_damage(player_num, percentage)
 		
 		if not _is_lobby and stocks <= 0:
 			Globals.player1_won = player_num != 0
@@ -552,6 +548,10 @@ func acknowledge_death():
 			Globals.cutscene_player_video_path = ending_video
 			Globals.audio_stream_to_play_during_cutscene = ending_video_audiostream
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
+		if self.name == "Player":
+			$"../P1Respawn".respawn_player()
+		elif self.name == "Player2":
+			$"../P2Respawn".respawn_player()
 	play_audio(AudioType.DEATH)
 	play_particles(physics_blood,0, 30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
 
