@@ -197,24 +197,29 @@ func on_character2_change(send_networked_response: bool = true):
 
 func _update_beginning_cutscene():
 	# setting up the beginning cutscene
+		var p1_character_string: String
+		var p2_character_string: String
+		
 		match p1_character:
 			0:
-				if p1_character == p2_character:
-					Globals.cutscene_player_video_path = \
-						"res://gui/menus/cutscenes/pre_battle/cat_v_cat_pre_battle.ogv"
-				else:
-					Globals.cutscene_player_video_path = \
-						"res://gui/menus/cutscenes/pre_battle/p1_cat_v_p2_fish_pre_battle.ogv"
+				p1_character_string = "cat"
 			1:
-				if p1_character == p2_character:
-					Globals.cutscene_player_video_path = \
-						"res://gui/menus/cutscenes/pre_battle/fish_v_fish_pre_battle.ogv"
-				else:
-					Globals.cutscene_player_video_path = \
-						"res://gui/menus/cutscenes/pre_battle/p1_fish_v_p2_cat_pre_battle.ogv"
+				p1_character_string = "fish"
 			2:
-				# turtle! need to impl!
-				pass
+				p1_character_string = "turtle"
+		
+		match p2_character:
+			0:
+				p2_character_string = "cat"
+			1:
+				p2_character_string = "fish"
+			2:
+				p2_character_string = "turtle"
+		
+		var file_path: String = "res://gui/menus/cutscenes/pre_battle/%s_v_%s_pre_battle.ogv" \
+			% [p1_character_string, p2_character_string]
+		
+		Globals.cutscene_player_video_path = file_path
 
 func on_locked_in():
 	#SET PLAYER CHARACTERS HERE
