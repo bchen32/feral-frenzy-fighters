@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b44lysj1iqbyk" path="res://levels/tutorial/ui/frames/jump/button_A_X-2.png" id="3_ivaqq"]
 [ext_resource type="Texture2D" uid="uid://csfw0i44hrjp3" path="res://levels/tutorial/ui/frames/skip/keyboard_ENTER-1.png" id="4_xj16s"]
 [ext_resource type="Texture2D" uid="uid://bdnq05l7ri03b" path="res://levels/tutorial/ui/frames/skip/keyboard_ENTER-2.png" id="5_ltxo2"]
-[ext_resource type="FontFile" uid="uid://bfatsjftj2x60" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="6_gc1yg"]
+[ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="6_gc1yg"]
 [ext_resource type="PackedScene" uid="uid://c4iefljlvawrj" path="res://gui/menus/loading_screen.tscn" id="7_b1m1k"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ns4u7"]
