@@ -118,3 +118,7 @@ func _on_back_button_pressed():
 
 func _on_close_button_button_pressed():
 	ui.back()
+
+
+func _on_icon_button_click_pressed():
+	ui.back()

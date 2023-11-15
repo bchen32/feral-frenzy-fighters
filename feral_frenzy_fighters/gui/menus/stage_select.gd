@@ -170,9 +170,9 @@ func _on_stage_selected(stage_selected: int):
 			final_selection = 1
 			animate_selection(new_icon)
 		2:
+			new_icon = $Background/StageIconsContainer/StageIconsBottom/TurtleStageIcon.duplicate()
 			final_selection = 2
-			print("turtle") # temp
-			go_to_stage() # temp
+			animate_selection(new_icon)
 
 func on_locked_in():
 	$MenuSound.play()
