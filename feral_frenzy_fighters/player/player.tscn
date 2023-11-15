@@ -13,7 +13,6 @@ size = Vector2(36, 76)
 [node name="Player" type="CharacterBody2D" groups=["players"]]
 collision_mask = 30
 script = ExtResource("1_ewoqh")
-stocks = 4
 physics_blood = Array[PackedScene]([ExtResource("3_x78ow"), ExtResource("4_cclux"), ExtResource("5_jwg7h")])
 dash_particles = Array[PackedScene]([ExtResource("4_g1p0g")])
 
