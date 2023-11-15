@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://br6txao4iioos"]
+[gd_scene load_steps=45 format=3 uid="uid://br6txao4iioos"]
 
 [ext_resource type="Script" path="res://gui/menus/title_screen.gd" id="1_u2ssx"]
 [ext_resource type="Theme" uid="uid://ciapr50n3vxqt" path="res://default_ui_theme.tres" id="3_0h4m0"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://in6v5g06sma5" path="res://gui/menus/sprites/screens/titles/instructions_ui.png" id="13_tnsa6"]
 [ext_resource type="Texture2D" uid="uid://dcpm33cc5luse" path="res://gui/menus/sprites/screens/pop_up.png" id="14_va4on"]
 [ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="15_3jjna"]
+[ext_resource type="Texture2D" uid="uid://coiibwmxwb2li" path="res://gui/menus/sprites/screens/credits_names.png" id="15_e5iic"]
 [ext_resource type="Texture2D" uid="uid://2skm4qqo0wwc" path="res://gui/menus/sprites/screens/titles/credits_ui.png" id="17_y7rfj"]
 [ext_resource type="Texture2D" uid="uid://wnqsljtiihby" path="res://gui/menus/sprites/buttons/icons/arrow.png" id="19_egfgu"]
 [ext_resource type="Texture2D" uid="uid://d2pnd6moyijur" path="res://gui/menus/sprites/slider/sound_volume_slider_icon.png" id="20_yxcn2"]
@@ -313,70 +314,52 @@ offset_right = 1674.0
 offset_bottom = 1069.0
 texture = ExtResource("14_va4on")
 
-[node name="CreditsLabel" type="Label" parent="MainMenu/Credits/CreditsBackground"]
+[node name="CreditsNames" type="TextureRect" parent="MainMenu/Credits/CreditsBackground"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -584.0
-offset_top = -364.0
-offset_right = 613.0
-offset_bottom = 377.0
+offset_left = -522.0
+offset_top = -377.5
+offset_right = 522.0
+offset_bottom = 377.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "
-Audrey Wright- Assistant Producer
+texture = ExtResource("15_e5iic")
 
-Benjamin Chen- Programmer
-
-Bobby Youstra- Programmer
-
-Dr.Toprac- Producer
-
-Esha Nigudkar- Cutscene Artist and Narrative Designer
-
-Jaime Lopez- Sound Designer and Programmer
-
-Joyce Qin- Character Artist/Animator
-
-Karina Arellano- UI and Environment Artist and Scrum Master
-
-Nevin Portillo- Level Designer and Programmer"
-label_settings = SubResource("LabelSettings_0tfhe")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BackButton" type="Control" parent="MainMenu/Credits/CreditsBackground/CreditsLabel"]
+[node name="BackButton" type="Control" parent="MainMenu/Credits/CreditsBackground/CreditsNames"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 anchors_preset = 0
-offset_left = 1292.0
-offset_top = -245.0
-offset_right = 1492.0
-offset_bottom = -39.0
+offset_left = 1230.0
+offset_top = -231.5
+offset_right = 1430.0
+offset_bottom = -25.5
 grow_horizontal = 0
 scale = Vector2(0.85, 0.85)
 script = ExtResource("28_mlo4o")
 
-[node name="IconButtonClick" type="TextureButton" parent="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton" groups=["TitleButtons"]]
+[node name="IconButtonClick" type="TextureButton" parent="MainMenu/Credits/CreditsBackground/CreditsNames/BackButton" groups=["TitleButtons"]]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.352
-anchor_top = 0.44
-anchor_right = 0.352
-anchor_bottom = 0.44
-offset_left = -99.4
-offset_top = -93.64
-offset_right = 100.6
-offset_bottom = 106.36
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("3_0h4m0")
 texture_normal = ExtResource("29_pqkes")
 texture_pressed = ExtResource("30_jsdcc")
 texture_hover = ExtResource("31_jv14s")
 
-[node name="Icon" type="TextureRect" parent="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton/IconButtonClick"]
+[node name="Icon" type="TextureRect" parent="MainMenu/Credits/CreditsBackground/CreditsNames/BackButton/IconButtonClick"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -392,7 +375,7 @@ grow_vertical = 2
 texture = ExtResource("19_egfgu")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton/IconButtonClick"]
+[node name="Label" type="Label" parent="MainMenu/Credits/CreditsBackground/CreditsNames/BackButton/IconButtonClick"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1000,10 +983,10 @@ text = "host"
 [connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Quit/QuitButton" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Quit/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="button_pressed" from="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton" to="MainMenu/PlayDialog" method="_on_close_button_button_pressed" flags=18]
-[connection signal="focus_entered" from="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton/IconButtonClick" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton/IconButtonClick" to="." method="_on_icon_button_click_pressed"]
-[connection signal="pressed" from="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton/IconButtonClick" to="MainMenu/Credits/CreditsBackground/CreditsLabel/BackButton" method="_on_icon_button_click_pressed" flags=18]
+[connection signal="button_pressed" from="MainMenu/Credits/CreditsBackground/CreditsNames/BackButton" to="MainMenu/PlayDialog" method="_on_close_button_button_pressed" flags=18]
+[connection signal="focus_entered" from="MainMenu/Credits/CreditsBackground/CreditsNames/BackButton/IconButtonClick" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/Credits/CreditsBackground/CreditsNames/BackButton/IconButtonClick" to="." method="_on_icon_button_click_pressed"]
+[connection signal="pressed" from="MainMenu/Credits/CreditsBackground/CreditsNames/BackButton/IconButtonClick" to="MainMenu/Credits/CreditsBackground/CreditsNames/BackButton" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="button_pressed" from="MainMenu/TopBarButtons/InstructionsButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick" to="MainMenu/TopBarButtons/InstructionsButton" method="_on_icon_button_click_pressed" flags=18]
