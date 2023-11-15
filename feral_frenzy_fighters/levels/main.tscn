@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="1_ynwnh"]
 [ext_resource type="PackedScene" uid="uid://cqwih0alupqsb" path="res://gui/hud/damage_ui.tscn" id="2_tb6xb"]
 [ext_resource type="AudioStream" uid="uid://2pedg4faj0li" path="res://gui/menus/music/triumphant.wav" id="3_yody1"]
-[ext_resource type="AudioStream" uid="uid://gv5krwja5mbt" path="res://levels/cat_tree/music/catfight.wav" id="5_7efgp"]
+[ext_resource type="AudioStream" uid="uid://c5np5bcsi4c6p" path="res://levels/turtle_habitat/TURTLEFIGHT.mp3" id="4_vxiqs"]
 [ext_resource type="PackedScene" uid="uid://cmvf4h60u8y1p" path="res://levels/camera.tscn" id="5_lovfr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lo5pr"]
@@ -62,8 +62,9 @@ position = Vector2(528, 900)
 shape = SubResource("RectangleShape2D_ew3br")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_7efgp")
+stream = ExtResource("4_vxiqs")
 volume_db = 1.0
+mix_target = 1
 bus = &"Music"
 
 [node name="Camera2D" parent="." node_paths=PackedStringArray("players") instance=ExtResource("5_lovfr")]
