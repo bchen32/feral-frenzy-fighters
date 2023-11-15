@@ -21,7 +21,7 @@ var SFX = [
 var process = false
 
 #hitbox settings: search "plasma_hitbox"
-var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attack/hitbox.tscn")
 @onready var p1 = self.get_tree().get_nodes_in_group("players").front()
 @onready var p2 = self.get_tree().get_nodes_in_group("players").back()
 @onready var anim = get_node("AnimationPlayer")
@@ -59,7 +59,7 @@ func chompy_single_process():
 			self.add_child(chompy_hitbox)
 			
 			# width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-			chompy_hitbox.setup(60, 60, 0, 0, 15, 2, 0, 0)
+			chompy_hitbox.setup(60, 60, 0, 0, 15, 2, 0, 0, false, self)
 			
 			anim.play("Snap")
 			$ChompySFX.stream = SFX[1]

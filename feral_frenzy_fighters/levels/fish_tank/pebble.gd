@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 #hitbox settings: line 23
-var hitbox_scene: PackedScene = preload("res://player/hitbox.tscn")
+var hitbox_scene: PackedScene = preload("res://player/attack/hitbox.tscn")
 @onready var pebble_sprites = [
 	load("res://levels/fish_tank/sprites/events/bigger_pebbles_hotpink.png"),
 	load("res://levels/fish_tank/sprites/events/bigger_pebbles_pink.png"),
@@ -20,7 +20,7 @@ func _ready():
 	self.add_child(pebble_hitbox)
 	
 	# width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-	pebble_hitbox.setup(20, 20, 0, 0, 2, 1.5, 0, 0)
+	pebble_hitbox.setup(20, 20, 0, 0, 2, 1.5, 0, 0, false, self)
 
 func _process(delta):
 	if linear_velocity.y <= 0.1:
