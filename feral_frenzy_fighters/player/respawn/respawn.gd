@@ -36,17 +36,13 @@ func set_spawn(player_spawn):
 	
 	set_capsule_stuff(Capsule_States.NOCAPSULE)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func _physics_process(delta):
-	capsule_movement()
+	capsule_movement(delta)
 
-func capsule_movement():
+func capsule_movement(delta):
 	if !anim.is_playing():
 		if capsule.position.distance_to(capsule_destination) > 0.1:
-			capsule.position = capsule.position.move_toward(capsule_destination, 10)
+			capsule.position = capsule.position.move_toward(capsule_destination, 500 * delta)
 		elif capsule.position.distance_to(capsule_destination) <= 0.1:
 			if capsule_state == Capsule_States.FLYINGIN:
 				set_capsule_stuff(Capsule_States.WAITING)
