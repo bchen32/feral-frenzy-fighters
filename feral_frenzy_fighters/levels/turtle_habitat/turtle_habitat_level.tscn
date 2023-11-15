@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://levels/event_spawner.gd" id="14_smr1g"]
 [ext_resource type="PackedScene" uid="uid://cx0alms8abhh1" path="res://levels/turtle_habitat/water_level.tscn" id="14_xquta"]
 [ext_resource type="PackedScene" uid="uid://boomivtr7a6as" path="res://levels/turtle_habitat/chompy.tscn" id="15_cm0jy"]
-[ext_resource type="AudioStream" uid="uid://0yfwfivpiws6" path="res://levels/turtle_habitat/sfx/Lamp.mp3" id="15_udfde"]
+[ext_resource type="AudioStream" uid="uid://ccsf0d2soe2ya" path="res://levels/turtle_habitat/sfx/Lamp.mp3" id="15_udfde"]
 [ext_resource type="PackedScene" uid="uid://ug60rr7qlqns" path="res://levels/turtle_habitat/snapping_spawner.tscn" id="19_nk0hk"]
 [ext_resource type="PackedScene" uid="uid://bfob6608nomq0" path="res://levels/turtle_habitat/high_voltage_lamp.tscn" id="22_bft88"]
 
@@ -208,7 +208,7 @@ texture = ExtResource("7_4b447")
 
 [node name="WaterfallSFX" type="AudioStreamPlayer2D" parent="Environment/Decorations/Waterfall"]
 stream = ExtResource("7_6kbks")
-volume_db = -10.0
+volume_db = -12.0
 autoplay = true
 bus = &"SFX"
 
@@ -265,7 +265,7 @@ metadata/_edit_lock_ = true
 [node name="Lamp" type="AudioStreamPlayer2D" parent="Environment/Decorations"]
 position = Vector2(968, 36)
 stream = ExtResource("15_udfde")
-volume_db = -5.0
+volume_db = -8.0
 autoplay = true
 bus = &"SFX"
 

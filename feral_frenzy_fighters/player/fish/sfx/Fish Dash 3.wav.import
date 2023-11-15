@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ry152uxge0kt"
+path="res://.godot/imported/Fish Dash 3.wav-84cd33667d7fc3beab953968ebfaf73f.sample"
+
+[deps]
+
+source_file="res://player/fish/sfx/Fish Dash 3.wav"
+dest_files=["res://.godot/imported/Fish Dash 3.wav-84cd33667d7fc3beab953968ebfaf73f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

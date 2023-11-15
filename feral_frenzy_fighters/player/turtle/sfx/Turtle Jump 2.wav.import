@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://btgn8h41c6out"
+path="res://.godot/imported/Turtle Jump 2.wav-bd846e46e2e6666ccf81af45c7a3e116.sample"
+
+[deps]
+
+source_file="res://player/turtle/sfx/Turtle Jump 2.wav"
+dest_files=["res://.godot/imported/Turtle Jump 2.wav-bd846e46e2e6666ccf81af45c7a3e116.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
