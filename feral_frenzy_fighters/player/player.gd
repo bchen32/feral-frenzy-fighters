@@ -365,7 +365,6 @@ func play_particles(
 	location: Vector2 = self.global_position, 
 	direction: Vector3 = Vector3(0,0,0), 
 	vel: Vector2 = Vector2(200,500)):
-#	pass # for joyce
 	if amount < 1: # hotfix
 		amount = 1
 	var splatter = list[index].instantiate()

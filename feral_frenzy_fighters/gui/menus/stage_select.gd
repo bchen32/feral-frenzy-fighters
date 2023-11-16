@@ -204,6 +204,15 @@ func animate_selection(icon):
 
 func go_to_stage():
 	Globals.stage = final_selection
+	var stage_path: String
+	match final_selection:
+		0:
+			stage_path = "res://levels/cat_tree/cat_tree_level.tscn"
+		1:
+			stage_path = "res://levels/fish_tank/fish_tank_level.tscn"
+		2:
+			stage_path = "res://levels/turtle_habitat/turtle_habitat_level.tscn"
+	ResourceLoader.load_threaded_request(stage_path)
 	get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
 
 func _on_button_mouse_entered(extra_arg_0):
