@@ -40,17 +40,17 @@ func _ready():
 	var level
 	match Globals.stage:
 		0:
-			level = load("res://levels/cat_tree/cat_tree_level.tscn").instantiate()
+			level = ResourceLoader.load_threaded_get("res://levels/cat_tree/cat_tree_level.tscn").instantiate()
 			$AudioStreamPlayer.stream = preload("res://levels/cat_tree/music/catfight.wav")
 			$AudioStreamPlayer.volume_db = 1
 			Globals.water_level = 10000
 		1:
-			level = load("res://levels/fish_tank/fish_tank_level.tscn").instantiate()
+			level = ResourceLoader.load_threaded_get("res://levels/fish_tank/fish_tank_level.tscn").instantiate()
 			$AudioStreamPlayer.stream = preload("res://levels/fish_tank/sfx/fishfight.wav")
 			$AudioStreamPlayer.volume_db = 1
 			Globals.water_level = 120
 		2:
-			level = load("res://levels/turtle_habitat/turtle_habitat_level.tscn").instantiate()
+			level = ResourceLoader.load_threaded_get("res://levels/turtle_habitat/turtle_habitat_level.tscn").instantiate()
 			$AudioStreamPlayer.stream = preload("res://levels/turtle_habitat/TURTLEFIGHT.mp3")
 			$AudioStreamPlayer.volume_db = 5
 			Globals.water_level = 10000

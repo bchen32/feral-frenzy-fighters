@@ -163,7 +163,8 @@ func _ready():
 	stats = load_stats(character_data[character_type].stats)
 	air_speed_lower_bound = -stats.walk_speed
 	air_speed_upper_bound = stats.walk_speed
-	_sprites_scene_instance = load(character_data[character_type].sprite_scene).instantiate()
+	var character_scene = ResourceLoader.load_threaded_get(character_data[character_type].sprite_scene)
+	_sprites_scene_instance = character_scene.instantiate()
 	add_child(_sprites_scene_instance)
 	anim_player = _sprites_scene_instance.get_node("AnimatedSprite2D")
 	var sprite_node_path = NodePath(_sprites_scene_instance.name + "/AnimatedSprite2D:flip_h")
