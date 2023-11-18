@@ -4,7 +4,7 @@ enum Capsule_States {NOCAPSULE, FLYINGIN, WAITING, FLYINGOUT}
 var capsule_state = Capsule_States.NOCAPSULE
 
 @export var p1_respawn: bool
-var capsule_delay = 3 # how long it takes for respawn capsule to fly in
+var capsule_delay = 1 # how long it takes for respawn capsule to fly in
 var capsule_auto_drop_delay = 5 # how long players can wait in capsule before it auto drops them
 var keep_player = false
 
@@ -23,10 +23,10 @@ var capsule_destination: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if p1_respawn == false:
+	if p1_respawn:
+		$Capsule/OpenLiquidParticles.color = Color(0.74, 0.68, 0.82) #Blue = 121, 189, 215 | Purple = 171, 153, 194
 		$Capsule/CapsuleSprite/LeftRocket.texture = capsule_sprites_array[2]
 		$Capsule/CapsuleSprite/RightRocket.texture = capsule_sprites_array[2]
-		$Capsule/OpenLiquidParticles.color = Color(171, 153, 194)
 
 func set_spawn(player_spawn):
 	player_respawn_pos = player_spawn
@@ -42,7 +42,7 @@ func _physics_process(delta):
 func capsule_movement(delta):
 	if !anim.is_playing():
 		if capsule.position.distance_to(capsule_destination) > 0.1:
-			capsule.position = capsule.position.move_toward(capsule_destination, 500 * delta)
+			capsule.position = capsule.position.move_toward(capsule_destination, 600 * delta)
 		elif capsule.position.distance_to(capsule_destination) <= 0.1:
 			if capsule_state == Capsule_States.FLYINGIN:
 				set_capsule_stuff(Capsule_States.WAITING)
@@ -62,6 +62,8 @@ func capsule_movement(delta):
 				set_capsule_stuff(Capsule_States.FLYINGOUT)
 
 func respawn_player():
+	#don't await until animation is finished, wait until capsule_state gets changed
+	
 	lock_player(true)
 	
 	if p1_respawn:
@@ -96,11 +98,11 @@ func set_capsule_stuff(new_state: Capsule_States): #p1 capsule left to right, p2
 		Capsule_States.NOCAPSULE:
 			anim.play("RESET")
 			if p1_respawn:
-				$Capsule/CapsuleSprite.texture = capsule_sprites_array[0]
+				$Capsule/CapsuleSprite.texture = capsule_sprites_array[1]
 				capsule.position = capsule_left_pos
 				capsule_destination = capsule_left_pos
 			else:
-				$Capsule/CapsuleSprite.texture = capsule_sprites_array[1]
+				$Capsule/CapsuleSprite.texture = capsule_sprites_array[0]
 				capsule.position = capsule_right_pos
 				capsule_destination = capsule_right_pos
 		Capsule_States.FLYINGIN:
