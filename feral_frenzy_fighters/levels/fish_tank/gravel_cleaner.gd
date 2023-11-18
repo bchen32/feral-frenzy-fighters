@@ -26,7 +26,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print("gravel_cleaner: players_caught.size() = ", players_caught.size())
 	pass
 
 func _physics_process(delta):

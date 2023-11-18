@@ -168,6 +168,7 @@ _data = {
 }
 
 [node name="Volcano" type="Node2D"]
+modulate = Color(0.898039, 0.898039, 0.898039, 1)
 position = Vector2(947, 761)
 scale = Vector2(0.9, 0.9)
 script = ExtResource("1_fmmku")
