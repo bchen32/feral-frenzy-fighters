@@ -63,14 +63,21 @@ func capsule_movement(delta):
 			$"../Player2".global_rotation = $Capsule/CapsuleSprite.global_rotation
 		
 		if capsule_state == Capsule_States.WAITING && !anim.is_playing():
-			if Input.is_anything_pressed():
+			if p1_respawn && (Input.is_action_pressed("p1_up") || Input.is_action_pressed("p1_down") || \
+			Input.is_action_pressed("p1_left") || Input.is_action_pressed("p1_right")):
+				set_capsule_stuff(Capsule_States.FLYINGOUT)
+			
+			if p1_respawn == false && (Input.is_action_pressed("p2_up") || Input.is_action_pressed("p2_down") || \
+			Input.is_action_pressed("p2_left") || Input.is_action_pressed("p2_right")):
 				set_capsule_stuff(Capsule_States.FLYINGOUT)
 
 func respawn_player():
 	if p1_respawn:
 		$"../Player".set_process(false)
+		$"../Player".set_physics_process(false)
 	else:
 		$"../Player2".set_process(false)
+		$"../Player2".set_physics_process(false)
 	
 	if capsule_state == Capsule_States.NOCAPSULE:
 		lock_player(true)
@@ -126,8 +133,10 @@ func set_capsule_stuff(new_state: Capsule_States): #p1 capsule left to right, p2
 			
 			if p1_respawn:
 				$"../Player".set_process(true)
+				$"../Player".set_physics_process(true)
 			else:
 				$"../Player2".set_process(true)
+				$"../Player2".set_physics_process(true)
 			
 			await get_tree().create_timer(capsule_auto_drop_delay).timeout
 			if keep_player:
