@@ -7,11 +7,14 @@ var capsule_state = Capsule_States.NOCAPSULE
 var capsule_delay = 1 # how long it takes for respawn capsule to fly in
 var capsule_auto_drop_delay = 5 # how long players can wait in capsule before it auto drops them
 var keep_player = false
+var waiting_to_respawn = false
 
 var capsule_right_pos: Vector2
 var capsule_left_pos: Vector2
 var player_respawn_pos: Vector2
 var capsule_destination: Vector2
+
+signal destination_reached(new_state)
 
 @onready var capsule: Node2D = get_node("Capsule")
 @onready var anim: AnimationPlayer = get_node("Capsule/AnimationPlayer")
@@ -42,12 +45,14 @@ func _physics_process(delta):
 func capsule_movement(delta):
 	if !anim.is_playing():
 		if capsule.position.distance_to(capsule_destination) > 0.1:
-			capsule.position = capsule.position.move_toward(capsule_destination, 600 * delta)
+			capsule.position = capsule.position.move_toward(capsule_destination, 650 * delta)
 		elif capsule.position.distance_to(capsule_destination) <= 0.1:
 			if capsule_state == Capsule_States.FLYINGIN:
-				set_capsule_stuff(Capsule_States.WAITING)
+				#set_capsule_stuff(Capsule_States.WAITING)
+				destination_reached.emit(Capsule_States.WAITING)
 			elif capsule_state == Capsule_States.FLYINGOUT:
-				set_capsule_stuff(Capsule_States.NOCAPSULE)
+				#set_capsule_stuff(Capsule_States.NOCAPSULE)
+				destination_reached.emit(Capsule_States.NOCAPSULE)
 	
 	if keep_player:
 		if p1_respawn:
@@ -62,20 +67,21 @@ func capsule_movement(delta):
 				set_capsule_stuff(Capsule_States.FLYINGOUT)
 
 func respawn_player():
-	#don't await until animation is finished, wait until capsule_state gets changed
-	
-	lock_player(true)
-	
 	if p1_respawn:
 		$"../Player".set_process(false)
 	else:
 		$"../Player2".set_process(false)
 	
-	await get_tree().create_timer(capsule_delay).timeout
-	set_capsule_stuff(Capsule_States.FLYINGIN)
+	if capsule_state == Capsule_States.NOCAPSULE:
+		lock_player(true)
+		await get_tree().create_timer(capsule_delay).timeout
+		set_capsule_stuff(Capsule_States.FLYINGIN)
+	else:
+		waiting_to_respawn = true
 
 func lock_player(lock: bool):
 	var player: PlayerCharacter
+	
 	if p1_respawn:
 		player = $"../Player"
 	else:
@@ -131,3 +137,12 @@ func set_capsule_stuff(new_state: Capsule_States): #p1 capsule left to right, p2
 			anim.play("OpenThenFlyOut")
 			await anim.animation_finished
 			capsule_destination = capsule_left_pos
+
+
+func _on_destination_reached(new_state):
+	set_capsule_stuff(new_state)
+	
+	if waiting_to_respawn && new_state == Capsule_States.NOCAPSULE:
+		await get_tree().create_timer(0.2).timeout
+		respawn_player()
+		waiting_to_respawn = false

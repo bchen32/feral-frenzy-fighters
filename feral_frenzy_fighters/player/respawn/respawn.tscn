@@ -512,3 +512,5 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_7orj4")
 }
+
+[connection signal="destination_reached" from="." to="." method="_on_destination_reached"]
