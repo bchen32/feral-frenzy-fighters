@@ -23,9 +23,11 @@ signal destination_reached(new_state)
 	load("res://player/respawn/sprites/test_tube_respawn_purple_no_bottom.png"),
 	load("res://player/respawn/sprites/rocket_purple_fire2.png")
 ]
+@onready var panel: Panel = get_node("Capsule/Panel")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	panel.visible = false
 	if p1_respawn:
 		$Capsule/OpenLiquidParticles.color = Color(0.74, 0.68, 0.82) #Blue = 121, 189, 215 | Purple = 171, 153, 194
 		$Capsule/CapsuleSprite/LeftRocket.texture = capsule_sprites_array[2]
@@ -131,6 +133,7 @@ func set_capsule_stuff(new_state: Capsule_States): #p1 capsule left to right, p2
 				anim.play("StoppingFromRight")
 			await anim.animation_finished
 			
+			panel.visible = true
 			if p1_respawn:
 				$"../Player".set_process(true)
 				$"../Player".set_physics_process(true)
@@ -144,6 +147,7 @@ func set_capsule_stuff(new_state: Capsule_States): #p1 capsule left to right, p2
 		Capsule_States.FLYINGOUT:
 			lock_player(false)
 			anim.play("OpenThenFlyOut")
+			panel.visible = false
 			await anim.animation_finished
 			capsule_destination = capsule_left_pos
 

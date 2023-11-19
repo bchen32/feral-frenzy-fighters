@@ -88,7 +88,7 @@ func electrified_water_level():
 		electric_particles.add_child(water_level_hitbox)
 		
 		# width, height, x_offset, y_offset, damage, knockback_scale, knockback_x_offset, knockback_y_offset
-		water_level_hitbox.setup(1350, 400, 0, -50, 25, 2, 0, 0)
+		water_level_hitbox.setup(1350, 400, 0, -50, 25, 2, 0, 0, false, self)
 		
 		await get_tree().create_timer(electric_dmg_rate).timeout
 		electrified_water_level()

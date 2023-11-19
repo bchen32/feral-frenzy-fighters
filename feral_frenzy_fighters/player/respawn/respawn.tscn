@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://eg7h4gkm6w3x"]
+[gd_scene load_steps=14 format=3 uid="uid://eg7h4gkm6w3x"]
 
 [ext_resource type="Script" path="res://player/respawn/respawn.gd" id="1_y7f8q"]
 [ext_resource type="Texture2D" uid="uid://ce4qfbgwx780w" path="res://player/respawn/sprites/test_tube_respawn_bottom_part.png" id="3_inxrf"]
 [ext_resource type="Texture2D" uid="uid://c58k36o5xw1rw" path="res://player/respawn/sprites/rocket_blue_fire2.png" id="4_ppwkr"]
 [ext_resource type="Texture2D" uid="uid://lsjwk1pklcjm" path="res://levels/turtle_habitat/sprites/events/smoke_particle effect.png" id="5_dkbtt"]
 [ext_resource type="Texture2D" uid="uid://dproynp4kvu5y" path="res://player/respawn/sprites/test_tube_respawn_empty_no_bottom.png" id="6_l6vix"]
+[ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="6_uelnp"]
 
 [sub_resource type="Animation" id="Animation_swpgu"]
 resource_name = "FlyingInFromLeft"
@@ -512,5 +513,37 @@ autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_7orj4")
 }
+
+[node name="Panel" type="Panel" parent="Capsule"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = 250.0
+offset_right = 266.0
+offset_bottom = 305.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Capsule/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -205.0
+offset_top = -16.5
+offset_right = 205.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_uelnp")
+theme_override_font_sizes/font_size = 50
+text = "(Move To Drop Early)"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="destination_reached" from="." to="." method="_on_destination_reached"]
