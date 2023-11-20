@@ -272,10 +272,10 @@ polygon = PackedVector2Array(1504, 613, 1638, 613, 1683, 716, 1459, 716)
 [node name="FishTankLevel" type="Node2D"]
 
 [node name="P1Spawn" type="Node2D" parent="."]
-position = Vector2(770, 60)
+position = Vector2(450, 60)
 
 [node name="P2Spawn" type="Node2D" parent="."]
-position = Vector2(1140, 60)
+position = Vector2(1485, 60)
 
 [node name="Environment" type="Node2D" parent="."]
 
@@ -338,7 +338,7 @@ metadata/_edit_lock_ = true
 [node name="Decorations" type="Node2D" parent="Environment"]
 
 [node name="OshaToy" type="Sprite2D" parent="Environment/Decorations"]
-modulate = Color(0.772549, 0.772549, 0.772549, 1)
+self_modulate = Color(0.54902, 0.54902, 0.54902, 1)
 z_index = -1
 position = Vector2(1426, 798)
 rotation = -0.47473
@@ -355,7 +355,7 @@ texture = ExtResource("5_xma4l")
 metadata/_edit_lock_ = true
 
 [node name="BookThinPurple" type="Sprite2D" parent="Environment/Decorations"]
-self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
 z_index = 2
 position = Vector2(-8, 621)
 scale = Vector2(1.48, 2.13)
@@ -363,7 +363,7 @@ texture = ExtResource("7_vnb83")
 metadata/_edit_lock_ = true
 
 [node name="BookThinPurple3" type="Sprite2D" parent="Environment/Decorations"]
-self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
 z_index = 2
 position = Vector2(2082, 670.25)
 scale = Vector2(1.92, 1.80167)
@@ -371,7 +371,7 @@ texture = ExtResource("7_vnb83")
 metadata/_edit_lock_ = true
 
 [node name="BookThinPurple2" type="Sprite2D" parent="Environment/Decorations"]
-self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
 z_index = 2
 position = Vector2(-267.5, 600.75)
 scale = Vector2(2.3, 2.265)
@@ -379,7 +379,7 @@ texture = ExtResource("7_vnb83")
 metadata/_edit_lock_ = true
 
 [node name="BookThin" type="Sprite2D" parent="Environment/Decorations"]
-self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
 z_index = 2
 position = Vector2(81, 649)
 rotation = -0.0364975
@@ -388,7 +388,7 @@ texture = ExtResource("8_w02iu")
 metadata/_edit_lock_ = true
 
 [node name="BookThin2" type="Sprite2D" parent="Environment/Decorations"]
-self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
 z_index = 2
 position = Vector2(-87, 649)
 scale = Vector2(1.64, 1.93)
@@ -396,7 +396,7 @@ texture = ExtResource("8_w02iu")
 metadata/_edit_lock_ = true
 
 [node name="BookThin4" type="Sprite2D" parent="Environment/Decorations"]
-self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
 z_index = 2
 position = Vector2(-171, 629.25)
 scale = Vector2(1.64, 2.06167)
@@ -404,7 +404,7 @@ texture = ExtResource("8_w02iu")
 metadata/_edit_lock_ = true
 
 [node name="BookThin3" type="Sprite2D" parent="Environment/Decorations"]
-self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
 z_index = 2
 position = Vector2(1992, 649)
 scale = Vector2(1.64, 1.93)
@@ -412,7 +412,7 @@ texture = ExtResource("8_w02iu")
 metadata/_edit_lock_ = true
 
 [node name="BookThin5" type="Sprite2D" parent="Environment/Decorations"]
-self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
 z_index = 2
 position = Vector2(2164, 599.25)
 scale = Vector2(1.48001, 2.26167)
@@ -420,7 +420,7 @@ texture = ExtResource("8_w02iu")
 metadata/_edit_lock_ = true
 
 [node name="BookThin6" type="Sprite2D" parent="Environment/Decorations"]
-self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
 z_index = 2
 position = Vector2(2263.5, 632.25)
 scale = Vector2(2.58, 2.04167)
@@ -428,7 +428,7 @@ texture = ExtResource("8_w02iu")
 metadata/_edit_lock_ = true
 
 [node name="TestTubeRack" type="Sprite2D" parent="Environment/Decorations"]
-self_modulate = Color(0.858824, 0.858824, 0.858824, 1)
+self_modulate = Color(0.784314, 0.784314, 0.784314, 1)
 z_index = 2
 position = Vector2(1870, 1156)
 scale = Vector2(2.75, 2.75)
