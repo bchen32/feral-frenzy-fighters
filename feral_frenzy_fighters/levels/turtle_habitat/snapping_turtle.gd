@@ -29,6 +29,7 @@ func _ready():
 	elif position.x > 1000:
 		destination = Vector2(1500, self.global_position.y)
 	reset_hitbox()
+	current_speed = idle_speed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
