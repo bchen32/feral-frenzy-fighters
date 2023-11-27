@@ -15,6 +15,22 @@ func _ready():
 	$"MainMenu/Title/ButtonsVBox/Play/PlayButton".grab_focus()
 	Globals.setup_controls()
 	ui = Menu.new($MainMenu/Title)
+	var stage_scenes = [
+		"res://levels/cat_tree/cat_tree_level.tscn",
+		"res://levels/fish_tank/fish_tank_level.tscn",
+		"res://levels/turtle_habitat/turtle_habitat_level.tscn",
+		"res://levels/tutorial/tutorial.tscn"
+	]
+	for stage in stage_scenes:
+		ResourceLoader.load_threaded_request(stage)
+	var char_scenes = [
+		"res://player/cat/cat.tscn",
+		"res://player/fish/fish.tscn",
+		"res://player/turtle/turtle.tscn",
+		"res://player/beanbag/beanbag.tscn"
+	]
+	for char in char_scenes:
+		ResourceLoader.load_threaded_request(char)
 
 func _process(delta):
 	if InputManager.is_action_pressed("ui_back"):
