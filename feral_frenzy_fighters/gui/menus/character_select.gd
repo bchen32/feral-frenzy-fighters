@@ -251,9 +251,6 @@ func on_locked_in():
 	
 	for player_text in [p1_text, p2_text]:
 		Globals.player_sprites.append(player_text.text.to_lower())
-		var player_path = "res://player/%s/%s.tscn" \
-			% [player_text.text.to_lower(), player_text.text.to_lower()]
-		ResourceLoader.load_threaded_request(player_path)
 	
 	$MenuSound.play()
 	if p1_locked and p2_locked and \

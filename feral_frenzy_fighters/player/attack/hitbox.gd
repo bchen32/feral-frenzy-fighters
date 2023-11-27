@@ -29,6 +29,8 @@ func _on_body_entered(body: Node2D):
 	var exclude = false
 	if body not in excludes and body is PlayerCharacter:
 		exclude = true
+		if projectile:
+			get_parent().collide()
 		if NetworkManager.is_connected:
 			var hit_info: Dictionary = {
 				"dmg": dmg,
@@ -49,11 +51,8 @@ func _on_body_entered(body: Node2D):
 			body.hit = true
 			body.kb = kb
 			body.kb_angle = angle
-	if projectile and body not in excludes:
-		exclude = true
-		get_parent().collide()
-	if exclude:
 		excludes.append(body)  # only process collision once
+
 
 func _on_area_2d_area_entered(area):
 	if area.get_parent() is Interactable:
