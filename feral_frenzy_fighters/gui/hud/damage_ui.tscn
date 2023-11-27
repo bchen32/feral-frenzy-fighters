@@ -186,6 +186,7 @@ max_value = 1000.0
 show_percentage = false
 
 [node name="ChatPopup" parent="P1" instance=ExtResource("8_7swuq")]
+visible = false
 layout_mode = 1
 offset_left = -71.0
 offset_top = -11.5
@@ -339,6 +340,7 @@ max_value = 1000.0
 show_percentage = false
 
 [node name="ChatPopup" parent="P2" instance=ExtResource("8_7swuq")]
+visible = false
 layout_mode = 1
 offset_left = -70.0
 offset_top = -11.5
