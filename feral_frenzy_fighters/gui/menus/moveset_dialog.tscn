@@ -1,11 +1,10 @@
-[gd_scene load_steps=91 format=3 uid="uid://ctl1tov56fref"]
+[gd_scene load_steps=84 format=3 uid="uid://ctl1tov56fref"]
 
 [ext_resource type="Texture2D" uid="uid://b5jm0t8cpmgq6" path="res://gui/menus/sprites/screens/faded_black.png" id="1_esxds"]
 [ext_resource type="Script" path="res://gui/menus/moveset.gd" id="1_s5xd6"]
 [ext_resource type="Texture2D" uid="uid://cnadtlxa56n4j" path="res://gui/menus/sprites/screens/pop_up_blue.png" id="2_qe0vc"]
 [ext_resource type="Texture2D" uid="uid://jo38swmcraew" path="res://gui/menus/sprites/screens/examples/moveset_concept1.png" id="4_lapdd"]
 [ext_resource type="Texture2D" uid="uid://dgnqs1kere5wy" path="res://player/cat/sprites/attack_neutral/blue/Cat_Attack_Blue-1.png" id="5_4syw3"]
-[ext_resource type="Texture2D" uid="uid://ce7q4y2qmwxd8" path="res://player/cat/sprites/attack_neutral/blue/Cat_Attack_Blue-2.png" id="6_m81kn"]
 [ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="7_nmgyl"]
 [ext_resource type="Texture2D" uid="uid://v1bsxnovqqwf" path="res://player/cat/sprites/attack_neutral/blue/Cat_Attack_Blue_No_Backlight-2.png" id="8_iufeo"]
 [ext_resource type="Texture2D" uid="uid://diipaw50krrur" path="res://gui/menus/sprites/buttons/button_icon.png" id="8_yop3r"]
@@ -23,12 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://bull0sf4tgpkk" path="res://player/cat/sprites/dash_attack/blue/Cat_Dash_Attack_Blue_No_Backlight-5.png" id="14_3vjrn"]
 [ext_resource type="Texture2D" uid="uid://4ltf4ha7ubpd" path="res://player/cat/sprites/dash_attack/blue/Cat_Dash_Attack_Blue_No_Backlight-6.png" id="15_bcf1o"]
 [ext_resource type="Texture2D" uid="uid://dniwejpmxgh1x" path="res://player/cat/sprites/dash_attack/blue/Cat_Dash_Attack_Blue_No_Backlight-7.png" id="16_xpln6"]
-[ext_resource type="Texture2D" uid="uid://c2bplo5kexak7" path="res://player/cat/sprites/air_attack_neutral/blue/Cat_Aerial_Attack_Blue-1.png" id="17_7821e"]
-[ext_resource type="Texture2D" uid="uid://uldqt4mokvur" path="res://player/cat/sprites/air_attack_neutral/blue/Cat_Aerial_Attack_Blue-2.png" id="18_8gqlk"]
-[ext_resource type="Texture2D" uid="uid://cgktox4uf2bne" path="res://player/cat/sprites/air_attack_neutral/blue/Cat_Aerial_Attack_Blue-3.png" id="19_qkkx8"]
-[ext_resource type="Texture2D" uid="uid://dxc3umidexxfb" path="res://player/cat/sprites/air_attack_neutral/blue/Cat_Aerial_Attack_Blue-4.png" id="20_a28bg"]
-[ext_resource type="Texture2D" uid="uid://cpumcc34vbdg7" path="res://player/cat/sprites/air_attack_neutral/blue/Cat_Aerial_Attack_Blue-5.png" id="21_vjrwp"]
-[ext_resource type="Texture2D" uid="uid://dfywytsbleuhs" path="res://player/cat/sprites/air_attack_neutral/blue/Cat_Aerial_Attack_Blue-6.png" id="22_kdnjy"]
 [ext_resource type="Texture2D" uid="uid://b30yw6iclusmw" path="res://player/cat/sprites/air_attack_neutral/blue/cat_aerial_attack_blue_4.png" id="23_v5mxt"]
 [ext_resource type="Texture2D" uid="uid://dcojilljnicy7" path="res://player/cat/sprites/air_attack_neutral/blue/Cat_Aerial_Attack_Blue_No_Backlight-1.png" id="24_xoike"]
 [ext_resource type="Texture2D" uid="uid://ddrjmvghs8ptj" path="res://player/cat/sprites/air_attack_neutral/blue/Cat_Aerial_Attack_Blue_No_Backlight-2.png" id="25_tvhae"]
@@ -126,24 +119,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("17_7821e")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_8gqlk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_qkkx8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_a28bg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_vjrwp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_kdnjy")
-}, {
-"duration": 1.0,
 "texture": ExtResource("23_v5mxt")
 }, {
 "duration": 1.0,
@@ -171,9 +146,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("5_4syw3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_m81kn")
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_iufeo")
@@ -345,7 +317,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Image" id="Image_5daa1"]
+[sub_resource type="Image" id="Image_7o0sa"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 1, 179, 179, 179, 20, 188, 188, 188, 19, 255, 255, 255, 1, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 179, 179, 179, 20, 180, 180, 180, 64, 180, 180, 180, 64, 188, 188, 188, 19, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 188, 188, 188, 19, 180, 180, 180, 64, 180, 180, 180, 64, 188, 188, 188, 19, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 1, 188, 188, 188, 19, 188, 188, 188, 19, 255, 255, 255, 1, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -355,9 +327,9 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_nkhc3"]
-image = SubResource("Image_5daa1")
+image = SubResource("Image_7o0sa")
 
-[sub_resource type="Image" id="Image_ecker"]
+[sub_resource type="Image" id="Image_t3mdc"]
 data = {
 "data": PackedByteArray(181, 181, 181, 48, 179, 179, 179, 50, 213, 213, 213, 6, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 179, 179, 179, 50, 180, 180, 180, 64, 180, 180, 180, 54, 213, 213, 213, 6, 255, 255, 255, 0, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 204, 204, 204, 5, 178, 178, 178, 53, 180, 180, 180, 64, 180, 180, 180, 54, 213, 213, 213, 6, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 255, 255, 255, 0, 204, 204, 204, 5, 182, 182, 182, 52, 180, 180, 180, 64, 180, 180, 180, 51, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 255, 255, 255, 0, 213, 213, 213, 6, 180, 180, 180, 54, 180, 180, 180, 64, 179, 179, 179, 50, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 213, 213, 213, 6, 180, 180, 180, 54, 180, 180, 180, 64, 183, 183, 183, 53, 170, 170, 170, 6, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 182, 182, 182, 49, 180, 180, 180, 64, 183, 183, 183, 53, 170, 170, 170, 6, 255, 255, 255, 0, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64, 181, 181, 181, 41, 182, 182, 182, 49, 170, 170, 170, 6, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 180, 180, 180, 64, 180, 180, 180, 64),
 "format": "RGBA8",
@@ -367,7 +339,7 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_su4di"]
-image = SubResource("Image_ecker")
+image = SubResource("Image_t3mdc")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vklqa"]
 content_margin_left = 4.0
@@ -514,7 +486,8 @@ grow_vertical = 2
 position = Vector2(229.5, 167)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_efrgh")
-animation = &"turtle_nattack"
+animation = &"fish_nair"
+frame_progress = 0.143956
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DialogBackground/MovesetUIArea"]
 layout_mode = 0
@@ -581,15 +554,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -219.0
+offset_left = -168.0
 offset_top = 127.5
-offset_right = 226.0
+offset_right = 172.0
 offset_bottom = 203.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_7gt2o")
 theme_override_font_sizes/normal_font_size = 58
-text = "Regular Attack"
+text = "Dash Attack"
 fit_content = true
 autowrap_mode = 0
 
@@ -768,12 +741,12 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_mn2ma")
 text = "Back"
 
 [connection signal="focus_entered" from="DialogBackground/MovesetUIArea/next_move/next_move" to="." method="_button_hovered"]
-[connection signal="pressed" from="DialogBackground/MovesetUIArea/next_move/next_move" to="." method="_on_next_move_pressed"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/next_move/next_move" to="." method="_button_hovered"]
+[connection signal="pressed" from="DialogBackground/MovesetUIArea/next_move/next_move" to="." method="_on_next_move_pressed"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/next_move/next_move" to="DialogBackground/MovesetUIArea/next_move" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="focus_entered" from="DialogBackground/MovesetUIArea/last_move/last_move" to="." method="_button_hovered"]
-[connection signal="pressed" from="DialogBackground/MovesetUIArea/last_move/last_move" to="." method="_on_last_move_pressed"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/last_move/last_move" to="." method="_button_hovered"]
+[connection signal="pressed" from="DialogBackground/MovesetUIArea/last_move/last_move" to="." method="_on_last_move_pressed"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/last_move/last_move" to="DialogBackground/MovesetUIArea/last_move" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="focus_entered" from="DialogBackground/MovesetUIArea/next_char/next_character" to="." method="_button_hovered"]
 [connection signal="pressed" from="DialogBackground/MovesetUIArea/next_char/next_character" to="." method="_button_hovered"]

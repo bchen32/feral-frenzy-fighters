@@ -198,7 +198,7 @@ func on_character2_change(send_networked_response: bool = true):
 				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_cat.png")
 				p2_stat.texture = preload("res://gui/hud/sprites/character_stats/blue_cat_stats.png")
 			else:
-				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/cat_purple.png")
+				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/cat_blue.png")
 				p2_stat.texture = preload("res://gui/hud/sprites/character_stats/blue_cat_stats.png")
 		1:
 			p2_text.text = str("Fish")
@@ -206,7 +206,7 @@ func on_character2_change(send_networked_response: bool = true):
 				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_fish.png")
 				p2_stat.texture = preload("res://gui/hud/sprites/character_stats/blue_fish_stats.png")
 			else:
-				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_purple.png")
+				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/fish_blue.png")
 				p2_stat.texture = preload("res://gui/hud/sprites/character_stats/blue_fish_stats.png")
 		2:
 			p2_text.text = str("Turtle")
@@ -214,7 +214,7 @@ func on_character2_change(send_networked_response: bool = true):
 				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/alternate_turtle.png")
 				p2_stat.texture = preload("res://gui/hud/sprites/character_stats/blue_turtle_stats.png")
 			else:
-				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/turtle_purple.png")
+				p2_portrait.texture = preload("res://gui/hud/sprites/cs_icons/turtle_blue.png")
 				p2_stat.texture = preload("res://gui/hud/sprites/character_stats/blue_turtle_stats.png")
 	_update_beginning_cutscene()
 
