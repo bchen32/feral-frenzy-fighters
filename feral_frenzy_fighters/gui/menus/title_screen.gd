@@ -8,8 +8,8 @@ extends Control
 var ui
 
 func _ready():
-	music_slider.value = 25 if Globals.music_val == -1 else Globals.music_val
-	sfx_slider.value = 125 if Globals.sfx_val == -1 else Globals.sfx_val
+	music_slider.value = 0 if Globals.music_val == -1 else Globals.music_val
+	sfx_slider.value = 0 if Globals.sfx_val == -1 else Globals.sfx_val
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(music_slider.value / 100))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(sfx_slider.value / 100))
 	$"MainMenu/Title/ButtonsVBox/Play/PlayButton".grab_focus()
@@ -30,7 +30,9 @@ func _ready():
 		"res://player/beanbag/beanbag.tscn"
 	]
 	for char in char_scenes:
+		print(char)
 		ResourceLoader.load_threaded_request(char)
+		ResourceLoader.load_threaded_request(char) # load twice in case of duplicate
 
 func _process(delta):
 	if InputManager.is_action_pressed("ui_back"):
