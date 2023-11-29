@@ -2,7 +2,7 @@ extends Node
 
 var multiplayer_peer = WebSocketMultiplayerPeer.new()
 
-const SERVER_IP = "127.0.0.1"
+const SERVER_IP = "feral.insightgit.com"
 const SERVER_PORT = 11111
 
 signal network_game_state_changed

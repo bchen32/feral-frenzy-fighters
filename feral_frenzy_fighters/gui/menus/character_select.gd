@@ -48,7 +48,7 @@ func _ready():
 	ui = Menu.new($Background)
 	var tween := create_tween()
 	tween.tween_property($Background, "global_position", Vector2(0,0), .5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
-	set_process(true)   
+	set_process(true)  
 	on_character1_change()
 	on_character2_change()
 
@@ -164,7 +164,7 @@ func _on_character_screen_lock_in_acked(player_num: int, character: int):
 	_update_beginning_cutscene()
 
 func on_character1_change(send_networked_response: bool = true):
-	if send_networked_response and NetworkManager.is_connected:
+	if send_networked_response and NetworkManager.is_connected and NetworkManager.my_player_num == 0:
 		NetworkManager.character_stage_screen_character_change.rpc(p1_character)
 	
 	$P1Sounds.play()
@@ -188,7 +188,7 @@ func on_character1_change(send_networked_response: bool = true):
 	_update_beginning_cutscene()
 
 func on_character2_change(send_networked_response: bool = true):
-	if send_networked_response and NetworkManager.is_connected:
+	if send_networked_response and NetworkManager.is_connected and NetworkManager.my_player_num == 1:
 		NetworkManager.character_stage_screen_character_change.rpc(p2_character)
 	$P2Sounds.play()
 	match (p2_character):
