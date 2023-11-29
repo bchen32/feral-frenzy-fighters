@@ -19,7 +19,7 @@ enum ChatEmoji {
 }
 
 const TARGET_PLAYERS = 2
-const START_STOCK = 5
+const START_STOCK = 4
 const START_PERCENTAGE = 0
 
 var selected_stage: int = -1
