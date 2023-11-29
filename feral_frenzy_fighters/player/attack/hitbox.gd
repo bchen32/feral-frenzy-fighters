@@ -31,7 +31,7 @@ func _on_body_entered(body: Node2D):
 		exclude = true
 		if projectile:
 			get_parent().collide()
-		if NetworkManager.is_connected:
+		if NetworkManager.is_connected and body.character_type != "beanbag":
 			var hit_info: Dictionary = {
 				"dmg": dmg,
 				"kb": get_kb(body),

@@ -160,10 +160,22 @@ func _ready():
 	elif NetworkManager.is_connected and character_type not in character_data:
 		character_type = "cat"
 	
+	if character_type == "beanbag":
+		_initial_player_position = position
+	
+	print(character_type)
+	
 	stats = load_stats(character_data[character_type].stats)
 	air_speed_lower_bound = -stats.walk_speed
 	air_speed_upper_bound = stats.walk_speed
+	
+	print("reee: %s" % character_data[character_type].sprite_scene)
+	
 	var character_scene = ResourceLoader.load_threaded_get(character_data[character_type].sprite_scene)
+	
+	if NetworkManager.is_connected and character_type == "cat":
+		character_scene = preload("res://player/cat/cat.tscn")
+	
 	_sprites_scene_instance = character_scene.instantiate()
 	add_child(_sprites_scene_instance)
 	anim_player = _sprites_scene_instance.get_node("AnimatedSprite2D")
@@ -238,7 +250,9 @@ func reset_player():
 	if _damage_label:
 		_damage_label.get_node(("P2" if player_num else "P1") + "/DamageLabel").label_settings.font_color = Color.WHITE
 		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
-		player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
+		
+		if character_type != "beanbag":
+			player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
 	
 	if character_type != "beanbag":
 		var states = {
@@ -308,6 +322,7 @@ func play_anim(animation_name: String):
 			1)
 			if _damage_label:
 				_damage_label.get_node(("P2" if player_num else "P1") + "/DamageLabel").label_settings.font_color = Color("d85244")
+				
 				var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
 				if character_type != "beanbag":
 					if player_num:
@@ -549,10 +564,14 @@ func acknowledge_death():
 			Globals.cutscene_player_video_path = ending_video
 			Globals.audio_stream_to_play_during_cutscene = ending_video_audiostream
 			get_tree().change_scene_to_file("res://gui/menus/cutscene_player.tscn")
-		if self.name == "Player":
-			$"../P1Respawn".respawn_player()
-		elif self.name == "Player2":
-			$"../P2Respawn".respawn_player()
+	
+	if self.name == "Player":
+		$"../P1Respawn".respawn_player()
+	elif self.name == "Player2":
+		$"../P2Respawn".respawn_player()
+	elif self.name == "BeanbagPlayer":
+		position = _initial_player_position
+	
 	play_audio(AudioType.DEATH)
 	play_particles(physics_blood,0, 30, 200, ko_icon_position,-Vector3(hit_direction.x,hit_direction.y, 0),Vector2(100,1000))
 

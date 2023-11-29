@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bpo6r03gw1uhh"]
+[gd_scene load_steps=10 format=3 uid="uid://bpo6r03gw1uhh"]
 
 [ext_resource type="Script" path="res://levels/lobby.gd" id="1_kt3by"]
 [ext_resource type="PackedScene" uid="uid://ju3ra5auyqg8" path="res://levels/cat_tree/cat_tree_level.tscn" id="2_kxqd3"]
 [ext_resource type="PackedScene" uid="uid://bty60wgry21nu" path="res://player/player.tscn" id="3_xfftx"]
-[ext_resource type="PackedScene" path="res://levels/camera.tscn" id="5_guw43"]
+[ext_resource type="PackedScene" uid="uid://cmvf4h60u8y1p" path="res://levels/camera.tscn" id="5_guw43"]
 [ext_resource type="PackedScene" uid="uid://cqwih0alupqsb" path="res://gui/hud/damage_ui.tscn" id="5_vp1oi"]
 [ext_resource type="AudioStream" uid="uid://gv5krwja5mbt" path="res://levels/cat_tree/music/catfight.wav" id="6_ap5ei"]
+[ext_resource type="PackedScene" uid="uid://eg7h4gkm6w3x" path="res://player/respawn/respawn.tscn" id="7_7j4d5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lo5pr"]
 size = Vector2(156, 1913.5)
@@ -85,5 +86,12 @@ offset_left = -539.0
 offset_top = -145.0
 offset_right = 613.0
 offset_bottom = -145.0
+
+[node name="P1Respawn" parent="." instance=ExtResource("7_7j4d5")]
+is_lobby = true
+p1_respawn = true
+
+[node name="P2Respawn" parent="." instance=ExtResource("7_7j4d5")]
+is_lobby = true
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
