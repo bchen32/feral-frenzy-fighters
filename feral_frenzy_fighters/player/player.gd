@@ -173,8 +173,15 @@ func _ready():
 	
 	var character_scene = ResourceLoader.load_threaded_get(character_data[character_type].sprite_scene)
 	
-	if NetworkManager.is_connected and character_type == "cat":
-		character_scene = preload("res://player/cat/cat.tscn")
+	if NetworkManager.is_connected and character_scene == null:
+		match character_type:
+			"cat":
+				character_scene = preload("res://player/cat/cat.tscn")
+			"fish":
+				character_scene = preload("res://player/fish/fish.tscn")
+			"turtle":
+				character_scene = preload("res://player/turtle/turtle.tscn")
+		
 	
 	_sprites_scene_instance = character_scene.instantiate()
 	add_child(_sprites_scene_instance)

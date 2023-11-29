@@ -158,6 +158,8 @@ func get_env_data(sender_id: int, env_name: String):
 					if selected_stage == 2:
 						# chompy
 						env_data.push_back(randi_range(5, 10))
+			"volcano":
+				env_data.push_back(randi_range(20, 30))
 			"water_level":
 				env_data.push_back(randi_range(20, 30))
 			"snapping_manager":

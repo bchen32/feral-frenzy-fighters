@@ -21,24 +21,16 @@ script = ExtResource("1_kt3by")
 
 [node name="Player" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("3_xfftx")]
 position = Vector2(673, 389)
-character_type = null
-character_data = null
-player_num = null
-stocks = null
 _damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
 _dead_areas = NodePath("../DeadAreas")
-ending_video = null
 _is_lobby = true
 
 [node name="BeanbagPlayer" parent="." node_paths=PackedStringArray("_damage_label", "_dead_areas") instance=ExtResource("3_xfftx")]
 position = Vector2(997, 551)
 character_type = "beanbag"
-character_data = null
 player_num = 2
-stocks = null
 _damage_label = NodePath("../Camera2D/CanvasLayer/DamageUI")
 _dead_areas = NodePath("../DeadAreas")
-ending_video = null
 _is_lobby = true
 
 [node name="DeadAreas" type="Node2D" parent="."]

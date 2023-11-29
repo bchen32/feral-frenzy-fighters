@@ -24,7 +24,21 @@ var new_shader_tint = Vector4(0, 0, 0, -1)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	NetworkManager.on_send_env_data.connect(_on_send_env_data)
+	
 	_volcano_process()
+
+func _on_send_env_data(env_name: String, env_data: Array):
+	match volcano_state:
+		Volcano_States.ACTIVE:
+			await get_tree().create_timer(env_data[0]).timeout
+			
+			event_spawner._external_event(false) # tell event_spawner volcano event wants to start next time
+		Volcano_States.DORMANT:
+			await get_tree().create_timer(env_data[0]).timeout
+			
+			volcano_state = Volcano_States.ACTIVE
+			_volcano_process()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -44,17 +58,24 @@ func _volcano_process():
 			print("Volcano is DORMANT.")
 			new_shader_tint = Vector4(0, 0, 0, -1)
 			anim.play("RESET")
-			await get_tree().create_timer(randi_range(active_min_delay, active_max_delay)).timeout
-			
-			volcano_state = Volcano_States.ACTIVE
-			_volcano_process()
+			if not NetworkManager.is_connected:
+				await get_tree().create_timer(randi_range(active_min_delay, active_max_delay)).timeout
+				
+				volcano_state = Volcano_States.ACTIVE
+				_volcano_process()
+			else:
+				NetworkManager.get_env_data.rpc("volcano")
 		Volcano_States.ACTIVE:
 			$VolcanoBubbles.playing = true
 			print("Volcano is ACTIVE.")
 			anim.play("Active")
-			await get_tree().create_timer(randi_range(erupt_min_delay, erupt_max_delay)).timeout
 			
-			event_spawner._external_event(false) # tell event_spawner volcano event wants to start next time
+			if not NetworkManager.is_connected:
+				await get_tree().create_timer(randi_range(erupt_min_delay, erupt_max_delay)).timeout
+				
+				event_spawner._external_event(false) # tell event_spawner volcano event wants to start next time
+			else:
+				NetworkManager.get_env_data.rpc("volcano")
 		Volcano_States.ERUPTING:
 			$VolcanoBubbles.playing = true
 			print("Volcano is ERUPTING.")
