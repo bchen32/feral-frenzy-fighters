@@ -12,6 +12,7 @@ func _ready():
 	$CatTreeLevel.remove_child($CatTreeLevel/Player2)
 	
 	$CatTreeLevel/Events/EventSpawner.queue_free()
+	Globals.water_level = 10000
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
