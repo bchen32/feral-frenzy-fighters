@@ -30,7 +30,6 @@ func _ready():
 		"res://player/beanbag/beanbag.tscn"
 	]
 	for char in char_scenes:
-		print(char)
 		ResourceLoader.load_threaded_request(char)
 		ResourceLoader.load_threaded_request(char) # load twice in case of duplicate
 

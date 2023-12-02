@@ -50,7 +50,11 @@ func update(delta):
 	var collision = character.move_and_collide(character.velocity * delta, true)
 	if collision:
 		var norm = collision.get_normal()
-		if character.velocity.project(norm).length() > character.stats.bounce_thresh:
+		var bounce_vel = character.velocity.project(norm).length()
+		if bounce_vel > character.stats.bounce_death_thresh:
+			character.bounce_death = true
+			return Globals.States.HIT
+		elif bounce_vel > character.stats.bounce_thresh:
 			character.velocity = character.velocity.bounce(norm) * character.stats.bounce_decay
 			hitstun = floor(hitstun * character.stats.bounce_decay)
 			character.kb_angle = atan2(character.velocity.y, character.velocity.x)
