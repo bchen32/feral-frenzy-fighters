@@ -15,8 +15,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
+	if active:
+		if Input.is_action_just_pressed("ui_back"):
+			_on_volume_button_pressed()
+	
+func _on_volume_button_pressed():
+	if len(ui._queue) <= 1:
+		Globals.pause_timer()
+		get_tree().paused = false
+		_button_hovered()
+		queue_free()
+	else:
+		ui.back()
+	
 func _on_moveset_button_pressed():
 	ui.next($ScuffSolution/MovesetDialog)
 
@@ -29,7 +40,7 @@ func _button_hovered():
 	back_sound.play()
 
 func _on_quit_button_pressed():
-	#connect._disconnect() (no idea)
+	#connect._disconnect() (no idea pls help)
 	get_tree().change_scene_to_file("res://gui/menus/title_screen.tscn")
 
 func _on_resume_button_pressed():
