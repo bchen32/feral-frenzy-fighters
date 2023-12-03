@@ -4,6 +4,7 @@ extends Node2D
 
 var _current_taunt_action: TutorialBillboard.TutorialAction = TutorialBillboard.TutorialAction.IDLE
 var _player_spawn_position: Vector2
+@onready var camera = $Player/Camera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
