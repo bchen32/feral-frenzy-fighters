@@ -1,6 +1,7 @@
-[gd_scene load_steps=45 format=3 uid="uid://br6txao4iioos"]
+[gd_scene load_steps=46 format=3 uid="uid://br6txao4iioos"]
 
 [ext_resource type="Script" path="res://gui/menus/title_screen.gd" id="1_u2ssx"]
+[ext_resource type="PackedScene" uid="uid://sjcnk7j4e0i4" path="res://gui/menus/cutscene_player.tscn" id="2_bmgbo"]
 [ext_resource type="Theme" uid="uid://ciapr50n3vxqt" path="res://default_ui_theme.tres" id="3_0h4m0"]
 [ext_resource type="Texture2D" uid="uid://dpaluibvjuaoc" path="res://gui/menus/sprites/screens/screen_background.png" id="4_eh3f6"]
 [ext_resource type="AudioStream" uid="uid://b6vmgj8xixu57" path="res://gui/menus/music/intro_theme.wav" id="4_n3vdy"]
@@ -68,7 +69,17 @@ anchors_preset = 0
 script = ExtResource("1_u2ssx")
 beginning_cutscene_path = "res://gui/menus/cutscenes/cat_v_cat_pre_battle.ogv"
 
+[node name="CutscenePlayer" parent="." node_paths=PackedStringArray("node_to_show") instance=ExtResource("2_bmgbo")]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 1
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 1922.0
+offset_bottom = 1069.0
+node_to_show = NodePath("../MainMenu")
+
 [node name="MainMenu" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
