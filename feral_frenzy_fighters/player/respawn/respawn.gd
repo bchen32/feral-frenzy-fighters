@@ -3,6 +3,8 @@ extends Node2D
 enum Capsule_States {NOCAPSULE, FLYINGIN, WAITING, FLYINGOUT}
 var capsule_state = Capsule_States.NOCAPSULE
 
+@export var is_lobby: bool = false
+
 @export var p1_respawn: bool
 var capsule_delay = 1 # how long it takes for respawn capsule to fly in
 var capsule_auto_drop_delay = 5 # how long players can wait in capsule before it auto drops them
@@ -78,8 +80,11 @@ func respawn_player():
 		$"../Player".set_process(false)
 		$"../Player".set_physics_process(false)
 	else:
-		$"../Player2".set_process(false)
-		$"../Player2".set_physics_process(false)
+		var player_name: String = "../BeanbagPlayer" if(is_lobby) else "../Player2"
+		
+		if is_lobby:
+			get_node(player_name).set_process(false)
+			get_node(player_name).set_physics_process(false)
 	
 	if capsule_state == Capsule_States.NOCAPSULE:
 		lock_player(true)

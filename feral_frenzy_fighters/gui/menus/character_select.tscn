@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dumo2066ytmjc" path="res://gui/hud/sprites/head_icons/turtle_icon_character_select.png" id="11_bpcki"]
 [ext_resource type="AudioStream" uid="uid://coneg16uuc06h" path="res://gui/menus/sfx/button.wav" id="12_d8f5d"]
 [ext_resource type="AudioStream" uid="uid://bw1ubqplxxg77" path="res://gui/menus/sfx/select.wav" id="13_i8kyi"]
-[ext_resource type="Texture2D" path="res://gui/menus/sprites/screens/examples/character_select_new.png" id="14_acs75"]
+[ext_resource type="Texture2D" uid="uid://cptv0ajp2jv80" path="res://gui/menus/sprites/screens/examples/character_select_new.png" id="14_acs75"]
 [ext_resource type="Texture2D" uid="uid://b258wqkbna8yg" path="res://gui/menus/sprites/screens/titles/characters_ui.png" id="15_ys53q"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w6u7p"]

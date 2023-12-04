@@ -83,7 +83,7 @@ func _on_video_stream_player_finished():
 				audio_stream_player.stream = audio_stream_to_play_after
 				audio_stream_player.play()
 	elif Globals.cutscene_player_end_game:
-		Globals.cutscene_player_video_path = "res://gui/menus/cutscenes/intro_cutscene.ogv"
+		Globals.cutscene_player_video_path = "res://gui/menus/cutscenes/intro_cut2.ogv"
 		get_tree().change_scene_to_file("res://gui/menus/title_screen.tscn")
 	else:
 		get_tree().change_scene_to_file("res://levels/main.tscn")

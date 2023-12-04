@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://ce4qfbgwx780w" path="res://player/respawn/sprites/test_tube_respawn_bottom_part.png" id="3_inxrf"]
 [ext_resource type="Texture2D" uid="uid://c58k36o5xw1rw" path="res://player/respawn/sprites/rocket_blue_fire2.png" id="4_ppwkr"]
 [ext_resource type="Texture2D" uid="uid://lsjwk1pklcjm" path="res://levels/turtle_habitat/sprites/events/smoke_particle effect.png" id="5_dkbtt"]
-[ext_resource type="Texture2D" uid="uid://dproynp4kvu5y" path="res://player/respawn/sprites/test_tube_respawn_empty_no_bottom.png" id="6_l6vix"]
 [ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="6_uelnp"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jkusw"]
+load_path = "res://.godot/imported/test_tube_respawn_empty_no_bottom.png-727a76870b6f2f0ccfb19bce881f2ac7.ctex"
 
 [sub_resource type="Animation" id="Animation_swpgu"]
 resource_name = "FlyingInFromLeft"
@@ -220,7 +222,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(1.4),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_l6vix")]
+"values": [SubResource("CompressedTexture2D_jkusw")]
 }
 
 [sub_resource type="Animation" id="Animation_mbn12"]
@@ -435,7 +437,7 @@ color = Color(0.47451, 0.741176, 0.843137, 1)
 
 [node name="CapsuleSprite" type="Sprite2D" parent="Capsule"]
 position = Vector2(0, -230)
-texture = ExtResource("6_l6vix")
+texture = SubResource("CompressedTexture2D_jkusw")
 offset = Vector2(0, 230)
 
 [node name="Hatch" type="Sprite2D" parent="Capsule/CapsuleSprite"]

@@ -60,12 +60,6 @@ func _on_credits_back_button_pressed():
 func _on_audio_stream_player_2d_finished():
 	$AudioStreamPlayer2D.play()
 
-func _on_instructions_button_pressed():
-	ui.next($MainMenu/Instructions)
-	_on_button_selected()
-
-func _on_settings_button_button_pressed():
-	pass # Replace with function body.
 
 func _on_play_dialog_on_online_button_pressed():
 	Globals.cutscene_player_video_path = beginning_cutscene_path
@@ -95,9 +89,7 @@ func _on_play_button_mouse_exited():
 	for children in $MainMenu/BloodySplatters.get_children():
 		children.hide()
 
-func _on_options_button_pressed():
-	ui.next($MainMenu/OptionsDialog)
-	_on_button_selected()
+
 
 
 func _on_host_button_pressed():
@@ -139,3 +131,35 @@ func _on_close_button_button_pressed():
 
 func _on_icon_button_click_pressed():
 	ui.back()
+
+func _on_options_button_button_pressed():
+	ui.next($MainMenu/OptionsDialog)
+	_on_button_selected()
+
+func _on_extras_button_pressed():
+	ui.next($MainMenu/ExtrasDialog)
+	_on_button_selected()
+	
+
+func _on_fish_button_pressed():
+	Globals.cutscene_player_video_path = "res://gui/menus/cutscenes/fish_backstory.ogv"
+	
+	$CutscenePlayer._ready()
+	$CutscenePlayer.show()
+	$MainMenu.hide()
+
+
+func _on_turtle_button_pressed():
+	Globals.cutscene_player_video_path = "res://gui/menus/cutscenes/turtle_backstory.ogv"
+	
+	$CutscenePlayer._ready()
+	$CutscenePlayer.show()
+	$MainMenu.hide()
+
+
+func _on_cat_button_pressed():
+	Globals.cutscene_player_video_path = "res://gui/menus/cutscenes/cat_backstory.ogv"
+	
+	$CutscenePlayer._ready()
+	$CutscenePlayer.show()
+	$MainMenu.hide()
