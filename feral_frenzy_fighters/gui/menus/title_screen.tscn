@@ -74,10 +74,8 @@ beginning_cutscene_path = "res://gui/menus/cutscenes/cat_v_cat_pre_battle.ogv"
 [node name="CutscenePlayer" parent="." node_paths=PackedStringArray("node_to_show") instance=ExtResource("2_bmgbo")]
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 1
-offset_left = 2.0
-offset_top = -11.0
-offset_right = 1922.0
-offset_bottom = 1069.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 node_to_show = NodePath("../MainMenu")
 
 [node name="MainMenu" type="TextureRect" parent="."]
