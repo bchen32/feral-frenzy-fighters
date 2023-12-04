@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://sjcnk7j4e0i4"]
 
 [ext_resource type="Script" path="res://gui/menus/cutscene_player.gd" id="1_w1rcn"]
-[ext_resource type="Texture2D" uid="uid://n1f0u0c3e263" path="res://levels/tutorial/ui/frames/jump/button_A_X-1.png" id="2_ah8ou"]
-[ext_resource type="Texture2D" uid="uid://b44lysj1iqbyk" path="res://levels/tutorial/ui/frames/jump/button_A_X-2.png" id="3_ivaqq"]
+[ext_resource type="Texture2D" uid="uid://csmesl5l1rk6w" path="res://levels/tutorial/ui/frames/options-pause/menu_button-1.png" id="2_85nw3"]
+[ext_resource type="Texture2D" uid="uid://cl5k6dkgnn2i" path="res://levels/tutorial/ui/frames/options-pause/menu_button-2.png" id="3_qd0c7"]
 [ext_resource type="Texture2D" uid="uid://csfw0i44hrjp3" path="res://levels/tutorial/ui/frames/skip/keyboard_ENTER-1.png" id="4_xj16s"]
 [ext_resource type="Texture2D" uid="uid://bdnq05l7ri03b" path="res://levels/tutorial/ui/frames/skip/keyboard_ENTER-2.png" id="5_ltxo2"]
 [ext_resource type="FontFile" uid="uid://bjfsea715ju03" path="res://gui/fonts/default_font/luckiest_guy.ttf" id="6_gc1yg"]
@@ -17,10 +17,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ah8ou")
+"texture": ExtResource("2_85nw3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_ivaqq")
+"texture": ExtResource("3_qd0c7")
 }],
 "loop": true,
 "name": &"Skip_Controller",
