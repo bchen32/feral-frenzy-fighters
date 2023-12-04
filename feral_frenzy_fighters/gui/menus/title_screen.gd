@@ -143,12 +143,24 @@ func _on_extras_button_pressed():
 	
 
 func _on_fish_button_pressed():
-	Globals.cutscene_player_video_path = beginning_cutscene_path
+	Globals.cutscene_player_video_path = "res://gui/menus/cutscenes/fish_backstory.ogv"
+	
+	$CutscenePlayer._ready()
+	$CutscenePlayer.show()
+	$MainMenu.hide()
 
 
 func _on_turtle_button_pressed():
-	Globals.cutscene_player_video_path = beginning_cutscene_path
+	Globals.cutscene_player_video_path = "res://gui/menus/cutscenes/turtle_backstory.ogv"
+	
+	$CutscenePlayer._ready()
+	$CutscenePlayer.show()
+	$MainMenu.hide()
 
 
 func _on_cat_button_pressed():
-	Globals.cutscene_player_video_path = beginning_cutscene_path
+	Globals.cutscene_player_video_path = "res://gui/menus/cutscenes/cat_backstory.ogv"
+	
+	$CutscenePlayer._ready()
+	$CutscenePlayer.show()
+	$MainMenu.hide()
