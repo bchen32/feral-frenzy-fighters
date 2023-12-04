@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckdwlvl2mkxbd"
-path="res://.godot/imported/blue_fish_stats.png-71e4b67e39e113ad525f7b6cc4776d53.ctex"
+uid="uid://wrlxujxee0lw"
+path="res://.godot/imported/options icon.png-1312287c4fe0195675ebc811ade92121.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/hud/sprites/character_stats/blue_fish_stats.png"
-dest_files=["res://.godot/imported/blue_fish_stats.png-71e4b67e39e113ad525f7b6cc4776d53.ctex"]
+source_file="res://gui/menus/sprites/buttons/icons/options icon.png"
+dest_files=["res://.godot/imported/options icon.png-1312287c4fe0195675ebc811ade92121.ctex"]
 
 [params]
 

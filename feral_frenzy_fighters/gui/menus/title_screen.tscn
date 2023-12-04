@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://d2pnd6moyijur" path="res://gui/menus/sprites/slider/sound_volume_slider_icon.png" id="20_yxcn2"]
 [ext_resource type="Texture2D" uid="uid://cjvi1ar5e1yr4" path="res://gui/menus/sprites/slider/sound_volume_border.png" id="21_uhsip"]
 [ext_resource type="Script" path="res://gui/dialog.gd" id="23_4bb6r"]
+[ext_resource type="Texture2D" uid="uid://wrlxujxee0lw" path="res://gui/menus/sprites/buttons/icons/options icon.png" id="23_sp45h"]
 [ext_resource type="Texture2D" uid="uid://b5jm0t8cpmgq6" path="res://gui/menus/sprites/screens/faded_black.png" id="25_bmnas"]
 [ext_resource type="Texture2D" uid="uid://cedt1efve56po" path="res://gui/menus/sprites/slider/sound_effect_icon.png" id="25_jss0d"]
 [ext_resource type="Texture2D" uid="uid://bknvqwtgmhrk1" path="res://gui/menus/sprites/slider/music_icon.png" id="26_76ehv"]
@@ -37,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://b0ciegbjevlvd" path="res://gui/menus/sprites/buttons/icons/settings_icon.png" id="32_abyt0"]
 [ext_resource type="PackedScene" uid="uid://ctl1tov56fref" path="res://gui/menus/moveset_dialog.tscn" id="34_fg6lk"]
 [ext_resource type="AudioStream" uid="uid://coneg16uuc06h" path="res://gui/menus/sfx/button.wav" id="34_r00cv"]
+[ext_resource type="Texture2D" uid="uid://gdq340tgo0aw" path="res://gui/menus/sprites/screens/titles/backstories_ui.png" id="36_einno"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vu2cy"]
 texture = ExtResource("11_jd057")
@@ -44,15 +46,15 @@ texture = ExtResource("11_jd057")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_euk71"]
 texture = ExtResource("13_oy3x2")
 
+[sub_resource type="LabelSettings" id="LabelSettings_p67dp"]
+font = ExtResource("15_3jjna")
+font_size = 100
+
 [sub_resource type="LabelSettings" id="LabelSettings_0tfhe"]
 font = ExtResource("15_3jjna")
 font_size = 35
 
 [sub_resource type="LabelSettings" id="LabelSettings_m61ry"]
-font = ExtResource("15_3jjna")
-font_size = 100
-
-[sub_resource type="LabelSettings" id="LabelSettings_p67dp"]
 font = ExtResource("15_3jjna")
 font_size = 100
 
@@ -153,7 +155,7 @@ offset_right = 157.0
 offset_bottom = 156.973
 grow_horizontal = 2
 grow_vertical = 2
-focus_neighbor_bottom = NodePath("../../ButtonsHBox/Options/OptionsButton")
+focus_neighbor_bottom = NodePath("../../ButtonsHBox/Extras/ExtrasButton")
 focus_next = NodePath("../../ButtonsHBox/Credits/CreditsButton")
 focus_previous = NodePath("../../ButtonsHBox/Quit/QuitButton")
 theme = ExtResource("3_0h4m0")
@@ -194,29 +196,15 @@ theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
 text = "Tutorial"
 
-[node name="Options" type="Control" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="OptionsButton" type="Button" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox/Options" groups=["TitleButtons"]]
-layout_mode = 0
-offset_right = 324.0
-offset_bottom = 162.0
-theme = ExtResource("3_0h4m0")
-theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
-text = "Options"
-
 [node name="Extras" type="Control" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox"]
-visible = false
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ExtrasButton" type="Button" parent="MainMenu/Title/ButtonsVBox/ButtonsHBox/Extras" groups=["TitleButtons"]]
 layout_mode = 0
-offset_right = 237.0
-offset_bottom = 90.0
+offset_right = 324.0
+offset_bottom = 162.0
 theme = ExtResource("3_0h4m0")
 theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
 text = "Extras"
@@ -234,6 +222,61 @@ theme = ExtResource("3_0h4m0")
 theme_override_styles/focus = SubResource("StyleBoxTexture_euk71")
 text = "Quit"
 
+[node name="OptionsButton" type="Control" parent="MainMenu/Title"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+anchors_preset = 0
+offset_left = 1744.0
+offset_top = 56.0
+offset_right = 1944.0
+offset_bottom = 262.0
+scale = Vector2(0.7, 0.7)
+script = ExtResource("28_mlo4o")
+
+[node name="IconButtonClick" type="TextureButton" parent="MainMenu/Title/OptionsButton" groups=["TitleButtons"]]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+texture_normal = ExtResource("29_pqkes")
+texture_pressed = ExtResource("30_jsdcc")
+texture_hover = ExtResource("31_jv14s")
+
+[node name="Icon" type="TextureRect" parent="MainMenu/Title/OptionsButton/IconButtonClick"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.3333
+offset_top = -86.6667
+offset_right = 110.667
+offset_bottom = 113.333
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("23_sp45h")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="MainMenu/Title/OptionsButton/IconButtonClick"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -40.0
+offset_right = 28.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "?"
+label_settings = SubResource("LabelSettings_p67dp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="GameIcon" type="TextureRect" parent="MainMenu/Title"]
 layout_mode = 1
 anchors_preset = 5
@@ -246,6 +289,73 @@ offset_bottom = 932.0
 grow_horizontal = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("11_noaj0")
+
+[node name="TopBarButtons" type="HBoxContainer" parent="MainMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -336.0
+offset_top = 20.0
+offset_right = 82.0
+offset_bottom = 226.0
+grow_horizontal = 0
+scale = Vector2(0.75, 0.75)
+alignment = 1
+
+[node name="InstructionsButton" type="Control" parent="MainMenu/TopBarButtons"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+script = ExtResource("28_mlo4o")
+character = "?"
+icon_texture = ExtResource("19_egfgu")
+
+[node name="IconButtonClick" type="TextureButton" parent="MainMenu/TopBarButtons/InstructionsButton" groups=["TitleButtons"]]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+texture_normal = ExtResource("29_pqkes")
+texture_pressed = ExtResource("30_jsdcc")
+texture_hover = ExtResource("31_jv14s")
+
+[node name="Icon" type="TextureRect" parent="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("32_abyt0")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -40.0
+offset_right = 28.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "?"
+label_settings = SubResource("LabelSettings_p67dp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="MainMenu/TopBarButtons"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
 
 [node name="Instructions" type="Control" parent="MainMenu"]
 visible = false
@@ -333,9 +443,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -522.0
-offset_top = -377.5
+offset_top = -367.0
 offset_right = 522.0
-offset_bottom = 377.5
+offset_bottom = 388.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("15_e5iic")
@@ -345,9 +455,9 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 anchors_preset = 0
 offset_left = 1230.0
-offset_top = -231.5
-offset_right = 1430.0
-offset_bottom = -25.5
+offset_top = -278.0
+offset_right = 1615.0
+offset_bottom = -23.0
 grow_horizontal = 0
 scale = Vector2(0.85, 0.85)
 script = ExtResource("28_mlo4o")
@@ -365,6 +475,7 @@ offset_right = 100.0
 offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.8, 0.8)
 theme = ExtResource("3_0h4m0")
 texture_normal = ExtResource("29_pqkes")
 texture_pressed = ExtResource("30_jsdcc")
@@ -417,122 +528,6 @@ offset_right = 327.0
 offset_bottom = 267.0
 grow_horizontal = 2
 texture = ExtResource("17_y7rfj")
-
-[node name="TopBarButtons" type="HBoxContainer" parent="MainMenu"]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -336.0
-offset_top = 20.0
-offset_right = 82.0
-offset_bottom = 226.0
-grow_horizontal = 0
-scale = Vector2(0.75, 0.75)
-alignment = 1
-
-[node name="InstructionsButton" type="Control" parent="MainMenu/TopBarButtons"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-script = ExtResource("28_mlo4o")
-character = "?"
-icon_texture = ExtResource("19_egfgu")
-
-[node name="IconButtonClick" type="TextureButton" parent="MainMenu/TopBarButtons/InstructionsButton" groups=["TitleButtons"]]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 200.0
-texture_normal = ExtResource("29_pqkes")
-texture_pressed = ExtResource("30_jsdcc")
-texture_hover = ExtResource("31_jv14s")
-
-[node name="Icon" type="TextureRect" parent="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -100.0
-offset_right = 100.0
-offset_bottom = 100.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("32_abyt0")
-stretch_mode = 3
-
-[node name="Label" type="Label" parent="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -27.0
-offset_top = -40.0
-offset_right = 28.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "?"
-label_settings = SubResource("LabelSettings_p67dp")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Spacer" type="Control" parent="MainMenu/TopBarButtons"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-
-[node name="SettingsButton" type="Control" parent="MainMenu/TopBarButtons"]
-visible = false
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-script = ExtResource("28_mlo4o")
-
-[node name="IconButtonClick" type="TextureButton" parent="MainMenu/TopBarButtons/SettingsButton" groups=["TitleButtons"]]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 200.0
-texture_normal = ExtResource("29_pqkes")
-texture_pressed = ExtResource("30_jsdcc")
-texture_hover = ExtResource("31_jv14s")
-
-[node name="Icon" type="TextureRect" parent="MainMenu/TopBarButtons/SettingsButton/IconButtonClick"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -100.0
-offset_right = 100.0
-offset_bottom = 100.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("32_abyt0")
-stretch_mode = 3
-
-[node name="Label" type="Label" parent="MainMenu/TopBarButtons/SettingsButton/IconButtonClick"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -27.0
-offset_top = -40.0
-offset_right = 28.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "?"
-label_settings = SubResource("LabelSettings_p67dp")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="AudioSliders" type="Control" parent="MainMenu"]
 visible = false
@@ -885,18 +880,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.25, 1.25)
 
-[node name="PlayOnlineButton" type="Button" parent="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer" groups=["TitleButtons"]]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-theme = ExtResource("3_0h4m0")
-theme_override_font_sizes/font_size = 60
-theme_override_styles/focus = SubResource("StyleBoxTexture_mn2ma")
-text = "Online"
-
-[node name="Spacer" type="Control" parent="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-
 [node name="PlayLocalButton" type="Button" parent="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer" groups=["TitleButtons"]]
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
@@ -904,6 +887,18 @@ theme = ExtResource("3_0h4m0")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxTexture_mn2ma")
 text = "Local"
+
+[node name="Spacer" type="Control" parent="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="PlayOnlineButton" type="Button" parent="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer" groups=["TitleButtons"]]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme = ExtResource("3_0h4m0")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxTexture_mn2ma")
+text = "Online"
 
 [node name="CloseButton" type="Control" parent="MainMenu/PlayDialog/DialogBackground"]
 custom_minimum_size = Vector2(200, 200)
@@ -961,6 +956,163 @@ label_settings = SubResource("LabelSettings_m61ry")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ExtrasDialog" type="Control" parent="MainMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogShade" type="TextureRect" parent="MainMenu/ExtrasDialog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("25_bmnas")
+
+[node name="DialogBackground" type="TextureRect" parent="MainMenu/ExtrasDialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -473.0
+offset_top = -509.0
+offset_right = 533.0
+offset_bottom = 497.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("26_ds1jq")
+
+[node name="OptionsUIArea" type="Control" parent="MainMenu/ExtrasDialog/DialogBackground"]
+anchors_preset = 0
+offset_left = 65.0
+offset_top = 51.0
+offset_right = 961.0
+offset_bottom = 958.0
+
+[node name="DialogTitle" type="TextureRect" parent="MainMenu/ExtrasDialog/DialogBackground/OptionsUIArea"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -252.0
+offset_top = 107.0
+offset_right = 252.0
+offset_bottom = 252.0
+grow_horizontal = 2
+texture = ExtResource("36_einno")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/ExtrasDialog/DialogBackground/OptionsUIArea"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.0
+offset_top = -181.5
+offset_right = 144.0
+offset_bottom = 324.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.15, 1.15)
+
+[node name="FishButton" type="Button" parent="MainMenu/ExtrasDialog/DialogBackground/OptionsUIArea/VBoxContainer" groups=["TitleButtons"]]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme = ExtResource("3_0h4m0")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxTexture_mn2ma")
+text = "Fish"
+
+[node name="Spacer2" type="Control" parent="MainMenu/ExtrasDialog/DialogBackground/OptionsUIArea/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="TurtleButton" type="Button" parent="MainMenu/ExtrasDialog/DialogBackground/OptionsUIArea/VBoxContainer" groups=["TitleButtons"]]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+theme = ExtResource("3_0h4m0")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxTexture_mn2ma")
+text = "Turtle"
+
+[node name="Spacer" type="Control" parent="MainMenu/ExtrasDialog/DialogBackground/OptionsUIArea/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="CatButton" type="Button" parent="MainMenu/ExtrasDialog/DialogBackground/OptionsUIArea/VBoxContainer" groups=["TitleButtons"]]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+theme = ExtResource("3_0h4m0")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxTexture_mn2ma")
+text = "Cat"
+
+[node name="CloseButton" type="Control" parent="MainMenu/ExtrasDialog/DialogBackground"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -181.0
+offset_right = 33.0
+offset_bottom = 209.0
+grow_horizontal = 0
+script = ExtResource("28_mlo4o")
+character = "X"
+
+[node name="IconButtonClick" type="TextureButton" parent="MainMenu/ExtrasDialog/DialogBackground/CloseButton" groups=["TitleButtons"]]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+texture_normal = ExtResource("29_pqkes")
+texture_pressed = ExtResource("30_jsdcc")
+texture_hover = ExtResource("31_jv14s")
+
+[node name="Icon" type="TextureRect" parent="MainMenu/ExtrasDialog/DialogBackground/CloseButton/IconButtonClick"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("32_abyt0")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="MainMenu/ExtrasDialog/DialogBackground/CloseButton/IconButtonClick"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -40.0
+offset_right = 28.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "?"
+label_settings = SubResource("LabelSettings_m61ry")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("34_r00cv")
 volume_db = -5.0
@@ -988,22 +1140,21 @@ text = "host"
 [connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Credits/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Tutorial/TutorialButton" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Tutorial/TutorialButton" to="." method="_on_tutorial_button_pressed"]
-[connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Options/OptionsButton" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Options/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_instructions_button_pressed"]
+[connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Extras/ExtrasButton" to="." method="_on_extras_button_pressed"]
 [connection signal="focus_entered" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Quit/QuitButton" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/Title/ButtonsVBox/ButtonsHBox/Quit/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="button_pressed" from="MainMenu/Title/OptionsButton" to="." method="_on_options_button_button_pressed"]
+[connection signal="focus_entered" from="MainMenu/Title/OptionsButton/IconButtonClick" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/Title/OptionsButton/IconButtonClick" to="MainMenu/Title/OptionsButton" method="_on_icon_button_click_pressed" flags=18]
+[connection signal="button_pressed" from="MainMenu/TopBarButtons/InstructionsButton" to="." method="_on_instructions_button_pressed"]
+[connection signal="focus_entered" from="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick" to="MainMenu/TopBarButtons/InstructionsButton" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="button_pressed" from="MainMenu/Credits/CreditsBackground/CreditsNames/BackButton" to="MainMenu/PlayDialog" method="_on_close_button_button_pressed" flags=18]
 [connection signal="focus_entered" from="MainMenu/Credits/CreditsBackground/CreditsNames/BackButton/IconButtonClick" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/Credits/CreditsBackground/CreditsNames/BackButton/IconButtonClick" to="." method="_on_icon_button_click_pressed"]
 [connection signal="pressed" from="MainMenu/Credits/CreditsBackground/CreditsNames/BackButton/IconButtonClick" to="MainMenu/Credits/CreditsBackground/CreditsNames/BackButton" method="_on_icon_button_click_pressed" flags=18]
-[connection signal="button_pressed" from="MainMenu/TopBarButtons/InstructionsButton" to="." method="_on_instructions_button_pressed"]
-[connection signal="focus_entered" from="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/TopBarButtons/InstructionsButton/IconButtonClick" to="MainMenu/TopBarButtons/InstructionsButton" method="_on_icon_button_click_pressed" flags=18]
-[connection signal="button_pressed" from="MainMenu/TopBarButtons/SettingsButton" to="." method="_on_settings_button_button_pressed"]
-[connection signal="focus_entered" from="MainMenu/TopBarButtons/SettingsButton/IconButtonClick" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/TopBarButtons/SettingsButton/IconButtonClick" to="MainMenu/TopBarButtons/SettingsButton" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="focus_entered" from="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea/BackButton" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="MainMenu/AudioSliders/VolumeDialog/DialogBackground/OptionsUIArea/BackButton" to="MainMenu/AudioSliders/VolumeDialog" method="_on_second_button_pressed" flags=18]
@@ -1023,12 +1174,22 @@ text = "host"
 [connection signal="pressed" from="MainMenu/OptionsDialog/DialogBackground/CloseButton/IconButtonClick" to="MainMenu/OptionsDialog/DialogBackground/CloseButton" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="on_first_button_pressed" from="MainMenu/PlayDialog" to="." method="_on_play_dialog_on_online_button_pressed"]
 [connection signal="on_second_button_pressed" from="MainMenu/PlayDialog" to="." method="_on_play_dialog_on_local_button_pressed"]
-[connection signal="focus_entered" from="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayOnlineButton" to="." method="_on_button_entered"]
-[connection signal="pressed" from="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayOnlineButton" to="MainMenu/PlayDialog" method="_on_first_button_pressed" flags=18]
 [connection signal="focus_entered" from="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayLocalButton" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayLocalButton" to="MainMenu/PlayDialog" method="_on_second_button_pressed" flags=18]
+[connection signal="focus_entered" from="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayOnlineButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/PlayDialog/DialogBackground/PlayUIArea/VBoxContainer/PlayOnlineButton" to="MainMenu/PlayDialog" method="_on_first_button_pressed" flags=18]
 [connection signal="button_pressed" from="MainMenu/PlayDialog/DialogBackground/CloseButton" to="MainMenu/PlayDialog" method="_on_close_button_button_pressed" flags=18]
 [connection signal="focus_entered" from="MainMenu/PlayDialog/DialogBackground/CloseButton/IconButtonClick" to="." method="_on_button_entered"]
 [connection signal="pressed" from="MainMenu/PlayDialog/DialogBackground/CloseButton/IconButtonClick" to="MainMenu/PlayDialog/DialogBackground/CloseButton" method="_on_icon_button_click_pressed" flags=18]
+[connection signal="focus_entered" from="MainMenu/ExtrasDialog/DialogBackground/OptionsUIArea/VBoxContainer/FishButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/ExtrasDialog/DialogBackground/OptionsUIArea/VBoxContainer/FishButton" to="." method="_on_fish_button_pressed"]
+[connection signal="focus_entered" from="MainMenu/ExtrasDialog/DialogBackground/OptionsUIArea/VBoxContainer/TurtleButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/ExtrasDialog/DialogBackground/OptionsUIArea/VBoxContainer/TurtleButton" to="." method="_on_turtle_button_pressed"]
+[connection signal="focus_entered" from="MainMenu/ExtrasDialog/DialogBackground/OptionsUIArea/VBoxContainer/CatButton" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/ExtrasDialog/DialogBackground/OptionsUIArea/VBoxContainer/CatButton" to="." method="_on_cat_button_pressed"]
+[connection signal="button_pressed" from="MainMenu/ExtrasDialog/DialogBackground/CloseButton" to="." method="_on_close_button_button_pressed"]
+[connection signal="button_pressed" from="MainMenu/ExtrasDialog/DialogBackground/CloseButton" to="MainMenu/ExtrasDialog" method="_on_close_button_button_pressed" flags=18]
+[connection signal="focus_entered" from="MainMenu/ExtrasDialog/DialogBackground/CloseButton/IconButtonClick" to="." method="_on_button_entered"]
+[connection signal="pressed" from="MainMenu/ExtrasDialog/DialogBackground/CloseButton/IconButtonClick" to="MainMenu/ExtrasDialog/DialogBackground/CloseButton" method="_on_icon_button_click_pressed" flags=18]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
 [connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
