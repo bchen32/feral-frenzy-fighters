@@ -41,6 +41,7 @@ extends CharacterBody2D
 
 var character_int = {"cat": 0, "fish": 1, "turtle": 2}
 var color: String = ""
+var underwater = false
 var bloodied = false
 var anim_player: AnimatedSprite2D
 var stats: Dictionary
@@ -206,7 +207,8 @@ func _ready():
 		else:
 			p1_icon = _sprites_scene_instance.get_node("Player1Icon")
 			p2_icon = _sprites_scene_instance.get_node("Player2Icon")
-			player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
+			underwater = in_water()
+			update_head_icon()
 	
 	if character_type != "beanbag":
 		var states = {
@@ -257,10 +259,10 @@ func reset_player():
 	bloodied = false
 	if _damage_label:
 		_damage_label.get_node(("P2" if player_num else "P1") + "/DamageLabel").label_settings.font_color = Color.WHITE
-		var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
+		update_head_icon()
 		
 		if character_type != "beanbag":
-			player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
+			update_head_icon()
 	
 	if character_type != "beanbag":
 		var states = {
@@ -319,7 +321,7 @@ func reset_frame():
 func play_anim(animation_name: String):
 	if character_type == "beanbag":
 		anim_player.play(animation_name)
-	elif percentage > 40:
+	elif is_injured():
 		anim_player.play("_".join([color, "injured", animation_name]))
 		if !bloodied:
 			bloodied = true
@@ -331,7 +333,6 @@ func play_anim(animation_name: String):
 			if _damage_label:
 				_damage_label.get_node(("P2" if player_num else "P1") + "/DamageLabel").label_settings.font_color = Color("d85244")
 				
-				var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
 				if character_type != "beanbag":
 					if player_num:
 						if character_type == Globals.player_sprites[0]:
@@ -340,7 +341,7 @@ func play_anim(animation_name: String):
 							color = "blue"
 					else:
 						color = "purple"
-					player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon_injured.png")
+					update_head_icon()
 	else:
 		if character_type == "cat":
 			if in_water():
@@ -444,6 +445,29 @@ func get_grav():
 
 func in_water():
 	return position.y > Globals.water_level
+
+func is_injured():
+	return percentage > 40
+
+func update_head_icon():
+	var player_head = _damage_label.get_node(("P2" if player_num else "P1") + "/TextureRect")
+	if is_injured():
+		player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon_injured.png")
+	else:
+		if character_type == "cat":
+			if underwater:
+				print("underwater cat")
+				player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon_yes_bubble.png")
+			else:
+				print("abovewater cat")
+				player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
+		elif character_type == "fish":
+			if underwater:
+				print("underwater fish")
+				player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon_no_bubble.png")
+			else:
+				print("abovewater fish")
+				player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
 
 
 func update_attack(attack_name: String):
@@ -585,6 +609,9 @@ func acknowledge_death():
 
 func _physics_process(delta: float):
 	# if we are the server setup, we need to tell InputManager which player to get inputs for
+	if underwater != in_water():
+		underwater = in_water()
+		update_head_icon()
 	if character_type != "beanbag":
 		set_collision_mask_value(4, not InputManager.is_action_pressed(get_input("down")))  # drop through platforms while down is held
 		if InputManager.is_action_just_pressed("pause") && !NetworkManager.is_connected && Globals.can_pause:

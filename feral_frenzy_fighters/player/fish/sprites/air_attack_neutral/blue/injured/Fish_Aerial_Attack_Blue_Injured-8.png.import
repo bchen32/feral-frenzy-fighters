@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0n8uua0qkgce"
-path="res://.godot/imported/Fish_Aerial_Attack_Blue_Injured-8.png-7e438962c37ec5d31dfa5da986cc1a44.ctex"
+path="res://.godot/imported/Fish_Aerial_Attack_Blue_Injured-8.png-1bbf2352356da0f9c5802c29034a7898.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/fish/sprites/air_attack_neutral/blue/Injured/Fish_Aerial_Attack_Blue_Injured-8.png"
-dest_files=["res://.godot/imported/Fish_Aerial_Attack_Blue_Injured-8.png-7e438962c37ec5d31dfa5da986cc1a44.ctex"]
+source_file="res://player/fish/sprites/air_attack_neutral/blue/injured/Fish_Aerial_Attack_Blue_Injured-8.png"
+dest_files=["res://.godot/imported/Fish_Aerial_Attack_Blue_Injured-8.png-1bbf2352356da0f9c5802c29034a7898.ctex"]
 
 [params]
 
