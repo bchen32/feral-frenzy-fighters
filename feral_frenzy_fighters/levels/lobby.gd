@@ -13,7 +13,7 @@ func _ready():
 	$CatTreeLevel.remove_child($CatTreeLevel/Player)
 	$CatTreeLevel.remove_child($CatTreeLevel/Player2)
 	$CatTreeLevel/Interactables/PlasmaBall.hide()
-	
+	$CatTreeLevel/Interactables/PlasmaBall.set_process(false)
 	$P1Respawn.set_spawn($CatTreeLevel/P1Spawn.position)
 	$P2Respawn.set_spawn($CatTreeLevel/P2Spawn.position)
 	
