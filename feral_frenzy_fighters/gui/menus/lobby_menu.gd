@@ -3,7 +3,7 @@ extends Control
 var ui
 var active = false
 var connect = load("res://common/network_manager.gd").new()
-
+var is_connected: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,7 +40,8 @@ func _button_hovered():
 	back_sound.play()
 
 func _on_quit_button_pressed():
-	#connect._disconnect() (no idea pls help)
+	multiplayer.multiplayer_peer = null
+	is_connected = false
 	get_tree().change_scene_to_file("res://gui/menus/title_screen.tscn")
 
 func _on_resume_button_pressed():
