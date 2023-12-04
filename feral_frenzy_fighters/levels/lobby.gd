@@ -17,6 +17,7 @@ func _ready():
 	$P2Respawn.set_spawn($CatTreeLevel/P2Spawn.position)
 	
 	$CatTreeLevel/Events/EventSpawner.queue_free()
+	Globals.water_level = 10000
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

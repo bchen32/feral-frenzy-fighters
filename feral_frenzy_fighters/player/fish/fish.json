@@ -22,6 +22,7 @@
 	"spike_mult": 0.5,
 	"hit_grav": 3000,
 	"bounce_thresh": 100,
+	"bounce_death_thresh": 1800,
 	"bounce_decay": 0.6,
 	"attacks": {
 		"neutral": {

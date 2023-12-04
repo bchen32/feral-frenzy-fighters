@@ -52,6 +52,7 @@ var air_speed_upper_bound: float
 var air_speed_lower_bound: float
 var jumps_left: int = 3
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+var bounce_death: bool = false
 # Be careful not to desync curr_hitboxes_ends from curr_hitboxes (sadly no tuples in GDScript)
 var curr_hitboxes: Array[Node]
 var curr_hitboxes_ends: Array[int]
@@ -593,6 +594,9 @@ func _physics_process(delta: float):
 	frame += 1
 	state_machine.update(delta)
 	move_and_slide()
+	if bounce_death:
+		bounce_death = false
+		acknowledge_death()
 
 func _unpause():
 	pass

@@ -22,11 +22,12 @@
 	"spike_mult": 0.5,
 	"hit_grav": 3000,
 	"bounce_thresh": 100,
+	"bounce_death_thresh": 1800,
 	"bounce_decay": 0.6,
 	"attacks": {
 		"neutral": {
 			"frames": 30,
-			"damage": 10,
+			"damage": 15,
 			"knockback_scale": 1,
 			"knockback_x_offset": 20,
 			"knockback_y_offset": -20,
@@ -44,7 +45,7 @@
 		},
 		"air_neutral": {
 			"frames": 20,
-			"damage": 10,
+			"damage": 15,
 			"knockback_scale": 1,
 			"knockback_x_offset": 0,
 			"knockback_y_offset": 0,
@@ -62,7 +63,7 @@
 		},
 		"dash_attack": {
 			"frames": 45,
-			"damage": 15,
+			"damage": 20,
 			"knockback_scale": 1,
 			"knockback_x_offset": 20,
 			"knockback_y_offset": -5,
