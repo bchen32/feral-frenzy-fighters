@@ -468,7 +468,8 @@ func update_head_icon():
 			else:
 				print("abovewater fish")
 				player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
-
+		else:
+			player_head.texture = load("res://gui/hud/sprites/head_icons/" + color + "_" + character_type + "_head_icon.png")
 
 func update_attack(attack_name: String):
 	var attack = stats.attacks[attack_name]
