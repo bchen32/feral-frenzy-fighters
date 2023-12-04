@@ -96,7 +96,6 @@ text = "SKIP"
 tab_size = 7
 
 [node name="LoadingScreen" parent="." instance=ExtResource("7_b1m1k")]
-visible = false
 z_index = -1
 layout_mode = 0
 anchors_preset = 0
