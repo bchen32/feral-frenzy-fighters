@@ -25,7 +25,6 @@ _data = {
 }
 
 [node name="KOIcon" type="Sprite2D"]
-modulate = Color(1, 1, 1, 0)
 position = Vector2(110, 0)
 texture = ExtResource("1_wcvl2")
 script = ExtResource("2_7g2me")
