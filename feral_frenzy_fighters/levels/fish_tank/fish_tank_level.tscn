@@ -436,7 +436,7 @@ texture = ExtResource("6_elfyn")
 metadata/_edit_lock_ = true
 
 [node name="TikiHut" type="Sprite2D" parent="Environment/Decorations"]
-position = Vector2(1587, 727)
+position = Vector2(1400, 727)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("10_ehe4q")
 metadata/_edit_lock_ = true
@@ -553,7 +553,7 @@ position = Vector2(742, 0)
 occluder = SubResource("OccluderPolygon2D_ao0v5")
 
 [node name="LightOccluder2D6" type="LightOccluder2D" parent="LightOccluders"]
-position = Vector2(16, 0)
+position = Vector2(-170, 0)
 occluder = SubResource("OccluderPolygon2D_xvk5b")
 
 [connection signal="child_exiting_tree" from="Events/EventSpawner" to="Events/EventSpawner" method="_on_child_exiting_tree"]
